@@ -1,5 +1,5 @@
 {
-  "homepage": "https://www.chenchen-echo.com/",
+  "homepage": "https://developerfolio.js.org/",
   "name": "developerfolio",
   "version": "0.1.0",
   "private": true,
@@ -25,18 +25,14 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "start": "node fetch.js && PORT=3001 react-scripts start",
+    "start": "node fetch.js && react-scripts start",
     "build": "node fetch.js && react-scripts build",
+    "dev": "PORT=3001 react-scripts start",
     "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"./**/*.{js,css,json,scss}\"",
     "check-format": "prettier -c \"./**/*.{js,css,json,scss}\"",
-    "new:article": "node scripts/new-article.js",
-    "new:photo": "node scripts/new-photo.js",
-    "new:video": "node scripts/new-video.js",
-    "new:project": "node scripts/new-project.js",
-    "content:validate": "node scripts/validate-content.js",
     "prepare": "husky"
   },
   "eslintConfig": {
