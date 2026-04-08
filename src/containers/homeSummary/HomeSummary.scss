@@ -1,199 +1,287 @@
 @import "../../_globalColor";
 
+/* ========== Pretext-Inspired Home Summary ========== */
+/* Card-based information architecture with warm aesthetics */
+
 .home-summary {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto 80px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 4rem;
 }
 
+/* Intro Section */
 .summary-intro {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.75rem;
   text-align: left;
+  border-bottom: 1px solid $pretextRule;
+  padding-bottom: 2rem;
 }
 
 .summary-text {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: $textColor;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: $pretextInk;
   margin: 0;
+  line-height: 1.7;
+  max-width: 600px;
+  font-family: "Georgia", "Iowan Old Style", serif;
 }
 
 .summary-cadence {
-  font-size: 0.95rem;
-  color: $subTitle;
+  font-size: 0.9rem;
+  color: $pretextMuted;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
 }
 
 .dark-mode .summary-text {
-  color: $textColorDark;
+  color: $pretextPanel;
 }
 
 .dark-mode .summary-cadence {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 253, 248, 0.6);
 }
 
+/* Section Container */
 .summary-section {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2rem;
 }
 
+/* Section Header */
 .summary-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 20px;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $pretextRule;
 }
 
 .summary-header h2 {
   margin: 0;
-  font-size: 1.75rem;
-  color: $textColor;
+  font-size: 1.5rem;
+  color: $pretextInk;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .summary-link {
-  font-size: 0.95rem;
-  color: $buttonColor;
+  font-size: 0.9rem;
+  color: $pretextAccent;
   text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: $buttonHover;
+  }
 }
 
+/* Article Grid */
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .summary-card {
-  background: $lightBackground2;
-  border: 1px solid $lightBorder1;
-  border-radius: 16px;
-  padding: 20px;
+  background: $pretextPanel;
+  border: 1px solid $pretextRule;
+  border-radius: 12px;
+  padding: 1.75rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .summary-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-  border-color: $buttonColor;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(32, 27, 24, 0.1),
+    0 2px 4px rgba(32, 27, 24, 0.06);
+  border-color: $pretextAccent;
 }
 
 .summary-card-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
-  color: $subTitle;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: $pretextMuted;
+  gap: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 .summary-card h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.2rem;
-  color: $textColor;
+  margin: 0;
+  font-size: 1.25rem;
+  color: $pretextInk;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
 .summary-card p {
   margin: 0;
-  color: $subTitle;
+  color: $pretextMuted;
   line-height: 1.6;
+  font-size: 0.95rem;
 }
 
+/* Featured Works Grid */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .featured-card {
-  background: linear-gradient(
-    135deg,
-    rgba(85, 25, 139, 0.06) 0%,
-    rgba(118, 75, 162, 0.04) 100%
-  );
-  border: 1px solid rgba(118, 75, 162, 0.2);
-  border-radius: 16px;
-  padding: 24px;
+  background: linear-gradient(135deg, $pretextPanel 0%, #fefaf2 100%);
+  border: 1px solid $pretextRule;
+  border-radius: 12px;
+  padding: 2rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, $pretextAccent 0%, transparent 70%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
 }
 
 .featured-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(32, 27, 24, 0.12),
+    0 2px 4px rgba(32, 27, 24, 0.08);
+  border-color: $pretextAccent;
 }
 
 .featured-meta {
-  font-size: 0.8rem;
-  color: $subTitle;
-  margin: 0 0 8px;
+  font-size: 0.75rem;
+  color: $pretextAccent;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
 }
 
 .featured-card h3 {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 1.3rem;
-  color: $textColor;
+  color: $pretextInk;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .featured-card p {
   margin: 0;
-  color: $subTitle;
+  color: $pretextMuted;
   line-height: 1.6;
+  font-size: 0.95rem;
 }
 
+/* Visual Grid (Photos & Videos) */
 .visual-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 1.25rem;
 }
 
 .visual-card {
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  background: $lightBackground2;
-  border: 1px solid $lightBorder1;
+  background: $pretextPanel;
+  border: 1px solid $pretextRule;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(32, 27, 24, 0.12);
+    border-color: $pretextAccent;
+  }
 }
 
 .visual-card img {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.visual-card:hover img {
+  transform: scale(1.04);
 }
 
 .visual-meta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 12px 14px;
+  gap: 0.5rem;
+  padding: 1rem;
   font-size: 0.85rem;
-  color: $subTitle;
+  color: $pretextMuted;
 }
 
 .visual-meta span:first-child {
-  color: $textColor;
+  color: $pretextInk;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
+.visual-meta span:last-child {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Dark Mode */
 .dark-mode .summary-header h2,
 .dark-mode .summary-card h3,
 .dark-mode .featured-card h3,
 .dark-mode .visual-meta span:first-child {
-  color: $textColorDark;
+  color: $pretextPanel;
 }
 
 .dark-mode .summary-card,
 .dark-mode .featured-card,
 .dark-mode .visual-card {
-  background: $darkBackground;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #2a2520;
+  border-color: rgba(255, 253, 248, 0.12);
+}
+
+.dark-mode .featured-card {
+  background: linear-gradient(135deg, #2a2520 0%, #362d26 100%);
 }
 
 .dark-mode .summary-card-meta,
@@ -201,25 +289,77 @@
 .dark-mode .featured-card p,
 .dark-mode .featured-meta,
 .dark-mode .visual-meta {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 253, 248, 0.6);
+}
+
+.dark-mode .summary-text {
+  color: $pretextPanel;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .home-summary {
+    gap: 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .summary-grid,
+  .featured-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
   .home-summary {
-    width: 95%;
-    gap: 40px;
+    gap: 2.5rem;
+    padding: 0 1rem;
+    margin-bottom: 3rem;
   }
 
   .summary-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
   }
 
   .summary-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .summary-text {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+  }
+
+  .summary-grid,
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-summary {
+    padding: 0 0.75rem;
+    gap: 2rem;
+  }
+
+  .summary-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .summary-text {
+    font-size: 1rem;
+  }
+
+  .summary-card,
+  .featured-card {
+    padding: 1.25rem;
+  }
+
+  .visual-grid {
+    grid-template-columns: 1fr;
   }
 }
