@@ -1,21 +1,47 @@
 @import "../_globalColor";
 
+/* Pretext-inspired warm, editorial aesthetic */
 .home-page {
   min-height: 100vh;
-  padding-bottom: 60px;
-  background: radial-gradient(
-      circle at 15% 20%,
-      rgba(244, 114, 182, 0.12),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 85% 0%,
-      rgba(129, 140, 248, 0.15),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 70% 80%,
-      rgba(250, 204, 21, 0.08),
-      transparent 40%
-    );
+  padding-bottom: 5rem;
+  background: linear-gradient(180deg, $pretextPage 0%, #fbf7f0 100%);
+  position: relative;
+
+  /* Subtle warm accent overlays */
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 5% 50%,
+        rgba(149, 95, 59, 0.04),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 95% 10%,
+        rgba(149, 95, 59, 0.03),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 50% 100%,
+        rgba(216, 206, 195, 0.02),
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-page {
+    background: linear-gradient(180deg, #1a1511 0%, #201b18 50%, #1f1a17 100%);
+  }
 }

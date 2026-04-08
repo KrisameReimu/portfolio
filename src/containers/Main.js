@@ -10,6 +10,7 @@ import Footer from "../components/footer/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import ScrollToTopButton from "./topbutton/Top";
 import SplashScreen from "./splashScreen/SplashScreen";
+import CharacterNPC from "../components/characterNPC/CharacterNPC";
 import AskEcho from "../components/askEcho/AskEcho";
 import HomePage from "../pages/HomePage";
 import GameDevPage from "../pages/GameDevPage";
@@ -92,6 +93,7 @@ const Main = () => {
                   <ScrollToTop />
                   <RouteAnalytics />
                   <Header />
+                  <CharacterNPC />
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/now" element={<NowPage />} />

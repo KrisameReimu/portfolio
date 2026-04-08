@@ -1,7 +1,13 @@
 @import "../_globalColor";
 
 .dark-mode {
-  background-color: $darkBackground;
-  color: white;
-  transition: "0.1s";
+  background-color: #1a1511;
+  background-image: linear-gradient(
+    180deg,
+    #1a1511 0%,
+    #201b18 50%,
+    #1f1a17 100%
+  );
+  color: $pretextPanel;
+  transition: background-color 0.15s linear;
 }
