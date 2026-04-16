@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import "./PortfolioDigest.scss";
 import LanguageContext from "../../contexts/LanguageContext";
 import {getText} from "../../utils/i18n";
+import {greeting, socialMediaLinks} from "../../portfolio";
 import {
   portfolioHero,
   portfolioPhotos,
@@ -24,10 +25,25 @@ const toYouTubeThumb = url => {
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
 };
 
+const isExternal = href => /^https?:\/\//.test(href || "");
+
+const ActionLink = ({href, label}) => {
+  if (!href) return null;
+  if (isExternal(href)) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer">
+        {label}
+      </a>
+    );
+  }
+  return <Link to={href}>{label}</Link>;
+};
+
 export default function PortfolioDigest() {
   const {language} = useContext(LanguageContext);
   const primaryVideo = portfolioVideos[0];
   const secondaryVideos = portfolioVideos.slice(1);
+  const hasPhotos = portfolioPhotos.length > 0;
 
   return (
     <section className="portfolio-digest" id="portfolio-highlights">
@@ -41,7 +57,14 @@ export default function PortfolioDigest() {
         <div className="hero-actions">
           <Link to="/videos">Videos</Link>
           <Link to="/lab">Coding Projects</Link>
-          <Link to="/photos">Photos</Link>
+          <a href={socialMediaLinks.youtube} target="_blank" rel="noreferrer">
+            YouTube Channel
+          </a>
+          {greeting.resumeLink && (
+            <a href={greeting.resumeLink} target="_blank" rel="noreferrer">
+              Download CV
+            </a>
+          )}
         </div>
       </header>
 
@@ -93,7 +116,9 @@ export default function PortfolioDigest() {
         </div>
       </section>
 
-      <section className="portfolio-block dual">
+      <section
+        className={hasPhotos ? "portfolio-block dual" : "portfolio-block"}
+      >
         <div>
           <div className="block-header">
             <h3>Selected Coding Projects</h3>
@@ -105,28 +130,40 @@ export default function PortfolioDigest() {
                 <h4>{project.title}</h4>
                 <p className="project-subtitle">{project.subtitle}</p>
                 <p>{project.detail}</p>
-                <Link to={project.to}>Open Project</Link>
+                <ActionLink
+                  href={project.href || project.to}
+                  label={project.actionLabel || "Open Project"}
+                />
               </article>
             ))}
           </div>
         </div>
 
-        <div>
-          <div className="block-header">
-            <h3>Photo Stories</h3>
-            <Link to="/photos">Explore</Link>
+        {hasPhotos && (
+          <div>
+            <div className="block-header">
+              <h3>Photo Stories</h3>
+              <Link to="/photos">Explore</Link>
+            </div>
+            <div className="photo-list">
+              {portfolioPhotos.map(photo => (
+                <article key={photo.id} className="photo-card">
+                  <div className="photo-thumb">
+                    {photo.imageUrl && (
+                      <img src={photo.imageUrl} alt={photo.title} />
+                    )}
+                  </div>
+                  <h4>{photo.title}</h4>
+                  <p>{photo.detail}</p>
+                  <ActionLink
+                    href={photo.href || photo.to}
+                    label={photo.actionLabel || "Open Gallery"}
+                  />
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="photo-list">
-            {portfolioPhotos.map(photo => (
-              <article key={photo.id} className="photo-card">
-                <div className="photo-thumb" />
-                <h4>{photo.title}</h4>
-                <p>{photo.detail}</p>
-                <Link to={photo.to}>Open Gallery</Link>
-              </article>
-            ))}
-          </div>
-        </div>
+        )}
       </section>
     </section>
   );

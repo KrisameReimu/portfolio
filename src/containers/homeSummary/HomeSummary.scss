@@ -144,6 +144,11 @@
   font-size: 0.95rem;
 }
 
+.summary-empty-card {
+  min-height: 180px;
+  justify-content: center;
+}
+
 /* Featured Works Grid */
 .featured-grid {
   display: grid;

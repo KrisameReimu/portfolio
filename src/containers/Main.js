@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,10 +8,8 @@ import {
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import ScrollToTopButton from "./topbutton/Top";
 import SplashScreen from "./splashScreen/SplashScreen";
 import CharacterNPC from "../components/characterNPC/CharacterNPC";
-import AskEcho from "../components/askEcho/AskEcho";
 import HomePage from "../pages/HomePage";
 import GameDevPage from "../pages/GameDevPage";
 import VideoPage from "../pages/VideoPage";
@@ -52,11 +50,12 @@ const OwnerRoute = ({children}) => {
 const Main = () => {
   const darkPref = window.matchMedia("(prefers-color-scheme: dark)");
   const [isDark, setIsDark] = useLocalStorage("isDark", darkPref.matches);
-  const defaultLanguage =
-    window.navigator.language && window.navigator.language.startsWith("zh")
-      ? "zh"
-      : "en";
-  const [language, setLanguage] = useLocalStorage("language", defaultLanguage);
+  const browserLanguage = useMemo(() => {
+    const rawLanguage =
+      window.navigator.language || window.navigator.languages?.[0] || "en";
+    return rawLanguage.toLowerCase().startsWith("zh") ? "zh" : "en";
+  }, []);
+  const [language, setLanguage] = useState(browserLanguage);
   const [isShowingSplashAnimation, setIsShowingSplashAnimation] =
     useState(true);
 
@@ -130,8 +129,6 @@ const Main = () => {
                     <Route path="/contact" element={<Contact />} />
                   </Routes>
                   <Footer />
-                  <AskEcho />
-                  <ScrollToTopButton />
                 </Router>
               )}
             </CommunityProvider>

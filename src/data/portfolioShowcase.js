@@ -1,73 +1,64 @@
 // Portfolio MVP data source
-// Update this file only to refresh homepage content.
+// Update this file to refresh homepage showcase content.
 
 export const portfolioHero = {
   name: "CHEN CHEN",
   role: {
-    zh: "Portfolio of AI x Multimedia",
-    en: "Portfolio of AI x Multimedia"
+    zh: "Full-stack AI Developer / Multimedia Storyteller",
+    en: "Full-stack AI Developer / Multimedia Storyteller"
   },
   intro: {
-    zh: "This site is a curated portfolio of my videos, coding projects, and visual stories. The CV is available separately as PDF.",
-    en: "This site is a curated portfolio of my videos, coding projects, and visual stories. The CV is available separately as PDF."
+    zh: "A curated portfolio of videos, AI application projects, and visual storytelling work.",
+    en: "A curated portfolio of videos, AI application projects, and visual storytelling work."
   }
 };
 
-// Replace these with real YouTube links and production metadata.
 export const portfolioVideos = [
   {
     id: "video-1",
-    title: "Main Showcase Video",
-    description: "Primary portfolio showcase video",
-    meta: "YouTube Unlisted | Main Showcase",
+    title: "Bridge The Digital Divide (Main Showcase)",
+    description:
+      "Primary showcase video featuring overseas service-learning storytelling and production.",
+    meta: "Main Showcase | YouTube Unlisted",
     href: "https://youtu.be/uvdpACbEzjY"
   },
   {
     id: "video-2",
-    title: "EIE2S02 Bridge The Digital Divided 5min",
-    description: "Unlisted portfolio demo video (new upload)",
-    meta: "YouTube Unlisted | 5:46",
+    title: "EIE2S02 Service Learning Documentary",
+    description:
+      "5-minute documentary cut used for presentation and communication impact.",
+    meta: "Secondary Showcase | 5:46",
     href: "https://youtu.be/DyRmvonFSP8"
   },
   {
     id: "video-3",
-    title: "Featured Video 3",
-    description: "Additional portfolio video highlight",
-    meta: "YouTube Unlisted | Featured",
+    title: "Hong Kong Story Reel",
+    description:
+      "Additional visual storytelling sample for pacing, framing, and editing rhythm.",
+    meta: "Creative Reel | YouTube Unlisted",
     href: "https://youtu.be/XjL2Tw4EoBs"
   }
 ];
 
-// Keep each project short: value + stack + one action link.
 export const portfolioProjects = [
   {
     id: "project-1",
-    title: "GenAI Feedback System",
-    subtitle: "Flask + React + Azure API",
-    detail: "Replace with your strongest technical case study and demo link",
-    to: "/lab"
+    title: "GenAI Feedback & Auto-grading Platform",
+    subtitle: "React + Flask + Azure API",
+    detail:
+      "Built and maintained an AI-powered feedback workflow for short-answer evaluation, with full-stack integration and deployment.",
+    href: "https://genai-sql.eiedev.app/",
+    actionLabel: "Open Live Demo"
   },
   {
     id: "project-2",
-    title: "Game/Interactive Build",
-    subtitle: "Unity / Web Interaction",
-    detail: "Replace with gameplay trailer, architecture notes, and your role",
-    to: "/game-dev"
+    title: "AI FYP Support Platform",
+    subtitle: "Full-stack Project Delivery",
+    detail:
+      "Contributed to OTP, frontend integration, and API-connected UI features in a collaborative development team.",
+    href: "https://github.com/KrisameReimu",
+    actionLabel: "Open GitHub"
   }
 ];
 
-// Start with 2-4 strong visual series, then expand gradually.
-export const portfolioPhotos = [
-  {
-    id: "photo-1",
-    title: "Photo Story Placeholder A",
-    detail: "Replace with your visual series cover",
-    to: "/photos"
-  },
-  {
-    id: "photo-2",
-    title: "Photo Story Placeholder B",
-    detail: "Replace with your best portrait / urban / narrative set",
-    to: "/photos"
-  }
-];
+export const portfolioPhotos = [];

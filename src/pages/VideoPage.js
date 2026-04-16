@@ -28,6 +28,7 @@ export default function VideoPage() {
     videos.forEach(video => {
       const year = (video.publishedDate || "").slice(0, 4);
       if (!year) return;
+
       const existing = byYear.get(year);
       if (!existing) {
         byYear.set(year, {
@@ -38,6 +39,7 @@ export default function VideoPage() {
         });
         return;
       }
+
       existing.count += 1;
       if (
         new Date(video.publishedDate).getTime() >
@@ -47,13 +49,14 @@ export default function VideoPage() {
         existing.coverImage = video.thumbnailUrl;
       }
     });
+
     return Array.from(byYear.values()).sort(
       (a, b) => Number(b.year) - Number(a.year)
     );
   }, [videos]);
 
   const copy = {
-    title: {zh: "视频作品", en: "Video Portfolio"},
+    title: {zh: "视频作品集", en: "Video Portfolio"},
     subtitle: {
       zh: "持续更新的影像作品与视觉实验",
       en: "Continuously updated visual works and moving-image experiments"
@@ -74,6 +77,7 @@ export default function VideoPage() {
         <h1 className="page-title">{getText(copy.title, language)}</h1>
         <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
       </div>
+
       <div className="archive-tabs">
         <button
           className={activeTab === "highlights" ? "active" : ""}
@@ -93,7 +97,7 @@ export default function VideoPage() {
 
       {activeTab === "highlights" ? (
         <>
-          <VideoPortfolio />
+          <VideoPortfolio showHeading={false} />
           <div className="achievements-section">
             <Achievement />
           </div>
@@ -107,6 +111,7 @@ export default function VideoPage() {
               </div>
             </div>
           )}
+
           {yearCards.map(item => (
             <div className="archive-card" key={item.year}>
               <img src={item.coverImage} alt={item.year} />
@@ -120,7 +125,7 @@ export default function VideoPage() {
                   {formatDate(item.latestDate, language)}
                 </p>
                 <Link to={`/videos/${item.year}`} className="archive-link">
-                  {getText(copy.explore, language)} →
+                  {getText(copy.explore, language)} ->
                 </Link>
               </div>
             </div>

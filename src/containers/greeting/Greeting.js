@@ -12,17 +12,23 @@ import {getText} from "../../utils/i18n";
 export default function Greeting() {
   const {isDark} = useContext(StyleContext);
   const {language} = useContext(LanguageContext);
+
   const primaryCta = {
-    zh: "查看最新文章",
-    en: "Read Latest Writing"
+    zh: "查看精选作品",
+    en: "View Featured Work"
   };
   const secondaryCta = {
-    zh: "联系我",
-    en: "Contact Me"
+    zh: "下载简历",
+    en: "Download CV"
   };
+
+  const resumeHref = greeting.resumeLink || "/contact";
+  const openResumeInNewTab = Boolean(greeting.resumeLink);
+
   if (!greeting.displayGreeting) {
     return null;
   }
+
   return (
     <Fade bottom duration={1000} distance="40px">
       <div className="greet-main" id="greeting">
@@ -54,10 +60,11 @@ export default function Greeting() {
               <div id="resume" className="empty-div"></div>
               <SocialMedia />
               <div className="button-greeting-div">
-                <Button text={getText(primaryCta, language)} href="/writing" />
+                <Button text={getText(primaryCta, language)} href="/videos" />
                 <Button
                   text={getText(secondaryCta, language)}
-                  href="/contact"
+                  href={resumeHref}
+                  newTab={openResumeInNewTab}
                 />
               </div>
             </div>

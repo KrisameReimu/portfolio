@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./AchievementCard.scss";
 
 export default function AchievementCard({cardInfo, isDark}) {
+  const [imageSrc, setImageSrc] = useState(cardInfo.image);
+
+  useEffect(() => {
+    setImageSrc(cardInfo.image);
+  }, [cardInfo.image]);
+
   function openUrlInNewTab(url, name) {
     if (!url) {
       console.log(`URL for ${name} not found`);
@@ -15,9 +21,11 @@ export default function AchievementCard({cardInfo, isDark}) {
     <div className={isDark ? "dark-mode certificate-card" : "certificate-card"}>
       <div className="certificate-image-div">
         <img
-          src={cardInfo.image}
+          src={imageSrc}
           alt={cardInfo.imageAlt || "Card Thumbnail"}
           className="card-image"
+          loading="lazy"
+          onError={() => setImageSrc("/ECHOHOME.png")}
         ></img>
       </div>
       <div className="certificate-detail-div">

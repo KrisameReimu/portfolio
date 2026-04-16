@@ -3,183 +3,296 @@
 .video-portfolio-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: min(1180px, 92%);
   padding: 20px 10px;
-  margin: 0px auto;
-  margin-top: 2rem;
-}
-
-.video-portfolio-heading {
-  font-size: 56px;
-  font-weight: 400;
-  text-align: center;
-}
-
-.video-portfolio-subtitle {
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.video-portfolio-cards-div {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.video-card {
-  background-color: $lightBackground2;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.video-card-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.video-embed {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.video-thumbnail {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  overflow: hidden;
-  cursor: pointer;
-
-  &:hover .video-overlay {
-    opacity: 1;
-  }
-}
-
-.video-thumbnail-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.play-icon {
-  font-size: 4rem;
-  color: white;
-}
-
-.video-info {
-  padding: 1.5rem;
-}
-
-.video-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: $textColor;
-}
-
-.video-description {
-  font-size: 1rem;
-  color: $subTitle;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.video-category {
-  display: inline-block;
-  padding: 0.3rem 0.8rem;
-  background-color: $buttonColor;
-  color: white;
-  border-radius: 15px;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.video-awards {
+  margin: 0 auto;
   margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.award-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background-color: $goldColor;
-  color: white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  font-weight: 500;
-
-  i {
-    color: #ffd700;
-  }
-}
-
-/* Dark mode */
-.dark-mode {
-  .video-card {
-    background-color: $darkBackground;
-  }
-
-  .video-title {
-    color: $textColorDark;
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .video-portfolio-cards-div {
-    grid-template-columns: 1fr;
-  }
 
   .video-portfolio-heading {
-    font-size: 40px;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
   }
 
   .video-portfolio-subtitle {
-    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .award-stats {
+    margin-top: 1.5rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .stat-card {
+    border: 1px solid $lightBorder1;
+    border-radius: 12px;
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    background: $lightBackground2;
+
+    i {
+      color: $buttonColor;
+    }
+  }
+
+  .stat-number {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $textColor;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: $subTitle;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    border: 1px solid $lightBorder1;
+    background: transparent;
+    color: $textColor;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.92rem;
+  }
+
+  .filter-btn.active {
+    background: $buttonColor;
+    border-color: $buttonColor;
+    color: #fff;
+  }
+
+  .video-portfolio-cards-div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.5rem;
+  }
+
+  .video-card {
+    background-color: $lightBackground2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid $lightBorder1;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  .video-card-featured {
+    grid-column: 1 / -1;
+  }
+
+  .video-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .video-card-featured .video-embed {
+    padding-bottom: 48%;
+  }
+
+  .video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+  }
+
+  .video-thumbnail-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-info {
+    padding: 1rem 1.05rem;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: $textColor;
+  }
+
+  .video-description {
+    font-size: 0.95rem;
+    color: $subTitle;
+    margin: 0.55rem 0 0;
+    line-height: 1.5;
+  }
+
+  .video-open-link {
+    margin-top: 0.6rem;
+    display: inline-block;
+    color: $buttonColor;
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .video-meta {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .video-category,
+  .video-duration,
+  .video-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.26rem 0.56rem;
+    border: 1px solid $lightBorder1;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    color: $subTitle;
+  }
+
+  .video-awards {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+  }
+
+  .video-tags {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .video-tag {
+    font-size: 0.75rem;
+    color: $buttonColor;
+    background: rgba(149, 95, 59, 0.1);
+    border-radius: 999px;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .empty-state {
+    border: 1px dashed $lightBorder1;
+    border-radius: 12px;
+    padding: 1.4rem;
+    text-align: center;
+    color: $subTitle;
+    grid-column: 1/-1;
   }
 }
 
-@media (max-width: 480px) {
-  .video-portfolio-heading {
-    font-size: 30px;
+.dark-mode {
+  .video-portfolio-container {
+    .stat-card,
+    .video-card {
+      background: $darkBackground;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .video-title,
+    .video-portfolio-heading,
+    .stat-number {
+      color: $textColorDark;
+    }
+
+    .stat-label,
+    .video-description,
+    .video-category,
+    .video-duration,
+    .video-date,
+    .empty-state {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .video-category,
+    .video-duration,
+    .video-date,
+    .empty-state {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .video-portfolio-container {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .video-portfolio-container {
+    .video-portfolio-heading {
+      font-size: 2.1rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .video-portfolio-cards-div {
+      grid-template-columns: 1fr;
+    }
+
+    .video-card-featured .video-embed {
+      padding-bottom: 56.25%;
+    }
   }
 }

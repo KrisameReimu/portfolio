@@ -27,7 +27,7 @@ const greeting = {
     en: "Hi, I'm Echo Chen"
   },
   tagline: {
-    zh: "AI 开发者 × 游戏创作者 × 数字叙事者",
+    zh: "AI 开发者 x 游戏创作者 x 数字叙事者",
     en: "AI Developer x Game Creator x Digital Storyteller"
   },
   subTitle: {
@@ -38,7 +38,7 @@ const greeting = {
     zh: "我相信技术的意义在于让故事被更多人看见。无论是纪录片镜头、摄影作品，还是交互式游戏，我都在寻找能够连接人心的叙事方式。",
     en: "I believe technology matters when it helps stories reach people. Through documentaries, photography, and interactive games, I'm always searching for narratives that connect with hearts."
   },
-  profileImage: require("./assets/images/profile.jpg"), // 你的个人头像
+  profileImage: require("./assets/images/profile.jpg"),
   resumeLink: "https://img.chenchen-echo.com/ChenChen_Personal_CV_2026.pdf",
   displayGreeting: true
 };
@@ -438,7 +438,7 @@ const supportInfo = {
 // Twitter Section
 
 const twitterDetails = {
-  userName: "", // 如果你有Twitter账号，可以添加
+  userName: "",
   display: false // Set true to display this section, defaults to false
 };
 

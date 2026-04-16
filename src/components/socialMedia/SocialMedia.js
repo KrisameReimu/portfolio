@@ -13,10 +13,13 @@ export default function SocialMedia() {
     return () => clearTimeout(timer);
   }, [copied]);
 
-  const copyLabel = language === "zh" ? "邮箱已复制" : "Email address copied";
+  const copyLabel =
+    language === "zh" ? "邮箱地址已复制" : "Email address copied";
+
   if (!socialMediaLinks.display) {
     return null;
   }
+
   return (
     <div className="social-media-div">
       {socialMediaLinks.github ? (
@@ -47,9 +50,7 @@ export default function SocialMedia() {
         <a
           href={`mailto:${socialMediaLinks.gmail}`}
           className="icon-button google"
-          onClick={event => {
-            // Some browsers with no mail client configured may silently fail.
-            // Provide a fallback that still exposes the email address.
+          onClick={() => {
             if (navigator?.clipboard?.writeText) {
               navigator.clipboard
                 .writeText(socialMediaLinks.gmail)

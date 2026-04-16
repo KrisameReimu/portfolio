@@ -1,66 +1,73 @@
 [
   {
-    "id": "reel-2025-001",
+    "id": "showcase-main-2026",
     "title": {
-      "zh": "2025 影像年度混剪",
-      "en": "2025 Visual Reel"
+      "zh": "Bridge The Digital Divide（主展示）",
+      "en": "Bridge The Digital Divide (Main Showcase)"
     },
     "description": {
-      "zh": "年度影像片段与叙事练习的集合。",
-      "en": "A yearly reel of visual fragments and narrative experiments."
+      "zh": "主展示视频，聚焦服务学习与跨文化叙事。",
+      "en": "Primary showcase video focused on service-learning and cross-cultural storytelling."
     },
     "platform": "youtube",
-    "videoId": "",
-    "thumbnailUrl": "/ECHOHOME.png",
+    "videoId": "uvdpACbEzjY",
+    "thumbnailUrl": "https://img.youtube.com/vi/uvdpACbEzjY/hqdefault.jpg",
     "category": "promotional",
-    "awards": [],
-    "publishedDate": "2025-12-08",
-    "duration": 150,
-    "tags": ["年度混剪", "视觉叙事"]
+    "awards": [
+      {
+        "name": "Main Showcase",
+        "level": "gold",
+        "organization": "Portfolio",
+        "year": "2026"
+      }
+    ],
+    "publishedDate": "2026-01-12",
+    "duration": 346,
+    "tags": ["showcase", "service-learning", "documentary"]
   },
   {
-    "id": "doc-2025-001",
+    "id": "showcase-doc-2026",
     "title": {
-      "zh": "城市与人的距离",
-      "en": "Distance Between City and People"
+      "zh": "EIE2S02 服务学习纪录片",
+      "en": "EIE2S02 Service Learning Documentary"
     },
     "description": {
-      "zh": "关于城市生活与个体情绪的短纪录。",
-      "en": "A short documentary on city life and personal emotions."
+      "zh": "5 分钟纪录片剪辑版本，用于展示项目叙事与沟通表达能力。",
+      "en": "5-minute documentary cut used to present narrative and communication impact."
     },
     "platform": "youtube",
-    "videoId": "",
-    "thumbnailUrl": "/ECHOHOME.png",
+    "videoId": "DyRmvonFSP8",
+    "thumbnailUrl": "https://img.youtube.com/vi/DyRmvonFSP8/hqdefault.jpg",
     "category": "documentary",
     "awards": [
       {
-        "name": "学生影像特别奖",
-        "level": "special",
-        "organization": "PolyU",
-        "year": "2025"
+        "name": "Featured Work",
+        "level": "silver",
+        "organization": "Portfolio",
+        "year": "2026"
       }
     ],
-    "publishedDate": "2025-07-12",
-    "duration": 420,
-    "tags": ["纪录片", "城市"]
+    "publishedDate": "2026-02-03",
+    "duration": 346,
+    "tags": ["documentary", "education", "visual storytelling"]
   },
   {
-    "id": "messi-paris-kids-chant",
+    "id": "showcase-reel-2026",
     "title": {
-      "zh": "巴黎6000多名孩子高呼梅西对抗嘘声【用纯真打破丑陋】-致永远的Lionel Messi",
-      "en": "6000 Paris Kids Chant Messi Against Booing"
+      "zh": "Hong Kong Story Reel",
+      "en": "Hong Kong Story Reel"
     },
     "description": {
-      "zh": "",
-      "en": ""
+      "zh": "补充展示视频，呈现节奏控制、镜头语言与剪辑风格。",
+      "en": "Additional reel showcasing pacing, framing, and editing rhythm."
     },
     "platform": "youtube",
-    "videoId": "xoTGzme_HRo",
-    "thumbnailUrl": "https://i.ytimg.com/vi/xoTGzme_HRo/maxresdefault.jpg",
+    "videoId": "XjL2Tw4EoBs",
+    "thumbnailUrl": "https://img.youtube.com/vi/XjL2Tw4EoBs/hqdefault.jpg",
     "category": "promotional",
     "awards": [],
-    "publishedDate": "2026-02-07",
+    "publishedDate": "2026-03-01",
     "duration": 0,
-    "tags": ["Messi", "Paris", "Football"]
+    "tags": ["reel", "hong kong", "editing"]
   }
 ]

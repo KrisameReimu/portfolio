@@ -2,6 +2,7 @@ import placeholderImages from "../placeholderImages";
 
 const R2_BASE = "https://img.chenchen-echo.com";
 
+// R2 object keys are case-sensitive. Keep folder names aligned with Cloudflare.
 const cert = file => `${R2_BASE}/certifications/${file}`;
 const award = file => `${R2_BASE}/awards/${file}`;
 
