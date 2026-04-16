@@ -8,6 +8,16 @@
 # testing
 /coverage
 /build
+/build-*
+/build-tmp
+/build-preview
+/build-review-*
+/build-prototype
+/build-prototype*
+/build-cv-style
+/build-portfolio-clean
+/build-mvp-data
+/build-video-test
 
 
 # misc

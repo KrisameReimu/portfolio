@@ -11,6 +11,10 @@ const ReimhuCharacter = ({
   const [mouth, setMouth] = useState(0); // 0 = normal, 1 = smile, 2 = surprised
   const [eyes, setEyes] = useState(0); // 0 = normal, 1 = happy, 2 = closed
 
+  useEffect(() => {
+    setDisplayAction(action);
+  }, [action]);
+
   // Update mouth and eyes based on action
   useEffect(() => {
     switch (displayAction) {

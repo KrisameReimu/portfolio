@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import ReimhuCharacter from "./ReimhuCharacter";
 import "./CharacterNPC.scss";
 
@@ -7,14 +7,17 @@ const CharacterNPC = ({useReimhu = true}) => {
   const [isVisible, setIsVisible] = useState(true);
   const [position, setPosition] = useState("bottom-right");
 
-  const actions = [
-    {id: "idle", label: "😌", name: "闲置", duration: 3000},
-    {id: "sitting", label: "🪑", name: "坐下", duration: 4000},
-    {id: "standing", label: "🧍", name: "站起", duration: 2000},
-    {id: "drinking", label: "☕", name: "喝茶", duration: 3500},
-    {id: "waving", label: "👋", name: "招手", duration: 2500},
-    {id: "thinking", label: "🤔", name: "思考", duration: 3000}
-  ];
+  const actions = useMemo(
+    () => [
+      {id: "idle", label: "😌", name: "闲置", duration: 3000},
+      {id: "sitting", label: "🪑", name: "坐下", duration: 4000},
+      {id: "standing", label: "🧍", name: "站起", duration: 2000},
+      {id: "drinking", label: "☕", name: "喝茶", duration: 3500},
+      {id: "waving", label: "👋", name: "招手", duration: 2500},
+      {id: "thinking", label: "🤔", name: "思考", duration: 3000}
+    ],
+    []
+  );
 
   // Auto-switch actions every 5 seconds
   useEffect(() => {
@@ -24,7 +27,7 @@ const CharacterNPC = ({useReimhu = true}) => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [actions]);
 
   const handleActionClick = actionId => {
     setState(actionId);
