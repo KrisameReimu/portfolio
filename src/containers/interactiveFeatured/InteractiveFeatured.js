@@ -1,14 +1,12 @@
-import React, {useContext, useRef, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import "./InteractiveFeatured.scss";
-import StyleContext from "../../contexts/StyleContext";
 import LanguageContext from "../../contexts/LanguageContext";
 import {getText} from "../../utils/i18n";
 
 const InteractiveFeatured = () => {
-  const {isDark} = useContext(StyleContext);
   const {language} = useContext(LanguageContext);
-  const containerRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
+  const [mediaOffset, setMediaOffset] = useState({x: 0, y: 0});
   const [isHovering, setIsHovering] = useState(false);
 
   const content = {
@@ -44,29 +42,36 @@ const InteractiveFeatured = () => {
     }
   };
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-    const handleMouseMove = e => {
-      const rect = container.getBoundingClientRect();
-      setMousePosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      });
-    };
+  const handleMediaMouseMove = event => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const localX = event.clientX - rect.left;
+    const localY = event.clientY - rect.top;
+    const normalizedX = (localX - rect.width / 2) / (rect.width / 2 || 1);
+    const normalizedY = (localY - rect.height / 2) / (rect.height / 2 || 1);
 
-    container.addEventListener("mousemove", handleMouseMove);
-    return () => container.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    setMousePosition({
+      x: localX,
+      y: localY
+    });
+    setMediaOffset({
+      x: clamp(normalizedX * 18, -18, 18),
+      y: clamp(normalizedY * 18, -18, 18)
+    });
+  };
+
+  const handleMediaMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMediaMouseLeave = () => {
+    setIsHovering(false);
+    setMediaOffset({x: 0, y: 0});
+  };
 
   return (
-    <section
-      className="interactive-featured"
-      ref={containerRef}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
+    <section className="interactive-featured">
       <div className="featured-label">{getText(content.label, language)}</div>
 
       <div className="featured-container">
@@ -115,11 +120,12 @@ const InteractiveFeatured = () => {
           {/* Responsive media placeholder with interactive shape */}
           <div
             className={`featured-media ${isHovering ? "hovering" : ""}`}
+            onMouseMove={handleMediaMouseMove}
+            onMouseEnter={handleMediaMouseEnter}
+            onMouseLeave={handleMediaMouseLeave}
             style={{
               transform: isHovering
-                ? `translate(${(mousePosition.x - 300) * 0.15}px, ${
-                    (mousePosition.y - 300) * 0.15
-                  }px)`
+                ? `translate(${mediaOffset.x}px, ${mediaOffset.y}px)`
                 : "translate(0, 0)"
             }}
           >
@@ -153,8 +159,8 @@ const InteractiveFeatured = () => {
               <div
                 className="mouse-tracker"
                 style={{
-                  left: `${(mousePosition.x - 300) * 0.3}px`,
-                  top: `${(mousePosition.y - 300) * 0.3}px`
+                  left: `${mousePosition.x - 10}px`,
+                  top: `${mousePosition.y - 10}px`
                 }}
               />
             )}

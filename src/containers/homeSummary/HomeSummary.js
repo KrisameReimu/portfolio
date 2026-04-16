@@ -4,6 +4,21 @@ import "./HomeSummary.scss";
 import {getArticles, getPhotos, getVideos} from "../../services/contentAPI";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";
+import {portfolioVideos} from "../../data/portfolioShowcase";
+
+const extractYouTubeId = url => {
+  if (!url) return "";
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch?.[1]) return shortMatch[1];
+  const longMatch = url.match(/[?&]v=([^?&]+)/);
+  if (longMatch?.[1]) return longMatch[1];
+  return "";
+};
+
+const toYouTubeThumb = url => {
+  const id = extractYouTubeId(url);
+  return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
+};
 
 const HomeSummary = () => {
   const {language} = useContext(LanguageContext);
@@ -61,6 +76,18 @@ const HomeSummary = () => {
       )
       .slice(0, 2);
   }, [videos]);
+
+  const curatedPortfolioVideos = useMemo(() => {
+    return portfolioVideos
+      .map((item, index) => ({
+        id: `curated-${item.id}`,
+        title: {zh: item.title, en: item.title},
+        publishedDate: `2026-01-0${index + 1}`,
+        thumbnailUrl: toYouTubeThumb(item.href),
+        href: item.href
+      }))
+      .filter(item => item.thumbnailUrl);
+  }, []);
 
   const latestActivityDate = useMemo(() => {
     const dates = [
@@ -227,7 +254,12 @@ const HomeSummary = () => {
             </div>
           ))}
           {latestVideos.map(video => (
-            <div className="visual-card" key={video.id}>
+            <a
+              className="visual-card"
+              key={video.id}
+              href={`/videos`}
+              aria-label={getText(video.title, language)}
+            >
               <img
                 src={video.thumbnailUrl}
                 alt={getText(video.title, language)}
@@ -236,7 +268,26 @@ const HomeSummary = () => {
                 <span>{getText(video.title, language)}</span>
                 <span>{formatDate(video.publishedDate, language)}</span>
               </div>
-            </div>
+            </a>
+          ))}
+          {curatedPortfolioVideos.map(video => (
+            <a
+              className="visual-card"
+              key={video.id}
+              href={video.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={getText(video.title, language)}
+            >
+              <img
+                src={video.thumbnailUrl}
+                alt={getText(video.title, language)}
+              />
+              <div className="visual-meta">
+                <span>{getText(video.title, language)}</span>
+                <span>{formatDate(video.publishedDate, language)}</span>
+              </div>
+            </a>
           ))}
         </div>
       </div>
