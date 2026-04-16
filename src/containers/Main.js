@@ -29,7 +29,7 @@ import RoadmapPage from "../pages/RoadmapPage";
 import DashboardPage from "../pages/DashboardPage";
 import AskPage from "../pages/AskPage";
 import Contact from "./contact/Contact";
-import {splashScreen} from "../portfolio";
+import {characterSection, splashScreen} from "../portfolio";
 import {StyleProvider} from "../contexts/StyleContext";
 import LanguageContext from "../contexts/LanguageContext";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -93,7 +93,7 @@ const Main = () => {
                   <ScrollToTop />
                   <RouteAnalytics />
                   <Header />
-                  <CharacterNPC />
+                  {characterSection.display && <CharacterNPC />}
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/now" element={<NowPage />} />

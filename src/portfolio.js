@@ -4,6 +4,7 @@
 
 import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
 import placeholderImages from "./placeholderImages"; // Placeholder images for quick start
+import {certificationCards} from "./data/certifications";
 
 // Splash Screen
 
@@ -27,11 +28,11 @@ const greeting = {
   },
   tagline: {
     zh: "AI 开发者 × 游戏创作者 × 数字叙事者",
-    en: "AI Developer × Game Creator × Digital Storyteller"
+    en: "AI Developer x Game Creator x Digital Storyteller"
   },
   subTitle: {
     zh: "我在技术与创意的交汇处创造体验：从 AI 教育工具到沉浸式游戏与获奖影像作品。作为 PolyU 的研究项目助理，我持续探索 AI 与多媒体如何放大人类表达。",
-    en: "I build experiences at the intersection of technology and creativity—from AI education tools to immersive games and award-winning multimedia. As a research project assistant at PolyU, I explore how AI and multimedia can amplify human expression."
+    en: "I build experiences at the intersection of technology and creativity, from AI education tools to immersive games and award-winning multimedia. As a research project assistant at PolyU, I explore how AI and multimedia can amplify human expression."
   },
   story: {
     zh: "我相信技术的意义在于让故事被更多人看见。无论是纪录片镜头、摄影作品，还是交互式游戏，我都在寻找能够连接人心的叙事方式。",
@@ -50,7 +51,7 @@ const socialMediaLinks = {
   gmail: "krisamegreimu@flounderfantasy.com",
   instagram: "https://www.instagram.com/krisame_reimu/",
   twitter: "",
-  youtube: "", // 如果有YouTube频道可以添加
+  youtube: "https://www.youtube.com/@KrisameReimu",
   display: true
 };
 
@@ -200,7 +201,7 @@ const workExperiences = {
       role: "Department Multimedia Producer",
       company: "The Hong Kong Polytechnic University",
       companylogo: placeholderImages.polyuLogo,
-      date: "Jun 2023 – Jun 2025",
+      date: "Jun 2023 - Jun 2025",
       desc: "Creating and producing multimedia content for the department, showcasing technical and creative expertise.",
       descBullets: [
         "Produced high-quality multimedia content for departmental communications",
@@ -212,7 +213,7 @@ const workExperiences = {
       role: "Web Developer Intern",
       company: "BornTea",
       companylogo: placeholderImages.bornteaLogo,
-      date: "Jun 2024 – Aug 2024",
+      date: "Jun 2024 - Aug 2024",
       desc: "Developed and maintained eCommerce platform, improving user experience and web performance.",
       descBullets: [
         "Built responsive web interfaces using modern JavaScript frameworks",
@@ -224,7 +225,7 @@ const workExperiences = {
       role: "Student Assistant",
       company: "The Hong Kong Polytechnic University",
       companylogo: placeholderImages.polyuLogo,
-      date: "Jul 2023 – Jul 2025",
+      date: "Jul 2023 - Jul 2025",
       desc: "Supporting campus initiatives and representing PolyU at various events.",
       descBullets: [
         "Guided 200+ freshmen annually as Student Ambassador",
@@ -317,47 +318,7 @@ const achievementSection = {
   subtitle:
     "Awards, Certifications and Recognition for my contributions and skills",
 
-  achievementsCards: [
-    {
-      title: "Oxford University Short Programme",
-      subtitle:
-        "Completed the Artificial Intelligence and Machine Learning: Theory and Practice programme at Lady Margaret Hall, University of Oxford.",
-      image: placeholderImages.oxfordLogo, // 使用牛津大学的logo
-      imageAlt: "Oxford University Logo",
-      footerLink: [
-        {
-          name: "Certification",
-          url: "" // 可以添加证书链接
-        }
-      ]
-    },
-    {
-      title: "Gold Award - Video Production",
-      subtitle:
-        "Received Gold Award for participation in the Video Production Programme on Whole-person Development Fund - Student-initiated Project at The Hong Kong Polytechnic University.",
-      image: placeholderImages.polyuAward, // 需要添加奖项相关图片
-      imageAlt: "Gold Award Logo",
-      footerLink: [
-        {
-          name: "View Award",
-          url: "" // 可以添加奖项链接
-        }
-      ]
-    },
-    {
-      title: "Special Award & Silver Award",
-      subtitle:
-        "Received Special Award and Silver Award for Video Production Programme at The Hong Kong Polytechnic University.",
-      image: placeholderImages.polyuAward, // 使用相同的奖项图片
-      imageAlt: "Special Award Logo",
-      footerLink: [
-        {
-          name: "View Awards",
-          url: "" // 可以添加奖项链接
-        }
-      ]
-    }
-  ],
+  achievementsCards: certificationCards,
   display: true // Set false to hide this section, defaults to true
 };
 
@@ -392,14 +353,14 @@ const talkSection = {
     {
       title: "Urban Photography Collection",
       subtitle: "Exploring city life through the lens",
-      slides_url: "", // 可以添加摄影作品集链接
-      event_url: "" // 可以添加摄影作品集链接
+      slides_url: "", // Add photography showcase link
+      event_url: "" // Add event/gallery link
     },
     {
       title: "Nature Photography Series",
       subtitle: "Finding beauty in natural landscapes",
-      slides_url: "", // 可以添加摄影作品集链接
-      event_url: "" // 可以添加摄影作品集链接
+      slides_url: "", // Add photography showcase link
+      event_url: "" // Add event/gallery link
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -422,6 +383,10 @@ const videoPortfolioSection = {
 
 const photographySection = {
   display: true // Toggle Photography section visibility
+};
+
+const characterSection = {
+  display: false // Set true if you want to show the bottom-corner character assistant
 };
 
 // Resume Section
@@ -496,6 +461,7 @@ export {
   gameDevSection,
   videoPortfolioSection,
   photographySection,
+  characterSection,
   podcastSection,
   contactInfo,
   twitterDetails,
