@@ -68,8 +68,8 @@ export default function DashboardPage() {
   const copy = {
     title: {zh: "Dashboard", en: "Dashboard"},
     subtitle: {
-      zh: "公开内容与互动系统的关键指标。",
-      en: "Public metrics for content and engagement systems."
+      zh: "公开内容与互动系统的关键指标，方便快速查看站点状态。",
+      en: "Public metrics for content and engagement systems at a glance."
     },
     updatedAt: {zh: "更新时间", en: "Updated"}
   };

@@ -50,7 +50,7 @@
 }
 
 .header li a:hover,
-.header .menu-btn:hover {
+.header .menu-icon:hover {
   background-color: $headerHoverBG;
 }
 
@@ -81,15 +81,28 @@
   transition: max-height 0.2s ease-out;
 }
 
+.header .menu.menu-open {
+  max-height: 760px;
+}
+
 /* menu icon */
 
 .header .menu-icon {
+  background: transparent;
+  border: 0;
   cursor: pointer;
   display: inline-block;
   float: right;
   padding: 28px 20px;
   position: relative;
   user-select: none;
+}
+
+.header .menu-icon:focus-visible,
+.header .menu a:focus-visible {
+  outline: 2px solid $buttonColor;
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 .header .menu-icon .navicon {
@@ -135,34 +148,26 @@
   top: -5px;
 }
 
-/* menu btn */
-
-.header .menu-btn {
-  display: none;
-}
-
-.header .menu-btn:checked ~ .menu {
-  max-height: 760px;
-}
-
-.header .menu-btn:checked ~ .menu-icon .navicon {
+.header .menu-icon[aria-expanded="true"] .navicon {
   background: transparent !important;
 }
 
-.header .menu-btn:checked ~ .menu-icon .navicon:before {
+.header .menu-icon[aria-expanded="true"] .navicon:before {
   transform: rotate(-45deg);
+  top: 0;
 }
 
-.header .menu-btn:checked ~ .menu-icon .navicon:after {
+.header .menu-icon[aria-expanded="true"] .navicon:after {
   transform: rotate(45deg);
-}
-
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   top: 0;
 }
 
 /* 48em = 768px */
+
+.header .menu a.active {
+  color: $buttonColor;
+  font-weight: 700;
+}
 
 @media (min-width: 48em) {
   .header li {
@@ -181,6 +186,9 @@
     gap: 4px;
     max-height: none;
     overflow: visible;
+  }
+  .header .menu.menu-open {
+    max-height: none;
   }
   .header .menu-icon {
     display: none;

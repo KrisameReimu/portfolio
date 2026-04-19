@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import Photography from "../containers/photography/Photography";
+import LandingHero from "../components/landingHero/LandingHero";
 import LanguageContext from "../contexts/LanguageContext";
-import {getText} from "../utils/i18n";
 import "./PhotographyPage.scss";
 
 export default function PhotographyPage() {
-  const {language} = useContext(LanguageContext);
+  useContext(LanguageContext);
   const copy = {
     title: {zh: "摄影作品", en: "Photography"},
     subtitle: {
@@ -15,10 +15,13 @@ export default function PhotographyPage() {
   };
   return (
     <div className="page-container">
-      <div className="page-hero photography-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-      </div>
+      <LandingHero
+        variant="minimal"
+        title={copy.title}
+        subtitle={copy.subtitle}
+        icon="📷"
+        className="photography-landing-hero"
+      />
       <Photography />
     </div>
   );

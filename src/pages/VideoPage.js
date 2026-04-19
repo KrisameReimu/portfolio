@@ -1,15 +1,14 @@
-import React, {useContext, useState, useEffect, useMemo} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import VideoPortfolio from "../containers/videoPortfolio/VideoPortfolio";
-import Achievement from "../containers/achievement/Achievement";
-import {Link} from "react-router-dom";
+import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
+import LandingHero from "../components/landingHero/LandingHero";
 import LanguageContext from "../contexts/LanguageContext";
-import {formatDate, getText} from "../utils/i18n";
+import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
 import "./VideoPage.scss";
 
 export default function VideoPage() {
   const {language} = useContext(LanguageContext);
-  const [activeTab, setActiveTab] = useState("highlights");
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -23,113 +22,116 @@ export default function VideoPage() {
     };
   }, []);
 
-  const yearCards = useMemo(() => {
+  // 最近上传的视频（最近6个）
+  const latestVideos = useMemo(() => {
+    return [...videos]
+      .sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate))
+      .slice(0, 6);
+  }, [videos]);
+
+  // 按年份分组的视频
+  const videosByYear = useMemo(() => {
     const byYear = new Map();
     videos.forEach(video => {
       const year = (video.publishedDate || "").slice(0, 4);
       if (!year) return;
 
-      const existing = byYear.get(year);
-      if (!existing) {
-        byYear.set(year, {
-          year,
-          count: 1,
-          latestDate: video.publishedDate,
-          coverImage: video.thumbnailUrl
-        });
-        return;
+      if (!byYear.has(year)) {
+        byYear.set(year, []);
       }
-
-      existing.count += 1;
-      if (
-        new Date(video.publishedDate).getTime() >
-        new Date(existing.latestDate).getTime()
-      ) {
-        existing.latestDate = video.publishedDate;
-        existing.coverImage = video.thumbnailUrl;
-      }
+      byYear.get(year).push(video);
     });
 
-    return Array.from(byYear.values()).sort(
-      (a, b) => Number(b.year) - Number(a.year)
-    );
+    return Array.from(byYear.entries())
+      .sort((a, b) => Number(b[0]) - Number(a[0]))
+      .map(([year, yearVideos]) => ({
+        year,
+        videos: yearVideos.sort(
+          (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
+        )
+      }));
   }, [videos]);
 
   const copy = {
-    title: {zh: "视频作品集", en: "Video Portfolio"},
+    title: {zh: "影像作品集", en: "Video Portfolio"},
     subtitle: {
-      zh: "持续更新的影像作品与视觉实验",
-      en: "Continuously updated visual works and moving-image experiments"
+      zh: "记录创意瞬间，从想法到故事",
+      en: "From ideas to stories, capturing creative moments"
     },
-    tabs: {
-      highlights: {zh: "精选作品", en: "Highlights"},
-      years: {zh: "按年份", en: "By Year"}
+    latest: {
+      zh: "最近上传",
+      en: "Latest Uploads"
     },
-    explore: {zh: "进入该年度", en: "Explore Year"},
-    count: {zh: "个作品", en: "videos"},
-    latest: {zh: "最近发布", en: "Last release"},
-    empty: {zh: "暂无年度视频内容。", en: "No yearly videos yet."}
+    latestSubtitle: {
+      zh: "最新的创意作品",
+      en: "My latest creative works"
+    },
+    archive: {
+      zh: "年度档案库",
+      en: "Archive"
+    },
+    videos: {zh: "个作品", en: "videos"},
+    empty: {zh: "暂无视频内容。", en: "No videos yet."}
   };
 
   return (
     <div className="page-container">
-      <div className="page-hero video-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-      </div>
+      <LandingHero
+        variant="narrative"
+        title={copy.title}
+        subtitle={copy.subtitle}
+        description={{
+          zh: "我用影像讲故事。从概念到成品，每一帧都是创意的痕迹。",
+          en: "I tell stories with video. Every frame is a trace of creativity—from concept to final cut."
+        }}
+        accentColor="#4A90E2"
+        className="videos-landing-hero"
+      />
 
-      <div className="archive-tabs">
-        <button
-          className={activeTab === "highlights" ? "active" : ""}
-          onClick={() => setActiveTab("highlights")}
-          type="button"
-        >
-          {getText(copy.tabs.highlights, language)}
-        </button>
-        <button
-          className={activeTab === "years" ? "active" : ""}
-          onClick={() => setActiveTab("years")}
-          type="button"
-        >
-          {getText(copy.tabs.years, language)}
-        </button>
-      </div>
+      {/* 精选视频轮动Hero */}
+      {videos.length > 0 && <FeaturedVideoCarousel videos={videos} />}
 
-      {activeTab === "highlights" ? (
-        <>
-          <VideoPortfolio showHeading={false} />
-          <div className="achievements-section">
-            <Achievement />
+      {/* 最近上传部分 */}
+      {latestVideos.length > 0 && (
+        <section className="videos-latest-section">
+          <div className="section-container">
+            <div className="section-header">
+              <h2 className="section-title">
+                {getText(copy.latest, language)}
+              </h2>
+              <p className="section-subtitle">
+                {getText(copy.latestSubtitle, language)}
+              </p>
+            </div>
+            <VideoPortfolio videos={latestVideos} showHeading={false} />
           </div>
-        </>
-      ) : (
-        <div className="archive-grid">
-          {yearCards.length === 0 && (
-            <div className="archive-card">
-              <div className="archive-content">
-                <p>{getText(copy.empty, language)}</p>
-              </div>
-            </div>
-          )}
+        </section>
+      )}
 
-          {yearCards.map(item => (
-            <div className="archive-card" key={item.year}>
-              <img src={item.coverImage} alt={item.year} />
-              <div className="archive-content">
-                <span className="archive-label">{item.year}</span>
-                <h3>
-                  {item.count} {getText(copy.count, language)}
-                </h3>
-                <p>
-                  {getText(copy.latest, language)}:{" "}
-                  {formatDate(item.latestDate, language)}
-                </p>
-                <Link to={`/videos/${item.year}`} className="archive-link">
-                  {getText(copy.explore, language)} ->
-                </Link>
+      {/* 年度档案部分 */}
+      {videosByYear.length > 0 && (
+        <section className="videos-archive-section">
+          <div className="section-container">
+            <h2 className="section-title">{getText(copy.archive, language)}</h2>
+
+            {videosByYear.map(yearData => (
+              <div key={yearData.year} className="year-group">
+                <div className="year-header">
+                  <h3 className="year-title">{yearData.year}</h3>
+                  <span className="year-count">
+                    {yearData.videos.length} {getText(copy.videos, language)}
+                  </span>
+                </div>
+                <VideoPortfolio videos={yearData.videos} showHeading={false} />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </section>
+      )}
+
+      {videos.length === 0 && (
+        <div className="empty-state">
+          <p>{getText(copy.empty, language)}</p>
         </div>
       )}
     </div>

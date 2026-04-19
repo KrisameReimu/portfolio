@@ -1,74 +1,57 @@
-import React, {useState, useEffect, useContext, Suspense, lazy} from "react";
+import React, {useContext, useMemo} from "react";
+import {Fade} from "react-reveal";
 import "./Project.scss";
 import Button from "../../components/button/Button";
-import {openSource, socialMediaLinks} from "../../portfolio";
-import StyleContext from "../../contexts/StyleContext";
-import Loading from "../../containers/loading/Loading";
-export default function Projects() {
-  const GithubRepoCard = lazy(() =>
-    import("../../components/githubRepoCard/GithubRepoCard")
-  );
-  const FailedLoading = () => null;
-  const renderLoader = () => <Loading />;
-  const [repo, setrepo] = useState([]);
-  // todo: remove useContex because is not supported
-  const {isDark} = useContext(StyleContext);
+import LanguageContext from "../../contexts/LanguageContext";
+import {portfolioProjects} from "../../data/portfolioShowcase";
+import {getText} from "../../utils/i18n";
 
-  useEffect(() => {
-    const getRepoData = () => {
-      fetch("/profile.json")
-        .then(result => {
-          if (result.ok) {
-            return result.json();
-          }
-          throw result;
-        })
-        .then(response => {
-          setrepoFunction(response.data.user.pinnedItems.edges);
-        })
-        .catch(function (error) {
-          console.error(
-            `${error} (because of this error, nothing is shown in place of Projects section. Also check if Projects section has been configured)`
-          );
-          setrepoFunction("Error");
-        });
-    };
-    getRepoData();
+const Projects = () => {
+  const {language} = useContext(LanguageContext);
+
+  const copy = {
+    intro: {
+      zh: "这里放的是更接近你个人 IP 的稳定作品，不再依赖临时生成的 GitHub profile 数据。",
+      en: "These are the stable showcase pieces that represent your personal brand, no longer tied to generated GitHub profile data."
+    },
+    empty: {
+      zh: "暂无可展示项目。",
+      en: "No showcase projects available yet."
+    }
+  };
+
+  const projects = useMemo(() => {
+    return portfolioProjects.map(project => ({
+      ...project,
+      accent: project.subtitle || project.actionLabel
+    }));
   }, []);
 
-  function setrepoFunction(array) {
-    setrepo(array);
+  if (projects.length === 0) {
+    return <p className="projects-empty">{getText(copy.empty, language)}</p>;
   }
-  if (
-    !(typeof repo === "string" || repo instanceof String) &&
-    openSource.display
-  ) {
-    return (
-      <Suspense fallback={renderLoader()}>
-        <div className="main" id="opensource">
-          <h1 className="project-title">Open Source Projects</h1>
-          <div className="repo-cards-div-main">
-            {repo.map((v, i) => {
-              if (!v) {
-                console.error(
-                  `Github Object for repository number : ${i} is undefined`
-                );
-              }
-              return (
-                <GithubRepoCard repo={v} key={v.node.id} isDark={isDark} />
-              );
-            })}
-          </div>
-          <Button
-            text={"More Projects"}
-            className="project-button"
-            href={socialMediaLinks.github}
-            newTab={true}
-          />
+
+  return (
+    <Fade bottom duration={1000} distance="20px">
+      <section className="projects-showcase">
+        <p className="projects-intro">{getText(copy.intro, language)}</p>
+        <div className="projects-grid">
+          {projects.map(project => (
+            <article className="project-card" key={project.id}>
+              <div className="project-card-top">
+                <p className="project-card-eyebrow">{project.subtitle}</p>
+                <h3 className="project-card-title">{project.title}</h3>
+                <p className="project-card-detail">{project.detail}</p>
+              </div>
+              <div className="project-card-footer">
+                <Button text={project.actionLabel} href={project.href} newTab />
+              </div>
+            </article>
+          ))}
         </div>
-      </Suspense>
-    );
-  } else {
-    return <FailedLoading />;
-  }
-}
+      </section>
+    </Fade>
+  );
+};
+
+export default Projects;

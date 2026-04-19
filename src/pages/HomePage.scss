@@ -33,15 +33,9 @@
     pointer-events: none;
     z-index: 0;
   }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .home-page {
-    background: linear-gradient(180deg, #1a1511 0%, #201b18 50%, #1f1a17 100%);
-  }
+.home-page-content {
+  position: relative;
+  z-index: 2;
 }

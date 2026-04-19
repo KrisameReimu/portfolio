@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import {Fade} from "react-reveal";
 import "./Greeting.scss";
-import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
 import {greeting} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
@@ -14,8 +13,8 @@ export default function Greeting() {
   const {language} = useContext(LanguageContext);
 
   const primaryCta = {
-    zh: "查看精选作品",
-    en: "View Featured Work"
+    zh: "查看荣誉",
+    en: "View Awards"
   };
   const secondaryCta = {
     zh: "下载简历",
@@ -52,15 +51,9 @@ export default function Greeting() {
               >
                 {getText(greeting.subTitle, language)}
               </p>
-              {greeting.story && (
-                <p className="greeting-story">
-                  {getText(greeting.story, language)}
-                </p>
-              )}
               <div id="resume" className="empty-div"></div>
-              <SocialMedia />
               <div className="button-greeting-div">
-                <Button text={getText(primaryCta, language)} href="/videos" />
+                <Button text={getText(primaryCta, language)} href="/awards" />
                 <Button
                   text={getText(secondaryCta, language)}
                   href={resumeHref}

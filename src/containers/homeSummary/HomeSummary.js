@@ -1,180 +1,292 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useMemo} from "react";
 import {Link} from "react-router-dom";
 import "./HomeSummary.scss";
-import {getArticles} from "../../services/contentAPI";
 import LanguageContext from "../../contexts/LanguageContext";
-import {formatDate, getText} from "../../utils/i18n";
+import {greeting} from "../../portfolio";
+import {getText} from "../../utils/i18n";
 
 const HomeSummary = () => {
   const {language} = useContext(LanguageContext);
-  const [articles, setArticles] = useState([]);
-
-  const latestArticles = useMemo(() => {
-    return [...articles]
-      .filter(article => article.publishedDate)
-      .sort(
-        (a, b) =>
-          new Date(b.publishedDate).getTime() -
-          new Date(a.publishedDate).getTime()
-      )
-      .slice(0, 3);
-  }, [articles]);
-
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const remoteArticles = await getArticles();
-      if (mounted) {
-        setArticles(remoteArticles || []);
+  const profile = useMemo(
+    () => ({
+      kicker: {
+        zh: "创作与实践",
+        en: "Practice"
+      },
+      title: {
+        zh: "代码、影像与研究叙事，在同一条个人作品线上交汇",
+        en: "Code, image, and research narrative meet on one personal work line"
+      },
+      summary: {
+        zh: "这个站点是我长期实践的切片：教育场景里的 AI 系统、研究协作里的工具与文档、以及用摄影与视频完成的表达。我不把它写成履历，而更像一本可以翻开的创作手记。",
+        en: "This site is a slice of ongoing practice: AI systems for learning, tooling and writing inside research collaboration, and expression through photography and video. I treat it less like a résumé and more like a notebook you can browse."
+      },
+      availability: {
+        zh: "新章节会随项目与影像集持续更新",
+        en: "New chapters ship as projects and image sets evolve"
       }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    }),
+    []
+  );
 
-  const latestActivityDate = useMemo(() => {
-    const dates = latestArticles
-      .map(article => article.publishedDate)
-      .map(date => new Date(date))
-      .filter(date => !Number.isNaN(date.getTime()));
-
-    if (!dates.length) return "";
-    dates.sort((a, b) => b.getTime() - a.getTime());
-    return formatDate(dates[0].toISOString(), language);
-  }, [language, latestArticles]);
-
-  const featuredWorks = [
+  const differentiators = [
     {
-      id: "polyu-research",
       title: {
-        zh: "PolyU 研究项目助理",
-        en: "PolyU Research Project Assistant"
+        zh: "一条线串起实现与表达",
+        en: "One thread from build to expression"
       },
-      description: {
-        zh: "聚焦 AI 与多媒体研究，推进内容生成与交互体验，并将结果转化为可展示作品。",
-        en: "Exploring AI + multimedia research, advancing content generation and interactive experiences, and turning results into showcase-ready work."
-      },
-      meta: {zh: "当前工作 / 研究", en: "Current / Research"},
-      link: "/about"
+      body: {
+        zh: "同一套审美与节奏会出现在界面、镜头和剪辑里：系统要稳，叙事也要让人愿意看完。",
+        en: "The same sense of rhythm shows up in interfaces, lenses, and edits: systems stay grounded while the story still invites you to stay."
+      }
     },
     {
-      id: "video-awards",
       title: {
-        zh: "获奖影像作品",
-        en: "Award-Winning Video Work"
+        zh: "研究协作里的工具与影像",
+        en: "Tools and images inside research"
       },
-      description: {
-        zh: "纪录片、短片与宣传片，聚焦人文叙事与视觉表达。",
-        en: "Documentaries, short films, and promos focused on human stories and visual language."
-      },
-      meta: {zh: "多项奖项 / 视频创作", en: "Awards / Video"},
-      link: "/videos"
+      body: {
+        zh: "在 PolyU 的研究与教学语境里，我习惯把抽象问题落成可演示的页面、短片或视觉材料，让讨论更快对齐。",
+        en: "In PolyU research and teaching contexts, I turn abstract questions into demoable surfaces, short films, or visual material so conversations align faster."
+      }
     },
     {
-      id: "coding-impact",
       title: {
-        zh: "AI 应用与全栈开发",
-        en: "AI Applications & Full-stack Delivery"
+        zh: "作品与档案，而不是标签墙",
+        en: "Archive, not a tag wall"
       },
-      description: {
-        zh: "从原型到部署，持续构建可演示、可迭代的 AI 教育应用。",
-        en: "From prototype to deployment, building AI applications that are demo-ready and production-minded."
-      },
-      meta: {zh: "工程实践 / 产品化", en: "Engineering / Product"},
-      link: "/lab"
+      body: {
+        zh: "WAIE 论文、竞赛影像、摄影系列和 Lab 里的实验，都会以「可点开、可回看」的形式留在这里，像个人 IP 的公开书架。",
+        en: "WAIE writing, competition films, photo series, and lab experiments live here as things you can open and revisit, like a public shelf for a personal IP."
+      }
     }
   ];
 
-  const copy = {
-    intro: {
-      zh: "我用技术讲故事，也用影像记录表达。这里是我持续更新的项目与创作摘要。",
-      en: "I tell stories with technology and visual work. This is a living summary of my projects and creations."
+  const practiceTags = [
+    {zh: "系统与界面", en: "Systems & UI"},
+    {zh: "影像与剪辑", en: "Image & edit"},
+    {zh: "研究与写作", en: "Research & writing"}
+  ];
+
+  const selectedProof = [
+    {
+      label: {zh: "近期手记", en: "Recent studio note"},
+      title: {
+        zh: "GenAI 短答题反馈系统",
+        en: "GenAI Feedback System for Short-answer Questions"
+      },
+      note: {
+        zh: "WAIE 2025 发表（IEEE 联合支持）",
+        en: "Published at WAIE 2025 (co-sponsored by IEEE)"
+      },
+      to: "/lab",
+      action: {zh: "进入 Lab", en: "Open lab"}
     },
-    latestWriting: {
-      zh: "最新文章",
-      en: "Latest Writing"
-    },
-    featuredWorks: {
-      zh: "精选作品",
-      en: "Featured Work"
-    },
-    exploreWriting: {
-      zh: "进入写作页面",
-      en: "Explore Writing"
-    },
-    exploreWorks: {
-      zh: "查看全部项目",
-      en: "View All Projects"
-    },
-    cadence: {
-      zh: "持续更新 / 最近更新",
-      en: "Updated regularly / Last updated"
-    },
-    emptyWriting: {
-      zh: "写作内容正在整理中，稍后会更新。",
-      en: "Writing content is being curated and will be updated soon."
+    {
+      label: {zh: "荣誉与影像", en: "Honors & moving image"},
+      title: {
+        zh: "视频与海报赛事多项获奖",
+        en: "Multiple awards in video and poster competitions"
+      },
+      note: {
+        zh: "含 WPDF 金奖、特别奖，Sasakawa Cup 二等奖等",
+        en: "Including WPDF Gold/Special awards and Sasakawa Cup second prize"
+      },
+      to: "/awards",
+      action: {zh: "翻阅档案", en: "Browse archive"}
     }
-  };
+  ];
+
+  const showcaseChannels = [
+    {
+      title: {zh: "Lab · 系统与实验", en: "Lab · systems & experiments"},
+      body: {
+        zh: "教育 AI、自动评分、RAG 与 Agent 工作流的系统实现。",
+        en: "Educational AI systems, auto-grading, RAG, and agentic workflow implementation."
+      },
+      to: "/lab",
+      action: {zh: "进入 Lab", en: "Open lab"}
+    },
+    {
+      title: {zh: "视频集", en: "Moving image"},
+      body: {
+        zh: "竞赛与项目视频，覆盖策划、剪辑、叙事与传播。",
+        en: "Competition and project videos spanning planning, editing, narrative, and communication."
+      },
+      to: "/videos",
+      action: {zh: "打开片单", en: "Open reel"}
+    },
+    {
+      title: {zh: "摄影与静帧", en: "Photography & stills"},
+      body: {
+        zh: "摄影系列与图像档案，用视觉语言支持项目表达。",
+        en: "Photography series and image archives that support storytelling and project communication."
+      },
+      to: "/photography",
+      action: {zh: "进入影集", en: "Enter series"}
+    },
+    {
+      title: {zh: "证书与奖状", en: "Certificates & citations"},
+      body: {
+        zh: "按主题整理的纸质与数字痕迹，当作个人档案的一章。",
+        en: "Paper and digital traces grouped by theme, as one chapter of a personal archive."
+      },
+      to: "/awards",
+      action: {zh: "打开这一章", en: "Open chapter"}
+    }
+  ];
 
   return (
     <section className="home-summary">
-      <div className="summary-intro">
-        <p className="summary-text">{getText(copy.intro, language)}</p>
-        {latestActivityDate && (
-          <p className="summary-cadence">
-            {getText(copy.cadence, language)} {latestActivityDate}
+      <div className="cv-grid">
+        <aside className="cv-profile">
+          <p className="cv-kicker">{getText(profile.kicker, language)}</p>
+          <h2>{getText(profile.title, language)}</h2>
+          <p className="cv-summary">{getText(profile.summary, language)}</p>
+          <p className="cv-availability">
+            {getText(profile.availability, language)}
           </p>
-        )}
-      </div>
-
-      <div className="summary-section">
-        <div className="summary-header">
-          <h2>{getText(copy.latestWriting, language)}</h2>
-          <Link className="summary-link" to="/writing">
-            {getText(copy.exploreWriting, language)}
-          </Link>
-        </div>
-        <div className="summary-grid">
-          {latestArticles.length > 0 ? (
-            latestArticles.map(article => (
-              <Link
-                key={article.id}
-                className="summary-card"
-                to={`/articles/${article.id}`}
-              >
-                <div className="summary-card-meta">
-                  <span>{formatDate(article.publishedDate, language)}</span>
-                  <span>{article.readingTime} min</span>
-                </div>
-                <h3>{getText(article.title, language)}</h3>
-                <p>{getText(article.excerpt, language)}</p>
-              </Link>
-            ))
-          ) : (
-            <article className="summary-card summary-empty-card">
-              <h3>{getText(copy.latestWriting, language)}</h3>
-              <p>{getText(copy.emptyWriting, language)}</p>
-            </article>
-          )}
-        </div>
-      </div>
-
-      <div className="summary-section">
-        <div className="summary-header">
-          <h2>{getText(copy.featuredWorks, language)}</h2>
-          <Link className="summary-link" to="/lab">
-            {getText(copy.exploreWorks, language)}
-          </Link>
-        </div>
-        <div className="featured-grid">
-          {featuredWorks.map(work => (
-            <Link key={work.id} className="featured-card" to={work.link}>
-              <p className="featured-meta">{getText(work.meta, language)}</p>
-              <h3>{getText(work.title, language)}</h3>
-              <p>{getText(work.description, language)}</p>
+          <div className="cv-quick-links">
+            <a
+              href={greeting.resumeLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="CV"
+            >
+              <i className="fas fa-file-alt"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/chenchenai/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://github.com/KrisameReimu"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="mailto:chen944420634@gmail.com" aria-label="Email">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <Link to="/contact" aria-label="Contact">
+              <i className="fas fa-comment-dots"></i>
             </Link>
-          ))}
+          </div>
+        </aside>
+
+        <div className="cv-content">
+          <section className="cv-section">
+            <div className="cv-section-head">
+              <p>01</p>
+              <h3>
+                {language === "zh"
+                  ? "三条创作线索"
+                  : "Three threads of practice"}
+              </h3>
+            </div>
+            <div className="cv-timeline cv-diff">
+              {differentiators.map(item => (
+                <article key={item.title.en} className="cv-timeline-item">
+                  <h4>{getText(item.title, language)}</h4>
+                  <p className="cv-detail">{getText(item.body, language)}</p>
+                </article>
+              ))}
+            </div>
+            <div className="cv-practice-tags" role="list">
+              {practiceTags.map(tag => (
+                <span key={tag.en} className="cv-practice-tag" role="listitem">
+                  {getText(tag, language)}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          <section className="cv-section">
+            <div className="cv-section-head">
+              <p>02</p>
+              <h3>{language === "zh" ? "手记与选集" : "Notes & selections"}</h3>
+            </div>
+            <div className="cv-proof">
+              {selectedProof.map(item => (
+                <article key={item.title.en} className="cv-proof-item">
+                  <p>{getText(item.label, language)}</p>
+                  <h4>{getText(item.title, language)}</h4>
+                  <p className="cv-note">{getText(item.note, language)}</p>
+                  <Link to={item.to}>{getText(item.action, language)}</Link>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="cv-section cv-section--split">
+            <div>
+              <div className="cv-section-head">
+                <p>03</p>
+                <h3>{language === "zh" ? "作品入口" : "Ways in"}</h3>
+              </div>
+              <div className="cv-skill-list">
+                {showcaseChannels.map(item => (
+                  <article key={item.title.en} className="cv-skill-row">
+                    <p>{getText(item.title, language)}</p>
+                    <span>{getText(item.body, language)}</span>
+                    <Link to={item.to}>{getText(item.action, language)}</Link>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="cv-section-head">
+                <p>04</p>
+                <h3>
+                  {language === "zh" ? "背景与联络" : "Background & reach"}
+                </h3>
+              </div>
+              <div className="cv-edu">
+                <article>
+                  <h4>
+                    {language === "zh"
+                      ? "香港理工大学"
+                      : "Hong Kong Polytechnic University"}
+                  </h4>
+                  <p>
+                    {language === "zh"
+                      ? "互联网与多媒体科技学士（2021-2025）"
+                      : "BSc in Internet and Multimedia Technologies (2021-2025)"}
+                  </p>
+                </article>
+                <article>
+                  <h4>
+                    {language === "zh"
+                      ? "牛津大学暑期课程"
+                      : "University of Oxford Summer Programme"}
+                  </h4>
+                  <p>
+                    {language === "zh"
+                      ? "AI 与机器学习（2024）"
+                      : "AI and Machine Learning (2024)"}
+                  </p>
+                </article>
+                <article>
+                  <h4>{language === "zh" ? "联络" : "Reach"}</h4>
+                  <div className="cv-edu-icons">
+                    <a href="mailto:chen944420634@gmail.com" aria-label="Email">
+                      <i className="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+85291303739" aria-label="Phone">
+                      <i className="fas fa-phone-alt"></i>
+                    </a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>

@@ -14,6 +14,7 @@ import HomePage from "../pages/HomePage";
 import GameDevPage from "../pages/GameDevPage";
 import VideoPage from "../pages/VideoPage";
 import VideoYearPage from "../pages/VideoYearPage";
+import AwardsPage from "../pages/AwardsPage";
 import PhotoArchivePage from "../pages/PhotoArchivePage";
 import PhotoYearPage from "../pages/PhotoYearPage";
 import WritingPage from "../pages/WritingPage";
@@ -32,20 +33,11 @@ import {StyleProvider} from "../contexts/StyleContext";
 import LanguageContext from "../contexts/LanguageContext";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import {AuthProvider} from "../contexts/AuthContext";
-import AuthContext from "../contexts/AuthContext";
 import {CommunityProvider} from "../contexts/CommunityContext";
 import FavoritesPage from "../pages/FavoritesPage";
 import CommunityPage from "../pages/CommunityPage";
 import RouteAnalytics from "../components/RouteAnalytics";
 import "./Main.scss";
-
-const OwnerRoute = ({children}) => {
-  const {isOwner} = React.useContext(AuthContext);
-  if (!isOwner) {
-    return <Navigate to="/" replace />;
-  }
-  return children;
-};
 
 const Main = () => {
   const darkPref = window.matchMedia("(prefers-color-scheme: dark)");
@@ -99,18 +91,12 @@ const Main = () => {
                     <Route path="/lab" element={<LabPage />} />
                     <Route path="/lab/:pillar" element={<LabPillarPage />} />
                     <Route path="/roadmap" element={<RoadmapPage />} />
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <OwnerRoute>
-                          <DashboardPage />
-                        </OwnerRoute>
-                      }
-                    />
+                    <Route path="/dashboard" element={<DashboardPage />} />
                     <Route path="/ask" element={<AskPage />} />
                     <Route path="/game-dev" element={<GameDevPage />} />
                     <Route path="/videos" element={<VideoPage />} />
                     <Route path="/videos/:year" element={<VideoYearPage />} />
+                    <Route path="/awards" element={<AwardsPage />} />
                     <Route
                       path="/photography"
                       element={<Navigate to="/photos" replace />}

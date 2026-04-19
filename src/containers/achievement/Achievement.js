@@ -4,37 +4,45 @@ import AchievementCard from "../../components/achievementCard/AchievementCard";
 import {achievementSection} from "../../portfolio";
 import {Fade} from "react-reveal";
 import StyleContext from "../../contexts/StyleContext";
-export default function Achievement() {
+export default function Achievement({
+  title = achievementSection.title,
+  subtitle = achievementSection.subtitle,
+  cards = achievementSection.achievementsCards,
+  showHeader = true,
+  sectionId = "achievements"
+}) {
   const {isDark} = useContext(StyleContext);
   if (!achievementSection.display) {
     return null;
   }
   return (
     <Fade bottom duration={1000} distance="20px">
-      <div className="main" id="achievements">
+      <div className="main" id={sectionId}>
         <div className="achievement-main-div">
-          <div className="achievement-header">
-            <h1
-              className={
-                isDark
-                  ? "dark-mode heading achievement-heading"
-                  : "heading achievement-heading"
-              }
-            >
-              {achievementSection.title}
-            </h1>
-            <p
-              className={
-                isDark
-                  ? "dark-mode subTitle achievement-subtitle"
-                  : "subTitle achievement-subtitle"
-              }
-            >
-              {achievementSection.subtitle}
-            </p>
-          </div>
+          {showHeader && (
+            <div className="achievement-header">
+              <h1
+                className={
+                  isDark
+                    ? "dark-mode heading achievement-heading"
+                    : "heading achievement-heading"
+                }
+              >
+                {title}
+              </h1>
+              <p
+                className={
+                  isDark
+                    ? "dark-mode subTitle achievement-subtitle"
+                    : "subTitle achievement-subtitle"
+                }
+              >
+                {subtitle}
+              </p>
+            </div>
+          )}
           <div className="achievement-cards-div">
-            {achievementSection.achievementsCards.map((card, i) => {
+            {cards.map((card, i) => {
               return (
                 <AchievementCard
                   key={i}
@@ -44,7 +52,8 @@ export default function Achievement() {
                     description: card.subtitle,
                     image: card.image,
                     imageAlt: card.imageAlt,
-                    footer: card.footerLink
+                    footer: card.footerLink,
+                    previewUrl: card.footerLink?.[0]?.url
                   }}
                 />
               );

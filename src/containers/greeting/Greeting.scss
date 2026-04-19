@@ -1,7 +1,7 @@
 @import "../../_globalColor";
 
 /* ========== Pretext-Inspired Greeting Section ========== */
-/* Editorial, warm aesthetic with generous whitespace */
+/* Editorial, warm aesthetic with generous whitespace + enhanced visual impact */
 
 .greet-main {
   width: 100%;
@@ -9,6 +9,36 @@
   padding: 4rem 2rem;
   margin: 0 auto;
   margin-top: 1rem;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.02) 50%,
+    transparent 100%
+  );
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* Subtle animated background gradient */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      -45deg,
+      rgba(102, 126, 234, 0.03),
+      rgba(118, 75, 162, 0.02),
+      rgba(240, 147, 251, 0.02),
+      rgba(79, 172, 254, 0.03)
+    );
+    background-size: 400% 400%;
+    animation: subtleGradientShift 20s ease infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .greeting-main {
@@ -16,6 +46,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .greeting-main > * {
@@ -25,7 +57,7 @@
 .greeting-text-div {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.35rem;
 }
 
 /* Typography: Pretext-style hierarchy */
@@ -59,23 +91,6 @@
   max-width: 550px;
 }
 
-.greeting-story {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: $pretextMuted;
-  margin: 0;
-  margin-top: 1.5rem;
-  max-width: 540px;
-  font-style: italic;
-  border-left: 3px solid $pretextRule;
-  padding-left: 1.5rem;
-}
-
-.dark-mode .greeting-story {
-  color: rgba(255, 253, 248, 0.65);
-  border-left-color: $pretextRule;
-}
-
 /* CTA Buttons */
 .empty-div {
   margin-bottom: 0;
@@ -84,7 +99,19 @@
 .button-greeting-div {
   display: flex;
   gap: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 1.8rem;
+}
+
+.button-greeting-div button {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.button-greeting-div button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(149, 95, 59, 0.15);
 }
 
 .subTitle {
@@ -104,20 +131,37 @@
   position: relative;
   aspect-ratio: 1 / 1;
 
-  /* Subtle warm background shape */
+  /* Enhanced glassmorphism background */
   &::before {
     content: "";
     position: absolute;
-    inset: -20px;
+    inset: -30px;
     background: linear-gradient(
       135deg,
-      $pretextAccent 0%,
-      rgba(149, 95, 59, 0.8) 100%
+      rgba(102, 126, 234, 0.15) 0%,
+      rgba(118, 75, 162, 0.12) 50%,
+      rgba(240, 147, 251, 0.08) 100%
     );
     border-radius: 40% 60% 50% 50%;
     z-index: -1;
-    opacity: 0.08;
     animation: subtlePulse 6s ease-in-out infinite;
+    filter: blur(3px);
+  }
+
+  /* Additional layer for depth */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(149, 95, 59, 0.06) 50%,
+      transparent 100%
+    );
+    border-radius: 40% 60% 50% 50%;
+    z-index: -1;
+    animation: subtleGradientShift 20s ease infinite;
   }
 }
 
@@ -131,53 +175,35 @@
   }
 }
 
+@keyframes subtleGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .profile-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   aspect-ratio: 1 / 1;
   border-radius: 20px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 20px 60px rgba(32, 27, 24, 0.12),
-    0 1px 3px rgba(32, 27, 24, 0.08);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    0 1px 3px rgba(32, 27, 24, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(0px);
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow: 0 30px 80px rgba(32, 27, 24, 0.18),
-      0 2px 4px rgba(32, 27, 24, 0.12);
-  }
-}
-
-.wave-emoji {
-  animation-duration: 1.8s;
-  animation-iteration-count: infinite;
-  animation-name: wave;
-  display: inline-block;
-  transform-origin: 70% 70%;
-}
-
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(-10deg);
-  }
-  20% {
-    transform: rotate(12deg);
-  }
-  30% {
-    transform: rotate(-10deg);
-  }
-  40% {
-    transform: rotate(9deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
+      0 2px 4px rgba(32, 27, 24, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -225,14 +251,6 @@
     font-size: 0.95rem;
     text-align: center;
     max-width: none;
-  }
-
-  .greeting-story {
-    text-align: center;
-    border-left: none;
-    border-top: 3px solid $pretextRule;
-    padding-left: 0;
-    padding-top: 1.5rem;
   }
 
   .greeting-image-div {

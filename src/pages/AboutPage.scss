@@ -1,5 +1,11 @@
 @import "../_globalColor";
 
+.about-page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 2rem 4.5rem;
+}
+
 .about-hero {
   background: radial-gradient(
       120% 120% at 0% 0%,
@@ -16,84 +22,97 @@
       rgba(2, 6, 23, 0.02) 0%,
       rgba(15, 23, 42, 0.08) 100%
     ) !important;
+  margin-top: 0;
+  margin-bottom: 1.3rem;
 }
 
-.about-story,
+.about-intro,
 .about-block,
+.about-current,
 .about-resume-card {
-  max-width: 980px;
-  margin: 24px auto;
-  padding: 24px 28px;
-  border-radius: 18px;
-  border: 1px solid $lightBorder1;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(6px);
+  border-top: 1px solid $lightBorder1;
+  padding: 1.25rem 0 0;
+  margin-top: 1.25rem;
 }
 
-.about-story p,
-.about-block p {
+.about-intro p {
   margin: 0;
+  max-width: 760px;
+  font-size: 1.08rem;
   line-height: 1.8;
   color: $subTitle;
 }
 
 .about-block h2 {
   margin: 0 0 16px;
-  font-size: 1.3rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: $textColor;
 }
 
-.about-chapter-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+.about-signal-list {
+  display: flex;
+  flex-direction: column;
 }
 
-.about-chapter-card {
-  padding: 16px;
-  border-radius: 14px;
-  border: 1px solid $lightBorder1;
-  background: rgba(248, 250, 252, 0.86);
+.about-signal-item {
+  padding: 1rem 0 1.05rem;
+  border-bottom: 1px solid $lightBorder1;
 }
 
-.about-chapter-card h3 {
-  margin: 0 0 10px;
+.about-signal-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-signal-item h3 {
+  margin: 0;
   font-size: 1.02rem;
   color: $textColor;
 }
 
-.about-chapter-card p {
-  margin: 0;
-  font-size: 0.95rem;
+.about-signal-item p {
+  margin: 0.4rem 0 0;
+  max-width: 760px;
+  font-size: 0.97rem;
+  line-height: 1.72;
+  color: $subTitle;
+}
+
+.about-current h2 {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $textColor;
 }
 
 .about-list {
   margin: 0;
-  padding-left: 18px;
-  color: $subTitle;
-  line-height: 1.8;
-}
-
-.about-nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.about-nav-links a {
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid $lightBorder1;
+  padding: 0;
+  list-style: none;
   color: $textColor;
-  background: rgba(248, 250, 252, 0.9);
-  transition: all 0.2s ease;
+  display: grid;
+  gap: 0.72rem;
 }
 
-.about-nav-links a:hover {
-  transform: translateY(-1px);
-  border-color: rgba(37, 99, 235, 0.45);
-  color: #1d4ed8;
+.about-list li {
+  position: relative;
+  padding-left: 1rem;
+  color: $subTitle;
+  line-height: 1.7;
+}
+
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 999px;
+  background: $pretextAccent;
 }
 
 .about-resume-card {
@@ -106,6 +125,7 @@
 .about-resume-card p {
   margin: 0;
   color: $subTitle;
+  max-width: 760px;
 }
 
 .about-resume-button {
@@ -119,14 +139,18 @@
 }
 
 .dark-mode .about-resume-card {
-  background: rgba(11, 20, 38, 0.84);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-.dark-mode .about-story,
-.dark-mode .about-block {
-  background: rgba(11, 20, 38, 0.84);
+.dark-mode .about-intro,
+.dark-mode .about-block,
+.dark-mode .about-current,
+.dark-mode .about-resume-card {
   border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .about-signal-item {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
 .dark-mode .about-block h2 {
@@ -134,43 +158,30 @@
 }
 
 .dark-mode .about-resume-card p,
-.dark-mode .about-story p,
+.dark-mode .about-intro p,
 .dark-mode .about-block p,
 .dark-mode .about-list {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.dark-mode .about-chapter-card {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .about-chapter-card h3 {
+.dark-mode .about-signal-item h3 {
   color: $textColorDark;
-}
-
-.dark-mode .about-nav-links a {
-  color: $textColorDark;
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(30, 41, 59, 0.5);
-}
-
-.dark-mode .about-nav-links a:hover {
-  border-color: rgba(96, 165, 250, 0.6);
-  color: #93c5fd;
 }
 
 @media (max-width: 768px) {
-  .about-story,
+  .about-page {
+    padding: 0 1rem 4rem;
+  }
+
+  .about-intro,
   .about-block,
+  .about-current,
   .about-resume-card {
-    margin: 16px 12px;
-    padding: 18px;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .about-chapter-grid {
-    grid-template-columns: 1fr;
+  .about-resume-card {
+    gap: 0.9rem;
   }
 }

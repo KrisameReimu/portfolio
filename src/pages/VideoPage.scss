@@ -1,119 +1,213 @@
 @import "../_globalColor";
 
+/* 清新年轻蓝色主题 - Videos故事展现 */
+$videoPrimaryColor: #4a90e2;
+$videoAccentLight: #e8f0ff;
+$videoAccentDark: #2e5c8a;
+
 .video-hero {
   background: linear-gradient(
     135deg,
-    rgba(255, 0, 0, 0.05) 0%,
-    rgba(255, 100, 100, 0.05) 100%
+    rgba(74, 144, 226, 0.06) 0%,
+    rgba(74, 144, 226, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
   ) !important;
+
+  .page-title {
+    background: linear-gradient(
+      135deg,
+      $videoPrimaryColor 0%,
+      $videoAccentDark 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  .page-subtitle {
+    color: rgba($textColor, 0.75);
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+  }
 }
 
-.achievements-section {
-  margin-top: 60px;
-}
-
-.archive-tabs {
+/* 最近上传部分 */
+.videos-latest-section {
   max-width: 1200px;
-  margin: 30px auto 0;
+  margin: 80px auto;
   padding: 0 20px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
+
+  .section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $textColor;
+    margin: 0;
+    letter-spacing: -0.5px;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    color: rgba($textColor, 0.6);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    margin: 60px auto;
+  }
 }
 
-.archive-tabs button {
-  border: 1px solid $lightBorder1;
-  background: transparent;
-  color: $textColor;
-  padding: 8px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-.archive-tabs button.active {
-  background: $buttonColor;
-  color: #fff;
-  border-color: $buttonColor;
-}
-
-.archive-grid {
+/* 年度档案部分 */
+.videos-archive-section {
   max-width: 1200px;
-  margin: 40px auto 80px;
+  margin: 100px auto;
   padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+
+  .section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $textColor;
+    margin: 0;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  .year-group {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba($textColor, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .year-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid $videoPrimaryColor;
+
+      .year-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $videoPrimaryColor;
+        margin: 0;
+        letter-spacing: -0.3px;
+
+        @media (max-width: 768px) {
+          font-size: 1.4rem;
+        }
+      }
+
+      .year-count {
+        font-size: 0.9rem;
+        color: rgba($textColor, 0.6);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 80px auto;
+
+    .year-group {
+      gap: 20px;
+      padding-bottom: 30px;
+    }
+  }
 }
 
-.archive-card {
-  background: $lightBackground2;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid $lightBorder1;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* 空状态 */
+.empty-state {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  text-align: center;
+  color: rgba($textColor, 0.5);
+  font-size: 1rem;
+  background: rgba($videoPrimaryColor, 0.05);
+  border-radius: 12px;
+  border: 1px dashed rgba($videoPrimaryColor, 0.2);
 }
 
-.archive-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+/* 深色模式 */
+.dark-mode {
+  .videos-latest-section {
+    .section-title {
+      color: #fff;
+    }
+
+    .section-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .videos-archive-section {
+    .section-title {
+      color: #fff;
+    }
+
+    .year-group {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+
+      .year-header {
+        border-bottom-color: $videoPrimaryColor;
+
+        .year-count {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+
+  .empty-state {
+    background: rgba($videoPrimaryColor, 0.08);
+    border-color: rgba($videoPrimaryColor, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
 
-.archive-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-}
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .video-hero .page-title {
+    font-size: 1.8rem;
+  }
 
-.archive-content {
-  padding: 20px;
-}
-
-.archive-label {
-  font-size: 0.85rem;
-  color: $subTitle;
-}
-
-.archive-content h3 {
-  margin: 10px 0 12px;
-  font-size: 1.4rem;
-  color: $textColor;
-}
-
-.archive-content p {
-  margin: 0 0 16px;
-  color: $subTitle;
-  line-height: 1.6;
-}
-
-.archive-link {
-  text-decoration: none;
-  color: $buttonColor;
-  font-weight: 600;
-}
-
-.dark-mode .archive-card {
-  background: $darkBackground;
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.dark-mode .archive-content h3 {
-  color: $textColorDark;
-}
-
-.dark-mode .archive-content p,
-.dark-mode .archive-label {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.dark-mode .archive-tabs button {
-  color: $textColorDark;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.dark-mode .archive-tabs button.active {
-  color: #fff;
+  .videos-latest-section,
+  .videos-archive-section {
+    padding: 0 16px;
+  }
 }

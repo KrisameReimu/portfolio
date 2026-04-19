@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
 import WritingShowcase from "../containers/writingShowcase/WritingShowcase";
+import LandingHero from "../components/landingHero/LandingHero";
 import {Link} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
@@ -95,10 +96,17 @@ export default function WritingPage() {
 
   return (
     <div className="page-container">
-      <div className="page-hero writing-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-      </div>
+      <LandingHero
+        variant="narrative"
+        title={copy.title}
+        subtitle={copy.subtitle}
+        description={{
+          zh: "在这里我记录思考、分享观点、记述学习历程。每一篇文章都是一个创意对话。",
+          en: "Here I record thoughts, share perspectives, and document my learning journey. Every essay is a creative conversation."
+        }}
+        accentColor="#667eea"
+        className="writing-landing-hero"
+      />
       <div className="archive-tabs">
         <button
           className={activeTab === "all" ? "active" : ""}

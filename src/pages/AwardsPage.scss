@@ -1,0 +1,121 @@
+@import "../_globalColor";
+
+.awards-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4.5rem;
+}
+
+.awards-hero {
+  background: radial-gradient(
+      120% 120% at 0% 0%,
+      rgba(149, 95, 59, 0.14) 0%,
+      transparent 56%
+    ),
+    radial-gradient(
+      120% 120% at 100% 0%,
+      rgba(193, 81, 51, 0.1) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      140deg,
+      rgba(2, 6, 23, 0.02) 0%,
+      rgba(15, 23, 42, 0.08) 100%
+    ) !important;
+  margin: 0 0 1.25rem;
+}
+
+.awards-intro {
+  margin: 0;
+  max-width: 760px;
+  color: $subTitle;
+  line-height: 1.75;
+}
+
+.awards-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.awards-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid $lightBorder1;
+}
+
+.awards-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.awards-section-header h2 {
+  margin: 0;
+  color: $titleColor;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.awards-section-header p {
+  margin: 0.45rem 0 0;
+  color: $subTitle;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.awards-section-header span {
+  flex: none;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(149, 95, 59, 0.09);
+  color: $pretextAccent;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.dark-mode .awards-section {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .awards-section-header h2,
+.dark-mode .awards-section-header span {
+  color: $textColorDark;
+}
+
+.dark-mode .awards-section-header p,
+.dark-mode .awards-intro {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dark-mode .awards-section-header span {
+  background: rgba(149, 95, 59, 0.18);
+}
+
+@media (max-width: 768px) {
+  .awards-page {
+    padding: 0 1rem 4rem;
+  }
+
+  .awards-section-header {
+    flex-direction: column;
+  }
+
+  .awards-grid {
+    grid-template-columns: 1fr;
+  }
+}

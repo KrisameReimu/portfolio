@@ -1,26 +1,22 @@
-import React, {useContext} from "react";
-import {Link} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import Headroom from "react-headroom";
 import "./Header.scss";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import StyleContext from "../../contexts/StyleContext";
-import AuthContext from "../../contexts/AuthContext";
-import {
-  greeting,
-  gameDevSection,
-  videoPortfolioSection,
-  photographySection
-} from "../../portfolio";
-import {writingShowcaseSection} from "../../containers/writingShowcase/WritingShowcase";
+import {greeting, gameDevSection, videoPortfolioSection} from "../../portfolio";
 
 function Header() {
   const {isDark} = useContext(StyleContext);
-  const {isLoggedIn, isOwner} = useContext(AuthContext);
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const viewGameDev = gameDevSection.display;
   const viewVideoPortfolio = videoPortfolioSection.display;
-  const viewPhotography = photographySection.display;
-  const viewWriting = writingShowcaseSection.display;
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <Headroom>
@@ -30,58 +26,47 @@ function Header() {
           <span className="logo-name">{greeting.username}</span>
           <span className="grey-color">/&gt;</span>
         </Link>
-        <input className="menu-btn" type="checkbox" id="menu-btn" />
-        <label
+        <button
           className="menu-icon"
-          htmlFor="menu-btn"
-          style={{color: "white"}}
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          onClick={() => setMenuOpen(open => !open)}
         >
           <span className={isDark ? "navicon navicon-dark" : "navicon"}></span>
-        </label>
-        <ul className={isDark ? "dark-menu menu" : "menu"}>
+        </button>
+        <ul
+          id="primary-navigation"
+          className={`${isDark ? "dark-menu " : ""}menu ${
+            menuOpen ? "menu-open" : ""
+          }`}
+        >
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
           </li>
           {viewGameDev && (
             <li>
-              <Link to="/game-dev">Game Dev</Link>
+              <NavLink to="/game-dev">Game Dev</NavLink>
             </li>
           )}
           {viewVideoPortfolio && (
             <li>
-              <Link to="/videos">Videos</Link>
-            </li>
-          )}
-          {viewPhotography && (
-            <li>
-              <Link to="/photos">Photography</Link>
-            </li>
-          )}
-          {viewWriting && (
-            <li>
-              <Link to="/writing">Writing</Link>
-            </li>
-          )}
-          {isOwner && (
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          )}
-          {isLoggedIn && (
-            <li>
-              <Link to="/community">Community</Link>
-            </li>
-          )}
-          {isLoggedIn && (
-            <li>
-              <Link to="/favorites">Favorites</Link>
+              <NavLink to="/videos">Videos</NavLink>
             </li>
           )}
           <li>
-            <Link to="/about">About</Link>
+            <NavLink to="/awards">Awards</NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
           <li>
             <ToggleSwitch />

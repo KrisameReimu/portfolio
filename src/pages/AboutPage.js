@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
-import {Link} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
+import LandingHero from "../components/landingHero/LandingHero";
 import {getText} from "../utils/i18n";
 import {greeting} from "../portfolio";
 import "./AboutPage.scss";
@@ -17,42 +17,42 @@ export default function AboutPage() {
       en: "Not a list of specs, but a person still in progress."
     },
     intro: {
-      zh: "我在香港做研究与创作，也在长期经营自己的数字空间。技术对我来说不是终点，而是一种表达方式: 用它把思考、影像、文字和游戏连接起来，形成一个有温度、可持续更新的个人叙事。",
-      en: "I work on research and creative projects in Hong Kong while building a long-term digital home. To me, technology is not the destination. It is a medium that connects writing, visuals, and interactive work into one evolving personal narrative."
+      zh: "我在香港做研究与创作，主要方向是 AI 系统、多媒体叙事和教学支持。比起堆很多标签，我更在意把少数几件事做到能被看见、能被验证、能持续更新。",
+      en: "I work on research and creative projects in Hong Kong, centered on AI systems, multimedia storytelling, and teaching support. Instead of collecting labels, I care about a few things done well enough to be seen, verified, and maintained."
     },
-    chaptersTitle: {
-      zh: "我在做什么",
-      en: "What I Build"
+    signalsTitle: {
+      zh: "高信号经历",
+      en: "Selected Signals"
     },
-    chapters: [
+    signals: [
       {
         title: {
-          zh: "写作: 把复杂问题讲清楚",
-          en: "Writing: clarity over noise"
+          zh: "AI 产品与发表",
+          en: "AI Product Work"
         },
         body: {
-          zh: "我写反思、社会观察和技术相关内容。目标不是制造情绪，而是留下可以被反复阅读、反复讨论的文字。",
-          en: "I write reflections, social observations, and tech essays. The goal is not noise, but text worth revisiting."
+          zh: "GenAI 反馈与自动评测平台、WAIE 2025 论文发表，以及 React + Flask + Azure API 的完整交付。",
+          en: "GenAI feedback and auto-grading platform, a WAIE 2025 publication, and full-stack delivery with React, Flask, and Azure API."
         }
       },
       {
         title: {
-          zh: "影像: 记录人与城市之间的情绪",
-          en: "Visuals: emotion between people and cities"
+          zh: "荣誉与认可",
+          en: "Awards and Recognition"
         },
         body: {
-          zh: "摄影和视频是我的另一种语言。我关注光线、关系和现场感，尝试让每个片段都能独立讲故事。",
-          en: "Photography and video are another language for me. I focus on light, relationships, and atmosphere so each frame can stand as a story."
+          zh: "PolyU 视频竞赛奖项、Sasakawa Cup、Oxford AI/ML programme，以及多项学术与创作层面的证明。",
+          en: "PolyU video awards, Sasakawa Cup, the Oxford AI/ML programme, and multiple academic and creative recognitions."
         }
       },
       {
         title: {
-          zh: "交互项目: 把想法做成可体验的作品",
-          en: "Interactive projects: ideas you can experience"
+          zh: "教学与制作",
+          en: "Teaching and Production"
         },
         body: {
-          zh: "我做游戏和多媒体项目，因为有些表达只有在互动里才能成立。作品是我的方法论，而不是我的标签。",
-          en: "I build games and multimedia projects because some ideas only exist through interaction. Work is my method, not my label."
+          zh: "在 PolyU 做研究/项目助理和 TA，也做多媒体制作、实验课协助，以及电商前端交付。",
+          en: "At PolyU I work as a research/project assistant and TA, while also handling multimedia production, lab support, and e-commerce front-end delivery."
         }
       }
     ],
@@ -62,45 +62,21 @@ export default function AboutPage() {
     },
     nowItems: [
       {
-        zh: "把过去五年的文章系统迁移到网站，形成双语长期档案",
-        en: "Migrating five years of writing into a bilingual long-term archive"
+        zh: "把 AI 反馈系统做得更稳、更轻、更可维护",
+        en: "Making AI feedback systems lighter, more stable, and easier to maintain"
       },
       {
-        zh: "建立内容脚手架，让网站可以常年稳定更新",
-        en: "Building content scaffolding for sustainable long-term updates"
+        zh: "让作品集只保留最有证据力的内容",
+        en: "Keeping the portfolio limited to its strongest evidence"
       },
       {
-        zh: "把研究、创作与个人叙事整合成统一的表达体系",
-        en: "Unifying research, creative output, and personal narrative"
+        zh: "把研究、创作和职业履历收束成一个更清晰的个人 IP",
+        en: "Unifying research, creative output, and career evidence into a clearer personal IP"
       }
     ],
-    lifeTitle: {
-      zh: "生活中的我",
-      en: "Off-Screen"
-    },
-    lifeBody: {
-      zh: "我喜欢动漫文化，也在现实世界里认真做长期主义。比起“完美人设”，我更在意持续创作、持续迭代，以及和真实的人建立长期连接。",
-      en: "I love anime culture and practice long-term thinking in real life. Instead of a polished persona, I value steady creation, honest iteration, and lasting human connections."
-    },
-    navTitle: {
-      zh: "从这里继续认识我",
-      en: "Continue Exploring"
-    },
-    navWriting: {
-      zh: "进入文字创作",
-      en: "Go to Writing"
-    },
-    navPhotos: {
-      zh: "进入摄影页面",
-      en: "Go to Photos"
-    },
-    navVideos: {
-      zh: "进入影像页面",
-      en: "Go to Videos"
-    },
     resumeHint: {
-      zh: "如果你需要正式履历，也可以查看我的 CV。",
-      en: "If you need the formal version, my CV is available."
+      zh: "如果你需要更正式的版本，可以直接看我的 CV。",
+      en: "If you need the formal version, you can go straight to my CV."
     },
     resumeButton: {
       zh: "查看 CV",
@@ -109,21 +85,21 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-hero about-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-      </div>
-
-      <section className="about-story">
-        <p>{getText(copy.intro, language)}</p>
-      </section>
+    <div className="page-container about-page">
+      <LandingHero
+        variant="narrative"
+        title={copy.title}
+        subtitle={copy.subtitle}
+        description={copy.intro}
+        accentColor="#1976D2"
+        className="about-landing-hero"
+      />
 
       <section className="about-block">
-        <h2>{getText(copy.chaptersTitle, language)}</h2>
-        <div className="about-chapter-grid">
-          {copy.chapters.map(item => (
-            <article className="about-chapter-card" key={item.title.en}>
+        <h2>{getText(copy.signalsTitle, language)}</h2>
+        <div className="about-signal-list">
+          {copy.signals.map(item => (
+            <article className="about-signal-item" key={item.title.en}>
               <h3>{getText(item.title, language)}</h3>
               <p>{getText(item.body, language)}</p>
             </article>
@@ -131,27 +107,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-block">
+      <section className="about-current">
         <h2>{getText(copy.nowTitle, language)}</h2>
         <ul className="about-list">
           {copy.nowItems.map(item => (
             <li key={item.en}>{getText(item, language)}</li>
           ))}
         </ul>
-      </section>
-
-      <section className="about-block">
-        <h2>{getText(copy.lifeTitle, language)}</h2>
-        <p>{getText(copy.lifeBody, language)}</p>
-      </section>
-
-      <section className="about-block">
-        <h2>{getText(copy.navTitle, language)}</h2>
-        <div className="about-nav-links">
-          <Link to="/writing">{getText(copy.navWriting, language)}</Link>
-          <Link to="/photos">{getText(copy.navPhotos, language)}</Link>
-          <Link to="/videos">{getText(copy.navVideos, language)}</Link>
-        </div>
       </section>
 
       {greeting.resumeLink && (

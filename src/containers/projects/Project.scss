@@ -1,32 +1,95 @@
-.project-title {
-  font-size: 52px;
-  font-weight: 400;
-  line-height: normal;
+@import "../../_globalColor";
+
+.projects-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.startup-project-text img {
-  max-width: 100%;
-  height: auto;
+.projects-intro {
+  margin: 0;
+  max-width: 720px;
+  color: $subTitle;
+  line-height: 1.7;
 }
 
-.repo-cards-div-main {
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 1rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
 }
 
-/* Media Query */
-@media (max-width: 1380px) {
-  .project-title {
-    font-size: 40px;
-  }
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  border: 1px solid $lightBorder1;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.84),
+    rgba(255, 248, 240, 0.96)
+  );
+  box-shadow: 0 16px 44px rgba(32, 27, 24, 0.08);
+  min-height: 100%;
 }
+
+.project-card-eyebrow {
+  margin: 0 0 0.5rem;
+  color: $buttonColor;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-card-title {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  color: $titleColor;
+}
+
+.project-card-detail {
+  margin: 0.8rem 0 0;
+  color: $subTitle;
+  line-height: 1.7;
+}
+
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.projects-empty {
+  margin: 0;
+  color: $subTitle;
+}
+
+.dark-mode .project-card {
+  background: linear-gradient(180deg, #231e1a, #1a1511);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .project-card-title {
+  color: $textColorDark;
+}
+
+.dark-mode .project-card-detail,
+.dark-mode .projects-intro,
+.dark-mode .projects-empty {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 @media (max-width: 768px) {
-  .project-title {
-    font-size: 30px;
-    text-align: center;
+  .project-card {
+    padding: 1.25rem;
   }
-  .repo-cards-div-main {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  .project-card-title {
+    font-size: 1.2rem;
   }
 }

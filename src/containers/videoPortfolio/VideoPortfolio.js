@@ -96,13 +96,22 @@ const dedupeVideos = list => {
   return result;
 };
 
-const VideoPortfolio = ({showHeading = true}) => {
+const VideoPortfolio = ({
+  showHeading = true,
+  videos: externalVideos = null
+}) => {
   const {language} = useContext(LanguageContext);
-  const [selectedFilter, setSelectedFilter] = useState("all");
   const [hoveredVideo, setHoveredVideo] = useState(null);
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(externalVideos || []);
 
   useEffect(() => {
+    // 如果提供了外部视频数据，直接使用
+    if (externalVideos && externalVideos.length > 0) {
+      setVideos(externalVideos);
+      return;
+    }
+
+    // 否则获取所有视频
     let mounted = true;
     (async () => {
       const allVideos = await getVideos();
@@ -117,7 +126,7 @@ const VideoPortfolio = ({showHeading = true}) => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [externalVideos]);
 
   const copy = {
     title: {zh: "视频作品集", en: "Video Portfolio"},
@@ -147,29 +156,12 @@ const VideoPortfolio = ({showHeading = true}) => {
     }
   };
 
-  const stats = useMemo(() => {
-    const totalAwards = videos.reduce(
-      (sum, video) => sum + (video.awards?.length || 0),
-      0
-    );
-    const goldCount = videos.filter(video =>
-      video.awards?.some(award => award.level === "gold")
-    ).length;
-    const silverCount = videos.filter(video =>
-      video.awards?.some(award => award.level === "silver")
-    ).length;
-    const specialCount = videos.filter(video =>
-      video.awards?.some(award => award.level === "special")
-    ).length;
-    return {totalAwards, goldCount, silverCount, specialCount};
-  }, [videos]);
+  // 统计数据已移除 - 不再显示无意义的奖项统计
 
+  // 所有视频直接展示，不再过滤
   const filteredVideos = useMemo(() => {
-    if (selectedFilter === "all") return videos;
-    return videos.filter(video =>
-      video.awards?.some(award => award.level === selectedFilter)
-    );
-  }, [selectedFilter, videos]);
+    return videos;
+  }, [videos]);
 
   const getAwardBadgeStyle = level => {
     const colors = {
@@ -206,56 +198,6 @@ const VideoPortfolio = ({showHeading = true}) => {
             </div>
           )}
 
-          <div className="award-stats">
-            <Fade bottom duration={1200} distance="20px">
-              <div className="stats-grid">
-                <div className="stat-card">
-                  <i className="fas fa-trophy"></i>
-                  <span className="stat-number">{stats.totalAwards}</span>
-                  <span className="stat-label">
-                    {getText(copy.stats.total, language)}
-                  </span>
-                </div>
-                <div className="stat-card gold">
-                  <i className="fas fa-medal"></i>
-                  <span className="stat-number">{stats.goldCount}</span>
-                  <span className="stat-label">
-                    {getText(copy.stats.gold, language)}
-                  </span>
-                </div>
-                <div className="stat-card silver">
-                  <i className="fas fa-medal"></i>
-                  <span className="stat-number">{stats.silverCount}</span>
-                  <span className="stat-label">
-                    {getText(copy.stats.silver, language)}
-                  </span>
-                </div>
-                <div className="stat-card special">
-                  <i className="fas fa-star"></i>
-                  <span className="stat-number">{stats.specialCount}</span>
-                  <span className="stat-label">
-                    {getText(copy.stats.special, language)}
-                  </span>
-                </div>
-              </div>
-            </Fade>
-          </div>
-
-          <div className="filter-buttons">
-            {["all", "gold", "silver", "special"].map(filter => (
-              <button
-                key={filter}
-                className={`filter-btn ${
-                  selectedFilter === filter ? "active" : ""
-                }`}
-                onClick={() => setSelectedFilter(filter)}
-                type="button"
-              >
-                {getText(copy.filters[filter], language)}
-              </button>
-            ))}
-          </div>
-
           <div className="video-portfolio-cards-div">
             {filteredVideos.length === 0 && (
               <div className="empty-state">
@@ -276,7 +218,7 @@ const VideoPortfolio = ({showHeading = true}) => {
               const watchUrl =
                 video.watchUrl ||
                 (video.videoId ? `https://youtu.be/${video.videoId}` : "");
-              const isFeatured = selectedFilter === "all" && index === 0;
+              const isFeatured = index === 0;
 
               return (
                 <div

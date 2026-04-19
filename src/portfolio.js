@@ -27,19 +27,15 @@ const greeting = {
     en: "Hi, I'm Echo Chen"
   },
   tagline: {
-    zh: "AI 开发者 x 游戏创作者 x 数字叙事者",
-    en: "AI Developer x Game Creator x Digital Storyteller"
+    zh: "AI 开发者 x 多媒体创作者",
+    en: "AI Developer x Multimedia Creator"
   },
   subTitle: {
-    zh: "我在技术与创意的交汇处创造体验：从 AI 教育工具到沉浸式游戏与获奖影像作品。作为 PolyU 的研究项目助理，我持续探索 AI 与多媒体如何放大人类表达。",
-    en: "I build experiences at the intersection of technology and creativity, from AI education tools to immersive games and award-winning multimedia. As a research project assistant at PolyU, I explore how AI and multimedia can amplify human expression."
-  },
-  story: {
-    zh: "我相信技术的意义在于让故事被更多人看见。无论是纪录片镜头、摄影作品，还是交互式游戏，我都在寻找能够连接人心的叙事方式。",
-    en: "I believe technology matters when it helps stories reach people. Through documentaries, photography, and interactive games, I'm always searching for narratives that connect with hearts."
+    zh: "我在 PolyU 做 AI 系统、研究支持和多媒体创作，把少数几件事做得可展示、可验证、可持续。",
+    en: "At PolyU I work across AI systems, research support, and multimedia creation, focusing on a few things that are showable, verifiable, and sustainable."
   },
   profileImage: require("./assets/images/profile.jpg"),
-  resumeLink: "https://img.chenchen-echo.com/ChenChen_Personal_CV_2026.pdf",
+  resumeLink: "https://img.chenchen-echo.com/chenchen-personal-cv.pdf",
   displayGreeting: true
 };
 
@@ -243,14 +239,6 @@ const workExperiences = {
   ]
 };
 
-/* Your Open Source Section to View Your Github Pinned Projects
-To know how to get github key look at readme.md */
-
-const openSource = {
-  showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to true
-  display: true // Set false to hide this section, defaults to true
-};
-
 // Some big projects you have worked on
 
 const bigProjects = {
@@ -314,7 +302,7 @@ const bigProjects = {
 // Include certificates, talks etc
 
 const achievementSection = {
-  title: "Achievements And Certifications",
+  title: "Awards & Certifications",
   subtitle:
     "Awards, Certifications and Recognition for my contributions and skills",
 
@@ -453,7 +441,6 @@ export {
   educationInfo,
   techStack,
   workExperiences,
-  openSource,
   bigProjects,
   achievementSection,
   blogSection,
