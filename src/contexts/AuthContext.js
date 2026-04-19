@@ -7,8 +7,7 @@ const AuthContext = createContext({
   login: () => {},
   loginWithGoogle: () => {},
   logout: () => {},
-  isLoggedIn: false,
-  isOwner: false
+  isLoggedIn: false
 });
 
 export const AuthProvider = ({children}) => {
@@ -83,8 +82,7 @@ export const AuthProvider = ({children}) => {
       login,
       loginWithGoogle,
       logout,
-      isLoggedIn: Boolean(user),
-      isOwner: user?.role === "admin"
+      isLoggedIn: Boolean(user)
     }),
     [user, login, loginWithGoogle, logout]
   );

@@ -4,6 +4,14 @@ This repository contains the source for Echo Chen's personal website.
 
 Live site: https://www.chenchen-echo.com/
 
+## Environment
+
+- Node.js: `20.11.0` via `nvm use`
+- Package manager: `npm`
+- Clean install: `npm ci`
+- Local dev: `npm run dev`
+- Before changes land: `npm run verify`
+
 ## Content Workflow
 
 - Article index: `public/content/index.json`

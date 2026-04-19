@@ -19,7 +19,27 @@ const request = async (path, options = {}) => {
     headers,
     ...fetchOptions
   });
-  return res.json();
+
+  const contentType = res.headers.get("content-type") || "";
+  const isJson = contentType.includes("application/json");
+  const payload = isJson ? await res.json().catch(() => null) : null;
+
+  if (!res.ok) {
+    return {
+      ok: false,
+      status: res.status,
+      error:
+        payload?.error || payload?.message || `request_failed_${res.status}`
+    };
+  }
+
+  if (payload && typeof payload === "object") {
+    return payload;
+  }
+
+  return {
+    ok: true
+  };
 };
 
 export const communityAPI = {

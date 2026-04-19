@@ -1,8 +1,11 @@
 {
-  "homepage": "https://developerfolio.js.org/",
   "name": "developerfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.11.0 <21",
+    "npm": ">=10.2.0 <11"
+  },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",
     "colorthief": "^2.3.0",
@@ -28,7 +31,9 @@
     "predeploy": "npm run build",
     "start": "node fetch.js && react-scripts start",
     "build": "node fetch.js && react-scripts build",
-    "dev": "node -e \"process.env.PORT='3001'; require('react-scripts/scripts/start');\"",
+    "dev": "node fetch.js && node -e \"process.env.PORT='3001'; require('react-scripts/scripts/start');\"",
+    "content:validate": "node scripts/validate-content.js",
+    "verify": "npm run content:validate && npm run build",
     "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
