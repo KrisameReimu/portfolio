@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
 import VideoPortfolio from "../containers/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
-import LandingHero from "../components/landingHero/LandingHero";
+import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
@@ -76,14 +76,14 @@ export default function VideoPage() {
 
   return (
     <div className="page-container">
-      <LandingHero
-        variant="narrative"
+      <DynamicLandingHero
         title={copy.title}
         subtitle={copy.subtitle}
         description={{
           zh: "我用影像讲故事。从概念到成品，每一帧都是创意的痕迹。",
           en: "I tell stories with video. Every frame is a trace of creativity—from concept to final cut."
         }}
+        visualType="video-wall"
         accentColor="#4A90E2"
         className="videos-landing-hero"
       />

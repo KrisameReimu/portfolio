@@ -1,7 +1,7 @@
 import React, {useContext, useMemo} from "react";
 import LanguageContext from "../contexts/LanguageContext";
 import StyleContext from "../contexts/StyleContext";
-import LandingHero from "../components/landingHero/LandingHero";
+import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import {getText} from "../utils/i18n";
 import {certificationCards} from "../data/certifications";
 import AchievementCard from "../components/achievementCard/AchievementCard";
@@ -94,10 +94,14 @@ export default function AwardsPage() {
 
   return (
     <div className="page-container awards-page">
-      <LandingHero
-        variant="stats"
+      <DynamicLandingHero
         title={copy.title}
         subtitle={copy.subtitle}
+        description={{
+          zh: "我只保留对个人 IP 有帮助的证据：创作、研究、教学服务和可验证的成果。",
+          en: "I keep only the evidence that strengthens the personal IP: creative work, research, teaching support, and verifiable outcomes."
+        }}
+        visualType="stat-preview"
         stats={[
           {
             label: {zh: "获奖总数", en: "Total Awards"},
@@ -120,17 +124,6 @@ export default function AwardsPage() {
         accentColor="#FFD700"
         className="awards-landing-hero"
       />
-      <p
-        className="awards-intro"
-        style={{
-          textAlign: "center",
-          maxWidth: "800px",
-          margin: "40px auto",
-          color: "rgba(0,0,0,0.7)"
-        }}
-      >
-        {getText(copy.intro, language)}
-      </p>
 
       <div className="awards-sections">
         {groupedCards.map(section => {

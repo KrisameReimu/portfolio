@@ -38,3 +38,6 @@ public/blogs.json
 
 # cloudflare local state
 cloudflare/community-api/.wrangler/
+
+# local automation artifacts
+/output/

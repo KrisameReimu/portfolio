@@ -51,7 +51,7 @@ function Header() {
           </li>
           {viewGameDev && (
             <li>
-              <NavLink to="/game-dev">Game Dev</NavLink>
+              <NavLink to="/game-dev">Projects</NavLink>
             </li>
           )}
           {viewVideoPortfolio && (
