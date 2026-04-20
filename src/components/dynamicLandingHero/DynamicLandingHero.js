@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import LanguageContext from "../../contexts/LanguageContext";
 import {getText} from "../../utils/i18n";
+import InteractiveMediaWall from "../interactiveMediaWall/InteractiveMediaWall";
 import "./DynamicLandingHero.scss";
 
 /**
@@ -12,11 +13,13 @@ import "./DynamicLandingHero.scss";
  *   title: {zh, en}
  *   subtitle: {zh, en}
  *   description: {zh, en} - Optional detailed text
- *   visualType: "video-wall" | "image-wall" | "stat-preview" | "custom"
+ *   visualType: "interactive-video" | "interactive-photo" | "interactive-stat" | "video-wall" | "image-wall" | "stat-preview" | "custom"
  *   visualContent: React.ReactNode - Custom visual element
+ *   mediaItems: Array - For interactive wall types (videos, photos, stats)
  *   accentColor: string
  *   stats: Array<{value, label}> - For stat-preview type
  *   images: Array<string> - For image-wall type
+ *   onMediaItemClick: Function - Callback for interactive wall clicks
  */
 export default function DynamicLandingHero({
   title = {},
@@ -24,9 +27,11 @@ export default function DynamicLandingHero({
   description = {},
   visualType = "custom",
   visualContent = null,
+  mediaItems = [],
   accentColor = "#4A90E2",
   stats = [],
   images = [],
+  onMediaItemClick = null,
   className = ""
 }) {
   const {language} = useContext(LanguageContext);
@@ -37,6 +42,44 @@ export default function DynamicLandingHero({
 
   const renderVisual = () => {
     switch (visualType) {
+      case "interactive-video":
+        return (
+          <div className="visual-wall interactive-wall video-wall">
+            <InteractiveMediaWall
+              type="video"
+              items={mediaItems}
+              onItemClick={onMediaItemClick}
+              accentColor={accentColor}
+              animationSpeed="normal"
+            />
+          </div>
+        );
+
+      case "interactive-photo":
+        return (
+          <div className="visual-wall interactive-wall photo-wall">
+            <InteractiveMediaWall
+              type="photo"
+              items={mediaItems}
+              onItemClick={onMediaItemClick}
+              accentColor={accentColor}
+              animationSpeed="normal"
+            />
+          </div>
+        );
+
+      case "interactive-stat":
+        return (
+          <div className="visual-wall interactive-wall stat-wall">
+            <InteractiveMediaWall
+              type="stat"
+              items={mediaItems}
+              accentColor={accentColor}
+              animationSpeed="normal"
+            />
+          </div>
+        );
+
       case "video-wall":
         return (
           <div className="visual-wall video-wall">

@@ -109,6 +109,15 @@
     }
   }
 
+  // Interactive Wall (overrides default visual-wall styles)
+  .interactive-wall {
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+  }
+
   // Video Wall Style
   .video-wall {
     background: linear-gradient(

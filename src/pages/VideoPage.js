@@ -83,7 +83,8 @@ export default function VideoPage() {
           zh: "我用影像讲故事。从概念到成品，每一帧都是创意的痕迹。",
           en: "I tell stories with video. Every frame is a trace of creativity—from concept to final cut."
         }}
-        visualType="video-wall"
+        visualType={videos.length > 0 ? "interactive-video" : "video-wall"}
+        mediaItems={latestVideos.slice(0, 8)}
         accentColor="#4A90E2"
         className="videos-landing-hero"
       />

@@ -92,6 +92,31 @@ export default function AwardsPage() {
       .filter(section => section.cards.length > 0);
   }, []);
 
+  const statItems = useMemo(() => {
+    return [
+      {
+        label: getText({zh: "获奖总数", en: "Total Awards"}, language),
+        value: certificationCards.length,
+        color: "#FFD700"
+      },
+      {
+        label: getText({zh: "多媒体作品", en: "Multimedia"}, language),
+        value: certificationCards.filter(c => c.group === "multimedia").length,
+        color: "#FF6B6B"
+      },
+      {
+        label: getText({zh: "学术研究", en: "Research"}, language),
+        value: certificationCards.filter(c => c.group === "research").length,
+        color: "#4A90E2"
+      },
+      {
+        label: getText({zh: "教学服务", en: "Service"}, language),
+        value: certificationCards.filter(c => c.group === "service").length,
+        color: "#4CAF50"
+      }
+    ];
+  }, [language]);
+
   return (
     <div className="page-container awards-page">
       <DynamicLandingHero
@@ -101,26 +126,8 @@ export default function AwardsPage() {
           zh: "我只保留对个人 IP 有帮助的证据：创作、研究、教学服务和可验证的成果。",
           en: "I keep only the evidence that strengthens the personal IP: creative work, research, teaching support, and verifiable outcomes."
         }}
-        visualType="stat-preview"
-        stats={[
-          {
-            label: {zh: "获奖总数", en: "Total Awards"},
-            value: certificationCards.length
-          },
-          {
-            label: {zh: "多媒体作品", en: "Multimedia"},
-            value: certificationCards.filter(c => c.group === "multimedia")
-              .length
-          },
-          {
-            label: {zh: "学术研究", en: "Research"},
-            value: certificationCards.filter(c => c.group === "research").length
-          },
-          {
-            label: {zh: "教学服务", en: "Service"},
-            value: certificationCards.filter(c => c.group === "service").length
-          }
-        ]}
+        visualType="interactive-stat"
+        mediaItems={statItems}
         accentColor="#FFD700"
         className="awards-landing-hero"
       />
