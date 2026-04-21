@@ -1,0 +1,238 @@
+@import "../../_globalColor";
+
+.projects-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.projects-dossier-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 0 1.75rem;
+  border-top: 1px solid $pretextRule;
+  border-bottom: 1px solid $pretextRule;
+}
+
+.dossier-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  h3 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.1;
+    color: $pretextInk;
+    letter-spacing: -0.03em;
+  }
+}
+
+.dossier-kicker {
+  margin: 0;
+  color: $pretextAccent;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dossier-subtitle {
+  margin: 0;
+  color: $pretextMuted;
+  font-size: 1rem;
+}
+
+.dossier-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dossier-signal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid $pretextRule;
+  background: $pretextPanel;
+
+  span {
+    color: $pretextAccent;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    color: $pretextInk;
+    line-height: 1.45;
+    font-size: 0.98rem;
+  }
+}
+
+.projects-intro {
+  margin: 0;
+  max-width: 860px;
+  color: $pretextMuted;
+  line-height: 1.7;
+}
+
+.projects-dossier-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.project-dossier-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid $pretextRule;
+  background: $pretextPanel;
+}
+
+.project-dossier-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid $pretextRule;
+}
+
+.project-dossier-type,
+.project-dossier-time,
+.project-proof-label {
+  color: $pretextAccent;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-dossier-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.project-dossier-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.project-dossier-title {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: $pretextInk;
+  letter-spacing: -0.02em;
+}
+
+.project-dossier-organization {
+  margin: 0;
+  color: $pretextInk;
+  font-weight: 600;
+}
+
+.project-dossier-role {
+  margin: 0;
+  color: $pretextAccent;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.project-dossier-summary {
+  margin: 0.35rem 0 0;
+  color: $pretextMuted;
+  line-height: 1.7;
+}
+
+.project-dossier-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem;
+  border: 1px solid $pretextRule;
+  background: rgba(149, 95, 59, 0.04);
+
+  strong {
+    color: $pretextInk;
+    line-height: 1.4;
+  }
+}
+
+.project-dossier-bullets {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: $pretextInk;
+  line-height: 1.75;
+
+  li + li {
+    margin-top: 0.35rem;
+  }
+}
+
+.project-dossier-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.projects-empty {
+  margin: 0;
+  color: $pretextMuted;
+}
+
+.dark-mode .projects-dossier-intro,
+.dark-mode .project-dossier-card,
+.dark-mode .project-dossier-meta,
+.dark-mode .project-dossier-proof {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .dossier-header h3,
+.dark-mode .dossier-signal strong,
+.dark-mode .project-dossier-title,
+.dark-mode .project-dossier-organization,
+.dark-mode .project-dossier-proof strong,
+.dark-mode .project-dossier-bullets {
+  color: $textColorDark;
+}
+
+.dark-mode .projects-dossier-intro,
+.dark-mode .dossier-signal,
+.dark-mode .project-dossier-card,
+.dark-mode .project-dossier-proof {
+  background: rgba(24, 20, 17, 0.92);
+}
+
+.dark-mode .project-dossier-summary,
+.dark-mode .project-dossier-time,
+.dark-mode .projects-intro,
+.dark-mode .projects-empty,
+.dark-mode .dossier-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 768px) {
+  .dossier-signal-grid,
+  .project-dossier-body {
+    grid-template-columns: 1fr;
+  }
+
+  .project-dossier-card {
+    padding: 1.25rem;
+  }
+
+  .project-dossier-title,
+  .dossier-header h3 {
+    font-size: 1.2rem;
+  }
+}

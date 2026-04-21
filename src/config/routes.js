@@ -1,12 +1,7 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import NowPage from "../pages/NowPage";
-import LabPage from "../pages/LabPage";
 import LabPillarPage from "../pages/LabPillarPage";
-import RoadmapPage from "../pages/RoadmapPage";
-import DashboardPage from "../pages/DashboardPage";
-import AskPage from "../pages/AskPage";
 import GameDevPage from "../pages/GameDevPage";
 import VideoPage from "../pages/VideoPage";
 import VideoYearPage from "../pages/VideoYearPage";
@@ -16,10 +11,8 @@ import PhotoYearPage from "../pages/PhotoYearPage";
 import WritingPage from "../pages/WritingPage";
 import WritingYearPage from "../pages/WritingYearPage";
 import ArticlePage from "../pages/ArticlePage";
-import CommunityPage from "../pages/CommunityPage";
-import FavoritesPage from "../pages/FavoritesPage";
 import AboutPage from "../pages/AboutPage";
-import Contact from "../containers/contact/Contact";
+import Contact from "../sections/contact/Contact";
 
 export const siteRoutes = [
   {
@@ -53,12 +46,6 @@ export const siteRoutes = [
     navGroup: "primary"
   },
   {
-    path: "/lab",
-    element: <LabPage />,
-    navLabel: "Lab",
-    navGroup: "primary"
-  },
-  {
     path: "/awards",
     element: <AwardsPage />,
     navLabel: "Awards",
@@ -78,38 +65,43 @@ export const siteRoutes = [
   },
   {
     path: "/now",
-    element: <NowPage />,
+    element: <Navigate to="/about" replace />,
     navGroup: "secondary"
   },
   {
     path: "/roadmap",
-    element: <RoadmapPage />,
+    element: <Navigate to="/game-dev" replace />,
     navGroup: "secondary"
   },
   {
     path: "/dashboard",
-    element: <DashboardPage />,
+    element: <Navigate to="/about" replace />,
     navGroup: "secondary"
   },
   {
     path: "/ask",
-    element: <AskPage />,
+    element: <Navigate to="/contact" replace />,
     navGroup: "secondary"
   },
   {
     path: "/community",
-    element: <CommunityPage />,
+    element: <Navigate to="/about" replace />,
     navGroup: "secondary"
   },
   {
     path: "/favorites",
-    element: <FavoritesPage />,
+    element: <Navigate to="/writing" replace />,
     navGroup: "secondary"
   },
   {
     path: "/lab/:pillar",
     element: <LabPillarPage />,
     navGroup: "detail"
+  },
+  {
+    path: "/lab",
+    element: <Navigate to="/game-dev" replace />,
+    navGroup: "alias"
   },
   {
     path: "/videos/:year",

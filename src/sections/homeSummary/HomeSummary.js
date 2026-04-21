@@ -56,8 +56,8 @@ const HomeSummary = () => {
         en: "Archive, not a tag wall"
       },
       body: {
-        zh: "WAIE 论文、竞赛影像、摄影系列和 Lab 里的实验，都会以「可点开、可回看」的形式留在这里，像个人 IP 的公开书架。",
-        en: "WAIE writing, competition films, photo series, and lab experiments live here as things you can open and revisit, like a public shelf for a personal IP."
+        zh: "WAIE 论文、竞赛影像、摄影系列和项目档案，都会以「可点开、可回看」的形式留在这里，像个人 IP 的公开书架。",
+        en: "WAIE writing, competition films, photo series, and project dossiers live here as things you can open and revisit, like a public shelf for a personal IP."
       }
     }
   ];
@@ -79,8 +79,8 @@ const HomeSummary = () => {
         zh: "WAIE 2025 发表（IEEE 联合支持）",
         en: "Published at WAIE 2025 (co-sponsored by IEEE)"
       },
-      to: "/lab",
-      action: {zh: "进入 Lab", en: "Open lab"}
+      to: "/game-dev",
+      action: {zh: "查看项目页", en: "Open projects"}
     },
     {
       label: {zh: "荣誉与影像", en: "Honors & moving image"},
@@ -99,13 +99,13 @@ const HomeSummary = () => {
 
   const showcaseChannels = [
     {
-      title: {zh: "Lab · 系统与实验", en: "Lab · systems & experiments"},
+      title: {zh: "项目档案", en: "Project dossier"},
       body: {
-        zh: "教育 AI、自动评分、RAG 与 Agent 工作流的系统实现。",
-        en: "Educational AI systems, auto-grading, RAG, and agentic workflow implementation."
+        zh: "教育 AI、自动评分、多媒体项目与正式交付的系统实现。",
+        en: "Educational AI systems, auto-grading, multimedia work, and shipped implementation."
       },
-      to: "/lab",
-      action: {zh: "进入 Lab", en: "Open lab"}
+      to: "/game-dev",
+      action: {zh: "打开档案", en: "Open dossier"}
     },
     {
       title: {zh: "视频集", en: "Moving image"},
@@ -122,8 +122,8 @@ const HomeSummary = () => {
         zh: "摄影系列与图像档案，用视觉语言支持项目表达。",
         en: "Photography series and image archives that support storytelling and project communication."
       },
-      to: "/photography",
-      action: {zh: "进入影集", en: "Enter series"}
+      to: "/photos",
+      action: {zh: "进入照片页", en: "Open wall"}
     },
     {
       title: {zh: "证书与奖状", en: "Certificates & citations"},

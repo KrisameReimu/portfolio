@@ -1,14 +1,12 @@
-import React, {useContext, useMemo, useState, useEffect} from "react";
+import React, {useContext, useMemo, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./PhotoArchivePage.scss";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
-import Photography from "../containers/photography/Photography";
 import {getPhotos} from "../services/contentAPI";
 
 export default function PhotoArchivePage() {
   const {language} = useContext(LanguageContext);
-  const [activeTab, setActiveTab] = useState("years");
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -52,19 +50,37 @@ export default function PhotoArchivePage() {
   }, [photos]);
 
   const copy = {
-    title: {zh: "摄影档案", en: "Photo Archive"},
+    title: {zh: "Photo Wall", en: "Photo Wall"},
     subtitle: {
-      zh: "按年份整理的影像故事，呈现城市、人像与自然记录。",
-      en: "Year-by-year visual stories across urban, portrait, and nature themes."
+      zh: "不放虚构图集。这里只展示已经整理好的影像条目，其余内容等正式归档后再上线。",
+      en: "No fake galleries here. This page shows only the image entries that are already curated and ready to publish."
     },
-    tabs: {
-      years: {zh: "年度精选", en: "Year Highlights"},
-      collections: {zh: "分类合集", en: "Collections"}
+    introTitle: {
+      zh: "Archive Rules",
+      en: "Archive Rules"
     },
-    explore: {zh: "进入该年度", en: "Explore Year"},
+    introPoints: [
+      {
+        zh: "只保留真实拍摄、已整理完成的图像。",
+        en: "Keep only real images that have already been organized."
+      },
+      {
+        zh: "没有现成系列时，宁可留白，也不摆模板占位图。",
+        en: "If a series is not ready, leave space instead of filling it with placeholders."
+      },
+      {
+        zh: "后续会按年度与主题继续补档。",
+        en: "Year and theme-based archive sets will be added as they are ready."
+      }
+    ],
+    latestWall: {zh: "Published Frames", en: "Published Frames"},
+    explore: {zh: "进入该年度", en: "Open Year"},
     count: {zh: "张作品", en: "photos"},
     latest: {zh: "最近拍摄", en: "Latest"},
-    empty: {zh: "暂无年度影像，整理中。", en: "No yearly photos yet."}
+    empty: {
+      zh: "摄影页面暂时不放占位内容。等首批正式图集整理好后，这里会直接变成完整照片墙。",
+      en: "No placeholder content is shown on the photography page. Once the first real sets are curated, this will turn into a full photo wall."
+    }
   };
 
   return (
@@ -74,27 +90,25 @@ export default function PhotoArchivePage() {
         <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
       </div>
 
-      <div className="photo-archive-tabs">
-        <button
-          className={activeTab === "years" ? "active" : ""}
-          onClick={() => setActiveTab("years")}
-          type="button"
-        >
-          {getText(copy.tabs.years, language)}
-        </button>
-        <button
-          className={activeTab === "collections" ? "active" : ""}
-          onClick={() => setActiveTab("collections")}
-          type="button"
-        >
-          {getText(copy.tabs.collections, language)}
-        </button>
-      </div>
+      <section className="photo-archive-notes">
+        <h2>{getText(copy.introTitle, language)}</h2>
+        <div className="photo-archive-note-list">
+          {copy.introPoints.map(item => (
+            <article className="photo-archive-note" key={item.en}>
+              <p>{getText(item, language)}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      {activeTab === "years" ? (
+      <section className="photo-archive-published">
+        <div className="photo-archive-head">
+          <h2>{getText(copy.latestWall, language)}</h2>
+        </div>
+
         <div className="photo-archive-grid">
           {yearHighlights.length === 0 && (
-            <div className="photo-year-card">
+            <div className="photo-year-card photo-year-card--empty">
               <div className="photo-year-content">
                 <p>{getText(copy.empty, language)}</p>
               </div>
@@ -122,11 +136,7 @@ export default function PhotoArchivePage() {
             </div>
           ))}
         </div>
-      ) : (
-        <div className="photo-archive-collections">
-          <Photography />
-        </div>
-      )}
+      </section>
     </div>
   );
 }

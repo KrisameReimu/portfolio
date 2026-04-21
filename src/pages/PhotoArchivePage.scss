@@ -17,34 +17,38 @@
   gap: 24px;
 }
 
-.photo-archive-tabs {
+.photo-archive-notes,
+.photo-archive-published {
   max-width: 1200px;
   margin: 30px auto 0;
   padding: 0 20px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
 }
 
-.photo-archive-tabs button {
+.photo-archive-notes h2,
+.photo-archive-head h2 {
+  margin: 0 0 18px;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.photo-archive-note-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.photo-archive-note {
+  padding: 22px 20px;
+  border-radius: 18px;
   border: 1px solid $lightBorder1;
-  background: transparent;
-  color: $textColor;
-  padding: 8px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.photo-archive-tabs button.active {
-  background: $buttonColor;
-  color: #fff;
-  border-color: $buttonColor;
-}
-
-.photo-archive-collections {
-  margin: 40px auto 80px;
+.photo-archive-note p {
+  margin: 0;
+  color: $subTitle;
+  line-height: 1.7;
 }
 
 .photo-year-card {
@@ -95,25 +99,33 @@
   font-weight: 600;
 }
 
+.photo-year-card--empty {
+  min-height: 220px;
+  justify-content: center;
+}
+
 .dark-mode .photo-year-card {
   background: $darkBackground;
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-.dark-mode .photo-archive-tabs button {
-  color: $textColorDark;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.dark-mode .photo-archive-tabs button.active {
-  color: #fff;
+.dark-mode .photo-archive-note {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(24, 24, 24, 0.48);
 }
 
 .dark-mode .photo-year-content h3 {
   color: $textColorDark;
 }
 
+.dark-mode .photo-archive-note p,
 .dark-mode .photo-year-content p,
 .dark-mode .photo-year-label {
   color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .photo-archive-note-list {
+    grid-template-columns: 1fr;
+  }
 }

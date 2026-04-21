@@ -1,23 +1,16 @@
-/* Change this file to get your personal Portfolio */
-
-// To change portfolio colors globally go to the  _globalColor.scss file
-
-import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
-import placeholderImages from "./placeholderImages"; // Placeholder images for quick start
-import {certificationCards} from "./data/certifications";
-
-// Splash Screen
+import splashAnimation from "./assets/lottie/splashAnimation";
+import oxfordLogo from "./assets/images/oxfordLogo.png";
+import polyuLogo from "./assets/images/polyuLogo.png";
+import ietLogo from "./assets/images/ietLogo.png";
 
 const splashScreen = {
-  enabled: true, // set false to disable splash screen
+  enabled: true,
   animation: splashAnimation,
-  duration: 2000 // Set animation duration as per your animation
+  duration: 2000
 };
 
-// Summary And Greeting Section
-
 const illustration = {
-  animated: true // Set to false to use static SVG
+  animated: true
 };
 
 const greeting = {
@@ -39,366 +32,171 @@ const greeting = {
   displayGreeting: true
 };
 
-// Social Media Links
-
 const socialMediaLinks = {
   github: "https://github.com/KrisameReimu",
   linkedin: "https://www.linkedin.com/in/chenchenai/",
-  gmail: "krisamegreimu@flounderfantasy.com",
+  gmail: "chen944420634@gmail.com",
   instagram: "https://www.instagram.com/krisame_reimu/",
   twitter: "",
   youtube: "https://www.youtube.com/@KrisameReimu",
   display: true
 };
 
-// Skills Section
-
 const skillsSection = {
   title: "What I do",
-  subTitle: "FULL-STACK DEVELOPER & AI ENTHUSIAST WHO TURNS IDEAS INTO REALITY",
+  subTitle:
+    "FULL-STACK AI DEVELOPMENT, MULTIMEDIA STORYTELLING, AND EDUCATIONAL PRODUCT BUILDING",
   skills: [
-    "Develop AI-powered educational tools using GPT-4 and Azure OpenAI for personalized learning experiences",
-    "Create immersive 2D action-adventure games with Unity, featuring intricate level design and narrative-driven gameplay",
-    "Build responsive full-stack web applications with React.js, Flask, and modern JavaScript frameworks",
-    "Design and produce multimedia content as a Department Multimedia Producer, bringing creative visions to life",
-    "Write compelling articles and stories that blend technical insights with creative narratives"
+    "Build GenAI-powered educational feedback systems with React, Flask, and Azure API",
+    "Ship end-to-end web products with a focus on clarity, performance, and maintainability",
+    "Produce videos, posters, and visual storytelling assets for awards, outreach, and service-learning"
   ],
-
-  /* Make Sure to include correct Font Awesome Classname to view your icon
-https://fontawesome.com/icons?d=gallery */
-
   softwareSkills: [
-    {
-      skillName: "Python",
-      fontAwesomeClassname: "fab fa-python"
-    },
-    {
-      skillName: "PyTorch",
-      fontAwesomeClassname: "fas fa-brain"
-    },
-    {
-      skillName: "TensorFlow",
-      fontAwesomeClassname: "fas fa-project-diagram"
-    },
-    {
-      skillName: "Unity",
-      fontAwesomeClassname: "fab fa-unity"
-    },
-    {
-      skillName: "C#",
-      fontAwesomeClassname: "fas fa-code"
-    },
-    {
-      skillName: "JavaScript",
-      fontAwesomeClassname: "fab fa-js"
-    },
-    {
-      skillName: "React",
-      fontAwesomeClassname: "fab fa-react"
-    },
-    {
-      skillName: "Node.js",
-      fontAwesomeClassname: "fab fa-node"
-    },
-    {
-      skillName: "Java",
-      fontAwesomeClassname: "fab fa-java"
-    },
-    {
-      skillName: "SQL",
-      fontAwesomeClassname: "fas fa-database"
-    },
-    {
-      skillName: "Docker",
-      fontAwesomeClassname: "fab fa-docker"
-    },
-    {
-      skillName: "Git",
-      fontAwesomeClassname: "fab fa-git-alt"
-    },
-    {
-      skillName: "Adobe PR",
-      fontAwesomeClassname: "fas fa-film"
-    },
-    {
-      skillName: "Adobe PS",
-      fontAwesomeClassname: "fas fa-image"
-    },
-    {
-      skillName: "Photography",
-      fontAwesomeClassname: "fas fa-camera"
-    },
-    {
-      skillName: "3ds Max",
-      fontAwesomeClassname: "fas fa-cube"
-    }
+    {skillName: "React", fontAwesomeClassname: "fab fa-react"},
+    {skillName: "JavaScript", fontAwesomeClassname: "fab fa-js"},
+    {skillName: "Python", fontAwesomeClassname: "fab fa-python"},
+    {skillName: "Flask", fontAwesomeClassname: "fas fa-server"},
+    {skillName: "Azure API", fontAwesomeClassname: "fas fa-cloud"},
+    {skillName: "Docker", fontAwesomeClassname: "fab fa-docker"},
+    {skillName: "Unity", fontAwesomeClassname: "fab fa-unity"},
+    {skillName: "Git", fontAwesomeClassname: "fab fa-git-alt"},
+    {skillName: "Canva", fontAwesomeClassname: "fas fa-palette"},
+    {skillName: "CapCut", fontAwesomeClassname: "fas fa-film"}
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false
 };
 
-// Education Section
-
 const educationInfo = {
-  display: true, // Set false to hide this section, defaults to true
+  display: true,
   schools: [
     {
       schoolName: "The Hong Kong Polytechnic University",
-      logo: placeholderImages.polyuLogo,
+      logo: polyuLogo,
       subHeader: "BSc in Internet and Multimedia Technologies",
-      duration: "September 2021 - August 2025 (Expected)",
-      desc: " Focused on multimedia development, programming, and machine intelligence.",
-      descBullets: [
-        "Key courses: Digital and Computer Systems (A+), Computer Programming (A), Fundamentals of Machine Intelligence (A)",
-        "Object-Oriented Design and Programming (A), Database System (A-)"
-      ]
+      duration: "2021 - 2025",
+      desc: "Undergraduate training across internet systems, multimedia production, and technical implementation.",
+      descBullets: []
     },
     {
-      schoolName: "University of Oxford - Lady Margaret Hall",
-      logo: placeholderImages.oxfordLogo,
-      subHeader: "Short Academic Programme: AI and Machine Learning",
-      duration: "August 5 - August 23, 2024",
-      desc: "Completed a short academic programme on Artificial Intelligence and Machine Learning: Theory and Practice",
+      schoolName: "Lady Margaret Hall, University of Oxford",
+      logo: oxfordLogo,
+      subHeader: "Artificial Intelligence and Machine Learning Program",
+      duration: "Summer 2024",
+      desc: "Short academic programme focused on AI and machine learning theory and practice.",
       descBullets: []
     }
   ]
 };
 
-// Your top 3 proficient stacks/tech experience
-
 const techStack = {
-  viewSkillBars: true, //Set it to true to show Proficiency Section
-  experience: [
-    {
-      Stack: "Game Development", //Insert stack or technology you have experience in
-      progressPercentage: "85%" //Insert relative proficiency in percentage
-    },
-    {
-      Stack: "Photography & Video Editing",
-      progressPercentage: "90%"
-    },
-    {
-      Stack: "Programming",
-      progressPercentage: "75%"
-    },
-    {
-      Stack: "Creative Writing",
-      progressPercentage: "80%"
-    }
-  ],
-  displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
+  viewSkillBars: false,
+  experience: [],
+  displayCodersrank: false
 };
 
-// Work experience section
-
 const workExperiences = {
-  display: true, //Set it to true to show workExperiences Section
+  display: true,
   experience: [
     {
-      role: "Department Multimedia Producer",
-      company: "The Hong Kong Polytechnic University",
-      companylogo: placeholderImages.polyuLogo,
-      date: "Jun 2023 - Jun 2025",
-      desc: "Creating and producing multimedia content for the department, showcasing technical and creative expertise.",
+      role: "Full-Stack AI Developer / Project Assistant",
+      company: "EEE, The Hong Kong Polytechnic University",
+      companylogo: polyuLogo,
+      date: "Sep 2025 - Present",
+      desc: "Developing and maintaining AI-powered feedback and grading systems for educational use.",
       descBullets: [
-        "Produced high-quality multimedia content for departmental communications",
-        "Designed visual assets and managed video production workflows",
-        "Collaborated with faculty and students on creative projects"
+        "Built Flask + React web applications with Azure API",
+        "Developed auto-evaluation and grading workflows",
+        "Provided tutorial and lab support as a Teaching Assistant"
       ]
     },
     {
-      role: "Web Developer Intern",
-      company: "BornTea",
-      companylogo: placeholderImages.bornteaLogo,
-      date: "Jun 2024 - Aug 2024",
-      desc: "Developed and maintained eCommerce platform, improving user experience and web performance.",
+      role: "Ecommerce Platform & Web Developer Intern",
+      company: "Borntea Company, Hong Kong",
+      companylogo: polyuLogo,
+      date: "May 2024 - Jul 2024",
+      desc: "Worked on eCommerce delivery, interface improvements, and multimedia-aligned marketing support.",
       descBullets: [
-        "Built responsive web interfaces using modern JavaScript frameworks",
-        "Integrated digital campaigns with marketing teams",
-        "Supported multimedia marketing strategies and content creation"
+        "Developed and maintained eCommerce platform features",
+        "Improved user experience and web performance",
+        "Supported campaign execution with marketing teams"
       ]
     },
     {
       role: "Student Assistant",
-      company: "The Hong Kong Polytechnic University",
-      companylogo: placeholderImages.polyuLogo,
-      date: "Jul 2023 - Jul 2025",
-      desc: "Supporting campus initiatives and representing PolyU at various events.",
+      company: "Office of Undergraduate Studies, PolyU",
+      companylogo: polyuLogo,
+      date: "Jun 2023 - Jun 2025",
+      desc: "Campus support role covering student guidance, surveys, and public-facing events.",
       descBullets: [
-        "Guided 200+ freshmen annually as Student Ambassador",
-        "Represented PolyU at 20+ public events and seminars",
-        "Conducted campus surveys and assisted with administrative tasks"
+        "Guided freshmen and supported campus onboarding",
+        "Served as ambassador at public events and seminars"
       ]
     },
     {
       role: "IET Young Member Programme Contributor",
       company: "The Institution of Engineering and Technology Hong Kong",
-      companylogo: placeholderImages.ietLogo,
+      companylogo: ietLogo,
       date: "2024",
-      desc: "Active participant in promoting engineering innovation and mentoring young students."
+      desc: "Recognized for participation and contribution to youth engineering activities."
     }
   ]
 };
 
-// Some big projects you have worked on
-
 const bigProjects = {
-  title: "Featured Projects",
-  subtitle:
-    "INNOVATIVE SOLUTIONS AT THE INTERSECTION OF AI, GAMES, AND WEB TECHNOLOGIES",
-  projects: [
-    {
-      image: placeholderImages.genaiFeedback,
-      projectName: "GenAI Feedback System",
-      projectDesc:
-        "AI-powered educational feedback system using GPT-4 for automated, personalized assessment. Published at WAIE2025.",
-      footerLink: [
-        {
-          name: "View Project",
-          url: "https://github.com/KrisameReimu"
-        }
-      ]
-    },
-    {
-      image: placeholderImages.melinaGame,
-      projectName: "Melina Dream of Hero",
-      projectDesc:
-        "2D action-adventure puzzle game inspired by Hollow Knight, featuring intricate level design, combat mechanics, and narrative-driven gameplay.",
-      footerLink: [
-        {
-          name: "View Details",
-          url: "#game-showcase"
-        }
-      ]
-    },
-    {
-      image: placeholderImages.ecommerceWeb,
-      projectName: "BornTea eCommerce Platform",
-      projectDesc:
-        "Full-stack eCommerce web application with enhanced user experience and integrated marketing campaigns.",
-      footerLink: [
-        {
-          name: "Case Study",
-          url: "#"
-        }
-      ]
-    },
-    {
-      image: placeholderImages.multimediaPortfolio,
-      projectName: "Multimedia Production Works",
-      projectDesc:
-        "Collection of multimedia productions including promotional videos, creative content, and visual storytelling projects.",
-      footerLink: [
-        {
-          name: "View Portfolio",
-          url: "#video-portfolio"
-        }
-      ]
-    }
-  ],
-  display: true // Set false to hide this section, defaults to true
+  title: "Selected Projects",
+  subtitle: "CV-backed work only",
+  projects: [],
+  display: false
 };
-
-// Achievement Section
-// Include certificates, talks etc
 
 const achievementSection = {
   title: "Awards & Certifications",
-  subtitle:
-    "Awards, Certifications and Recognition for my contributions and skills",
-
-  achievementsCards: certificationCards,
-  display: true // Set false to hide this section, defaults to true
+  subtitle: "Verified academic, creative, and service credentials",
+  achievementsCards: [],
+  display: false
 };
-
-// Blogs Section
 
 const blogSection = {
   title: "Essays",
-  subtitle:
-    "Thoughts, reflections, and stories I love to share through my writing.",
-  blogs: [
-    {
-      url: "", // 可以添加散文链接
-      title: "思考的边界",
-      description: "关于人类思考极限的随想..."
-    },
-    {
-      url: "", // 可以添加散文链接
-      title: "城市中的孤独",
-      description: "现代都市生活中的孤独感受..."
-    }
-  ],
-  display: true // Set false to hide this section, defaults to true
+  subtitle: "Long-form reflections and writing archive",
+  blogs: [],
+  display: false
 };
-
-// Talks Sections
 
 const talkSection = {
-  title: "PHOTOGRAPHY",
-  subtitle: "CAPTURING MOMENTS AND TELLING STORIES THROUGH IMAGES",
-
-  talks: [
-    {
-      title: "Urban Photography Collection",
-      subtitle: "Exploring city life through the lens",
-      slides_url: "", // Add photography showcase link
-      event_url: "" // Add event/gallery link
-    },
-    {
-      title: "Nature Photography Series",
-      subtitle: "Finding beauty in natural landscapes",
-      slides_url: "", // Add photography showcase link
-      event_url: "" // Add event/gallery link
-    }
-  ],
-  display: true // Set false to hide this section, defaults to true
+  title: "Photography",
+  subtitle: "A curated visual archive published when ready",
+  talks: [],
+  display: false
 };
 
-// Feature Display Toggles for New Sections
-// NOTE: Detailed content for these sections has been migrated to:
-// - Game Dev: src/data/gamedev.js + GameDevShowcase component
-// - Videos: src/data/videos.js + VideoPortfolio component
-// - Photography: src/data/photography.js + Photography component
-// These objects are kept minimal for Header navigation display control
-
 const gameDevSection = {
-  display: true // Toggle Game Dev section visibility
+  display: false
 };
 
 const videoPortfolioSection = {
-  display: true // Toggle Video Portfolio section visibility
+  display: true
 };
 
 const photographySection = {
-  display: true // Toggle Photography section visibility
+  display: true
 };
 
 const characterSection = {
-  display: false // Set true if you want to show the bottom-corner character assistant
+  display: false
 };
 
-// Resume Section
 const resumeSection = {
   title: "Resume",
-  subtitle: "Feel free to download my resume",
-
-  // Please Provide with Your Podcast embeded Link
-  display: true // Set false to hide this section, defaults to true
+  subtitle: "Formal CV and supporting credentials",
+  display: true
 };
 
-// Podcast Section (currently placeholder)
-// Add embed URLs (Spotify, Apple Podcasts, Ximalaya, etc.) into the podcast array when ready.
-// Set display to true only after populating real content to avoid empty iframes.
 const podcastSection = {
   title: "Podcast",
-  subtitle:
-    "Conversations & reflections blending AI, game dev, and creative storytelling (coming soon)",
-  podcast: [
-    // Example (commented out until real links available):
-    // "https://open.spotify.com/embed/episode/your-episode-id",
-    // "https://podcasts.apple.com/your-show-id"
-  ],
-  display: false // Hidden until real podcast links are added
+  subtitle: "Not active in the launch version",
+  podcast: [],
+  display: false
 };
 
 const contactInfo = {
@@ -407,11 +205,11 @@ const contactInfo = {
     en: "Contact Me"
   },
   subtitle: {
-    zh: "无论是项目合作还是简单聊聊，都欢迎联系我。",
-    en: "Discuss a project or just want to say hi? My inbox is open for all."
+    zh: "项目合作、研究协作或内容制作相关交流，都可以直接联系。",
+    en: "Reach out for collaboration on projects, research support, or multimedia work."
   },
   number: "852 91303739",
-  email_address: "krisamegreimu@flounderfantasy.com"
+  email_address: "chen944420634@gmail.com"
 };
 
 const supportInfo = {
@@ -423,14 +221,12 @@ const supportInfo = {
   wechatPay: ""
 };
 
-// Twitter Section
-
 const twitterDetails = {
   userName: "",
-  display: false // Set true to display this section, defaults to false
+  display: false
 };
 
-const isHireable = true; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
+const isHireable = true;
 
 export {
   illustration,

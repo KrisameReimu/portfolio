@@ -36,7 +36,7 @@ export default function LabPillarPage() {
   );
 
   const copy = {
-    back: {zh: "返回 Lab", en: "Back to Lab"},
+    back: {zh: "返回 Projects", en: "Back to Projects"},
     unknown: {zh: "实验轨道", en: "Experiment Track"},
     labels: {
       hypothesis: {zh: "假设", en: "Hypothesis"},
@@ -54,7 +54,9 @@ export default function LabPillarPage() {
       <div className="page-hero siteos-hero">
         <h1 className="page-title">{getText(title, language)}</h1>
         <p className="page-subtitle">
-          <Link to="/lab">← {getText(copy.back, language)}</Link>
+          <Link to="/game-dev#experiment-tracks">
+            ← {getText(copy.back, language)}
+          </Link>
         </p>
       </div>
 

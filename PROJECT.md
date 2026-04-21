@@ -76,8 +76,9 @@ Historical implementation reports belong under `docs/archive/`, not here.
 
 ### Source Layout
 
+- `src/app/`: app shell and global route composition
 - `src/pages/`: route-level entries and page orchestration
-- `src/containers/`: section-level assemblies
+- `src/sections/`: page-owned sections and large route-specific assemblies
 - `src/components/`: reusable UI units
 - `src/services/`: content/community/site APIs
 - `src/config/`: app-wide config and taxonomy
@@ -97,7 +98,7 @@ Historical implementation reports belong under `docs/archive/`, not here.
 
 - The root accumulated too many one-off markdown reports.
 - Documentation mixed active operating docs with historical implementation summaries.
-- The codebase still has overlap between `pages`, `containers`, and older section-oriented organization.
+- The codebase still has some legacy/static data overlap, but the old `containers` routing-era structure has been removed from the active app surface.
 - Navigation exposure does not fully reflect the number of route-level experiences now present.
 
 ### What should happen next structurally
@@ -105,7 +106,7 @@ Historical implementation reports belong under `docs/archive/`, not here.
 1. Keep root documentation minimal and stable.
 2. Treat `docs/` as the only home for non-root documentation.
 3. Continue moving route ownership into `src/pages/`.
-4. Use `containers` as transitional section assemblies, not as a second routing layer.
+4. Use `sections` for page-owned assemblies and keep deleting legacy structure instead of introducing replacement clutter.
 5. Gradually reduce legacy/static duplication between `src/data/`, `src/portfolio.js`, and `public/content/` where overlap exists.
 
 ## Target Documentation Model
@@ -139,7 +140,7 @@ Those belong in `docs/archive/`.
 When possible, think in this pattern:
 
 - route entry in `src/pages/...`
-- page-specific sections nearby in page-owned composition
+- page-specific sections in `src/sections/...`
 - reusable primitives in `src/components/...`
 - data loading in `src/services/...`
 

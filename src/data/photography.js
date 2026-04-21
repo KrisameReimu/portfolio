@@ -10,7 +10,7 @@
  */
 
 import {getImageUrl, PHOTO_FOLDERS} from "../config/assets";
-import placeholderImages from "../placeholderImages";
+import photographyCover from "../assets/images/photography.png";
 
 export const photographyConfig = {
   sectionTitle: {
@@ -39,7 +39,7 @@ export const photoYearHighlights = [
       zh: "城市、人像与自然的年度影像总结，记录我在香港与旅行中的视觉片段。",
       en: "An annual visual summary across urban, portrait, and nature themes, capturing moments from Hong Kong and travels."
     },
-    coverImage: placeholderImages.urbanCover
+    coverImage: photographyCover
   },
   {
     year: "2025",
@@ -51,7 +51,7 @@ export const photoYearHighlights = [
       zh: "持续更新中，整理我的长期影像计划与年度项目。",
       en: "Work in progress. A living archive of long-term visual projects."
     },
-    coverImage: placeholderImages.natureCover
+    coverImage: photographyCover
   },
   {
     year: "2023",
@@ -63,7 +63,7 @@ export const photoYearHighlights = [
       zh: "从校园到城市街头，记录成长与探索的影像片段。",
       en: "From campus to street scenes, a visual recap of growth and exploration."
     },
-    coverImage: placeholderImages.portraitCover
+    coverImage: photographyCover
   }
 ];
 

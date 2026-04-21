@@ -52,9 +52,10 @@ If an implementation needs a temporary write-up, place it under `docs/archive/` 
 
 Current structure is in transition. Respect these boundaries:
 
+- `src/app/`: app shell, providers, route composition
 - `src/pages/`: route-level page composition
+- `src/sections/`: page-owned sections and large route-specific assemblies
 - `src/components/`: reusable UI building blocks
-- `src/containers/`: larger section-level compositions used by pages
 - `src/services/`: API and data-fetching integration
 - `src/config/`: shared content/system configuration
 - `src/contexts/`: app-wide state concerns
@@ -63,6 +64,7 @@ Current structure is in transition. Respect these boundaries:
 When adding new behavior:
 
 - Prefer page-local composition in `src/pages/` first.
+- Put page-owned assemblies in `src/sections/`.
 - Extract to `components` only when reuse is real.
 - Extract to `services` or `hooks` when logic is shared.
 - Do not hide page-specific storytelling logic inside generic shared utilities.

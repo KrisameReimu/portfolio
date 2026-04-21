@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Main from "./containers/Main";
+import AppShell from "./app/AppShell";
 
 function App() {
   return (
     <div>
-      <Main />
+      <AppShell />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
-import VideoPortfolio from "../containers/videoPortfolio/VideoPortfolio";
+import VideoPortfolio from "../sections/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
 import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";

@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import SplashScreen from "./splashScreen/SplashScreen";
+import SplashScreen from "../sections/splashScreen/SplashScreen";
 import CharacterNPC from "../components/characterNPC/CharacterNPC";
 import {characterSection, splashScreen} from "../portfolio";
 import {StyleProvider} from "../contexts/StyleContext";
@@ -13,9 +13,9 @@ import {AuthProvider} from "../contexts/AuthContext";
 import {CommunityProvider} from "../contexts/CommunityContext";
 import RouteAnalytics from "../components/RouteAnalytics";
 import {siteRoutes} from "../config/routes";
-import "./Main.scss";
+import "./AppShell.scss";
 
-const Main = () => {
+const AppShell = () => {
   const darkPref = window.matchMedia("(prefers-color-scheme: dark)");
   const [isDark, setIsDark] = useLocalStorage("isDark", darkPref.matches);
   const browserLanguage = useMemo(() => {
@@ -81,4 +81,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default AppShell;

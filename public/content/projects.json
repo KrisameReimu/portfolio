@@ -1,83 +1,133 @@
 [
   {
-    "id": "melina-dream-of-hero",
+    "id": "capstone-success-project",
     "title": {
-      "zh": "Melina Dream of Hero",
-      "en": "Melina Dream of Hero"
+      "zh": "Capstone Success Project",
+      "en": "Capstone Success Project"
     },
     "description": {
-      "zh": "2D 动作冒险解谜项目，聚焦世界观叙事与关卡体验。",
-      "en": "A 2D action-adventure puzzle project focused on worldbuilding and level design."
+      "zh": "PolyU EEE DEV TEAM 的 AI FYP support platform，负责 OTP、前端功能与后端 API 接入。",
+      "en": "An AI FYP support platform built with the PolyU EEE DEV TEAM, covering OTP, frontend implementation, and backend API integration."
     },
-    "coverImage": "/ECHOHOME.png",
-    "screenshots": ["/ECHOHOME.png"],
-    "demoVideo": "",
+    "coverImage": "/content/awards-thumbnails/cert-appreciation-eee.png",
+    "screenshots": ["/content/awards-thumbnails/cert-appreciation-eee.png"],
+    "demoVideo": "https://genai-sql.eiedev.app/",
     "downloadLink": "",
-    "technologies": ["Unity", "C#", "Aseprite"],
+    "technologies": ["React", "JavaScript", "OTP", "REST API"],
     "status": "in-development",
-    "startDate": "2023-09-01",
+    "startDate": "2025-09-01",
     "releaseDate": null,
     "highlights": [
       {
-        "zh": "多层地图结构与探索体验",
-        "en": "Multi-layer maps and exploration-focused gameplay"
+        "zh": "参与 AI FYP support platform 的产品与前端交付",
+        "en": "Contributed to product and frontend delivery for an AI FYP support platform"
       },
       {
-        "zh": "核心移动与战斗系统已完成",
-        "en": "Core movement and combat systems completed"
+        "zh": "实现 OTP 流程并接入后端 API",
+        "en": "Implemented OTP flow and integrated backend APIs"
       }
     ],
     "milestones": [
       {
-        "title": "项目概念设计",
-        "description": "完成核心玩法和视觉方向。",
-        "completedDate": "2023-10-15",
+        "title": "Frontend and OTP implementation",
+        "description": "Delivered frontend features and OTP-related flows for the platform.",
+        "completedDate": "2025-12-01",
         "status": "completed"
       },
       {
-        "title": "核心系统实现",
-        "description": "角色移动、战斗与基础关卡完成。",
-        "completedDate": "2024-07-01",
-        "status": "completed"
-      },
-      {
-        "title": "内容打磨与发布准备",
-        "description": "补全后续关卡并进行优化。",
+        "title": "Ongoing platform iteration",
+        "description": "Continue refining UI, integration quality, and product readiness.",
         "completedDate": null,
         "status": "in-progress"
       }
     ]
   },
   {
-    "id": "next-game-concept",
+    "id": "genai-short-answer-feedback-system",
     "title": {
-      "zh": "下一代互动叙事项目",
-      "en": "Next Interactive Narrative Project"
+      "zh": "A GenAI-Powered Feedback System for Short-Answer Questions",
+      "en": "A GenAI-Powered Feedback System for Short-Answer Questions"
     },
     "description": {
-      "zh": "探索 AI 与互动叙事融合的游戏原型。",
-      "en": "A game prototype exploring AI-native interactive narrative."
+      "zh": "本科毕设项目，使用 Azure API、React 和 Flask 构建短答题智能反馈系统，并发表于 WAIE 2025。",
+      "en": "An undergraduate FYP project using Azure API, React, and Flask to build a feedback system for short-answer questions, later published at WAIE 2025."
     },
-    "coverImage": "/ECHOHOME.png",
-    "screenshots": [],
-    "demoVideo": "",
+    "coverImage": "/content/awards-thumbnails/oxford-ai-ml-programme.png",
+    "screenshots": ["/content/awards-thumbnails/oxford-ai-ml-programme.png"],
+    "demoVideo": "https://genai-sql.eiedev.app/",
     "downloadLink": "",
-    "technologies": ["Unity", "C#", "LLM API"],
-    "status": "planning",
-    "startDate": "2026-01-01",
-    "releaseDate": null,
+    "technologies": ["React", "Flask", "Azure API", "Python"],
+    "status": "released",
+    "startDate": "2024-09-01",
+    "releaseDate": "2025-06-01",
     "highlights": [
       {
-        "zh": "分支叙事与角色状态系统",
-        "en": "Branching narrative with dynamic character states"
+        "zh": "WAIE 2025 发表，IEEE 联合支持",
+        "en": "Published at WAIE 2025, co-sponsored by IEEE"
+      },
+      {
+        "zh": "完成 React 前端与 Flask 后端联调",
+        "en": "Delivered integrated React frontend and Flask backend"
       }
     ],
     "milestones": [
       {
-        "title": "概念研究",
-        "description": "定义交互模型与叙事边界。",
-        "completedDate": null,
-        "status": "in-progress"
+        "title": "System architecture and prototype",
+        "description": "Defined the feedback workflow, prompting strategy, and core UX.",
+        "completedDate": "2024-12-01",
+        "status": "completed"
+      },
+      {
+        "title": "Publication and project completion",
+        "description": "Completed the project deliverable and published the work at WAIE 2025.",
+        "completedDate": "2025-06-01",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "multimedia-projects-and-awards",
+    "title": {
+      "zh": "Multimedia Projects & Awards",
+      "en": "Multimedia Projects & Awards"
+    },
+    "description": {
+      "zh": "围绕视频、海报和跨文化叙事的长期多媒体作品线，覆盖竞赛、服务学习与校园传播。",
+      "en": "A long-running multimedia line across video, posters, and cross-cultural storytelling, spanning competitions, service-learning, and campus communication."
+    },
+    "coverImage": "/content/awards-thumbnails/award-gold-wpdf-youth-mobility.png",
+    "screenshots": [
+      "/content/awards-thumbnails/award-gold-wpdf-youth-mobility.png",
+      "/content/awards-thumbnails/award-special-wpdf.png"
+    ],
+    "demoVideo": "https://www.youtube.com/@KrisameReimu",
+    "downloadLink": "",
+    "technologies": ["CapCut", "Canva", "Adobe", "Storytelling"],
+    "status": "released",
+    "startDate": "2023-01-01",
+    "releaseDate": "2025-12-31",
+    "highlights": [
+      {
+        "zh": "包含 WPDF 金奖、特别奖与 Sasakawa Cup 二等奖等成果",
+        "en": "Includes WPDF Gold and Special Awards, plus a Sasakawa Cup second prize"
+      },
+      {
+        "zh": "作品覆盖视频、海报与服务学习传播",
+        "en": "Work spans videos, posters, and service-learning communication"
+      }
+    ],
+    "milestones": [
+      {
+        "title": "Competition and service-learning production",
+        "description": "Produced videos and visual assets for competition and service-learning storytelling.",
+        "completedDate": "2024-12-01",
+        "status": "completed"
+      },
+      {
+        "title": "Archive consolidation",
+        "description": "Turned award-winning pieces into a reusable public portfolio archive.",
+        "completedDate": "2025-12-31",
+        "status": "completed"
       }
     ]
   }

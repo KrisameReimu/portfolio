@@ -1,7 +1,7 @@
 import React from "react";
-import "./loading.scss";
+import "./LoadingSpinner.scss";
 
-export default function Loading() {
+export default function LoadingSpinner() {
   return (
     <div className="centerContent">
       <div className="sk-circle">

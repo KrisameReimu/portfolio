@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
-import WritingShowcase from "../containers/writingShowcase/WritingShowcase";
-import LandingHero from "../components/landingHero/LandingHero";
+import WritingShowcase from "../sections/writingShowcase/WritingShowcase";
 import {Link} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
@@ -15,17 +14,21 @@ export default function WritingPage() {
 
   const copy = {
     title: {
-      zh: "文字创作",
-      en: "Writing Showcase"
+      zh: "Writing",
+      en: "Writing"
     },
     subtitle: {
-      zh: "持续发布的文章与思考归档",
-      en: "A continuously updated archive of essays and reflections"
+      zh: "文章不是装饰，而是个人观点和长期表达的证据。",
+      en: "Essays are not decoration here. They are evidence of voice, thought, and long-form expression."
+    },
+    lead: {
+      zh: "这一页保持编辑部式结构：先放成文作品，再按年份归档，不额外堆模板组件。",
+      en: "This page keeps an editorial structure: published pieces first, year archive second, without extra template filler."
     },
     tabs: {
       all: {
-        zh: "全部文章",
-        en: "All Articles"
+        zh: "文章列表",
+        en: "Article List"
       },
       years: {
         zh: "按年份",
@@ -96,17 +99,18 @@ export default function WritingPage() {
 
   return (
     <div className="page-container">
-      <LandingHero
-        variant="narrative"
-        title={copy.title}
-        subtitle={copy.subtitle}
-        description={{
-          zh: "在这里我记录思考、分享观点、记述学习历程。每一篇文章都是一个创意对话。",
-          en: "Here I record thoughts, share perspectives, and document my learning journey. Every essay is a creative conversation."
-        }}
-        accentColor="#667eea"
-        className="writing-landing-hero"
-      />
+      <section className="writing-editorial-hero">
+        <div className="writing-editorial-copy">
+          <span>ESSAY INDEX</span>
+          <h1>{getText(copy.title, language)}</h1>
+          <p className="writing-editorial-subtitle">
+            {getText(copy.subtitle, language)}
+          </p>
+          <p className="writing-editorial-lead">
+            {getText(copy.lead, language)}
+          </p>
+        </div>
+      </section>
       <div className="archive-tabs">
         <button
           className={activeTab === "all" ? "active" : ""}

@@ -5,7 +5,58 @@
   padding-bottom: 60px;
 }
 
-// Projects Page Sections
+.projects-page {
+  .projects-landing-hero {
+    .hero-title {
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-subtitle {
+      color: rgba($textColor, 0.72);
+      font-size: 1.05rem;
+      letter-spacing: 0.2px;
+    }
+  }
+}
+
+.project-hero-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.project-hero-card {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 18px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba($textColor, 0.08);
+  background: linear-gradient(
+    180deg,
+    rgba(156, 39, 176, 0.05) 0%,
+    rgba(156, 39, 176, 0.12) 100%
+  );
+
+  span {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba($textColor, 0.52);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.25;
+    color: $textColor;
+    letter-spacing: -0.02em;
+  }
+}
+
 .projects-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -43,17 +94,85 @@
   }
 }
 
-.game-dev-section {
+.selected-work-section {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.ai-projects-section {
-  // Placeholder for AI projects section styling
+.experience-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.experience-signal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 24px;
+  border-radius: 22px;
+  border: 1px solid rgba($textColor, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+
+  span {
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba($textColor, 0.48);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: $textColor;
+  }
+
+  p {
+    margin: 0;
+    color: rgba($textColor, 0.72);
+    line-height: 1.65;
+  }
+}
+
+.experience-signal-org {
+  font-weight: 600;
+  color: rgba($textColor, 0.56) !important;
 }
 
 .dark-mode {
-  .game-dev-section {
+  .selected-work-section {
     border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .project-hero-card {
+    border-color: rgba(255, 255, 255, 0.1);
+
+    span {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    h3 {
+      color: $textColorDark;
+    }
+  }
+
+  .experience-signal-card {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(24, 24, 24, 0.48);
+
+    span,
+    .experience-signal-org {
+      color: rgba(255, 255, 255, 0.52) !important;
+    }
+
+    h3 {
+      color: $textColorDark;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.72);
+    }
   }
 }
 
@@ -76,6 +195,17 @@
 }
 
 @media (max-width: 768px) {
+  .projects-page {
+    .projects-landing-hero .hero-title {
+      font-size: 1.95rem;
+    }
+  }
+
+  .project-hero-card-grid,
+  .experience-signal-grid {
+    grid-template-columns: 1fr;
+  }
+
   .page-hero {
     padding: 60px 20px 40px;
   }

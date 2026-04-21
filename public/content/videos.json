@@ -1,73 +1,40 @@
 [
   {
-    "id": "showcase-main-2026",
+    "id": "bridge-the-digital-divide",
     "title": {
-      "zh": "Bridge The Digital Divide（主展示）",
-      "en": "Bridge The Digital Divide (Main Showcase)"
+      "zh": "Bridge The Digital Divide",
+      "en": "Bridge The Digital Divide"
     },
     "description": {
-      "zh": "主展示视频，聚焦服务学习与跨文化叙事。",
-      "en": "Primary showcase video focused on service-learning and cross-cultural storytelling."
+      "zh": "聚焦服务学习与跨文化叙事的主展示视频。",
+      "en": "A showcase video centered on service-learning and cross-cultural storytelling."
     },
     "platform": "youtube",
     "videoId": "uvdpACbEzjY",
     "thumbnailUrl": "https://img.youtube.com/vi/uvdpACbEzjY/hqdefault.jpg",
     "category": "promotional",
-    "awards": [
-      {
-        "name": "Main Showcase",
-        "level": "gold",
-        "organization": "Portfolio",
-        "year": "2026"
-      }
-    ],
-    "publishedDate": "2026-01-12",
+    "awards": [],
+    "publishedDate": "2025-01-12",
     "duration": 346,
-    "tags": ["showcase", "service-learning", "documentary"]
+    "tags": ["service-learning", "storytelling", "showcase"]
   },
   {
-    "id": "showcase-doc-2026",
+    "id": "eie2s02-service-learning-documentary",
     "title": {
       "zh": "EIE2S02 服务学习纪录片",
       "en": "EIE2S02 Service Learning Documentary"
     },
     "description": {
-      "zh": "5 分钟纪录片剪辑版本，用于展示项目叙事与沟通表达能力。",
-      "en": "5-minute documentary cut used to present narrative and communication impact."
+      "zh": "用于呈现项目叙事与沟通表达能力的纪录片剪辑版本。",
+      "en": "A documentary cut focused on project narrative and communication impact."
     },
     "platform": "youtube",
     "videoId": "DyRmvonFSP8",
     "thumbnailUrl": "https://img.youtube.com/vi/DyRmvonFSP8/hqdefault.jpg",
     "category": "documentary",
-    "awards": [
-      {
-        "name": "Featured Work",
-        "level": "silver",
-        "organization": "Portfolio",
-        "year": "2026"
-      }
-    ],
-    "publishedDate": "2026-02-03",
+    "awards": [],
+    "publishedDate": "2025-02-03",
     "duration": 346,
     "tags": ["documentary", "education", "visual storytelling"]
-  },
-  {
-    "id": "showcase-reel-2026",
-    "title": {
-      "zh": "Hong Kong Story Reel",
-      "en": "Hong Kong Story Reel"
-    },
-    "description": {
-      "zh": "补充展示视频，呈现节奏控制、镜头语言与剪辑风格。",
-      "en": "Additional reel showcasing pacing, framing, and editing rhythm."
-    },
-    "platform": "youtube",
-    "videoId": "XjL2Tw4EoBs",
-    "thumbnailUrl": "https://img.youtube.com/vi/XjL2Tw4EoBs/hqdefault.jpg",
-    "category": "promotional",
-    "awards": [],
-    "publishedDate": "2026-03-01",
-    "duration": 0,
-    "tags": ["reel", "hong kong", "editing"]
   }
 ]

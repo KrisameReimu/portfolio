@@ -10,73 +10,120 @@ export default function AboutPage() {
   const copy = {
     title: {
       zh: "关于我",
-      en: "About Me"
+      en: "About"
     },
     subtitle: {
-      zh: "不是一份参数列表，而是一个持续成长的人。",
-      en: "Not a list of specs, but a person still in progress."
+      zh: "用履历证据、创作方向和工作方法拼起来的本人说明页。",
+      en: "A profile built from career evidence, creative direction, and working method."
     },
     intro: {
-      zh: "我在香港做研究与创作，主要方向是 AI 系统、多媒体叙事和教学支持。比起堆很多标签，我更在意把少数几件事做到能被看见、能被验证、能持续更新。",
-      en: "I work on research and creative projects in Hong Kong, centered on AI systems, multimedia storytelling, and teaching support. Instead of collecting labels, I care about a few things done well enough to be seen, verified, and maintained."
+      zh: "我在香港做 AI 系统、多媒体叙事和教学支持相关工作。这个页面不再写成泛泛自我介绍，而是直接说明我做过什么、现在站在哪个位置、以及为什么这些事情会汇成同一个个人 IP。",
+      en: "I work across AI systems, multimedia storytelling, and teaching support in Hong Kong. This page avoids generic self-description and instead explains what I have done, where I stand now, and why these threads belong to the same personal IP."
     },
-    signalsTitle: {
-      zh: "高信号经历",
-      en: "Selected Signals"
+    profileTitle: {
+      zh: "Profile Signals",
+      en: "Profile Signals"
     },
-    signals: [
+    profileSignals: [
       {
         title: {
-          zh: "AI 产品与发表",
-          en: "AI Product Work"
+          zh: "Full-stack AI delivery",
+          en: "Full-stack AI delivery"
         },
         body: {
-          zh: "GenAI 反馈与自动评测平台、WAIE 2025 论文发表，以及 React + Flask + Azure API 的完整交付。",
-          en: "GenAI feedback and auto-grading platform, a WAIE 2025 publication, and full-stack delivery with React, Flask, and Azure API."
+          zh: "做过 GenAI 反馈系统、自动评测应用、前后端集成，以及教育场景下的真实交付。",
+          en: "Built GenAI feedback systems, auto-grading applications, and full-stack integrations for real educational use."
         }
       },
       {
         title: {
-          zh: "荣誉与认可",
-          en: "Awards and Recognition"
+          zh: "Multimedia evidence",
+          en: "Multimedia evidence"
         },
         body: {
-          zh: "PolyU 视频竞赛奖项、Sasakawa Cup、Oxford AI/ML programme，以及多项学术与创作层面的证明。",
-          en: "PolyU video awards, Sasakawa Cup, the Oxford AI/ML programme, and multiple academic and creative recognitions."
+          zh: "视频、海报和影像竞赛奖项不是附属材料，而是我表达和传播能力的直接证据。",
+          en: "Video, poster, and visual competition awards are not side material here. They are direct proof of communication and storytelling ability."
         }
       },
       {
         title: {
-          zh: "教学与制作",
-          en: "Teaching and Production"
+          zh: "Research and teaching support",
+          en: "Research and teaching support"
         },
         body: {
-          zh: "在 PolyU 做研究/项目助理和 TA，也做多媒体制作、实验课协助，以及电商前端交付。",
-          en: "At PolyU I work as a research/project assistant and TA, while also handling multimedia production, lab support, and e-commerce front-end delivery."
+          zh: "我长期在 PolyU 的研究、项目与服务环境里工作，因此习惯把抽象问题做成能被团队直接使用的页面、材料和流程。",
+          en: "Working inside PolyU research, project, and service settings taught me to turn abstract needs into pages, materials, and workflows a team can actually use."
         }
       }
     ],
-    nowTitle: {
-      zh: "当前关注",
-      en: "Current Focus"
+    timelineTitle: {
+      zh: "CV Timeline",
+      en: "CV Timeline"
     },
-    nowItems: [
+    timelineItems: [
       {
-        zh: "把 AI 反馈系统做得更稳、更轻、更可维护",
-        en: "Making AI feedback systems lighter, more stable, and easier to maintain"
+        period: "Sep 2025 - Present",
+        title: {
+          zh: "Full-Stack AI Developer / Project Assistant",
+          en: "Full-Stack AI Developer / Project Assistant"
+        },
+        body: {
+          zh: "EEE, Hong Kong Polytechnic University。开发与维护 AI-powered feedback system，做 Flask + React + Azure API 应用，并支持 tutorial / lab。",
+          en: "EEE, Hong Kong Polytechnic University. Building and maintaining AI-powered feedback systems with Flask, React, and Azure API, while supporting tutorials and labs."
+        }
       },
       {
-        zh: "让作品集只保留最有证据力的内容",
-        en: "Keeping the portfolio limited to its strongest evidence"
+        period: "May 2024 - Jul 2024",
+        title: {
+          zh: "Ecommerce Platform & Web Developer Intern",
+          en: "Ecommerce Platform & Web Developer Intern"
+        },
+        body: {
+          zh: "Borntea Company, Hong Kong。参与电商平台开发，提升体验与性能，并与营销侧协作完成数字 campaign 支持。",
+          en: "Borntea Company, Hong Kong. Worked on eCommerce platform development, performance improvements, and digital campaign support."
+        }
       },
       {
-        zh: "把研究、创作和职业履历收束成一个更清晰的个人 IP",
-        en: "Unifying research, creative output, and career evidence into a clearer personal IP"
+        period: "Jun 2023 - Jun 2025",
+        title: {
+          zh: "Student Assistant",
+          en: "Student Assistant"
+        },
+        body: {
+          zh: "Office of Undergraduate Studies, PolyU。负责新生引导、校园调查、活动与对外服务支持。",
+          en: "Office of Undergraduate Studies, PolyU. Supported freshman guidance, surveys, campus events, and public-facing service work."
+        }
+      }
+    ],
+    educationTitle: {
+      zh: "Education",
+      en: "Education"
+    },
+    educationItems: [
+      {
+        title: {
+          zh: "香港理工大学",
+          en: "Hong Kong Polytechnic University"
+        },
+        body: {
+          zh: "互联网与多媒体科技学士，2021 - 2025。",
+          en: "BSc in Internet and Multimedia Technologies, 2021 - 2025."
+        }
+      },
+      {
+        title: {
+          zh: "牛津大学 Lady Margaret Hall",
+          en: "Lady Margaret Hall, University of Oxford"
+        },
+        body: {
+          zh: "Artificial Intelligence and Machine Learning Program，Summer 2024。",
+          en: "Artificial Intelligence and Machine Learning Program, Summer 2024."
+        }
       }
     ],
     resumeHint: {
-      zh: "如果你需要更正式的版本，可以直接看我的 CV。",
-      en: "If you need the formal version, you can go straight to my CV."
+      zh: "更正式的版本可以直接查看 CV；这个页面负责把履历转换成更容易理解的网站叙事。",
+      en: "The formal version lives in the CV. This page turns that record into a clearer website narrative."
     },
     resumeButton: {
       zh: "查看 CV",
@@ -96,9 +143,9 @@ export default function AboutPage() {
       />
 
       <section className="about-block">
-        <h2>{getText(copy.signalsTitle, language)}</h2>
+        <h2>{getText(copy.profileTitle, language)}</h2>
         <div className="about-signal-list">
-          {copy.signals.map(item => (
+          {copy.profileSignals.map(item => (
             <article className="about-signal-item" key={item.title.en}>
               <h3>{getText(item.title, language)}</h3>
               <p>{getText(item.body, language)}</p>
@@ -108,12 +155,28 @@ export default function AboutPage() {
       </section>
 
       <section className="about-current">
-        <h2>{getText(copy.nowTitle, language)}</h2>
-        <ul className="about-list">
-          {copy.nowItems.map(item => (
-            <li key={item.en}>{getText(item, language)}</li>
+        <h2>{getText(copy.timelineTitle, language)}</h2>
+        <div className="about-timeline">
+          {copy.timelineItems.map(item => (
+            <article className="about-timeline-item" key={item.period}>
+              <span>{item.period}</span>
+              <h3>{getText(item.title, language)}</h3>
+              <p>{getText(item.body, language)}</p>
+            </article>
           ))}
-        </ul>
+        </div>
+      </section>
+
+      <section className="about-block">
+        <h2>{getText(copy.educationTitle, language)}</h2>
+        <div className="about-signal-list">
+          {copy.educationItems.map(item => (
+            <article className="about-signal-item" key={item.title.en}>
+              <h3>{getText(item.title, language)}</h3>
+              <p>{getText(item.body, language)}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       {greeting.resumeLink && (

@@ -88,31 +88,42 @@
   color: $textColor;
 }
 
-.about-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  color: $textColor;
+.about-timeline {
   display: grid;
-  gap: 0.72rem;
+  gap: 14px;
 }
 
-.about-list li {
-  position: relative;
-  padding-left: 1rem;
+.about-timeline-item {
+  padding: 16px 0 18px;
+  border-bottom: 1px solid $lightBorder1;
+}
+
+.about-timeline-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-timeline-item span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $pretextAccent;
+}
+
+.about-timeline-item h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: $textColor;
+}
+
+.about-timeline-item p {
+  margin: 0.5rem 0 0;
+  max-width: 760px;
   color: $subTitle;
   line-height: 1.7;
-}
-
-.about-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 0.36rem;
-  height: 0.36rem;
-  border-radius: 999px;
-  background: $pretextAccent;
 }
 
 .about-resume-card {
@@ -153,6 +164,10 @@
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
+.dark-mode .about-timeline-item {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
 .dark-mode .about-block h2 {
   color: $textColorDark;
 }
@@ -160,11 +175,12 @@
 .dark-mode .about-resume-card p,
 .dark-mode .about-intro p,
 .dark-mode .about-block p,
-.dark-mode .about-list {
+.dark-mode .about-timeline-item p {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.dark-mode .about-signal-item h3 {
+.dark-mode .about-signal-item h3,
+.dark-mode .about-timeline-item h3 {
   color: $textColorDark;
 }
 

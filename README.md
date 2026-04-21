@@ -71,6 +71,16 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 - Put active guides under `docs/`.
 - Put historical reports and one-off implementation summaries under `docs/archive/`.
 
+## Source Structure
+
+- `src/app/`: application shell, providers, routing composition
+- `src/pages/`: route-level pages
+- `src/sections/`: page-owned sections and large route-specific assemblies
+- `src/components/`: reusable UI building blocks
+- `src/services/`: content and external integrations
+- `src/config/`: shared schemas, route config, taxonomy, assets
+- `src/data/`: only for legacy fallback data that has not yet moved to canonical content sources
+
 ## Localization Workflow
 
 - Final target: bilingual site experience
