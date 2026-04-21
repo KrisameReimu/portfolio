@@ -17,7 +17,7 @@
  * @property {string} content - 文章内容（Markdown格式）
  * @property {string} coverImage - 封面图URL
  * @property {string[]} tags - 标签数组
- * @property {string} category - 分类（essay/tech/creative/reflection）
+ * @property {string} category - 分类（essay/tech/creative/reflection/achievement）
  * @property {string} publishedDate - 发布日期 ISO格式
  * @property {number} readingTime - 阅读时长（分钟）
  * @property {boolean} featured - 是否精选
@@ -75,7 +75,7 @@
  * @property {string} [demoVideo] - 演示视频URL
  * @property {string} [downloadLink] - 下载链接
  * @property {string[]} technologies - 使用的技术栈
- * @property {string} status - 状态（planning/in-development/completed/published）
+ * @property {string} status - 状态（planning/in-development/released）
  * @property {Milestone[]} milestones - 开发里程碑
  * @property {string} startDate - 开始日期
  * @property {string} [releaseDate] - 发布日期
@@ -140,7 +140,8 @@ export const ContentCategories = {
     ESSAY: "essay",
     TECH: "tech",
     CREATIVE: "creative",
-    REFLECTION: "reflection"
+    REFLECTION: "reflection",
+    ACHIEVEMENT: "achievement"
   },
   PHOTOGRAPHY: {
     URBAN: "urban",
@@ -156,8 +157,7 @@ export const ContentCategories = {
     STATUS: {
       PLANNING: "planning",
       IN_DEVELOPMENT: "in-development",
-      COMPLETED: "completed",
-      PUBLISHED: "published"
+      RELEASED: "released"
     }
   }
 };

@@ -1,0 +1,21 @@
+{
+  "writingCategories": [
+    "reflection",
+    "essay",
+    "tech",
+    "creative",
+    "achievement"
+  ],
+  "photoCategories": ["urban", "portrait", "nature"],
+  "videoCategories": ["promotional", "short-film", "documentary"],
+  "projectStatuses": ["planning", "in-development", "released"],
+  "projectMilestoneStatuses": ["planned", "in-progress", "completed"],
+  "contentSourcePriority": {
+    "articles": ["public/content", "src/data"],
+    "photos": ["public/content", "src/data"],
+    "videos": ["public/content", "src/data"],
+    "projects": ["public/content", "src/data"],
+    "workExperiences": ["src/portfolio"],
+    "education": ["src/portfolio"]
+  }
+}

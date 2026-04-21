@@ -1,3 +1,10 @@
+import contentSchema from "./contentSchema.json";
+
+export const writingCategoryIds = contentSchema.writingCategories;
+export const photoCategoryIds = contentSchema.photoCategories;
+export const videoCategoryIds = contentSchema.videoCategories;
+export const projectStatusIds = contentSchema.projectStatuses;
+
 export const writingCategoryMeta = {
   reflection: {
     label: {

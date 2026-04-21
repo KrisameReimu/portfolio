@@ -10,6 +10,7 @@
  */
 
 import {ContentTypes} from "../types/content.types";
+import contentSchema from "../config/contentSchema.json";
 
 // CMS配置 - 通过环境变量控制
 const CMS_CONFIG = {
@@ -26,6 +27,8 @@ const PUBLIC_CONTENT = {
   videosIndexUrl: "/content/videos.json",
   projectsIndexUrl: "/content/projects.json"
 };
+
+export const CONTENT_SOURCE_PRIORITY = contentSchema.contentSourcePriority;
 
 let publicArticlesIndexCache = null;
 let publicArticlesIndexPromise = null;
@@ -208,7 +211,8 @@ export const getArticles = async (options = {}) => {
     console.warn("Falling back to local articles data");
   }
 
-  // Public content (public/content) takes precedence over bundled local data.
+  // Public content is the canonical authored source in normal development.
+  // Bundled src/data remains as a legacy fallback until migration is complete.
   const publicIndex = await getPublicArticlesIndex();
   if (publicIndex) {
     let articles = [...publicIndex].sort((a, b) => {
@@ -541,8 +545,10 @@ export const checkCMSHealth = async () => {
  * @returns {string} 'cms' | 'local'
  */
 export const getContentSource = () => {
-  return CMS_CONFIG.enabled ? "cms" : "local";
+  return CMS_CONFIG.enabled ? "cms" : "public-content";
 };
+
+export const getContentSourcePolicy = () => CONTENT_SOURCE_PRIORITY;
 
 const contentAPI = {
   getArticles,
@@ -555,7 +561,8 @@ const contentAPI = {
   getEducation,
   getContent,
   checkCMSHealth,
-  getContentSource
+  getContentSource,
+  getContentSourcePolicy
 };
 
 export default contentAPI;

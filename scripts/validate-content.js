@@ -4,6 +4,7 @@ const path = require("path");
 
 const root = process.cwd();
 const contentDir = path.join(root, "public", "content");
+const schemaPath = path.join(root, "src", "config", "contentSchema.json");
 const files = {
   articles: path.join(contentDir, "index.json"),
   photos: path.join(contentDir, "photos.json"),
@@ -12,10 +13,12 @@ const files = {
 };
 const articlesDir = path.join(contentDir, "articles");
 
-const articleCategories = new Set(["reflection", "essay", "tech", "creative"]);
-const photoCategories = new Set(["urban", "portrait", "nature"]);
-const videoCategories = new Set(["promotional", "short-film", "documentary"]);
-const projectStatuses = new Set(["planning", "in-development", "released"]);
+const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
+const articleCategories = new Set(schema.writingCategories || []);
+const photoCategories = new Set(schema.photoCategories || []);
+const videoCategories = new Set(schema.videoCategories || []);
+const projectStatuses = new Set(schema.projectStatuses || []);
+const projectMilestoneStatuses = new Set(schema.projectMilestoneStatuses || []);
 
 const errors = [];
 const warnings = [];
@@ -197,9 +200,43 @@ const validateProjects = projects => {
     }
     if (!Array.isArray(project.highlights)) {
       addError(`${label}.highlights must be an array`);
+    } else {
+      project.highlights.forEach((highlight, highlightIdx) => {
+        validateI18nObject(
+          highlight,
+          `${label}.highlights[${highlightIdx}]`,
+          true
+        );
+      });
     }
     if (!Array.isArray(project.milestones)) {
       addError(`${label}.milestones must be an array`);
+    } else {
+      project.milestones.forEach((milestone, milestoneIdx) => {
+        const milestoneLabel = `${label}.milestones[${milestoneIdx}]`;
+        if (!milestone || typeof milestone !== "object") {
+          addError(`${milestoneLabel} must be an object`);
+          return;
+        }
+        if (!hasText(milestone.title)) {
+          addError(`${milestoneLabel}.title is required`);
+        }
+        if (!hasText(milestone.description)) {
+          addError(`${milestoneLabel}.description is required`);
+        }
+        if (
+          milestone.completedDate !== null &&
+          milestone.completedDate !== undefined &&
+          !isValidDate(milestone.completedDate)
+        ) {
+          addError(
+            `${milestoneLabel}.completedDate must be null or YYYY-MM-DD`
+          );
+        }
+        if (!projectMilestoneStatuses.has(milestone.status)) {
+          addWarning(`${milestoneLabel}.status is not in known statuses`);
+        }
+      });
     }
   });
 };
