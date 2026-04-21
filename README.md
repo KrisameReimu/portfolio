@@ -71,6 +71,12 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 - Put active guides under `docs/`.
 - Put historical reports and one-off implementation summaries under `docs/archive/`.
 
+## Localization Workflow
+
+- Final target: bilingual site experience
+- Development default: single-language copy while the page is still evolving
+- Add the second language after content, layout, and structure have mostly stabilized
+
 ## Hosting Direction
 
 - Images: Cloudflare R2 custom domain

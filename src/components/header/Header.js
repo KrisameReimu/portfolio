@@ -4,15 +4,13 @@ import Headroom from "react-headroom";
 import "./Header.scss";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import StyleContext from "../../contexts/StyleContext";
-import {greeting, gameDevSection, videoPortfolioSection} from "../../portfolio";
+import {greeting} from "../../portfolio";
+import {primaryNavRoutes} from "../../config/routes";
 
 function Header() {
   const {isDark} = useContext(StyleContext);
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const viewGameDev = gameDevSection.display;
-  const viewVideoPortfolio = videoPortfolioSection.display;
 
   useEffect(() => {
     setMenuOpen(false);
@@ -44,30 +42,13 @@ function Header() {
             menuOpen ? "menu-open" : ""
           }`}
         >
-          <li>
-            <NavLink to="/" end>
-              Home
-            </NavLink>
-          </li>
-          {viewGameDev && (
-            <li>
-              <NavLink to="/game-dev">Projects</NavLink>
+          {primaryNavRoutes.map(route => (
+            <li key={route.path}>
+              <NavLink to={route.path} end={route.path === "/"}>
+                {route.navLabel}
+              </NavLink>
             </li>
-          )}
-          {viewVideoPortfolio && (
-            <li>
-              <NavLink to="/videos">Videos</NavLink>
-            </li>
-          )}
-          <li>
-            <NavLink to="/awards">Awards</NavLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact">Contact</NavLink>
-          </li>
+          ))}
           <li>
             <ToggleSwitch />
           </li>

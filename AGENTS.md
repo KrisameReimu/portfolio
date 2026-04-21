@@ -94,6 +94,15 @@ Content is part of the product architecture, not just seed data.
 - Prefer additive schema evolution over breaking rewrites.
 - If a page depends on a new content shape, update validation or content tooling in the same change when practical.
 
+## Language Workflow
+
+The site is expected to become bilingual, but development should stay single-language first to avoid churn.
+
+- During active development, draft copy in one working language only.
+- Do not spend time maintaining parallel bilingual copy while UI, structure, and content are still moving.
+- Add the second language only after the page, content model, and wording are mostly stable.
+- When in doubt, optimize for iteration speed first and translation completeness later.
+
 ## Maintenance Standards
 
 Before finishing meaningful work:

@@ -50,6 +50,16 @@ This repo is partly an application and partly a curated content system.
 
 Content storage, taxonomy, validation, and page rendering should evolve together.
 
+### 5. Localization should follow stabilization
+
+The target product is bilingual, but the workflow should not be bilingual from day one.
+
+- During development, use one draft language as the working source.
+- Do not maintain two fully synchronized language versions while layout, IA, and copy are still changing.
+- Once a page is structurally stable, add the second language pass.
+
+This keeps translation from becoming accidental rework.
+
 ## Current Repo Shape
 
 ### Root
