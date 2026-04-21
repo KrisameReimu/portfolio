@@ -13,7 +13,7 @@ import "./DynamicLandingHero.scss";
  *   title: {zh, en}
  *   subtitle: {zh, en}
  *   description: {zh, en} - Optional detailed text
- *   visualType: "interactive-video" | "interactive-photo" | "interactive-stat" | "video-wall" | "image-wall" | "stat-preview" | "custom"
+ *   visualType: "interactive-video" | "interactive-photo" | "interactive-stat" | "interactive-feature" | "video-wall" | "image-wall" | "stat-preview" | "custom"
  *   visualContent: React.ReactNode - Custom visual element
  *   mediaItems: Array - For interactive wall types (videos, photos, stats)
  *   accentColor: string
@@ -74,7 +74,21 @@ export default function DynamicLandingHero({
             <InteractiveMediaWall
               type="stat"
               items={mediaItems}
+              onItemClick={onMediaItemClick}
               accentColor={accentColor}
+              animationSpeed="normal"
+            />
+          </div>
+        );
+
+      case "interactive-feature":
+        return (
+          <div className="visual-wall interactive-wall feature-wall">
+            <InteractiveMediaWall
+              type="feature"
+              items={mediaItems}
+              accentColor={accentColor}
+              onItemClick={onMediaItemClick}
               animationSpeed="normal"
             />
           </div>

@@ -54,20 +54,6 @@
   color: $subTitle;
 }
 
-.photo-year-meta button {
-  margin-top: 10px;
-  border: 1px solid $lightBorder1;
-  background: white;
-  border-radius: 999px;
-  padding: 6px 10px;
-  cursor: pointer;
-}
-
-.photo-year-meta button.active {
-  color: #d33d5a;
-  border-color: #d33d5a;
-}
-
 .photo-year-empty {
   text-align: center;
   padding: 60px 20px;
@@ -86,10 +72,4 @@
 .dark-mode .photo-year-meta p,
 .dark-mode .photo-year-empty {
   color: rgba(255, 255, 255, 0.7);
-}
-
-.dark-mode .photo-year-meta button {
-  background: transparent;
-  color: $textColorDark;
-  border-color: rgba(255, 255, 255, 0.2);
 }

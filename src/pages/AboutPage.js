@@ -1,12 +1,16 @@
 import React, {useContext} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
-import LandingHero from "../components/landingHero/LandingHero";
+import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import {getText} from "../utils/i18n";
 import {greeting} from "../portfolio";
+import {openHeroTarget} from "../utils/heroNavigation";
 import "./AboutPage.scss";
 
 export default function AboutPage() {
   const {language} = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const copy = {
     title: {
       zh: "关于我",
@@ -131,18 +135,77 @@ export default function AboutPage() {
     }
   };
 
+  const heroCards = [
+    {
+      eyebrow: "01",
+      title: {
+        zh: "Profile Signals",
+        en: "Profile Signals"
+      },
+      description: {
+        zh: "看我最核心的能力结构和工作方式。",
+        en: "Open the strongest signals of how I work."
+      },
+      cta: {
+        zh: "Open Section",
+        en: "Open Section"
+      },
+      href: "#profile-signals"
+    },
+    {
+      eyebrow: "02",
+      title: {
+        zh: "CV Timeline",
+        en: "CV Timeline"
+      },
+      description: {
+        zh: "按时间看角色、组织和产出脉络。",
+        en: "Read the roles, organizations, and outputs in timeline form."
+      },
+      cta: {
+        zh: "Open Section",
+        en: "Open Section"
+      },
+      href: "#cv-timeline"
+    },
+    {
+      eyebrow: "03",
+      title: {
+        zh: "Education",
+        en: "Education"
+      },
+      description: {
+        zh: "把学术背景和训练来源放在同一处查看。",
+        en: "See the academic background and training context in one place."
+      },
+      cta: {
+        zh: "Open Section",
+        en: "Open Section"
+      },
+      href: "#education"
+    }
+  ];
+
   return (
     <div className="page-container about-page">
-      <LandingHero
-        variant="narrative"
+      <DynamicLandingHero
         title={copy.title}
         subtitle={copy.subtitle}
         description={copy.intro}
+        visualType="interactive-feature"
+        mediaItems={heroCards}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.href,
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
         accentColor="#1976D2"
         className="about-landing-hero"
       />
 
-      <section className="about-block">
+      <section className="about-block" id="profile-signals">
         <h2>{getText(copy.profileTitle, language)}</h2>
         <div className="about-signal-list">
           {copy.profileSignals.map(item => (
@@ -154,7 +217,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-current">
+      <section className="about-current" id="cv-timeline">
         <h2>{getText(copy.timelineTitle, language)}</h2>
         <div className="about-timeline">
           {copy.timelineItems.map(item => (
@@ -167,7 +230,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-block">
+      <section className="about-block" id="education">
         <h2>{getText(copy.educationTitle, language)}</h2>
         <div className="about-signal-list">
           {copy.educationItems.map(item => (

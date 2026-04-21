@@ -1,12 +1,16 @@
 import React, {useContext, useMemo, useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./PhotoArchivePage.scss";
+import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
+import {openHeroTarget} from "../utils/heroNavigation";
 
 export default function PhotoArchivePage() {
   const {language} = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -83,14 +87,108 @@ export default function PhotoArchivePage() {
     }
   };
 
+  const heroCards = useMemo(() => {
+    if (yearHighlights.length > 0) {
+      return yearHighlights.slice(0, 3).map(item => ({
+        year: item.year,
+        title: {
+          zh: `${item.year} 照片归档`,
+          en: `${item.year} Photo Archive`
+        },
+        description: {
+          zh: `${item.count} 张作品，最近拍摄 ${formatDate(
+            item.latestDate,
+            "zh"
+          )}`,
+          en: `${item.count} photos, latest ${formatDate(
+            item.latestDate,
+            "en"
+          )}`
+        },
+        image: item.coverImage,
+        cta: {
+          zh: "Open Year",
+          en: "Open Year"
+        },
+        href: `/photos/${item.year}`
+      }));
+    }
+
+    return [
+      {
+        eyebrow: "01",
+        title: {
+          zh: "Archive Rules",
+          en: "Archive Rules"
+        },
+        description: {
+          zh: "只放真实、已整理好的作品，不用占位图补墙。",
+          en: "Only real, curated work is published. No fake wall fillers."
+        },
+        cta: {
+          zh: "Open Section",
+          en: "Open Section"
+        },
+        href: "#archive-rules"
+      },
+      {
+        eyebrow: "02",
+        title: {
+          zh: "Published Frames",
+          en: "Published Frames"
+        },
+        description: {
+          zh: "一旦首批图集完成，这里会直接成为照片墙入口。",
+          en: "Once the first real set is ready, this becomes the photo-wall entry."
+        },
+        cta: {
+          zh: "Open Section",
+          en: "Open Section"
+        },
+        href: "#published-frames"
+      },
+      {
+        eyebrow: "03",
+        title: {
+          zh: "About Practice",
+          en: "About Practice"
+        },
+        description: {
+          zh: "先把图像归档逻辑说清楚，再慢慢扩充长期系列。",
+          en: "State the archive logic clearly first, then expand the long-term series."
+        },
+        cta: {
+          zh: "Open About",
+          en: "Open About"
+        },
+        href: "/about"
+      }
+    ];
+  }, [yearHighlights]);
+
   return (
     <div className="page-container">
-      <div className="page-hero photo-archive-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-      </div>
+      <DynamicLandingHero
+        title={copy.title}
+        subtitle={copy.subtitle}
+        description={{
+          zh: "摄影页也必须先讲真实内容，再谈形式。现在 hero 里的卡片都能直接点进相应归档或说明部分。",
+          en: "The photography page should explain real content before styling it. Every hero card now opens a real archive target or section."
+        }}
+        visualType="interactive-feature"
+        mediaItems={heroCards}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.href,
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
+        accentColor="#4c6ef5"
+        className="photo-archive-landing-hero"
+      />
 
-      <section className="photo-archive-notes">
+      <section className="photo-archive-notes" id="archive-rules">
         <h2>{getText(copy.introTitle, language)}</h2>
         <div className="photo-archive-note-list">
           {copy.introPoints.map(item => (
@@ -101,7 +199,7 @@ export default function PhotoArchivePage() {
         </div>
       </section>
 
-      <section className="photo-archive-published">
+      <section className="photo-archive-published" id="published-frames">
         <div className="photo-archive-head">
           <h2>{getText(copy.latestWall, language)}</h2>
         </div>

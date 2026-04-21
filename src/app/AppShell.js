@@ -9,9 +9,6 @@ import {characterSection, splashScreen} from "../portfolio";
 import {StyleProvider} from "../contexts/StyleContext";
 import LanguageContext from "../contexts/LanguageContext";
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import {AuthProvider} from "../contexts/AuthContext";
-import {CommunityProvider} from "../contexts/CommunityContext";
-import RouteAnalytics from "../components/RouteAnalytics";
 import {siteRoutes} from "../config/routes";
 import "./AppShell.scss";
 
@@ -51,30 +48,25 @@ const AppShell = () => {
     <div className={isDark ? "dark-mode" : null}>
       <LanguageContext.Provider value={{language, setLanguage, toggleLanguage}}>
         <StyleProvider value={{isDark: isDark, changeTheme: changeTheme}}>
-          <AuthProvider>
-            <CommunityProvider>
-              {isShowingSplashAnimation && splashScreen.enabled ? (
-                <SplashScreen />
-              ) : (
-                <Router>
-                  <ScrollToTop />
-                  <RouteAnalytics />
-                  <Header />
-                  {characterSection.display && <CharacterNPC />}
-                  <Routes>
-                    {siteRoutes.map(route => (
-                      <Route
-                        key={route.path}
-                        path={route.path}
-                        element={route.element}
-                      />
-                    ))}
-                  </Routes>
-                  <Footer />
-                </Router>
-              )}
-            </CommunityProvider>
-          </AuthProvider>
+          {isShowingSplashAnimation && splashScreen.enabled ? (
+            <SplashScreen />
+          ) : (
+            <Router>
+              <ScrollToTop />
+              <Header />
+              {characterSection.display && <CharacterNPC />}
+              <Routes>
+                {siteRoutes.map(route => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
+              </Routes>
+              <Footer />
+            </Router>
+          )}
         </StyleProvider>
       </LanguageContext.Provider>
     </div>

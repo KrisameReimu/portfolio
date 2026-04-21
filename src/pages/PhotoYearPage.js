@@ -4,12 +4,10 @@ import "./PhotoYearPage.scss";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
-import CommunityContext from "../contexts/CommunityContext";
 
 export default function PhotoYearPage() {
   const {year} = useParams();
   const {language} = useContext(LanguageContext);
-  const {isFavorite, toggleFavorite} = useContext(CommunityContext);
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -34,8 +32,6 @@ export default function PhotoYearPage() {
       zh: "这一年的城市、人物与自然片段。",
       en: "Urban, portrait, and nature moments from the year."
     },
-    favorite: {zh: "收藏", en: "Save"},
-    saved: {zh: "已收藏", en: "Saved"},
     empty: {
       zh: "该年度影像正在整理中，敬请期待。",
       en: "This year's archive is being curated."
@@ -65,29 +61,6 @@ export default function PhotoYearPage() {
               <div className="photo-year-meta">
                 <h3>{getText(photo.title, language)}</h3>
                 <p>{formatDate(photo.captureDate, language)}</p>
-                <button
-                  type="button"
-                  className={isFavorite(`photo:${photo.id}`) ? "active" : ""}
-                  onClick={() =>
-                    toggleFavorite({
-                      key: `photo:${photo.id}`,
-                      title: getText(photo.title, language),
-                      url: `/photos/${year}`,
-                      coverImage: photo.thumbnail || photo.url
-                    })
-                  }
-                >
-                  <i
-                    className={
-                      isFavorite(`photo:${photo.id}`)
-                        ? "fas fa-heart"
-                        : "far fa-heart"
-                    }
-                  ></i>{" "}
-                  {isFavorite(`photo:${photo.id}`)
-                    ? copy.saved[language]
-                    : copy.favorite[language]}
-                </button>
               </div>
             </div>
           ))}

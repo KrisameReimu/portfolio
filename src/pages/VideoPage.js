@@ -1,14 +1,18 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import VideoPortfolio from "../sections/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
 import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
+import {openHeroTarget} from "../utils/heroNavigation";
 import "./VideoPage.scss";
 
 export default function VideoPage() {
   const {language} = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -85,6 +89,15 @@ export default function VideoPage() {
         }}
         visualType={videos.length > 0 ? "interactive-video" : "video-wall"}
         mediaItems={latestVideos.slice(0, 8)}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.videoId
+              ? `https://www.youtube.com/watch?v=${item.videoId}`
+              : "/videos",
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
         accentColor="#4A90E2"
         className="videos-landing-hero"
       />

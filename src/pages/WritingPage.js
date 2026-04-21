@@ -1,13 +1,17 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
 import WritingShowcase from "../sections/writingShowcase/WritingShowcase";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getArticles} from "../services/contentAPI";
+import {openHeroTarget} from "../utils/heroNavigation";
 import "./WritingPage.scss";
 
 export default function WritingPage() {
   const {language} = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
   const [articles, setArticles] = useState([]);
   const [isLoadingYears, setIsLoadingYears] = useState(true);
@@ -97,20 +101,63 @@ export default function WritingPage() {
     );
   }, [articles]);
 
+  const heroCards = useMemo(() => {
+    const featured = articles.filter(article => article.featured).slice(0, 3);
+    if (featured.length > 0) {
+      return featured.map(article => ({
+        year: (article.publishedDate || "").slice(0, 4),
+        title: article.title,
+        description: article.excerpt,
+        cta: {
+          zh: "Read Article",
+          en: "Read Article"
+        },
+        href: `/articles/${article.slug || article.id}`
+      }));
+    }
+
+    return yearCards.slice(0, 3).map(item => ({
+      year: item.year,
+      title: {
+        zh: `${item.year} 写作归档`,
+        en: `${item.year} Writing Archive`
+      },
+      description: {
+        zh: `${item.count} 篇文章，最近更新 ${formatDate(
+          item.latestDate,
+          "zh"
+        )}`,
+        en: `${item.count} articles, last updated ${formatDate(
+          item.latestDate,
+          "en"
+        )}`
+      },
+      cta: {
+        zh: "Open Year",
+        en: "Open Year"
+      },
+      href: `/writing/${item.year}`
+    }));
+  }, [articles, yearCards]);
+
   return (
     <div className="page-container">
-      <section className="writing-editorial-hero">
-        <div className="writing-editorial-copy">
-          <span>ESSAY INDEX</span>
-          <h1>{getText(copy.title, language)}</h1>
-          <p className="writing-editorial-subtitle">
-            {getText(copy.subtitle, language)}
-          </p>
-          <p className="writing-editorial-lead">
-            {getText(copy.lead, language)}
-          </p>
-        </div>
-      </section>
+      <DynamicLandingHero
+        title={copy.title}
+        subtitle={copy.subtitle}
+        description={copy.lead}
+        visualType="interactive-feature"
+        mediaItems={heroCards}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.href,
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
+        accentColor="#667eea"
+        className="writing-landing-hero"
+      />
       <div className="archive-tabs">
         <button
           className={activeTab === "all" ? "active" : ""}

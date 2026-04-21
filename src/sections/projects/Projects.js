@@ -53,7 +53,11 @@ const Projects = () => {
 
         <div className="projects-dossier-list">
           {projects.map(project => (
-            <article className="project-dossier-card" key={project.id}>
+            <article
+              className="project-dossier-card"
+              key={project.id}
+              id={`project-${project.id}`}
+            >
               <div className="project-dossier-meta">
                 <span className="project-dossier-type">
                   {getText(project.type, language)}

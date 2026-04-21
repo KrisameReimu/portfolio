@@ -1,10 +1,12 @@
 import React, {useContext, useMemo} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import StyleContext from "../contexts/StyleContext";
 import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import {getText} from "../utils/i18n";
 import {certificationCards} from "../data/certifications";
 import AchievementCard from "../components/achievementCard/AchievementCard";
+import {openHeroTarget} from "../utils/heroNavigation";
 import "./AwardsPage.scss";
 
 const groupOrder = ["multimedia", "research", "service"];
@@ -67,6 +69,8 @@ function AwardsGrid({cards, isDark}) {
 export default function AwardsPage() {
   const {language} = useContext(LanguageContext);
   const {isDark} = useContext(StyleContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const copy = {
     title: {
@@ -92,30 +96,24 @@ export default function AwardsPage() {
       .filter(section => section.cards.length > 0);
   }, []);
 
-  const statItems = useMemo(() => {
-    return [
-      {
-        label: getText({zh: "获奖总数", en: "Total Awards"}, language),
-        value: certificationCards.length,
-        color: "#FFD700"
-      },
-      {
-        label: getText({zh: "多媒体作品", en: "Multimedia"}, language),
-        value: certificationCards.filter(c => c.group === "multimedia").length,
-        color: "#FF6B6B"
-      },
-      {
-        label: getText({zh: "学术研究", en: "Research"}, language),
-        value: certificationCards.filter(c => c.group === "research").length,
-        color: "#4A90E2"
-      },
-      {
-        label: getText({zh: "教学服务", en: "Service"}, language),
-        value: certificationCards.filter(c => c.group === "service").length,
-        color: "#4CAF50"
-      }
-    ];
-  }, [language]);
+  const heroCards = useMemo(
+    () =>
+      groupOrder.map(group => {
+        const card = certificationCards.find(item => item.group === group);
+        return {
+          eyebrow: group.toUpperCase(),
+          title: groupMeta[group].title,
+          description: groupMeta[group].subtitle,
+          image: card?.image || "",
+          cta: {
+            zh: "Open Section",
+            en: "Open Section"
+          },
+          href: `#awards-${group}`
+        };
+      }),
+    []
+  );
 
   return (
     <div className="page-container awards-page">
@@ -126,8 +124,15 @@ export default function AwardsPage() {
           zh: "我只保留对个人 IP 有帮助的证据：创作、研究、教学服务和可验证的成果。",
           en: "I keep only the evidence that strengthens the personal IP: creative work, research, teaching support, and verifiable outcomes."
         }}
-        visualType="interactive-stat"
-        mediaItems={statItems}
+        visualType="interactive-feature"
+        mediaItems={heroCards}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.href,
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
         accentColor="#FFD700"
         className="awards-landing-hero"
       />
@@ -136,7 +141,11 @@ export default function AwardsPage() {
         {groupedCards.map(section => {
           const meta = groupMeta[section.key];
           return (
-            <section className="awards-section" key={section.key}>
+            <section
+              className="awards-section"
+              key={section.key}
+              id={`awards-${section.key}`}
+            >
               <div className="awards-section-header">
                 <div>
                   <h2>{getText(meta.title, language)}</h2>

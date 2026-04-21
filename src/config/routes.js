@@ -1,7 +1,6 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import LabPillarPage from "../pages/LabPillarPage";
 import GameDevPage from "../pages/GameDevPage";
 import VideoPage from "../pages/VideoPage";
 import VideoYearPage from "../pages/VideoYearPage";
@@ -92,11 +91,6 @@ export const siteRoutes = [
     path: "/favorites",
     element: <Navigate to="/writing" replace />,
     navGroup: "secondary"
-  },
-  {
-    path: "/lab/:pillar",
-    element: <LabPillarPage />,
-    navGroup: "detail"
   },
   {
     path: "/lab",

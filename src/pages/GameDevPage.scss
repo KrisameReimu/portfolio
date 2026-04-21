@@ -20,43 +20,6 @@
   }
 }
 
-.project-hero-card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  width: 100%;
-}
-
-.project-hero-card {
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 18px 18px 20px;
-  border-radius: 20px;
-  border: 1px solid rgba($textColor, 0.08);
-  background: linear-gradient(
-    180deg,
-    rgba(156, 39, 176, 0.05) 0%,
-    rgba(156, 39, 176, 0.12) 100%
-  );
-
-  span {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: rgba($textColor, 0.52);
-  }
-
-  h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    line-height: 1.25;
-    color: $textColor;
-    letter-spacing: -0.02em;
-  }
-}
-
 .projects-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -145,18 +108,6 @@
     border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 
-  .project-hero-card {
-    border-color: rgba(255, 255, 255, 0.1);
-
-    span {
-      color: rgba(255, 255, 255, 0.55);
-    }
-
-    h3 {
-      color: $textColorDark;
-    }
-  }
-
   .experience-signal-card {
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(24, 24, 24, 0.48);
@@ -201,7 +152,6 @@
     }
   }
 
-  .project-hero-card-grid,
   .experience-signal-grid {
     grid-template-columns: 1fr;
   }

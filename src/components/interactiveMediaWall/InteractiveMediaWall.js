@@ -7,10 +7,10 @@ import "./InteractiveMediaWall.scss";
  * InteractiveMediaWall - Advanced interactive media visualization
  *
  * Combines DOM rendering with canvas animations for smooth interactions
- * Supports: video thumbnails, photo galleries, stat displays
+ * Supports: video thumbnails, photo galleries, stat displays, feature cards
  *
  * Props:
- *   type: 'video' | 'photo' | 'stat'
+ *   type: 'video' | 'photo' | 'stat' | 'feature'
  *   items: Array of items to display
  *   onItemClick: Callback when item is clicked
  *   accentColor: Primary color for the wall
@@ -274,6 +274,7 @@ export default function InteractiveMediaWall({
                 className={`stat-item ${hoveredIndex === idx ? "hovered" : ""}`}
                 onMouseEnter={() => handleItemHover(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => handleItemClick(item, idx)}
               >
                 <div
                   className="stat-value"
@@ -293,6 +294,55 @@ export default function InteractiveMediaWall({
                       : item.description}
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {type === "feature" && (
+          <div className="feature-grid">
+            {items.map((item, idx) => (
+              <div
+                key={idx}
+                className={`feature-item ${
+                  hoveredIndex === idx ? "hovered" : ""
+                }`}
+                onMouseEnter={() => handleItemHover(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => handleItemClick(item, idx)}
+              >
+                {item.image && (
+                  <div
+                    className="feature-thumbnail"
+                    style={{backgroundImage: `url(${item.image})`}}
+                  />
+                )}
+                <div className="feature-info">
+                  {(item.eyebrow || item.year || item.kicker) && (
+                    <span className="feature-eyebrow">
+                      {item.eyebrow || item.year || item.kicker}
+                    </span>
+                  )}
+                  <h3 className="feature-title">
+                    {typeof item.title === "object"
+                      ? getText(item.title, language)
+                      : item.title}
+                  </h3>
+                  {item.description && (
+                    <p className="feature-description">
+                      {typeof item.description === "object"
+                        ? getText(item.description, language)
+                        : item.description}
+                    </p>
+                  )}
+                  {item.cta && (
+                    <span className="feature-cta">
+                      {typeof item.cta === "object"
+                        ? getText(item.cta, language)
+                        : item.cta}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>

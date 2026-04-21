@@ -1,37 +1,68 @@
 import React, {useContext, useMemo} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import Projects from "../sections/projects/Projects";
 import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
+import {openHeroTarget} from "../utils/heroNavigation";
 import "./GameDevPage.scss";
 
 export default function GameDevPage() {
   const {language} = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const heroCards = useMemo(
     () => [
       {
         year: "2025",
-        title:
-          language === "zh"
-            ? "Capstone Success Project"
-            : "Capstone Success Project"
+        title: {
+          zh: "Capstone Success Project",
+          en: "Capstone Success Project"
+        },
+        description: {
+          zh: "OTP、前端实现与 API 接入",
+          en: "OTP, frontend implementation, and API integration"
+        },
+        cta: {
+          zh: "Open Dossier",
+          en: "Open Dossier"
+        },
+        href: "/game-dev#project-capstone-success"
       },
       {
         year: "2024",
-        title:
-          language === "zh"
-            ? "GenAI 短答题反馈系统"
-            : "GenAI Feedback System for Short-answer Questions"
+        title: {
+          zh: "GenAI 短答题反馈系统",
+          en: "GenAI Feedback System for Short-answer Questions"
+        },
+        description: {
+          zh: "WAIE 2025 发表与在线 demo",
+          en: "WAIE 2025 publication and live demo"
+        },
+        cta: {
+          zh: "Open Dossier",
+          en: "Open Dossier"
+        },
+        href: "/game-dev#project-genai-feedback-system"
       },
       {
         year: "2023-2026",
-        title:
-          language === "zh"
-            ? "多媒体项目与获奖作品"
-            : "Multimedia Projects and Award-winning Works"
+        title: {
+          zh: "多媒体项目与获奖作品",
+          en: "Multimedia Projects and Award-winning Works"
+        },
+        description: {
+          zh: "视频、海报与竞赛成果",
+          en: "Video, poster, and competition outputs"
+        },
+        cta: {
+          zh: "Open Dossier",
+          en: "Open Dossier"
+        },
+        href: "/game-dev#project-multimedia-awards"
       }
     ],
-    [language]
+    []
   );
 
   const copy = {
@@ -110,28 +141,21 @@ export default function GameDevPage() {
     }
   ];
 
-  const heroVisual = (
-    <div className="project-hero-card-grid">
-      {heroCards.map(card => (
-        <article
-          className="project-hero-card"
-          key={`${card.year}-${card.title}`}
-        >
-          <span>{card.year}</span>
-          <h3>{card.title}</h3>
-        </article>
-      ))}
-    </div>
-  );
-
   return (
     <div className="page-container projects-page">
       <DynamicLandingHero
         title={copy.title}
         subtitle={copy.subtitle}
         description={copy.description}
-        visualType="custom"
-        visualContent={heroVisual}
+        visualType="interactive-feature"
+        mediaItems={heroCards}
+        onMediaItemClick={item =>
+          openHeroTarget({
+            target: item.href,
+            navigate,
+            currentPathname: location.pathname
+          })
+        }
         accentColor="#9C27B0"
         className="projects-landing-hero"
       />
