@@ -122,12 +122,28 @@
       "en": ""
     },
     "excerpt": {
-      "zh": "当机器开始学会作画、写诗、谱曲，不眠不休；当我们只需输入一句话，它便以惊人的速度“创造”——我第一次感到一种奇怪的空洞。",
+      "zh": "当机器开始学会作画、写诗、谱曲，不眠不休；当我们只需输入一句话，它便以惊人的速度创造——我第一次感到一种奇怪的空洞。",
       "en": ""
     },
     "category": "reflection",
     "tags": ["AI", "艺术", "石黑一雄", "莫失莫忘", "记忆", "复制", "情感"],
     "readingTime": 9,
+    "featured": true
+  },
+  {
+    "id": "sasagawa-cup-writing-contest-award",
+    "publishedDate": "2025-01-08",
+    "title": {
+      "zh": "笹川杯品書知日本徵文大賽2024：二等獎",
+      "en": "Sasagawa Cup Japan Writing Contest 2024: Second Prize Winner"
+    },
+    "excerpt": {
+      "zh": "榮獲笹川杯品書知日本徵文大賽2024二等獎，與評審團分享創作的思路與心得。",
+      "en": "Honored to win the Second Prize in the 2024 Sasagawa Cup Japan Writing Contest and share the creative journey with the jury."
+    },
+    "category": "achievement",
+    "tags": ["獲獎", "寫作", "日本", "AI", "文化", "理工大學"],
+    "readingTime": 5,
     "featured": true
   }
 ]

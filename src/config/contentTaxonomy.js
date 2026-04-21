@@ -26,6 +26,13 @@ export const writingCategoryMeta = {
       en: "Creative Works"
     },
     color: "#9d50bb"
+  },
+  achievement: {
+    label: {
+      zh: "成就纪事",
+      en: "Achievements"
+    },
+    color: "#f59e0b"
   }
 };
 
