@@ -119,7 +119,21 @@ const getPublicArticleMarkdown = async (id, language) => {
   try {
     const response = await fetchWithTimeout(url, {timeoutMs: 5000});
     if (!response.ok) return "";
-    return await response.text();
+
+    const contentType = response.headers.get("content-type") || "";
+    const text = await response.text();
+
+    // Dev/proxy fallbacks can sometimes return index.html with 200 for a
+    // missing markdown file. Treat that as "missing content", not article body.
+    if (
+      contentType.includes("text/html") ||
+      /^\s*<!doctype html>/i.test(text) ||
+      /^\s*<html[\s>]/i.test(text)
+    ) {
+      return "";
+    }
+
+    return text;
   } catch {
     return "";
   }

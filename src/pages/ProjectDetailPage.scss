@@ -1,0 +1,365 @@
+@import "../_globalColor";
+
+.project-detail-page {
+  min-height: 100vh;
+  padding: 48px 20px 72px;
+}
+
+.project-detail-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.project-detail-back {
+  display: inline-flex;
+  align-items: center;
+  color: rgba($textColor, 0.72);
+  text-decoration: none;
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+}
+
+.project-detail-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 0 36px;
+  border-bottom: 1px solid rgba($textColor, 0.08);
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: $textColor;
+  }
+}
+
+.project-detail-eyebrow {
+  color: #9c5f3b;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-detail-summary {
+  max-width: 860px;
+  margin: 0;
+  color: rgba($textColor, 0.74);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.project-detail-meta,
+.project-detail-overview-grid,
+.project-detail-link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-detail-meta div,
+.project-detail-overview-card,
+.project-detail-link-card,
+.project-detail-prose-card,
+.project-flow-group,
+.project-chart-card,
+.project-demo-card {
+  border: 1px solid rgba($textColor, 0.08);
+  background: rgba(255, 255, 255, 0.74);
+  border-radius: 24px;
+}
+
+.project-detail-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+
+  span {
+    font-size: 0.76rem;
+    color: rgba($textColor, 0.48);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  strong {
+    color: $textColor;
+    line-height: 1.6;
+    font-size: 0.98rem;
+  }
+}
+
+.project-detail-section {
+  padding-top: 40px;
+}
+
+.project-detail-section-header {
+  margin-bottom: 18px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.9rem;
+    letter-spacing: -0.03em;
+    color: $textColor;
+  }
+}
+
+.project-detail-overview-card,
+.project-detail-prose-card,
+.project-flow-group,
+.project-chart-card,
+.project-demo-card,
+.project-detail-link-card {
+  padding: 22px 24px;
+}
+
+.project-detail-overview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  span {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9c5f3b;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: rgba($textColor, 0.76);
+    line-height: 1.75;
+  }
+}
+
+.project-detail-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: $textColor;
+  line-height: 1.8;
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+}
+
+.project-flow-group-stack,
+.project-chart-stack,
+.project-demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.project-flow-group h3,
+.project-chart-header h3,
+.project-demo-card h3 {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+  color: $textColor;
+}
+
+.project-flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-flow-step,
+.project-chart-node {
+  position: relative;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(156, 95, 59, 0.08);
+  color: $textColor;
+  line-height: 1.5;
+}
+
+.project-flow-step::after,
+.project-chart-node::after {
+  content: "→";
+  margin-left: 12px;
+  color: rgba($textColor, 0.35);
+}
+
+.project-flow-step:last-child::after,
+.project-chart-node:last-child::after {
+  content: "";
+  margin: 0;
+}
+
+.project-chart-header p {
+  margin: 0 0 16px;
+  color: rgba($textColor, 0.72);
+  line-height: 1.7;
+}
+
+.project-chart-lanes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-chart-lane {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.project-chart-lane-label {
+  padding-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9c5f3b;
+}
+
+.project-chart-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-demo-embed {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #111;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.project-detail-link-grid {
+  margin-top: 18px;
+}
+
+.project-detail-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+
+  span {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9c5f3b;
+    font-weight: 700;
+  }
+
+  strong {
+    color: $textColor;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+}
+
+.project-detail-link {
+  color: #9c5f3b;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project-detail-empty {
+  display: flex;
+  min-height: 60vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dark-mode {
+  .project-detail-back,
+  .project-detail-summary,
+  .project-detail-overview-card p,
+  .project-chart-header p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .project-detail-hero {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    h1 {
+      color: $textColorDark;
+    }
+  }
+
+  .project-detail-meta div,
+  .project-detail-overview-card,
+  .project-detail-prose-card,
+  .project-flow-group,
+  .project-chart-card,
+  .project-demo-card,
+  .project-detail-link-card {
+    background: rgba(24, 20, 17, 0.92);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .project-detail-meta div strong,
+  .project-detail-section-header h2,
+  .project-detail-list,
+  .project-flow-group h3,
+  .project-chart-header h3,
+  .project-demo-card h3,
+  .project-flow-step,
+  .project-chart-node,
+  .project-detail-link-card strong {
+    color: $textColorDark;
+  }
+
+  .project-detail-meta div span {
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  .project-flow-step,
+  .project-chart-node {
+    background: rgba(156, 95, 59, 0.18);
+  }
+}
+
+@media (max-width: 900px) {
+  .project-detail-meta,
+  .project-detail-overview-grid,
+  .project-detail-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-chart-lane {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-detail-page {
+    padding: 28px 16px 56px;
+  }
+
+  .project-detail-summary {
+    font-size: 1rem;
+  }
+
+  .project-flow-step,
+  .project-chart-node {
+    width: 100%;
+  }
+
+  .project-flow-step::after,
+  .project-chart-node::after {
+    content: "";
+    margin: 0;
+  }
+}

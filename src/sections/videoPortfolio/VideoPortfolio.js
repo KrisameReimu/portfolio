@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect, useMemo} from "react";
 import "./VideoPortfolio.scss";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/motion/Fade";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";
 import {getVideos} from "../../services/contentAPI";

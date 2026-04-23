@@ -6,7 +6,7 @@ import React, {
   useMemo
 } from "react";
 import "./Photography.scss";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/motion/Fade";
 import {getPhotos} from "../../services/contentAPI";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";

@@ -1,7 +1,7 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import GameDevPage from "../pages/GameDevPage";
+import ProjectPage from "../pages/ProjectPage";
 import VideoPage from "../pages/VideoPage";
 import VideoYearPage from "../pages/VideoYearPage";
 import AwardsPage from "../pages/AwardsPage";
@@ -10,6 +10,7 @@ import PhotoYearPage from "../pages/PhotoYearPage";
 import WritingPage from "../pages/WritingPage";
 import WritingYearPage from "../pages/WritingYearPage";
 import ArticlePage from "../pages/ArticlePage";
+import ProjectDetailPage from "../pages/ProjectDetailPage";
 import AboutPage from "../pages/AboutPage";
 import Contact from "../sections/contact/Contact";
 
@@ -39,8 +40,8 @@ export const siteRoutes = [
     navGroup: "primary"
   },
   {
-    path: "/game-dev",
-    element: <GameDevPage />,
+    path: "/projects",
+    element: <ProjectPage />,
     navLabel: "Projects",
     navGroup: "primary"
   },
@@ -69,7 +70,7 @@ export const siteRoutes = [
   },
   {
     path: "/roadmap",
-    element: <Navigate to="/game-dev" replace />,
+    element: <Navigate to="/projects" replace />,
     navGroup: "secondary"
   },
   {
@@ -94,7 +95,12 @@ export const siteRoutes = [
   },
   {
     path: "/lab",
-    element: <Navigate to="/game-dev" replace />,
+    element: <Navigate to="/projects" replace />,
+    navGroup: "alias"
+  },
+  {
+    path: "/game-dev",
+    element: <Navigate to="/projects" replace />,
     navGroup: "alias"
   },
   {
@@ -115,6 +121,11 @@ export const siteRoutes = [
   {
     path: "/articles/:slug",
     element: <ArticlePage />,
+    navGroup: "detail"
+  },
+  {
+    path: "/projects/:slug",
+    element: <ProjectDetailPage />,
     navGroup: "detail"
   },
   {

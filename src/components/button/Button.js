@@ -3,8 +3,10 @@ import {Link} from "react-router-dom";
 import "./Button.scss";
 
 export default function Button({text, className, href, newTab}) {
+  const isHashRoute =
+    typeof href === "string" && (href.startsWith("#") || href.includes("#"));
   const isInternalRoute =
-    typeof href === "string" && href.startsWith("/") && !newTab;
+    typeof href === "string" && href.startsWith("/") && !newTab && !isHashRoute;
 
   return (
     <div className={className}>

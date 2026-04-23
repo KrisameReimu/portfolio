@@ -1,16 +1,27 @@
 import React, {useContext} from "react";
 import "./Footer.scss";
-import {Fade} from "react-reveal";
+import {Fade} from "../motion/Fade";
 import StyleContext from "../../contexts/StyleContext";
+import LanguageContext from "../../contexts/LanguageContext";
 import {socialMediaLinks} from "../../portfolio";
+import siteMeta from "../../config/siteMeta";
+import {formatCopyrightLabel} from "../../utils/siteMeta";
 
 export default function Footer() {
   const {isDark} = useContext(StyleContext);
+  const {language} = useContext(LanguageContext);
+
+  const copyrightLabel = formatCopyrightLabel({
+    ownerName: siteMeta.ownerName,
+    ownerNameZh: siteMeta.ownerNameZh,
+    startYear: siteMeta.copyrightStartYear
+  });
+
   return (
     <Fade bottom duration={1000} distance="5px">
       <div className="footer-div">
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
-          © 2025 Echo Chen (陈琛)
+          {copyrightLabel}
         </p>
         <div className="footer-social-links">
           {socialMediaLinks.github && (
@@ -85,7 +96,7 @@ export default function Footer() {
               : "footer-text footer-tagline"
           }
         >
-          AI Developer × Game Creator × Digital Storyteller
+          {siteMeta.footerTagline[language] || siteMeta.footerTagline.en}
         </p>
       </div>
     </Fade>

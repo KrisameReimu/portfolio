@@ -1,0 +1,131 @@
+{
+  "slug": "multimedia-projects-and-awards",
+  "cardId": "multimedia-awards",
+  "title": {
+    "zh": "Multimedia Projects & Awards",
+    "en": "Multimedia Projects & Awards"
+  },
+  "eyebrow": {
+    "zh": "Communication Layer",
+    "en": "Communication Layer"
+  },
+  "organization": {
+    "zh": "Videos, posters, and competition work",
+    "en": "Videos, posters, and competition work"
+  },
+  "timeframe": {
+    "zh": "2023 - 2026",
+    "en": "2023 - 2026"
+  },
+  "heroYear": "2023-2026",
+  "role": {
+    "zh": "Multimedia Designer / Story Builder",
+    "en": "Multimedia Designer / Story Builder"
+  },
+  "cardType": {
+    "zh": "Communication Layer",
+    "en": "Communication Layer"
+  },
+  "proofTag": {
+    "zh": "Creative Evidence",
+    "en": "Creative Evidence"
+  },
+  "actionLabel": {
+    "zh": "View This Project",
+    "en": "View This Project"
+  },
+  "heroCardDescription": {
+    "zh": "视频、海报与竞赛成果",
+    "en": "Video, poster, and competition outputs"
+  },
+  "heroSummary": {
+    "zh": "这部分展示的是我如何把项目、服务学习和比赛题材转化为更容易被理解与传播的叙事成果。",
+    "en": "This section shows how I turn projects, service-learning work, and competition themes into communication-friendly narrative outputs."
+  },
+  "cardHighlights": [
+    {
+      "zh": "HK videos Competition: Golden & Special Award (2023, 2025)",
+      "en": "HK videos Competition: Golden & Special Award (2023, 2025)"
+    },
+    {
+      "zh": "QS Award in EEE Service Learning (2025)",
+      "en": "QS Award in EEE Service Learning (2025)"
+    },
+    {
+      "zh": "Second Prize in the 2024 Japan Sasakawa Cup",
+      "en": "Second Prize in the 2024 Japan Sasakawa Cup"
+    }
+  ],
+  "overview": [
+    {
+      "label": {"zh": "Focus", "en": "Focus"},
+      "value": {
+        "zh": "视频、海报、竞赛作品和对外传播材料。",
+        "en": "Videos, posters, competition work, and outward-facing communication assets."
+      }
+    },
+    {
+      "label": {"zh": "Value", "en": "Value"},
+      "value": {
+        "zh": "它们说明我不仅能做系统，也能把复杂工作讲清楚、剪出来、展示出去。",
+        "en": "They show that beyond building systems, I can explain complex work clearly, edit it into strong media, and present it outward."
+      }
+    }
+  ],
+  "sections": [
+    {
+      "title": {
+        "zh": "Reading This Line",
+        "en": "Reading This Line"
+      },
+      "items": [
+        {
+          "zh": "把技术或服务项目转成更能被评审、老师和公众理解的 narrative output。",
+          "en": "Turned technical or service projects into narrative outputs that judges, teachers, and public audiences can understand."
+        },
+        {
+          "zh": "长期做视频与比赛交付，训练了我在时间限制下组织内容、控制节奏和表达重点的能力。",
+          "en": "Long-term delivery across videos and competitions strengthened my ability to structure content, control pacing, and communicate priorities under time constraints."
+        }
+      ]
+    }
+  ],
+  "flowGroups": [
+    {
+      "title": {
+        "zh": "Communication Workflow",
+        "en": "Communication Workflow"
+      },
+      "steps": [
+        {
+          "zh": "Understand project context",
+          "en": "Understand project context"
+        },
+        {"zh": "Extract story angle", "en": "Extract story angle"},
+        {"zh": "Build visual material", "en": "Build visual material"},
+        {"zh": "Edit for audience impact", "en": "Edit for audience impact"},
+        {"zh": "Submit / publish / present", "en": "Submit / publish / present"}
+      ]
+    }
+  ],
+  "chartBlocks": [],
+  "demoLinks": [
+    {
+      "label": {
+        "zh": "Video Channel",
+        "en": "Video Channel"
+      },
+      "href": "https://www.youtube.com/@KrisameReimu"
+    }
+  ],
+  "embedVideos": [
+    {
+      "title": {
+        "zh": "Selected Video Work",
+        "en": "Selected Video Work"
+      },
+      "href": "https://www.youtube.com/embed/uvdpACbEzjY"
+    }
+  ],
+  "relatedDocs": []
+}

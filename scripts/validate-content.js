@@ -9,9 +9,11 @@ const files = {
   articles: path.join(contentDir, "index.json"),
   photos: path.join(contentDir, "photos.json"),
   videos: path.join(contentDir, "videos.json"),
-  projects: path.join(contentDir, "projects.json")
+  projects: path.join(contentDir, "projects.json"),
+  projectDetailsIndex: path.join(contentDir, "projects", "index.json")
 };
 const articlesDir = path.join(contentDir, "articles");
+const projectDetailsDir = path.join(contentDir, "projects");
 
 const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
 const articleCategories = new Set(schema.writingCategories || []);
@@ -42,6 +44,25 @@ const readJsonArray = filePath => {
   } catch (error) {
     addError(`Invalid JSON in ${filePath}: ${error.message}`);
     return [];
+  }
+};
+
+const readJsonObject = filePath => {
+  if (!fs.existsSync(filePath)) {
+    addError(`Missing file: ${filePath}`);
+    return {};
+  }
+
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!data || typeof data !== "object" || Array.isArray(data)) {
+      addError(`Expected object JSON: ${filePath}`);
+      return {};
+    }
+    return data;
+  } catch (error) {
+    addError(`Invalid JSON in ${filePath}: ${error.message}`);
+    return {};
   }
 };
 
@@ -241,16 +262,85 @@ const validateProjects = projects => {
   });
 };
 
+const validateProjectDetail = (project, filePath) => {
+  const label = `projectDetail(${project?.slug || path.basename(filePath)})`;
+  if (!project || typeof project !== "object") {
+    addError(`${label} must be an object`);
+    return;
+  }
+  if (!hasText(project.slug)) addError(`${label}.slug is required`);
+  if (!hasText(project.cardId)) addWarning(`${label}.cardId is recommended`);
+  validateI18nObject(project.title, `${label}.title`);
+  validateI18nObject(project.eyebrow, `${label}.eyebrow`, false);
+  validateI18nObject(project.organization, `${label}.organization`, false);
+  validateI18nObject(project.timeframe, `${label}.timeframe`, false);
+  validateI18nObject(project.role, `${label}.role`, false);
+  validateI18nObject(project.heroSummary, `${label}.heroSummary`);
+  validateI18nObject(
+    project.heroCardDescription,
+    `${label}.heroCardDescription`,
+    false
+  );
+  validateI18nObject(project.proofTag, `${label}.proofTag`, false);
+  validateI18nObject(project.actionLabel, `${label}.actionLabel`, false);
+
+  ["overview", "sections", "flowGroups", "chartBlocks"].forEach(key => {
+    if (project[key] !== undefined && !Array.isArray(project[key])) {
+      addError(`${label}.${key} must be an array`);
+    }
+  });
+
+  if (!Array.isArray(project.cardHighlights)) {
+    addWarning(`${label}.cardHighlights should be an array`);
+  }
+};
+
+const validateProjectDetails = index => {
+  const projects = Array.isArray(index.projects) ? index.projects : [];
+  if (!Array.isArray(index.projects)) {
+    addError("project detail index must include a projects array");
+    return [];
+  }
+
+  const seen = new Set();
+  const details = [];
+
+  projects.forEach((item, idx) => {
+    const label = `projectDetailsIndex.projects[${idx}]`;
+    if (!item || typeof item !== "object" || !hasText(item.slug)) {
+      addError(`${label}.slug is required`);
+      return;
+    }
+    if (seen.has(item.slug)) {
+      addError(`project detail index has duplicate slug: ${item.slug}`);
+      return;
+    }
+    seen.add(item.slug);
+
+    const detailPath = path.join(projectDetailsDir, `${item.slug}.json`);
+    const detail = readJsonObject(detailPath);
+    validateProjectDetail(detail, detailPath);
+    if (detail.slug && detail.slug !== item.slug) {
+      addError(`${detailPath} slug must match index slug ${item.slug}`);
+    }
+    if (detail.slug) details.push(detail);
+  });
+
+  return details;
+};
+
 const run = () => {
   const articles = readJsonArray(files.articles);
   const photos = readJsonArray(files.photos);
   const videos = readJsonArray(files.videos);
   const projects = readJsonArray(files.projects);
+  const projectDetailsIndex = readJsonObject(files.projectDetailsIndex);
 
   validateArticles(articles);
   validatePhotos(photos);
   validateVideos(videos);
   validateProjects(projects);
+  const projectDetails = validateProjectDetails(projectDetailsIndex);
 
   const globalIds = new Map();
   [
@@ -260,15 +350,16 @@ const run = () => {
     ["projects", projects]
   ].forEach(([type, list]) => {
     list.forEach(item => {
-      if (!item || !hasText(item.id)) return;
-      if (globalIds.has(item.id)) {
+      const id = item?.id || item?.slug;
+      if (!item || !hasText(id)) return;
+      if (globalIds.has(id)) {
         addError(
-          `Global duplicate id: ${item.id} appears in ${globalIds.get(
-            item.id
+          `Global duplicate id: ${id} appears in ${globalIds.get(
+            id
           )} and ${type}`
         );
       } else {
-        globalIds.set(item.id, type);
+        globalIds.set(id, type);
       }
     });
   });

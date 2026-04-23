@@ -230,6 +230,20 @@
   // Dark Mode Support
   // ============================================
   .dark-mode & {
+    .hero-content {
+      .hero-title {
+        color: $textColorDark;
+      }
+
+      .hero-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero-description {
+        color: rgba(255, 255, 255, 0.68);
+      }
+    }
+
     .visual-wall {
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.15);

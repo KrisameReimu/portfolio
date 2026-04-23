@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext, useMemo} from "react";
-import {Fade} from "react-reveal";
+import {Fade} from "../motion/Fade";
 import LanguageContext from "../../contexts/LanguageContext";
 import {getText, formatDate} from "../../utils/i18n";
 import "./FeaturedVideoCarousel.scss";

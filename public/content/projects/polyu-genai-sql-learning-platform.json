@@ -1,0 +1,301 @@
+{
+  "slug": "polyu-genai-sql-learning-platform",
+  "cardId": "genai-feedback-system",
+  "title": {
+    "zh": "PolyU GenAI SQL Learning Platform",
+    "en": "PolyU GenAI SQL Learning Platform"
+  },
+  "eyebrow": {
+    "zh": "Interview Anchor Project",
+    "en": "Interview Anchor Project"
+  },
+  "organization": {
+    "zh": "GenAI SQL and ShortQuest System, Hong Kong Polytechnic University",
+    "en": "GenAI SQL and ShortQuest System, Hong Kong Polytechnic University"
+  },
+  "timeframe": {
+    "zh": "2025 - 2026",
+    "en": "2025 - 2026"
+  },
+  "heroYear": "2025-2026",
+  "role": {
+    "zh": "Full-stack AI Builder",
+    "en": "Full-stack AI Builder"
+  },
+  "cardType": {
+    "zh": "Interview Anchor Project",
+    "en": "Interview Anchor Project"
+  },
+  "proofTag": {
+    "zh": "Platform + Analytics",
+    "en": "Platform + Analytics"
+  },
+  "actionLabel": {
+    "zh": "View This Project",
+    "en": "View This Project"
+  },
+  "heroCardDescription": {
+    "zh": "assessment、feedback、revision 与 analytics 的教学闭环",
+    "en": "A teaching loop across assessment, feedback, revision, and analytics"
+  },
+  "heroSummary": {
+    "zh": "这是我最适合在面试主讲的项目：一个 AI-supported SQL learning platform，不只是 grading，而是把 assessment、feedback、revision 和 analytics 做成闭环。",
+    "en": "This is the strongest project for me to present in an interview: an AI-supported SQL learning platform that goes beyond grading by connecting assessment, feedback, revision, and analytics into a learning loop."
+  },
+  "cardHighlights": [
+    {
+      "zh": "支持学生多次尝试 SQL / MongoDB-style task，并返回结构化 feedback，而不是只有一次性分数",
+      "en": "Supported repeated attempts for SQL and MongoDB-style tasks with structured feedback instead of one-off scoring"
+    },
+    {
+      "zh": "系统覆盖 student flow、admin / teaching flow、learning records 与 analytics，不只是 isolated demo",
+      "en": "Covered student flow, admin and teaching flow, learning records, and analytics instead of remaining an isolated demo"
+    },
+    {
+      "zh": "近期 repo 工作体现了 domain services 拆分、analytics refinement 与 frontend admin API consolidation",
+      "en": "Recent repo work shows domain service splitting, analytics refinement, and frontend admin API consolidation"
+    }
+  ],
+  "overview": [
+    {
+      "label": {"zh": "Problem", "en": "Problem"},
+      "value": {
+        "zh": "传统 SQL 学习里，学生常常只能拿到分数，却难以知道哪里错、为什么错，也很难回看自己是否真的进步。",
+        "en": "In traditional SQL learning, students often receive a score without understanding what went wrong, why it went wrong, or whether they have actually improved over time."
+      }
+    },
+    {
+      "label": {"zh": "Goal", "en": "Goal"},
+      "value": {
+        "zh": "做一个支持 SQL / NoSQL formative assessment 的完整教学平台，让学生可反复尝试，教师也能获得 learning records 和 analytics。",
+        "en": "Build a complete teaching platform for SQL and NoSQL formative assessment, supporting repeated student attempts while also giving educators learning records and analytics."
+      }
+    },
+    {
+      "label": {"zh": "Outcome", "en": "Outcome"},
+      "value": {
+        "zh": "系统最终覆盖 student flow、grading orchestration、learning records、admin flow 与 analytics，成为真正可用于 teaching and learning reporting 的平台。",
+        "en": "The system ultimately covered student flow, grading orchestration, learning records, admin flow, and analytics, becoming a platform that supports real teaching and learning reporting."
+      }
+    }
+  ],
+  "sections": [
+    {
+      "title": {"zh": "Build Scope", "en": "Build Scope"},
+      "items": [
+        {
+          "zh": "围绕 student solving flow、grading orchestration、learning records 和 analytics 做全栈协同，而不是只做一个 isolated frontend demo。",
+          "en": "Worked across the student solving flow, grading orchestration, learning records, and analytics instead of building an isolated frontend demo."
+        },
+        {
+          "zh": "参与 backend service modularization、API consistency、NoSQL support tightening 等工作，让系统在演进中仍然可维护。",
+          "en": "Contributed to backend service modularization, API consistency, and tighter NoSQL support so the platform remained maintainable as it evolved."
+        },
+        {
+          "zh": "把提交结果进一步转成 learning records 和 analytics，确保系统对学生和教师两端都有持续价值。",
+          "en": "Extended submission results into learning records and analytics so the platform delivers ongoing value to both students and educators."
+        }
+      ]
+    },
+    {
+      "title": {"zh": "Platform Reading", "en": "Platform Reading"},
+      "items": [
+        {
+          "zh": "它符合 educational technology 场景里最关键的要求：不是只自动评分，而是支持 feedback、revision、reflection 和 teaching insight。",
+          "en": "It matches the most important educational technology requirement: not just automatic grading, but support for feedback, revision, reflection, and teaching insight."
+        },
+        {
+          "zh": "项目同时覆盖 frontend、backend、database、AI integration 和 analytics，能完整展示 full-stack thinking。",
+          "en": "The project spans frontend, backend, database, AI integration, and analytics, which makes it a strong demonstration of full-stack thinking."
+        }
+      ]
+    }
+  ],
+  "flowGroups": [
+    {
+      "title": {
+        "zh": "Core Student Learning Loop",
+        "en": "Core Student Learning Loop"
+      },
+      "steps": [
+        {"zh": "Enter assignment code", "en": "Enter assignment code"},
+        {
+          "zh": "Load assignment and schema",
+          "en": "Load assignment and schema"
+        },
+        {
+          "zh": "Write SQL / MongoDB answer",
+          "en": "Write SQL / MongoDB answer"
+        },
+        {
+          "zh": "Run grading logic + LLM prompt",
+          "en": "Run grading logic + LLM prompt"
+        },
+        {
+          "zh": "Return structured feedback",
+          "en": "Return structured feedback"
+        },
+        {"zh": "Persist attempt", "en": "Persist attempt"},
+        {"zh": "Review learning record", "en": "Review learning record"},
+        {"zh": "Revise and retry", "en": "Revise and retry"}
+      ]
+    },
+    {
+      "title": {"zh": "Teaching / Admin Loop", "en": "Teaching / Admin Loop"},
+      "steps": [
+        {"zh": "Manage assignments", "en": "Manage assignments"},
+        {"zh": "Configure rubrics", "en": "Configure rubrics"},
+        {"zh": "Review student records", "en": "Review student records"},
+        {"zh": "Observe analytics", "en": "Observe analytics"},
+        {"zh": "Refine teaching decisions", "en": "Refine teaching decisions"}
+      ]
+    }
+  ],
+  "chartBlocks": [
+    {
+      "title": {"zh": "Platform Architecture", "en": "Platform Architecture"},
+      "caption": {
+        "zh": "这一张图把 student/admin user、Nuxt frontend、Flask API、domain services、PostgreSQL、Redis 和 LLM layer 的关系压缩在一起。",
+        "en": "This chart compresses the relationship between student/admin users, the Nuxt frontend, Flask API, domain services, PostgreSQL, Redis, and the LLM layer."
+      },
+      "lanes": [
+        {
+          "label": {"zh": "Users", "en": "Users"},
+          "nodes": [
+            {"zh": "Student / Admin User", "en": "Student / Admin User"},
+            {"zh": "Nuxt Frontend", "en": "Nuxt Frontend"},
+            {"zh": "Flask API Layer", "en": "Flask API Layer"}
+          ]
+        },
+        {
+          "label": {"zh": "Services", "en": "Services"},
+          "nodes": [
+            {
+              "zh": "catalog / rubrics / submissions",
+              "en": "catalog / rubrics / submissions"
+            },
+            {
+              "zh": "student_records / analytics",
+              "en": "student_records / analytics"
+            },
+            {
+              "zh": "database_service / llm_service",
+              "en": "database_service / llm_service"
+            }
+          ]
+        },
+        {
+          "label": {"zh": "Persistence + AI", "en": "Persistence + AI"},
+          "nodes": [
+            {"zh": "PostgreSQL", "en": "PostgreSQL"},
+            {"zh": "Redis", "en": "Redis"},
+            {"zh": "OpenAI / Azure OpenAI", "en": "OpenAI / Azure OpenAI"}
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "Student Learning Flow Chart",
+        "en": "Student Learning Flow Chart"
+      },
+      "caption": {
+        "zh": "重点不是“模型给分”，而是学生如何通过多次尝试和反馈形成真正的学习闭环。",
+        "en": "The key is not 'the model gives a score', but how students form a real learning loop through repeated attempts and feedback."
+      },
+      "lanes": [
+        {
+          "label": {"zh": "Attempt", "en": "Attempt"},
+          "nodes": [
+            {"zh": "Enter code", "en": "Enter code"},
+            {"zh": "Load task + schema", "en": "Load task + schema"},
+            {"zh": "Write answer", "en": "Write answer"},
+            {"zh": "Precheck", "en": "Precheck"}
+          ]
+        },
+        {
+          "label": {"zh": "Grading", "en": "Grading"},
+          "nodes": [
+            {"zh": "Receive grading request", "en": "Receive grading request"},
+            {"zh": "Load rubric + reference", "en": "Load rubric + reference"},
+            {
+              "zh": "Grade via DB logic + LLM",
+              "en": "Grade via DB logic + LLM"
+            },
+            {
+              "zh": "Return syntax / semantics / feedback",
+              "en": "Return syntax / semantics / feedback"
+            }
+          ]
+        },
+        {
+          "label": {"zh": "Reflection", "en": "Reflection"},
+          "nodes": [
+            {"zh": "Persist submission", "en": "Persist submission"},
+            {"zh": "Update learning record", "en": "Update learning record"},
+            {"zh": "Review and revise", "en": "Review and revise"}
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "Teaching and Analytics Flow Chart",
+        "en": "Teaching and Analytics Flow Chart"
+      },
+      "caption": {
+        "zh": "这部分让平台从 student tool 升级为真正的 teaching platform。",
+        "en": "This is the layer that upgrades the system from a student tool into a real teaching platform."
+      },
+      "lanes": [
+        {
+          "label": {"zh": "Teaching Ops", "en": "Teaching Ops"},
+          "nodes": [
+            {
+              "zh": "Manage assignments / rubrics",
+              "en": "Manage assignments / rubrics"
+            },
+            {"zh": "Students submit work", "en": "Students submit work"},
+            {
+              "zh": "Store attempts and feedback",
+              "en": "Store attempts and feedback"
+            }
+          ]
+        },
+        {
+          "label": {"zh": "Insight", "en": "Insight"},
+          "nodes": [
+            {
+              "zh": "Learning records show progress",
+              "en": "Learning records show progress"
+            },
+            {
+              "zh": "Analytics summarize class trends",
+              "en": "Analytics summarize class trends"
+            },
+            {"zh": "Teachers identify gaps", "en": "Teachers identify gaps"}
+          ]
+        }
+      ]
+    }
+  ],
+  "demoLinks": [
+    {
+      "label": {
+        "zh": "Live Demo",
+        "en": "Live Demo"
+      },
+      "href": "https://genai-sql.eiedev.app/"
+    }
+  ],
+  "embedVideos": [
+    {
+      "title": {
+        "zh": "Platform Demo",
+        "en": "Platform Demo"
+      },
+      "href": "https://genai-sql.eiedev.app/"
+    }
+  ],
+  "relatedDocs": []
+}

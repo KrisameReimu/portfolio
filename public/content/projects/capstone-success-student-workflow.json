@@ -1,0 +1,228 @@
+{
+  "slug": "capstone-success-student-workflow",
+  "cardId": "capstone-success",
+  "title": {
+    "zh": "Capstone Success Student Workflow",
+    "en": "Capstone Success Student Workflow"
+  },
+  "eyebrow": {
+    "zh": "Recent Full-time Work",
+    "en": "Recent Full-time Work"
+  },
+  "organization": {
+    "zh": "EEE DEV TEAM, Hong Kong Polytechnic University",
+    "en": "EEE DEV TEAM, Hong Kong Polytechnic University"
+  },
+  "timeframe": {
+    "zh": "2026",
+    "en": "2026"
+  },
+  "heroYear": "2026",
+  "role": {
+    "zh": "Full-stack AI Developer / Project Assistant",
+    "en": "Full-stack AI Developer / Project Assistant"
+  },
+  "cardType": {
+    "zh": "Recent Full-time Work",
+    "en": "Recent Full-time Work"
+  },
+  "proofTag": {
+    "zh": "Workflow Delivery",
+    "en": "Workflow Delivery"
+  },
+  "actionLabel": {
+    "zh": "View This Project",
+    "en": "View This Project"
+  },
+  "heroCardDescription": {
+    "zh": "从 login 到 submission、result 与 VIVA 的完整 student flow",
+    "en": "A complete student flow from login to submission, result, and VIVA"
+  },
+  "heroSummary": {
+    "zh": "我负责的是 student-side assignment journey：从 OTP login、consent、dashboard，到 assignment submission、history、result 和 VIVA follow-up，把这些页面做成一条连续而可维护的学习流程。",
+    "en": "My work focused on the student-side assignment journey: from OTP login, consent, and dashboard to submission, history, result, and VIVA follow-up, turning separate pages into one connected and maintainable learning flow."
+  },
+  "cardHighlights": [
+    {
+      "zh": "围绕 student journey 交付登录、consent、dashboard、submission、history、result、VIVA 等关键页面与跳转逻辑",
+      "en": "Delivered the key student journey pages and transitions across login, consent, dashboard, submission, history, result, and VIVA"
+    },
+    {
+      "zh": "坚持用 documented API contract 驱动前端接入，而不是把 endpoint 细节散落写死在每个页面里",
+      "en": "Kept the frontend integration driven by documented API contracts instead of scattering endpoint logic across individual pages"
+    },
+    {
+      "zh": "让学生在提交后仍然保有上下文，可以继续查看 history、result 与 AI-supported VIVA follow-up",
+      "en": "Made the post-submission flow continuous so students could move from upload into history, result review, and AI-supported VIVA follow-up"
+    }
+  ],
+  "overview": [
+    {
+      "label": {"zh": "Problem", "en": "Problem"},
+      "value": {
+        "zh": "学生在提交作业、查看历史记录、理解反馈和继续后续讨论时，往往要在割裂页面和不清晰状态之间来回切换。",
+        "en": "Students often have to move through fragmented pages and unclear state transitions when submitting work, tracking attempts, reviewing feedback, and continuing post-submission discussion."
+      }
+    },
+    {
+      "label": {"zh": "Goal", "en": "Goal"},
+      "value": {
+        "zh": "把 student workflow 做成一条完整、可追踪、对 API contract 友好的产品流程，而不是一组互不相连的页面。",
+        "en": "Turn the student workflow into a complete, traceable, API-contract-friendly product flow instead of a set of disconnected pages."
+      }
+    },
+    {
+      "label": {"zh": "Outcome", "en": "Outcome"},
+      "value": {
+        "zh": "最终形成了从 login 到 submission、result、VIVA 的完整学生路径，并通过 shared composables 和 local proxy pattern 提升了集成一致性。",
+        "en": "The result was a complete student path from login to submission, result, and VIVA, with stronger integration consistency through shared composables and local proxy patterns."
+      }
+    }
+  ],
+  "sections": [
+    {
+      "title": {"zh": "Build Scope", "en": "Build Scope"},
+      "items": [
+        {
+          "zh": "把 assignment journey 整理成 parameterized routes，例如 `/assignment/{assignmentId}/submission`、`/history`、`/result`、`/viva`，让页面结构和实体边界更清晰。",
+          "en": "Reshaped the assignment journey into parameterized routes such as `/assignment/{assignmentId}/submission`, `/history`, `/result`, and `/viva`, making the page structure and entity boundaries clearer."
+        },
+        {
+          "zh": "实现并稳定真实的多步文件提交流程：file hash、upload ticket、presigned upload、upload completion、submission creation，而不是只做一个表单上传 UI。",
+          "en": "Implemented and stabilized the real multi-step file submission flow: file hash, upload ticket, presigned upload, upload completion, and submission creation instead of a fake one-step upload UI."
+        },
+        {
+          "zh": "把 API integration logic 从页面里抽离到 shared composables，减少 duplicated fetch logic，保持前端行为更贴近文档化 API contract。",
+          "en": "Pulled API integration logic out of pages into shared composables, reducing duplicated fetch logic and keeping the frontend closer to the documented API contract."
+        }
+      ]
+    },
+    {
+      "title": {"zh": "Project Reading", "en": "Project Reading"},
+      "items": [
+        {
+          "zh": "这个项目的价值不在单个页面，而在于把学生从发现任务到提交、查看结果、继续讨论的完整学习路径做通。",
+          "en": "The value of this project is not a single page, but the completed learning path from task discovery to submission, result review, and follow-up discussion."
+        },
+        {
+          "zh": "它也证明了我不只是做视觉实现，而是会处理 route design、workflow continuity、API discipline 和状态迁移这些真正影响产品质量的部分。",
+          "en": "It also shows that my work is not limited to visual implementation; it includes route design, workflow continuity, API discipline, and state transitions that materially affect product quality."
+        }
+      ]
+    }
+  ],
+  "flowGroups": [
+    {
+      "title": {"zh": "Student Flow", "en": "Student Flow"},
+      "steps": [
+        {"zh": "OTP Login", "en": "OTP Login"},
+        {"zh": "Consent", "en": "Consent"},
+        {"zh": "Dashboard", "en": "Dashboard"},
+        {"zh": "Assignment Submission", "en": "Assignment Submission"},
+        {"zh": "Submission History", "en": "Submission History"},
+        {"zh": "Result Review", "en": "Result Review"},
+        {"zh": "VIVA Follow-up", "en": "VIVA Follow-up"}
+      ]
+    },
+    {
+      "title": {"zh": "Submission Procedure", "en": "Submission Procedure"},
+      "steps": [
+        {"zh": "Load assignment detail", "en": "Load assignment detail"},
+        {"zh": "Derive course detail", "en": "Derive course detail"},
+        {"zh": "Compute SHA-256 hash", "en": "Compute SHA-256 hash"},
+        {"zh": "Request upload ticket", "en": "Request upload ticket"},
+        {"zh": "Upload via presigned URL", "en": "Upload via presigned URL"},
+        {"zh": "Complete upload", "en": "Complete upload"},
+        {"zh": "Create submission", "en": "Create submission"},
+        {"zh": "Redirect to history", "en": "Redirect to history"}
+      ]
+    }
+  ],
+  "chartBlocks": [
+    {
+      "title": {
+        "zh": "Student-facing Flow Chart",
+        "en": "Student-facing Flow Chart"
+      },
+      "caption": {
+        "zh": "这是我在面试里最推荐直接讲的一张图：清楚展示 student journey 是如何被串成一条连续路径的。",
+        "en": "This is the chart I would use first in an interview because it shows how the student journey becomes one continuous path."
+      },
+      "lanes": [
+        {
+          "label": {"zh": "Entry", "en": "Entry"},
+          "nodes": [
+            {"zh": "Student Opens Platform", "en": "Student Opens Platform"},
+            {"zh": "OTP Login", "en": "OTP Login"},
+            {"zh": "Consent Step", "en": "Consent Step"}
+          ]
+        },
+        {
+          "label": {"zh": "Task Flow", "en": "Task Flow"},
+          "nodes": [
+            {"zh": "Dashboard", "en": "Dashboard"},
+            {"zh": "Open Assignment", "en": "Open Assignment"},
+            {"zh": "Assignment Submission", "en": "Assignment Submission"},
+            {
+              "zh": "Upload File + Create Submission",
+              "en": "Upload File + Create Submission"
+            }
+          ]
+        },
+        {
+          "label": {"zh": "Post-submission", "en": "Post-submission"},
+          "nodes": [
+            {"zh": "Submission History", "en": "Submission History"},
+            {"zh": "View Result", "en": "View Result"},
+            {"zh": "Open VIVA", "en": "Open VIVA"}
+          ]
+        }
+      ]
+    },
+    {
+      "title": {"zh": "Architecture Flow", "en": "Architecture Flow"},
+      "caption": {
+        "zh": "页面层保持 student-facing，shared composables 和 local Nuxt API proxy 承担了主要集成职责。",
+        "en": "The page layer stays student-facing while shared composables and local Nuxt API proxy routes handle the integration work."
+      },
+      "lanes": [
+        {
+          "label": {"zh": "UI Pages", "en": "UI Pages"},
+          "nodes": [
+            {"zh": "login.vue", "en": "login.vue"},
+            {"zh": "dashboard.vue", "en": "dashboard.vue"},
+            {"zh": "submission.vue", "en": "submission.vue"},
+            {
+              "zh": "history.vue / result.vue / viva.vue",
+              "en": "history.vue / result.vue / viva.vue"
+            }
+          ]
+        },
+        {
+          "label": {"zh": "Shared Logic", "en": "Shared Logic"},
+          "nodes": [
+            {"zh": "useCapstoneAuthApi", "en": "useCapstoneAuthApi"},
+            {"zh": "useCapstoneContentApi", "en": "useCapstoneContentApi"},
+            {"zh": "useCapstoneContentFetch", "en": "useCapstoneContentFetch"}
+          ]
+        },
+        {
+          "label": {"zh": "Backend Integration", "en": "Backend Integration"},
+          "nodes": [
+            {
+              "zh": "server/api/auth/[...path].ts",
+              "en": "server/api/auth/[...path].ts"
+            },
+            {
+              "zh": "server/api/content/[...path].ts",
+              "en": "server/api/content/[...path].ts"
+            },
+            {"zh": "Auth API + Content API", "en": "Auth API + Content API"}
+          ]
+        }
+      ]
+    }
+  ],
+  "demoLinks": [],
+  "relatedDocs": []
+}

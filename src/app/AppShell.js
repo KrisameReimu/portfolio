@@ -51,7 +51,12 @@ const AppShell = () => {
           {isShowingSplashAnimation && splashScreen.enabled ? (
             <SplashScreen />
           ) : (
-            <Router>
+            <Router
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true
+              }}
+            >
               <ScrollToTop />
               <Header />
               {characterSection.display && <CharacterNPC />}

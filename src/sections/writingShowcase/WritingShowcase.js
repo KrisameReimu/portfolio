@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useContext, useState} from "react";
 import {Link} from "react-router-dom";
 import "./WritingShowcase.scss";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/motion/Fade";
 import {getArticles} from "../../services/contentAPI";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";

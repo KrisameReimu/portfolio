@@ -179,6 +179,34 @@
   }
 }
 
+.project-dossier-focus,
+.project-dossier-impact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid $pretextRule;
+  background: rgba(149, 95, 59, 0.04);
+}
+
+.project-dossier-section-label {
+  color: $pretextAccent;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-dossier-bullets-focus {
+  padding-left: 1.1rem;
+}
+
+.project-dossier-impact p {
+  margin: 0;
+  color: $pretextMuted;
+  line-height: 1.7;
+}
+
 .project-dossier-footer {
   display: flex;
   align-items: center;
@@ -202,14 +230,17 @@
 .dark-mode .project-dossier-title,
 .dark-mode .project-dossier-organization,
 .dark-mode .project-dossier-proof strong,
-.dark-mode .project-dossier-bullets {
+.dark-mode .project-dossier-bullets,
+.dark-mode .project-dossier-section-label {
   color: $textColorDark;
 }
 
 .dark-mode .projects-dossier-intro,
 .dark-mode .dossier-signal,
 .dark-mode .project-dossier-card,
-.dark-mode .project-dossier-proof {
+.dark-mode .project-dossier-proof,
+.dark-mode .project-dossier-focus,
+.dark-mode .project-dossier-impact {
   background: rgba(24, 20, 17, 0.92);
 }
 
@@ -217,7 +248,8 @@
 .dark-mode .project-dossier-time,
 .dark-mode .projects-intro,
 .dark-mode .projects-empty,
-.dark-mode .dossier-subtitle {
+.dark-mode .dossier-subtitle,
+.dark-mode .project-dossier-impact p {
   color: rgba(255, 255, 255, 0.75);
 }
 

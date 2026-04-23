@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect, useMemo} from "react";
 import "./GameDevShowcase.scss";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/motion/Fade";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";
 import {getGameProjects} from "../../services/contentAPI";

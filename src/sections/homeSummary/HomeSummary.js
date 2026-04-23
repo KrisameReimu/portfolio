@@ -79,7 +79,7 @@ const HomeSummary = () => {
         zh: "WAIE 2025 发表（IEEE 联合支持）",
         en: "Published at WAIE 2025 (co-sponsored by IEEE)"
       },
-      to: "/game-dev",
+      to: "/projects",
       action: {zh: "查看项目页", en: "Open projects"}
     },
     {
@@ -104,7 +104,7 @@ const HomeSummary = () => {
         zh: "教育 AI、自动评分、多媒体项目与正式交付的系统实现。",
         en: "Educational AI systems, auto-grading, multimedia work, and shipped implementation."
       },
-      to: "/game-dev",
+      to: "/projects",
       action: {zh: "打开档案", en: "Open dossier"}
     },
     {

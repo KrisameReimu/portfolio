@@ -44,7 +44,9 @@ npm run new:article -- --id your-article-id --title-zh "中文标题" --date 202
 
 - Photos index: `public/content/photos.json`
 - Videos index: `public/content/videos.json`
-- Projects index: `public/content/projects.json`
+- Legacy game-project index: `public/content/projects.json`
+- Project dossier index: `public/content/projects/index.json`
+- Project dossier detail: `public/content/projects/<slug>.json`
 
 - Create photo:
 
