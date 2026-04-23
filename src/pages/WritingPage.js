@@ -1,11 +1,12 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
 import WritingShowcase from "../sections/writingShowcase/WritingShowcase";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getArticles} from "../services/contentAPI";
 import {openHeroTarget} from "../utils/heroNavigation";
+import {writingPageCopy} from "../config/pages/writingPage";
 import "./WritingPage.scss";
 
 export default function WritingPage() {
@@ -15,47 +16,6 @@ export default function WritingPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [articles, setArticles] = useState([]);
   const [isLoadingYears, setIsLoadingYears] = useState(true);
-
-  const copy = {
-    title: {
-      zh: "Writing",
-      en: "Writing"
-    },
-    subtitle: {
-      zh: "文章不是装饰，而是个人观点和长期表达的证据。",
-      en: "Essays are not decoration here. They are evidence of voice, thought, and long-form expression."
-    },
-    lead: {
-      zh: "这一页保持编辑部式结构：先放成文作品，再按年份归档，不额外堆模板组件。",
-      en: "This page keeps an editorial structure: published pieces first, year archive second, without extra template filler."
-    },
-    tabs: {
-      all: {
-        zh: "文章列表",
-        en: "Article List"
-      },
-      years: {
-        zh: "按年份",
-        en: "By Year"
-      }
-    },
-    explore: {
-      zh: "进入该年度",
-      en: "Explore Year"
-    },
-    postCount: {
-      zh: "篇文章",
-      en: "articles"
-    },
-    latest: {
-      zh: "最近更新",
-      en: "Last update"
-    },
-    loading: {
-      zh: "正在加载年份归档...",
-      en: "Loading yearly archive..."
-    }
-  };
 
   useEffect(() => {
     let mounted = true;
@@ -108,10 +68,7 @@ export default function WritingPage() {
         year: (article.publishedDate || "").slice(0, 4),
         title: article.title,
         description: article.excerpt,
-        cta: {
-          zh: "Read Article",
-          en: "Read Article"
-        },
+        cta: writingPageCopy.heroCta.article,
         href: `/articles/${article.slug || article.id}`
       }));
     }
@@ -119,8 +76,8 @@ export default function WritingPage() {
     return yearCards.slice(0, 3).map(item => ({
       year: item.year,
       title: {
-        zh: `${item.year} 写作归档`,
-        en: `${item.year} Writing Archive`
+        zh: `${item.year} ${writingPageCopy.archiveTitle.zh}`,
+        en: `${item.year} ${writingPageCopy.archiveTitle.en}`
       },
       description: {
         zh: `${item.count} 篇文章，最近更新 ${formatDate(
@@ -132,21 +89,18 @@ export default function WritingPage() {
           "en"
         )}`
       },
-      cta: {
-        zh: "Open Year",
-        en: "Open Year"
-      },
+      cta: writingPageCopy.heroCta.year,
       href: `/writing/${item.year}`
     }));
   }, [articles, yearCards]);
 
   return (
     <div className="page-container">
-      <DynamicLandingHero
-        title={copy.title}
-        subtitle={copy.subtitle}
-        description={copy.lead}
-        visualType="interactive-feature"
+      <PageHero
+        pageKey="writing"
+        title={writingPageCopy.title}
+        subtitle={writingPageCopy.subtitle}
+        description={writingPageCopy.lead}
         mediaItems={heroCards}
         onMediaItemClick={item =>
           openHeroTarget({
@@ -155,8 +109,6 @@ export default function WritingPage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#667eea"
-        className="writing-landing-hero"
       />
       <div className="archive-tabs">
         <button
@@ -164,14 +116,14 @@ export default function WritingPage() {
           onClick={() => setActiveTab("all")}
           type="button"
         >
-          {getText(copy.tabs.all, language)}
+          {getText(writingPageCopy.tabs.all, language)}
         </button>
         <button
           className={activeTab === "years" ? "active" : ""}
           onClick={() => setActiveTab("years")}
           type="button"
         >
-          {getText(copy.tabs.years, language)}
+          {getText(writingPageCopy.tabs.years, language)}
         </button>
       </div>
 
@@ -182,7 +134,7 @@ export default function WritingPage() {
           {isLoadingYears && (
             <div className="archive-card">
               <div className="archive-content">
-                <p>{getText(copy.loading, language)}</p>
+                <p>{getText(writingPageCopy.loading, language)}</p>
               </div>
             </div>
           )}
@@ -192,14 +144,14 @@ export default function WritingPage() {
                 <div className="archive-content">
                   <span className="archive-label">{item.year}</span>
                   <h3>
-                    {item.count} {getText(copy.postCount, language)}
+                    {item.count} {getText(writingPageCopy.postCount, language)}
                   </h3>
                   <p>
-                    {getText(copy.latest, language)}:{" "}
+                    {getText(writingPageCopy.latest, language)}:{" "}
                     {formatDate(item.latestDate, language)}
                   </p>
                   <Link to={`/writing/${item.year}`} className="archive-link">
-                    {getText(copy.explore, language)} →
+                    {getText(writingPageCopy.explore, language)} →
                   </Link>
                 </div>
               </div>

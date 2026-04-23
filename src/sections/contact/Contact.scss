@@ -41,6 +41,60 @@
   margin-top: 1.5rem;
 }
 
+.contact-email-panel {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.contact-email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-email-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba($textColor, 0.16);
+  border-radius: 999px;
+  background: $textColor;
+  color: $lightBackground1;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.78rem 1.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.contact-email-button:hover {
+  background: #9c5f3b;
+  color: $lightBackground1;
+  transform: translateY(-2px);
+}
+
+.contact-email-button--ghost {
+  background: transparent;
+  color: $textColor;
+  font-family: inherit;
+}
+
+.dark-mode .contact-email-button {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: $textColorDark;
+  color: #16120f;
+}
+
+.dark-mode .contact-email-button--ghost {
+  background: transparent;
+  color: $textColorDark;
+}
+
 .contact-margin-top {
   margin-top: 4rem;
 }
@@ -113,6 +167,14 @@
   .contact-detail,
   .contact-detail-email {
     font-size: 20px;
+  }
+
+  .contact-email-panel {
+    align-items: center;
+  }
+
+  .contact-email-actions {
+    justify-content: center;
   }
 
   .contact-image-div {

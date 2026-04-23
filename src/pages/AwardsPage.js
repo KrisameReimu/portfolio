@@ -2,7 +2,7 @@ import React, {useContext, useMemo} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import StyleContext from "../contexts/StyleContext";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import {getText} from "../utils/i18n";
 import {certificationCards} from "../data/certifications";
 import AchievementCard from "../components/achievementCard/AchievementCard";
@@ -117,7 +117,8 @@ export default function AwardsPage() {
 
   return (
     <div className="page-container awards-page">
-      <DynamicLandingHero
+      <PageHero
+        pageKey="awards"
         title={copy.title}
         subtitle={copy.subtitle}
         description={{
@@ -133,8 +134,6 @@ export default function AwardsPage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#FFD700"
-        className="awards-landing-hero"
       />
 
       <div className="awards-sections">

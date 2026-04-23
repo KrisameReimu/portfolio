@@ -1,7 +1,7 @@
 import React, {useContext, useMemo, useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./PhotoArchivePage.scss";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
@@ -168,7 +168,8 @@ export default function PhotoArchivePage() {
 
   return (
     <div className="page-container">
-      <DynamicLandingHero
+      <PageHero
+        pageKey="photos"
         title={copy.title}
         subtitle={copy.subtitle}
         description={{
@@ -184,8 +185,6 @@ export default function PhotoArchivePage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#4c6ef5"
-        className="photo-archive-landing-hero"
       />
 
       <section className="photo-archive-notes" id="archive-rules">

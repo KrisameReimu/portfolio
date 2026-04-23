@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import {getText} from "../utils/i18n";
 import {greeting} from "../portfolio";
 import {openHeroTarget} from "../utils/heroNavigation";
@@ -188,11 +188,11 @@ export default function AboutPage() {
 
   return (
     <div className="page-container about-page">
-      <DynamicLandingHero
+      <PageHero
+        pageKey="about"
         title={copy.title}
         subtitle={copy.subtitle}
         description={copy.intro}
-        visualType="interactive-feature"
         mediaItems={heroCards}
         onMediaItemClick={item =>
           openHeroTarget({
@@ -201,8 +201,6 @@ export default function AboutPage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#1976D2"
-        className="about-landing-hero"
       />
 
       <section className="about-block" id="profile-signals">

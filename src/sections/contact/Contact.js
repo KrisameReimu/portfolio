@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import "./Contact.scss";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import {illustration, contactInfo} from "../../portfolio";
@@ -9,10 +9,35 @@ import StyleContext from "../../contexts/StyleContext";
 import LanguageContext from "../../contexts/LanguageContext";
 import {getText} from "../../utils/i18n";
 import DonatePanel from "../../components/donatePanel/DonatePanel";
+import {contactPageCopy} from "../../config/pages/contactPage";
+
+const buildMailtoLink = (emailAddress, subject, body) => {
+  const params = new URLSearchParams({
+    subject,
+    body
+  });
+  return `mailto:${emailAddress}?${params.toString()}`;
+};
 
 export default function Contact() {
   const {isDark} = useContext(StyleContext);
   const {language} = useContext(LanguageContext);
+  const [hasCopiedEmail, setHasCopiedEmail] = useState(false);
+  const emailAddress = contactInfo.email_address;
+  const mailtoLink = buildMailtoLink(
+    emailAddress,
+    getText(contactPageCopy.emailSubject, language),
+    getText(contactPageCopy.emailBody, language)
+  );
+
+  const copyEmailAddress = async () => {
+    if (!navigator.clipboard) return;
+
+    await navigator.clipboard.writeText(emailAddress);
+    setHasCopiedEmail(true);
+    window.setTimeout(() => setHasCopiedEmail(false), 1800);
+  };
+
   return (
     <Fade bottom duration={1000} distance="20px">
       <div className="main contact-margin-top" id="contact">
@@ -47,23 +72,35 @@ export default function Contact() {
                   <br />
                 </>
               )}
-              <a
-                className="contact-detail-email"
-                href={"mailto:" + contactInfo.email_address}
-              >
-                {contactInfo.email_address}
-              </a>
+              <div className="contact-email-panel">
+                <a className="contact-detail-email" href={mailtoLink}>
+                  {emailAddress}
+                </a>
+                <div className="contact-email-actions">
+                  <a className="contact-email-button" href={mailtoLink}>
+                    {getText(contactPageCopy.emailAction, language)}
+                  </a>
+                  <button
+                    className="contact-email-button contact-email-button--ghost"
+                    type="button"
+                    onClick={copyEmailAddress}
+                  >
+                    {getText(
+                      hasCopiedEmail
+                        ? contactPageCopy.copiedEmail
+                        : contactPageCopy.copyEmail,
+                      language
+                    )}
+                  </button>
+                </div>
+              </div>
               <br />
               <br />
               <SocialMedia />
               <div className="contact-qr">
-                <h3>
-                  {language === "zh" ? "微信公众号" : "WeChat Official Account"}
-                </h3>
+                <h3>{getText(contactPageCopy.qrTitle, language)}</h3>
                 <p className="contact-qr-subtitle">
-                  {language === "zh"
-                    ? "扫码关注，获取最新文章与作品更新"
-                    : "Scan to follow and get the latest updates"}
+                  {getText(contactPageCopy.qrSubtitle, language)}
                 </p>
                 <img src="/wechat_qrcode_echo.jpg" alt="WeChat QR Code" />
               </div>

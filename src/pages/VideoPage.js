@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useMemo, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import VideoPortfolio from "../sections/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
@@ -80,7 +80,8 @@ export default function VideoPage() {
 
   return (
     <div className="page-container">
-      <DynamicLandingHero
+      <PageHero
+        pageKey="videos"
         title={copy.title}
         subtitle={copy.subtitle}
         description={{
@@ -98,8 +99,6 @@ export default function VideoPage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#4A90E2"
-        className="videos-landing-hero"
       />
 
       {/* 精选视频轮动Hero */}

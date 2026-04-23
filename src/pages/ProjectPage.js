@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import Projects from "../sections/projects/Projects";
-import DynamicLandingHero from "../components/dynamicLandingHero/DynamicLandingHero";
+import PageHero from "../components/pageHero/PageHero";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {openHeroTarget} from "../utils/heroNavigation";
@@ -46,11 +46,11 @@ export default function ProjectPage() {
 
   return (
     <div className="page-container projects-page">
-      <DynamicLandingHero
+      <PageHero
+        pageKey="projects"
         title={projectsPageCopy.hero.title}
         subtitle={projectsPageCopy.hero.subtitle}
         description={projectsPageCopy.hero.description}
-        visualType="interactive-feature"
         mediaItems={heroCards}
         onMediaItemClick={item =>
           openHeroTarget({
@@ -59,8 +59,6 @@ export default function ProjectPage() {
             currentPathname: location.pathname
           })
         }
-        accentColor="#9C27B0"
-        className="projects-landing-hero"
       />
 
       <section className="projects-section selected-work-section">

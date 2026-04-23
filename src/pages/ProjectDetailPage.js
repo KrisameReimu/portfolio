@@ -4,6 +4,9 @@ import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getProjectDetailBySlug} from "../services/projectContent";
 import {projectDetailPageCopy} from "../config/pages/projectsPage";
+import CaseStudyHero from "../components/caseStudy/CaseStudyHero";
+import CaseStudySectionHeader from "../components/caseStudy/CaseStudySectionHeader";
+import ImageChartGallery from "../components/caseStudy/ImageChartGallery";
 import "./ProjectDetailPage.scss";
 
 const getEmbedUrl = href => {
@@ -73,198 +76,206 @@ export default function ProjectDetailPage() {
   return (
     <div className="project-detail-page">
       <div className="project-detail-shell">
-        <Link to="/projects" className="project-detail-back">
-          ← {getText(projectDetailPageCopy.back, language)}
-        </Link>
+        <CaseStudyHero
+          project={project}
+          language={language}
+          backLabel={projectDetailPageCopy.back}
+          metaLabels={projectDetailPageCopy.metaLabels}
+        />
 
-        <header className="project-detail-hero">
-          <span className="project-detail-eyebrow">
-            {getText(project.eyebrow, language)}
-          </span>
-          <h1>{getText(project.title, language)}</h1>
-          <p className="project-detail-summary">
-            {getText(project.heroSummary, language)}
-          </p>
-          <div className="project-detail-meta">
-            <div>
-              <span>
-                {getText(
-                  projectDetailPageCopy.metaLabels.organization,
-                  language
-                )}
-              </span>
-              <strong>{getText(project.organization, language)}</strong>
-            </div>
-            <div>
-              <span>
-                {getText(projectDetailPageCopy.metaLabels.role, language)}
-              </span>
-              <strong>{getText(project.role, language)}</strong>
-            </div>
-            <div>
-              <span>
-                {getText(projectDetailPageCopy.metaLabels.time, language)}
-              </span>
-              <strong>{getText(project.timeframe, language)}</strong>
-            </div>
-          </div>
-        </header>
+        <div className="project-detail-body">
+          <aside className="project-detail-rail" aria-label="Project sections">
+            <span>{getText(project.proofTag, language)}</span>
+            <a href="#project-scope">Scope</a>
+            <a href="#project-workflow">Workflow</a>
+            <a href="#project-charts">Charts</a>
+            <a href="#project-demos">Demo</a>
+          </aside>
 
-        {project.overview?.length > 0 && (
-          <section className="project-detail-section">
-            <div className="project-detail-overview-grid">
-              {project.overview.map(item => (
-                <article
-                  className="project-detail-overview-card"
-                  key={item.label.en}
-                >
-                  <span>{getText(item.label, language)}</span>
-                  <p>{getText(item.value, language)}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {project.sections?.map(section => (
-          <section className="project-detail-section" key={section.title.en}>
-            <div className="project-detail-section-header">
-              <h2>{getText(section.title, language)}</h2>
-            </div>
-            <div className="project-detail-prose-card">
-              <ul className="project-detail-list">
-                {section.items.map(item => (
-                  <li key={item.en}>{getText(item, language)}</li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        ))}
-
-        {project.flowGroups?.length > 0 && (
-          <section className="project-detail-section">
-            <div className="project-detail-section-header">
-              <h2>{getText(projectDetailPageCopy.sections.flow, language)}</h2>
-            </div>
-            <div className="project-flow-group-stack">
-              {project.flowGroups.map(group => (
-                <article className="project-flow-group" key={group.title.en}>
-                  <h3>{getText(group.title, language)}</h3>
-                  <div className="project-flow-steps">
-                    {group.steps.map(step => (
-                      <div className="project-flow-step" key={step.en}>
-                        {getText(step, language)}
-                      </div>
+          <main className="project-detail-main">
+            {project.sections?.map((section, index) => (
+              <section
+                className="project-detail-section"
+                id={index === 0 ? "project-scope" : undefined}
+                key={section.title.en}
+              >
+                <CaseStudySectionHeader
+                  eyebrow={`0${index + 1}`}
+                  title={section.title}
+                  language={language}
+                />
+                <div className="project-detail-prose-card">
+                  <ul className="project-detail-list">
+                    {section.items.map(item => (
+                      <li key={item.en}>{getText(item, language)}</li>
                     ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                  </ul>
+                </div>
+              </section>
+            ))}
 
-        {project.chartBlocks?.length > 0 && (
-          <section className="project-detail-section">
-            <div className="project-detail-section-header">
-              <h2>
-                {getText(projectDetailPageCopy.sections.charts, language)}
-              </h2>
-            </div>
-            <div className="project-chart-stack">
-              {project.chartBlocks.map(block => (
-                <article className="project-chart-card" key={block.title.en}>
-                  <div className="project-chart-header">
-                    <h3>{getText(block.title, language)}</h3>
-                    {block.caption && <p>{getText(block.caption, language)}</p>}
-                  </div>
-                  <div className="project-chart-lanes">
-                    {block.lanes.map(lane => (
-                      <div className="project-chart-lane" key={lane.label.en}>
-                        <span className="project-chart-lane-label">
-                          {getText(lane.label, language)}
-                        </span>
-                        <div className="project-chart-nodes">
-                          {lane.nodes.map(node => (
-                            <div className="project-chart-node" key={node.en}>
-                              {getText(node, language)}
+            {project.flowGroups?.length > 0 && (
+              <section className="project-detail-section" id="project-workflow">
+                <CaseStudySectionHeader
+                  eyebrow="03"
+                  title={projectDetailPageCopy.sections.flow}
+                  language={language}
+                />
+                <div className="project-flow-group-stack">
+                  {project.flowGroups.map(group => (
+                    <article
+                      className="project-flow-group"
+                      key={group.title.en}
+                    >
+                      <h3>{getText(group.title, language)}</h3>
+                      <div className="project-flow-steps">
+                        {group.steps.map(step => (
+                          <div className="project-flow-step" key={step.en}>
+                            {getText(step, language)}
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {(project.chartBlocks?.length > 0 ||
+              project.imageCharts?.length > 0) && (
+              <section className="project-detail-section" id="project-charts">
+                <CaseStudySectionHeader
+                  eyebrow="04"
+                  title={projectDetailPageCopy.sections.charts}
+                  language={language}
+                />
+
+                {project.chartBlocks?.length > 0 && (
+                  <div className="project-chart-stack">
+                    {project.chartBlocks.map(block => (
+                      <article
+                        className="project-chart-card"
+                        key={block.title.en}
+                      >
+                        <div className="project-chart-header">
+                          <h3>{getText(block.title, language)}</h3>
+                          {block.caption && (
+                            <p>{getText(block.caption, language)}</p>
+                          )}
+                        </div>
+                        <div className="project-chart-lanes">
+                          {block.lanes.map(lane => (
+                            <div
+                              className="project-chart-lane"
+                              key={lane.label.en}
+                            >
+                              <span className="project-chart-lane-label">
+                                {getText(lane.label, language)}
+                              </span>
+                              <div className="project-chart-nodes">
+                                {lane.nodes.map(node => (
+                                  <div
+                                    className="project-chart-node"
+                                    key={node.en}
+                                  >
+                                    {getText(node, language)}
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           ))}
                         </div>
-                      </div>
+                      </article>
                     ))}
                   </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                )}
 
-        {project.imageCharts?.length > 0 && (
-          <section className="project-detail-section">
-            <div className="project-image-chart-stack">
-              {project.imageCharts.map(chart => (
-                <article className="project-image-chart-card" key={chart.src}>
-                  <div className="project-chart-header">
-                    <h3>{getText(chart.title, language)}</h3>
-                    {chart.caption && <p>{getText(chart.caption, language)}</p>}
-                  </div>
-                  <figure className="project-image-chart-figure">
-                    <img
-                      src={chart.src}
-                      alt={getText(chart.alt, language)}
-                      loading="lazy"
-                    />
-                  </figure>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                <ImageChartGallery
+                  charts={project.imageCharts}
+                  language={language}
+                />
+              </section>
+            )}
 
-        {(project.demoLinks?.length > 0 || project.embedVideos?.length > 0) && (
-          <section className="project-detail-section">
-            <div className="project-detail-section-header">
-              <h2>{getText(projectDetailPageCopy.sections.demos, language)}</h2>
-            </div>
-            <div className="project-demo-stack">
-              {project.embedVideos?.map(video => {
-                const embedUrl = getEmbedUrl(video.href);
+            {(project.demoLinks?.length > 0 ||
+              project.embedVideos?.length > 0) && (
+              <section className="project-detail-section" id="project-demos">
+                <CaseStudySectionHeader
+                  eyebrow="05"
+                  title={projectDetailPageCopy.sections.demos}
+                  language={language}
+                />
+                <div className="project-demo-stack">
+                  {project.embedVideos?.map(video => {
+                    const embedUrl = getEmbedUrl(video.href);
 
-                if (!embedUrl) {
-                  return (
-                    <article className="project-demo-card" key={video.title.en}>
-                      <h3>{getText(video.title, language)}</h3>
-                      <a
-                        href={video.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-detail-link"
+                    if (!embedUrl) {
+                      return (
+                        <article
+                          className="project-demo-card"
+                          key={video.title.en}
+                        >
+                          <h3>{getText(video.title, language)}</h3>
+                          <a
+                            href={video.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="project-detail-link"
+                          >
+                            {getText(projectDetailPageCopy.open, language)}
+                          </a>
+                        </article>
+                      );
+                    }
+
+                    return (
+                      <article
+                        className="project-demo-card"
+                        key={video.title.en}
                       >
-                        {getText(projectDetailPageCopy.open, language)}
-                      </a>
-                    </article>
-                  );
-                }
+                        <h3>{getText(video.title, language)}</h3>
+                        <div className="project-demo-embed">
+                          <iframe
+                            src={embedUrl}
+                            title={getText(video.title, language)}
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </article>
+                    );
+                  })}
 
-                return (
-                  <article className="project-demo-card" key={video.title.en}>
-                    <h3>{getText(video.title, language)}</h3>
-                    <div className="project-demo-embed">
-                      <iframe
-                        src={embedUrl}
-                        title={getText(video.title, language)}
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                  {project.demoLinks?.length > 0 && (
+                    <div className="project-detail-link-grid">
+                      {project.demoLinks.map(link => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="project-detail-link-card"
+                        >
+                          <span>{getText(link.label, language)}</span>
+                          <strong>{link.href}</strong>
+                        </a>
+                      ))}
                     </div>
-                  </article>
-                );
-              })}
+                  )}
+                </div>
+              </section>
+            )}
 
-              {project.demoLinks?.length > 0 && (
+            {project.relatedDocs?.length > 0 && (
+              <section className="project-detail-section">
+                <CaseStudySectionHeader
+                  eyebrow="06"
+                  title={projectDetailPageCopy.sections.docs}
+                  language={language}
+                />
                 <div className="project-detail-link-grid">
-                  {project.demoLinks.map(link => (
+                  {project.relatedDocs.map(link => (
                     <a
                       key={link.href}
                       href={link.href}
@@ -277,32 +288,10 @@ export default function ProjectDetailPage() {
                     </a>
                   ))}
                 </div>
-              )}
-            </div>
-          </section>
-        )}
-
-        {project.relatedDocs?.length > 0 && (
-          <section className="project-detail-section">
-            <div className="project-detail-section-header">
-              <h2>{getText(projectDetailPageCopy.sections.docs, language)}</h2>
-            </div>
-            <div className="project-detail-link-grid">
-              {project.relatedDocs.map(link => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="project-detail-link-card"
-                >
-                  <span>{getText(link.label, language)}</span>
-                  <strong>{link.href}</strong>
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
+              </section>
+            )}
+          </main>
+        </div>
       </div>
     </div>
   );
