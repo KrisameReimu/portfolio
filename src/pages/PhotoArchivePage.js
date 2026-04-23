@@ -2,6 +2,7 @@ import React, {useContext, useMemo, useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./PhotoArchivePage.scss";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
@@ -167,7 +168,7 @@ export default function PhotoArchivePage() {
   }, [yearHighlights]);
 
   return (
-    <div className="page-container">
+    <PageSurface pageKey="photos" className="page-container">
       <PageHero
         pageKey="photos"
         title={copy.title}
@@ -234,6 +235,6 @@ export default function PhotoArchivePage() {
           ))}
         </div>
       </section>
-    </div>
+    </PageSurface>
   );
 }

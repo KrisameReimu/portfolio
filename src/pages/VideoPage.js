@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import VideoPortfolio from "../sections/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
@@ -79,7 +80,7 @@ export default function VideoPage() {
   };
 
   return (
-    <div className="page-container">
+    <PageSurface pageKey="videos" className="page-container">
       <PageHero
         pageKey="videos"
         title={copy.title}
@@ -147,6 +148,6 @@ export default function VideoPage() {
           <p>{getText(copy.empty, language)}</p>
         </div>
       )}
-    </div>
+    </PageSurface>
   );
 }

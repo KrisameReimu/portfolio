@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useMemo, useState} from "react";
 import WritingShowcase from "../sections/writingShowcase/WritingShowcase";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getArticles} from "../services/contentAPI";
@@ -95,7 +96,7 @@ export default function WritingPage() {
   }, [articles, yearCards]);
 
   return (
-    <div className="page-container">
+    <PageSurface pageKey="writing" className="page-container">
       <PageHero
         pageKey="writing"
         title={writingPageCopy.title}
@@ -158,6 +159,6 @@ export default function WritingPage() {
             ))}
         </div>
       )}
-    </div>
+    </PageSurface>
   );
 }

@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import StyleContext from "../contexts/StyleContext";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import {getText} from "../utils/i18n";
 import {certificationCards} from "../data/certifications";
 import AchievementCard from "../components/achievementCard/AchievementCard";
@@ -116,7 +117,7 @@ export default function AwardsPage() {
   );
 
   return (
-    <div className="page-container awards-page">
+    <PageSurface pageKey="awards" className="page-container awards-page">
       <PageHero
         pageKey="awards"
         title={copy.title}
@@ -157,6 +158,6 @@ export default function AwardsPage() {
           );
         })}
       </div>
-    </div>
+    </PageSurface>
   );
 }

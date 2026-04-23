@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import {getText} from "../utils/i18n";
 import {greeting} from "../portfolio";
 import {openHeroTarget} from "../utils/heroNavigation";
@@ -187,7 +188,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="page-container about-page">
+    <PageSurface pageKey="about" className="page-container about-page">
       <PageHero
         pageKey="about"
         title={copy.title}
@@ -253,6 +254,6 @@ export default function AboutPage() {
           </a>
         </div>
       )}
-    </div>
+    </PageSurface>
   );
 }

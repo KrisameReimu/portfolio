@@ -1,0 +1,151 @@
+@import "../../_globalColor";
+
+.page-surface {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  transition: background 240ms ease;
+}
+
+.page-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.page-surface--projects {
+  background: radial-gradient(
+      circle at 72% 22%,
+      rgba(156, 39, 176, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(circle at 14% 12%, rgba(156, 95, 59, 0.12), transparent 30%),
+    linear-gradient(180deg, #f8f2ea 0%, #f5eee5 48%, #fbf7f0 100%);
+}
+
+.page-surface--writing {
+  background: radial-gradient(
+      circle at 84% 16%,
+      rgba(102, 126, 234, 0.08),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #f7f4ee 0%, #f4efe7 52%, #fbf7f1 100%);
+}
+
+.page-surface--videos {
+  background: radial-gradient(
+      circle at 76% 18%,
+      rgba(74, 144, 226, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(circle at 20% 82%, rgba(21, 43, 76, 0.06), transparent 24%),
+    linear-gradient(180deg, #f3f6f8 0%, #edf2f6 52%, #f8fbfd 100%);
+}
+
+.page-surface--photos {
+  background: radial-gradient(
+      circle at 78% 20%,
+      rgba(76, 110, 245, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(circle at 18% 84%, rgba(85, 25, 139, 0.07), transparent 26%),
+    linear-gradient(180deg, #f4f2ee 0%, #eeece7 56%, #faf8f3 100%);
+}
+
+.page-surface--awards {
+  background: radial-gradient(
+      circle at 10% 10%,
+      rgba(149, 95, 59, 0.13),
+      transparent 32%
+    ),
+    radial-gradient(circle at 86% 18%, rgba(216, 164, 0, 0.1), transparent 28%),
+    linear-gradient(180deg, #f4f1ed 0%, #eeebe6 52%, #f8f5ef 100%);
+}
+
+.page-surface--about {
+  background: radial-gradient(
+      circle at 12% 10%,
+      rgba(12, 74, 110, 0.11),
+      transparent 32%
+    ),
+    radial-gradient(circle at 82% 18%, rgba(161, 98, 7, 0.1), transparent 28%),
+    linear-gradient(180deg, #f5f2ec 0%, #eeebe4 50%, #faf6ef 100%);
+}
+
+.dark-mode {
+  .page-surface--projects {
+    background: radial-gradient(
+        circle at 74% 18%,
+        rgba(156, 39, 176, 0.18),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 16% 12%,
+        rgba(156, 95, 59, 0.22),
+        transparent 30%
+      ),
+      linear-gradient(180deg, #120f0d 0%, #1b1511 52%, #0f0d0b 100%);
+  }
+
+  .page-surface--writing {
+    background: radial-gradient(
+        circle at 84% 18%,
+        rgba(102, 126, 234, 0.14),
+        transparent 30%
+      ),
+      linear-gradient(180deg, #11100f 0%, #181513 52%, #0e0d0c 100%);
+  }
+
+  .page-surface--videos {
+    background: radial-gradient(
+        circle at 76% 18%,
+        rgba(74, 144, 226, 0.18),
+        transparent 30%
+      ),
+      linear-gradient(180deg, #0c1015 0%, #111923 52%, #090d12 100%);
+  }
+
+  .page-surface--photos {
+    background: radial-gradient(
+        circle at 78% 20%,
+        rgba(76, 110, 245, 0.16),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 18% 84%,
+        rgba(85, 25, 139, 0.12),
+        transparent 28%
+      ),
+      linear-gradient(180deg, #100f12 0%, #151420 52%, #0d0c10 100%);
+  }
+
+  .page-surface--awards {
+    background: radial-gradient(
+        circle at 10% 10%,
+        rgba(149, 95, 59, 0.2),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at 86% 18%,
+        rgba(216, 164, 0, 0.16),
+        transparent 28%
+      ),
+      linear-gradient(180deg, #12100d 0%, #191510 52%, #0f0d0a 100%);
+  }
+
+  .page-surface--about {
+    background: radial-gradient(
+        circle at 12% 10%,
+        rgba(12, 74, 110, 0.16),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at 82% 18%,
+        rgba(161, 98, 7, 0.14),
+        transparent 28%
+      ),
+      linear-gradient(180deg, #0e1012 0%, #141719 52%, #0b0d0e 100%);
+  }
+}

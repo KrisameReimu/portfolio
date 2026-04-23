@@ -1,6 +1,7 @@
 export const pageIdentities = {
   writing: {
     accentColor: "#667eea",
+    pageClassName: "page-surface page-surface--writing",
     heroClassName: "writing-landing-hero",
     visualType: "interactive-feature",
     visualThesis: "Editorial, reflective, archive-led",
@@ -8,6 +9,7 @@ export const pageIdentities = {
   },
   photos: {
     accentColor: "#4c6ef5",
+    pageClassName: "page-surface page-surface--photos",
     heroClassName: "photo-archive-landing-hero",
     visualType: "interactive-feature",
     visualThesis: "Atmospheric, image-first, archive-aware",
@@ -15,6 +17,7 @@ export const pageIdentities = {
   },
   videos: {
     accentColor: "#4a90e2",
+    pageClassName: "page-surface page-surface--videos",
     heroClassName: "videos-landing-hero",
     visualType: "interactive-video",
     emptyVisualType: "video-wall",
@@ -23,6 +26,7 @@ export const pageIdentities = {
   },
   projects: {
     accentColor: "#9c27b0",
+    pageClassName: "page-surface page-surface--projects",
     heroClassName: "projects-landing-hero",
     visualType: "interactive-feature",
     visualThesis: "Technical dossier with visible process",
@@ -30,6 +34,7 @@ export const pageIdentities = {
   },
   awards: {
     accentColor: "#d8a400",
+    pageClassName: "page-surface page-surface--awards",
     heroClassName: "awards-landing-hero",
     visualType: "interactive-feature",
     visualThesis: "Archive board, evidence-first, selective",
@@ -37,6 +42,7 @@ export const pageIdentities = {
   },
   about: {
     accentColor: "#1976d2",
+    pageClassName: "page-surface page-surface--about",
     heroClassName: "about-landing-hero",
     visualType: "interactive-feature",
     visualThesis: "Profile dossier, career signal, working method",

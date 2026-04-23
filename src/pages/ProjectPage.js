@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import Projects from "../sections/projects/Projects";
 import PageHero from "../components/pageHero/PageHero";
+import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {openHeroTarget} from "../utils/heroNavigation";
@@ -45,7 +46,7 @@ export default function ProjectPage() {
   }, []);
 
   return (
-    <div className="page-container projects-page">
+    <PageSurface pageKey="projects" className="page-container projects-page">
       <PageHero
         pageKey="projects"
         title={projectsPageCopy.hero.title}
@@ -91,6 +92,6 @@ export default function ProjectPage() {
           ))}
         </div>
       </section>
-    </div>
+    </PageSurface>
   );
 }
