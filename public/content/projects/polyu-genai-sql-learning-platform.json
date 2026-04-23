@@ -279,6 +279,53 @@
       ]
     }
   ],
+  "imageCharts": [
+    {
+      "title": {
+        "zh": "System Architecture",
+        "en": "System Architecture"
+      },
+      "caption": {
+        "zh": "AI-supported SQL learning platform 的整体结构：用户从 Nuxt frontend 进入，经过 Flask API layer 和 domain services，再连接 PostgreSQL、Redis 与 LLM layer。",
+        "en": "The overall architecture of the AI-supported SQL learning platform: users enter through the Nuxt frontend, pass through the Flask API layer and domain services, then connect to PostgreSQL, Redis, and the LLM layer."
+      },
+      "src": "/content/projects/assets/polyu-genai-sql/system-architecture.png",
+      "alt": {
+        "zh": "System architecture diagram showing student/admin users, Nuxt frontend, Flask API layer, domain services, PostgreSQL, Redis, and LLM layer.",
+        "en": "System architecture diagram showing student/admin users, Nuxt frontend, Flask API layer, domain services, PostgreSQL, Redis, and LLM layer."
+      }
+    },
+    {
+      "title": {
+        "zh": "Core Student Learning Workflow",
+        "en": "Core Student Learning Workflow"
+      },
+      "caption": {
+        "zh": "学生从输入 assignment code、加载 task/schema、提交 SQL 或 MongoDB answer，到获得结构化反馈、持久化成绩、更新 learning record，再继续 revise and retry。",
+        "en": "The student loop from entering an assignment code, loading task/schema, submitting a SQL or MongoDB answer, receiving structured feedback, persisting scores, updating learning records, and revising again."
+      },
+      "src": "/content/projects/assets/polyu-genai-sql/core-student-learning-workflow.png",
+      "alt": {
+        "zh": "Core student learning workflow diagram showing assignment entry, frontend loading, answer writing, precheck, backend grading, persistence, learning record update, and revision loop.",
+        "en": "Core student learning workflow diagram showing assignment entry, frontend loading, answer writing, precheck, backend grading, persistence, learning record update, and revision loop."
+      }
+    },
+    {
+      "title": {
+        "zh": "Teaching and Analytics Workflow",
+        "en": "Teaching and Analytics Workflow"
+      },
+      "caption": {
+        "zh": "教学端通过 assignment/rubric 管理、submission 数据、learning records 和 analytics dashboards，识别学习 gap 与 grading pattern。",
+        "en": "The teaching workflow uses assignment/rubric management, submission data, learning records, and analytics dashboards to identify learning gaps and grading patterns."
+      },
+      "src": "/content/projects/assets/polyu-genai-sql/teaching-and-analytics-workflow.png",
+      "alt": {
+        "zh": "Teaching and analytics workflow diagram showing admin assignment management, student submissions, stored attempts and feedback, learning records, analytics dashboards, and teaching insights.",
+        "en": "Teaching and analytics workflow diagram showing admin assignment management, student submissions, stored attempts and feedback, learning records, analytics dashboards, and teaching insights."
+      }
+    }
+  ],
   "demoLinks": [
     {
       "label": {

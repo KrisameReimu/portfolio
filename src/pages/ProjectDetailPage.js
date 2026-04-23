@@ -199,6 +199,28 @@ export default function ProjectDetailPage() {
           </section>
         )}
 
+        {project.imageCharts?.length > 0 && (
+          <section className="project-detail-section">
+            <div className="project-image-chart-stack">
+              {project.imageCharts.map(chart => (
+                <article className="project-image-chart-card" key={chart.src}>
+                  <div className="project-chart-header">
+                    <h3>{getText(chart.title, language)}</h3>
+                    {chart.caption && <p>{getText(chart.caption, language)}</p>}
+                  </div>
+                  <figure className="project-image-chart-figure">
+                    <img
+                      src={chart.src}
+                      alt={getText(chart.alt, language)}
+                      loading="lazy"
+                    />
+                  </figure>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {(project.demoLinks?.length > 0 || project.embedVideos?.length > 0) && (
           <section className="project-detail-section">
             <div className="project-detail-section-header">

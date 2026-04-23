@@ -76,6 +76,23 @@ const isValidDate = value => {
 
 const hasText = value => typeof value === "string" && value.trim().length > 0;
 
+const validatePublicAssetPath = (value, pathLabel) => {
+  if (!hasText(value)) {
+    addError(`${pathLabel} is required`);
+    return;
+  }
+
+  if (!value.startsWith("/")) {
+    addError(`${pathLabel} must be an absolute public path`);
+    return;
+  }
+
+  const assetPath = path.join(root, "public", value.replace(/^\/+/, ""));
+  if (!fs.existsSync(assetPath)) {
+    addError(`${pathLabel} does not exist: ${assetPath}`);
+  }
+};
+
 const validateI18nObject = (obj, pathLabel, requiredZh = true) => {
   if (!obj || typeof obj !== "object") {
     addError(`${pathLabel} must be an object with zh/en`);
@@ -284,11 +301,23 @@ const validateProjectDetail = (project, filePath) => {
   validateI18nObject(project.proofTag, `${label}.proofTag`, false);
   validateI18nObject(project.actionLabel, `${label}.actionLabel`, false);
 
-  ["overview", "sections", "flowGroups", "chartBlocks"].forEach(key => {
-    if (project[key] !== undefined && !Array.isArray(project[key])) {
-      addError(`${label}.${key} must be an array`);
+  ["overview", "sections", "flowGroups", "chartBlocks", "imageCharts"].forEach(
+    key => {
+      if (project[key] !== undefined && !Array.isArray(project[key])) {
+        addError(`${label}.${key} must be an array`);
+      }
     }
-  });
+  );
+
+  if (Array.isArray(project.imageCharts)) {
+    project.imageCharts.forEach((chart, idx) => {
+      const chartLabel = `${label}.imageCharts[${idx}]`;
+      validateI18nObject(chart.title, `${chartLabel}.title`);
+      validateI18nObject(chart.alt, `${chartLabel}.alt`, false);
+      validateI18nObject(chart.caption, `${chartLabel}.caption`, false);
+      validatePublicAssetPath(chart.src, `${chartLabel}.src`);
+    });
+  }
 
   if (!Array.isArray(project.cardHighlights)) {
     addWarning(`${label}.cardHighlights should be an array`);

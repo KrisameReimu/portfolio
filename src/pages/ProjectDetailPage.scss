@@ -65,6 +65,7 @@
 .project-detail-prose-card,
 .project-flow-group,
 .project-chart-card,
+.project-image-chart-card,
 .project-demo-card {
   border: 1px solid rgba($textColor, 0.08);
   background: rgba(255, 255, 255, 0.74);
@@ -111,6 +112,7 @@
 .project-detail-prose-card,
 .project-flow-group,
 .project-chart-card,
+.project-image-chart-card,
 .project-demo-card,
 .project-detail-link-card {
   padding: 22px 24px;
@@ -149,6 +151,7 @@
 
 .project-flow-group-stack,
 .project-chart-stack,
+.project-image-chart-stack,
 .project-demo-stack {
   display: flex;
   flex-direction: column;
@@ -224,6 +227,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.project-image-chart-card {
+  overflow: hidden;
+}
+
+.project-image-chart-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba($textColor, 0.08);
+  background: #ffffff;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .project-demo-embed {
@@ -303,10 +324,15 @@
   .project-detail-prose-card,
   .project-flow-group,
   .project-chart-card,
+  .project-image-chart-card,
   .project-demo-card,
   .project-detail-link-card {
     background: rgba(24, 20, 17, 0.92);
     border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .project-image-chart-figure {
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
   .project-detail-meta div strong,
