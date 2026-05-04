@@ -129,6 +129,27 @@ CREATE TABLE IF NOT EXISTS subscribers (
 CREATE INDEX IF NOT EXISTS idx_subscribers_created
 ON subscribers(created_at DESC);
 
+-- Contact form messages submitted from the public site.
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  topic TEXT NOT NULL,
+  message TEXT NOT NULL,
+  locale TEXT NOT NULL DEFAULT 'en',
+  source TEXT NOT NULL DEFAULT 'contact-page',
+  page_path TEXT,
+  status TEXT NOT NULL DEFAULT 'new',
+  client_ts TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_contact_messages_created
+ON contact_messages(created_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_contact_messages_status
+ON contact_messages(status, created_at DESC);
+
 -- Generic event stream for analytics and abuse forensics.
 CREATE TABLE IF NOT EXISTS page_events (
   id TEXT PRIMARY KEY,

@@ -1,187 +1,510 @@
 @import "../../_globalColor";
 
-.contact-div-main {
-  display: flex;
+.contact-page {
+  min-height: 100vh;
+  padding: 5rem 2rem 6rem;
 }
 
-.dark-mode a {
-  color: $textColorDark;
-}
-
-.contact-div-main > * {
-  flex: 1;
-}
-
-.contact-title {
-  font-size: 65px;
-  font-weight: 400;
-}
-
-.contact-detail,
-.contact-detail-email {
-  margin-top: 20px;
-  font-size: 40px;
-  font-weight: 400;
-  color: $subTitle;
-  text-decoration: none;
-}
-
-.contact-detail:hover,
-.contact-detail-email:hover {
+.contact-surface--light {
+  background: radial-gradient(
+      circle at 88% 16%,
+      rgba(149, 95, 59, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #f8f2ea 0%, #fbf7f0 100%);
   color: $textColor;
-  text-shadow: 2px 1px 2px $contactDetailHoverTS;
-  transition: all 0.3s;
 }
 
-.contact-subtitle {
+.contact-page,
+.contact-page * {
+  box-sizing: border-box;
+}
+
+.contact-hero,
+.contact-method-grid,
+.donate-panel {
+  width: min(1120px, 100%);
+}
+
+.contact-hero {
+  width: min(1480px, 100%);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  align-items: end;
+  margin: 0 auto 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba($textColor, 0.12);
+}
+
+.contact-hero__copy {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact-social-strip {
+  order: 2;
+}
+
+.contact-hero__copy,
+.contact-social-strip {
+  min-width: 0;
+}
+
+.contact-eyebrow,
+.contact-method-card__label {
+  margin: 0 0 0.8rem;
+  color: $pretextAccent;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
-.contact-text-div {
-  margin-top: 1.5rem;
+.contact-title {
+  margin: 0;
+  color: $textColor;
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: clamp(3rem, 8vw, 6.2rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
 }
 
-.contact-email-panel {
-  display: inline-flex;
-  flex-direction: column;
+.contact-subtitle {
+  max-width: 46rem;
+  margin: 1.2rem 0 0;
+  color: $subTitle;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.7;
+}
+
+.contact-social-strip {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.contact-hero__visual {
+  order: 1;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba($textColor, 0.12);
+  border-radius: 1.35rem;
+  background: rgba(255, 253, 248, 0.62);
+  box-shadow: 0 24px 70px rgba(42, 29, 21, 0.11);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.contact-hero__visual:hover {
+  filter: saturate(1.04);
+  box-shadow: 0 30px 86px rgba(42, 29, 21, 0.15);
+  transform: translateY(-4px);
+}
+
+.contact-hero__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.contact-hero__visual figcaption {
+  display: flex;
+  justify-content: space-between;
   gap: 1rem;
+  padding: 0.72rem 0.85rem 0.78rem;
+  color: rgba($textColor, 0.64);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.contact-hero__visual figcaption span {
+  color: $pretextAccent;
+  font-weight: 800;
+}
+
+.contact-method-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.9fr;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+.contact-method-card {
+  min-height: 15rem;
+  padding: 1.3rem;
+  border: 1px solid rgba($textColor, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.62);
+}
+
+.contact-method-card--primary {
+  grid-column: span 1;
+}
+
+.contact-method-card__value {
+  display: inline-flex;
   max-width: 100%;
+  color: $textColor;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.contact-method-card__value:hover {
+  color: $pretextAccent;
+}
+
+.contact-method-card__note {
+  margin: 1rem 0 0;
+  color: $subTitle;
+  line-height: 1.65;
+}
+
+.contact-method-card--qr {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+}
+
+.contact-method-card--qr img {
+  width: min(100%, 12rem);
+  align-self: end;
+  border: 1px solid rgba($textColor, 0.1);
+  border-radius: 8px;
+  background: $lightBackground1;
+  padding: 0.65rem;
 }
 
 .contact-email-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: 1.2rem;
 }
 
 .contact-email-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.6rem;
   border: 1px solid rgba($textColor, 0.16);
   border-radius: 999px;
   background: $textColor;
   color: $lightBackground1;
   cursor: pointer;
-  font-size: 0.86rem;
+  font-family: inherit;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0.78rem 1.1rem;
+  letter-spacing: 0.07em;
+  padding: 0.72rem 1rem;
   text-decoration: none;
   text-transform: uppercase;
-  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease,
+    border-color 180ms ease;
 }
 
 .contact-email-button:hover {
-  background: #9c5f3b;
+  background: $pretextAccent;
+  border-color: $pretextAccent;
   color: $lightBackground1;
   transform: translateY(-2px);
 }
 
-.contact-email-button--ghost {
-  background: transparent;
-  color: $textColor;
-  font-family: inherit;
+.contact-email-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
 }
 
-.dark-mode .contact-email-button {
-  border-color: rgba(255, 255, 255, 0.18);
+.contact-email-button--ghost,
+.contact-email-button--secondary {
+  background: transparent;
+  color: $textColor;
+}
+
+.contact-surface--dark {
+  background: radial-gradient(
+      circle at 88% 16%,
+      rgba(149, 95, 59, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #120f0d 0%, #0d0b09 100%);
+  color: $textColorDark;
+}
+
+.contact-surface--dark .contact-hero {
+  border-bottom-color: rgba(255, 253, 248, 0.14);
+}
+
+.contact-surface--dark .contact-hero__visual {
+  border-color: rgba(255, 253, 248, 0.14);
+  background: rgba(255, 253, 248, 0.045);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.contact-surface--dark .contact-hero__visual figcaption {
+  color: rgba(255, 253, 248, 0.68);
+}
+
+.contact-surface--dark .contact-title,
+.contact-surface--dark .contact-method-card__value {
+  color: $textColorDark;
+}
+
+.contact-surface--dark .contact-subtitle,
+.contact-surface--dark .contact-method-card__note {
+  color: rgba(255, 253, 248, 0.7);
+}
+
+.contact-surface--dark .contact-method-card {
+  border-color: rgba(255, 253, 248, 0.12);
+  background: rgba(255, 253, 248, 0.045);
+}
+
+.contact-surface--dark .contact-method-card--qr img {
+  border-color: rgba(255, 253, 248, 0.16);
+}
+
+.contact-surface--dark .contact-email-button {
+  border-color: rgba(255, 253, 248, 0.18);
   background: $textColorDark;
   color: #16120f;
 }
 
-.dark-mode .contact-email-button--ghost {
+.contact-surface--dark .contact-email-button:hover {
+  background: $pretextAccent;
+  color: $lightBackground1;
+}
+
+.contact-surface--dark .contact-email-button--ghost,
+.contact-surface--dark .contact-email-button--secondary {
   background: transparent;
   color: $textColorDark;
 }
 
-.contact-margin-top {
-  margin-top: 4rem;
+.contact-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
 }
 
-.contact-image-div > img {
-  max-width: 100%;
-  height: auto;
-  margin-left: 1.5rem;
-  margin-top: -4rem;
+.contact-dialog__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(13, 11, 9, 0.68);
+  cursor: pointer;
 }
 
-.contact-qr {
-  margin-top: 2.5rem;
-  max-width: 240px;
-}
-
-.contact-qr h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+.contact-dialog__panel {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  max-height: min(88vh, 760px);
+  overflow: auto;
+  padding: 1.5rem;
+  border: 1px solid rgba($textColor, 0.14);
+  border-radius: 8px;
+  background: #fffaf2;
+  box-shadow: 0 24px 80px rgba(18, 15, 13, 0.32);
   color: $textColor;
 }
 
-.contact-qr-subtitle {
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
+.contact-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contact-dialog__header h2 {
+  margin: 0;
+  color: $textColor;
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1;
+}
+
+.contact-dialog__close {
+  min-height: 2.2rem;
+  border: 1px solid rgba($textColor, 0.14);
+  border-radius: 999px;
+  background: transparent;
+  color: $textColor;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.45rem 0.8rem;
+  text-transform: uppercase;
+}
+
+.contact-dialog__intro {
+  margin: 0.9rem 0 1.2rem;
   color: $subTitle;
+  line-height: 1.65;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.contact-form-field {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+  color: $textColor;
+  font-weight: 700;
+}
+
+.contact-form-field span {
+  font-size: 0.78rem;
+}
+
+.contact-form-field input,
+.contact-form-field textarea {
+  width: 100%;
+  border: 1px solid rgba($textColor, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  color: $textColor;
+  font: inherit;
+  line-height: 1.5;
+  padding: 0.82rem 0.9rem;
+}
+
+.contact-form-field textarea {
+  resize: vertical;
+}
+
+.contact-dialog__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.contact-form-status {
+  margin: 0;
+  font-size: 0.88rem;
   line-height: 1.5;
 }
 
-.contact-qr img {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid $lightBorder1;
-  background: $lightBackground2;
-  padding: 10px;
+.contact-form-status--success {
+  color: #247342;
 }
 
-.dark-mode .contact-qr h3 {
+.contact-form-status--error {
+  color: #9d382c;
+}
+
+.contact-surface--dark .contact-dialog__panel {
+  border-color: rgba(255, 253, 248, 0.16);
+  background: #18130f;
   color: $textColorDark;
 }
 
-.dark-mode .contact-qr-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+.contact-surface--dark .contact-dialog__header h2,
+.contact-surface--dark .contact-form-field,
+.contact-surface--dark .contact-dialog__close {
+  color: $textColorDark;
 }
 
-/* Media Query */
-@media (max-width: 1380px), (max-width: 768px) {
-  .contact-title {
-    font-size: 56px;
-    font-weight: 400;
-    text-align: center;
+.contact-surface--dark .contact-dialog__intro {
+  color: rgba(255, 253, 248, 0.7);
+}
+
+.contact-surface--dark .contact-dialog__close,
+.contact-surface--dark .contact-form-field input,
+.contact-surface--dark .contact-form-field textarea {
+  border-color: rgba(255, 253, 248, 0.16);
+  background: rgba(255, 253, 248, 0.06);
+  color: $textColorDark;
+}
+
+@media (max-width: 980px) {
+  .contact-hero,
+  .contact-method-grid {
+    grid-template-columns: 1fr;
   }
 
-  .contact-title {
-    font-size: 40px;
-    text-align: center;
+  .contact-hero__visual {
+    grid-row: auto;
   }
 
-  .contact-subtitle {
-    font-size: 16px;
-    line-height: normal;
-    text-align: center;
+  .contact-social-strip {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__visual {
+    transition: none;
   }
 
-  .contact-text-div {
-    text-align: center;
-    margin-top: 1.5rem;
+  .contact-hero__visual:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page {
+    padding: 3.5rem 1rem 4rem;
   }
 
-  .contact-detail,
-  .contact-detail-email {
-    font-size: 20px;
-  }
-
-  .contact-email-panel {
-    align-items: center;
+  .contact-method-card {
+    min-height: auto;
+    padding: 1.05rem;
   }
 
   .contact-email-actions {
-    justify-content: center;
+    flex-direction: column;
   }
 
-  .contact-image-div {
-    display: none;
+  .contact-email-button {
+    width: 100%;
   }
 
-  .contact-qr {
-    margin: 2rem auto 0;
+  .contact-dialog {
+    align-items: flex-end;
+    padding: 0.75rem;
+  }
+
+  .contact-dialog__panel {
+    max-height: 92vh;
+    padding: 1.1rem;
+  }
+
+  .contact-dialog__header,
+  .contact-dialog__footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

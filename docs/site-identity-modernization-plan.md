@@ -18,6 +18,9 @@ This site should not become a generic portfolio template. The durable direction 
 - Keep reusable hero plumbing in `src/components/pageHero/PageHero.js`.
 - Keep authored page copy page-owned or under `src/config/pages/*` when it is reused by multiple components.
 - Keep project case-study content in `public/content/projects/*.json`.
+- Keep generated visual asset prompts and usage metadata in `public/content/visuals/index.json`.
+- Use `docs/visual-asset-direction.md` as the durable direction for GPT-image-2 and other generated visual assets.
+- Use `docs/refero-design-integration.md` when borrowing external Refero style references, tokens, or DESIGN.md files.
 - Build shared components only when reuse is real; page-specific storytelling should remain page-owned.
 
 ## Visual Upgrade Sequence

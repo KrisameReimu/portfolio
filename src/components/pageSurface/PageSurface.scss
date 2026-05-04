@@ -1,6 +1,21 @@
 @import "../../_globalColor";
 
 .page-surface {
+  --page-foreground: #{$textColor};
+  --page-muted: #{$subTitle};
+  --page-soft: rgba(32, 27, 24, 0.58);
+  --page-panel: rgba(255, 255, 255, 0.62);
+  --page-panel-strong: rgba(255, 253, 248, 0.78);
+  --page-border: rgba(32, 27, 24, 0.1);
+  --page-border-strong: rgba(32, 27, 24, 0.16);
+  --page-accent: #{$buttonColor};
+  --page-accent-border: rgba(156, 95, 59, 0.32);
+  --taste-section-gap: clamp(64px, 8vw, 112px);
+  --taste-content-width: min(1120px, calc(100vw - 40px));
+  --taste-reading-width: min(760px, calc(100vw - 40px));
+  --taste-card-radius: 9px;
+  --taste-control-radius: 999px;
+  --taste-hairline: 1px solid var(--page-border);
   position: relative;
   min-height: 100vh;
   isolation: isolate;
@@ -74,7 +89,33 @@
     linear-gradient(180deg, #f5f2ec 0%, #eeebe4 50%, #faf6ef 100%);
 }
 
+.page-surface--now {
+  background: radial-gradient(
+      circle at 16% 14%,
+      rgba(47, 122, 101, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 86% 18%,
+      rgba(170, 127, 87, 0.08),
+      transparent 26%
+    ),
+    linear-gradient(180deg, #f6f3ed 0%, #efebe4 52%, #fbf7f1 100%);
+}
+
 .dark-mode {
+  .page-surface {
+    --page-foreground: #{$textColorDark};
+    --page-muted: rgba(255, 253, 248, 0.72);
+    --page-soft: rgba(255, 253, 248, 0.58);
+    --page-panel: rgba(255, 253, 248, 0.06);
+    --page-panel-strong: rgba(255, 253, 248, 0.1);
+    --page-border: rgba(255, 253, 248, 0.12);
+    --page-border-strong: rgba(255, 253, 248, 0.2);
+    --page-accent: #{$pretextAccent};
+    --page-accent-border: rgba(216, 164, 0, 0.38);
+  }
+
   .page-surface--projects {
     background: radial-gradient(
         circle at 74% 18%,
@@ -147,5 +188,19 @@
         transparent 28%
       ),
       linear-gradient(180deg, #0e1012 0%, #141719 52%, #0b0d0e 100%);
+  }
+
+  .page-surface--now {
+    background: radial-gradient(
+        circle at 18% 14%,
+        rgba(47, 122, 101, 0.18),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 86% 18%,
+        rgba(170, 127, 87, 0.12),
+        transparent 28%
+      ),
+      linear-gradient(180deg, #101211 0%, #151816 52%, #0c0e0d 100%);
   }
 }

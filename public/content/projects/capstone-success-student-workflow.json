@@ -38,6 +38,17 @@
     "zh": "从 login 到 submission、result 与 VIVA 的完整 student flow",
     "en": "A complete student flow from login to submission, result, and VIVA"
   },
+  "flagship": {
+    "priority": 2,
+    "problem": {
+      "zh": "Problem: 把学生从 login 到 result/VIVA 的路径做成连续产品流程",
+      "en": "Problem: turn login-to-result/VIVA into one continuous student product flow"
+    },
+    "medium": {
+      "zh": "Workflow + integration",
+      "en": "Workflow + integration"
+    }
+  },
   "heroSummary": {
     "zh": "我负责的是 student-side assignment journey：从 OTP login、consent、dashboard，到 assignment submission、history、result 和 VIVA follow-up，把这些页面做成一条连续而可维护的学习流程。",
     "en": "My work focused on the student-side assignment journey: from OTP login, consent, and dashboard to submission, history, result, and VIVA follow-up, turning separate pages into one connected and maintainable learning flow."

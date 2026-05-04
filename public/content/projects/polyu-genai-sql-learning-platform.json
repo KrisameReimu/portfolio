@@ -38,6 +38,17 @@
     "zh": "assessment、feedback、revision 与 analytics 的教学闭环",
     "en": "A teaching loop across assessment, feedback, revision, and analytics"
   },
+  "flagship": {
+    "priority": 1,
+    "problem": {
+      "zh": "Problem: 如何把 assessment、feedback、revision 与 analytics 做成教学闭环",
+      "en": "Problem: connect assessment, feedback, revision, and analytics into a teaching loop"
+    },
+    "medium": {
+      "zh": "Platform + analytics",
+      "en": "Platform + analytics"
+    }
+  },
   "heroSummary": {
     "zh": "这是我最适合在面试主讲的项目：一个 AI-supported SQL learning platform，不只是 grading，而是把 assessment、feedback、revision 和 analytics 做成闭环。",
     "en": "This is the strongest project for me to present in an interview: an AI-supported SQL learning platform that goes beyond grading by connecting assessment, feedback, revision, and analytics into a learning loop."

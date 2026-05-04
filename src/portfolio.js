@@ -214,7 +214,14 @@ const contactInfo = {
 
 const supportInfo = {
   display: true,
-  wechatQrImage: "/wechat_qrcode_echo.jpg",
+  fpsIdentifier: "7659766",
+  paymeQrImage: "",
+  fpsQrImage: "",
+  paypalLink: "https://paypal.me/EhoCHEN",
+  paypalQrImage: "/content/support/paypal-qrcode.png",
+  stripePaymentLink: "",
+  wechatTipQrImage: "",
+  alipayQrImage: "",
   paypal: "",
   fps: "",
   alipay: "",

@@ -1,6 +1,7 @@
 import React from "react";
 import DynamicLandingHero from "../dynamicLandingHero/DynamicLandingHero";
 import {getPageIdentity} from "../../config/pageIdentity";
+import {getPageHeroVisual} from "../../config/pages/pageHeroVisuals";
 
 export default function PageHero({
   pageKey,
@@ -17,6 +18,7 @@ export default function PageHero({
   accentColor
 }) {
   const identity = getPageIdentity(pageKey);
+  const heroVisual = getPageHeroVisual(pageKey);
   const heroClassName = [identity.heroClassName, className]
     .filter(Boolean)
     .join(" ");
@@ -32,6 +34,7 @@ export default function PageHero({
       visualContent={visualContent}
       stats={stats}
       images={images}
+      heroVisual={heroVisual}
       accentColor={accentColor || identity.accentColor}
       className={heroClassName}
     />

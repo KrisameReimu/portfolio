@@ -1,0 +1,626 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-04",
+  "recommendedModel": "gpt-image-2",
+  "generationDefaults": {
+    "quality": "high",
+    "outputFormat": "webp",
+    "landscapeSize": "1536x1024",
+    "portraitSize": "1024x1536",
+    "squareSize": "1024x1024"
+  },
+  "sourceNote": {
+    "zh": "这些条目同时记录 GPT-image-2 视觉资产的 prompt、用途索引和已接入图片。status=available 表示图片已经进入 public/content/visuals/assets。",
+    "en": "These entries index GPT-image-2 prompts, intended usage, and integrated images. status=available means the image is already stored under public/content/visuals/assets."
+  },
+  "assets": [
+    {
+      "id": "echo-3d-studio-figurine-design-think-create",
+      "page": "home",
+      "role": "home-primary-character",
+      "status": "available",
+      "type": "generated-brand-character",
+      "title": {
+        "zh": "Echo 3D Studio Figurine",
+        "en": "Echo 3D Studio Figurine"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "首页 signature hero 的主角色视觉，建立个人 IP 气质。",
+        "en": "Primary character visual for the home signature hero, establishing the personal IP tone."
+      },
+      "frontendNotes": {
+        "zh": "适合方形 hero portrait 或 studio card；不要拉成全屏背景。",
+        "en": "Best as a square hero portrait or studio card; do not stretch into a full-screen background."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/brand-character/echo-3d-studio-figurine-design-think-create.jpg",
+        "sourcePath": "public/content/visuals/assets/brand-character/echo-3d-studio-figurine-design-think-create.png"
+      }
+    },
+    {
+      "id": "echo-avatar-focus-create-impact",
+      "page": "home",
+      "role": "supporting-avatar-badge",
+      "status": "available",
+      "type": "generated-brand-character",
+      "title": {
+        "zh": "Echo Focus Create Impact Avatar",
+        "en": "Echo Focus Create Impact Avatar"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "首页或 Now 页的小型友好角色资产，用来弱化过重的作品集感。",
+        "en": "A small friendly character asset for Home or Now, softening the portfolio feel."
+      },
+      "frontendNotes": {
+        "zh": "适合小尺寸 badge、contact card 或状态入口；图中英文不要作为唯一可读信息来源。",
+        "en": "Works as a small badge, contact card, or status entry; the embedded English should not be the only source of readable information."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/brand-character/echo-avatar-focus-create-impact.jpg",
+        "sourcePath": "public/content/visuals/assets/brand-character/echo-avatar-focus-create-impact.png"
+      }
+    },
+    {
+      "id": "echo-personal-ip-character-system-sheet",
+      "page": "home",
+      "role": "brand-system-reference",
+      "status": "available",
+      "type": "generated-brand-character",
+      "title": {
+        "zh": "Echo Personal IP Character System Sheet",
+        "en": "Echo Personal IP Character System Sheet"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "作为个人 IP 视觉系统参考，可用于 About、Now 或后续设计文档。",
+        "en": "Personal IP visual-system reference for About, Now, or future design documentation."
+      },
+      "frontendNotes": {
+        "zh": "信息密度较高，适合缩略预览或详情 lightbox，不适合直接做正文背景。",
+        "en": "High information density; best as a preview or lightbox detail, not as a body background."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/brand-character/echo-personal-ip-character-system-sheet.jpg",
+        "sourcePath": "public/content/visuals/assets/brand-character/echo-personal-ip-character-system-sheet.png"
+      }
+    },
+    {
+      "id": "home-echo-chen-ai-multimedia-storytelling",
+      "page": "home",
+      "role": "signature-landing-visual",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Home Echo Chen AI Multimedia Storytelling",
+        "en": "Home Echo Chen AI Multimedia Storytelling"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "首页 signature landing 的宽幅主视觉，连接 AI、Multimedia 和 Storytelling。",
+        "en": "Wide hero visual for the Home signature landing, connecting AI, multimedia, and storytelling."
+      },
+      "frontendNotes": {
+        "zh": "前端使用 JPEG 派生图；PNG 原图保留为 source。",
+        "en": "Frontend uses the JPEG derivative; PNG is retained as source."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/home-echo-chen-ai-multimedia-storytelling.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/home-echo-chen-ai-multimedia-storytelling-source.png"
+      }
+    },
+    {
+      "id": "writing-essays-reflections-stories-notes",
+      "page": "writing",
+      "role": "editorial-paper-hero",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Writing Essays Reflections Stories Notes",
+        "en": "Writing Essays Reflections Stories Notes"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Writing 页 hero 主视觉，强化写作、反思和 Pretext 纸张语言。",
+        "en": "Hero visual for Writing, reinforcing writing, reflection, and Pretext paper language."
+      },
+      "frontendNotes": {
+        "zh": "图中文字只做氛围；真实文章标题、日期和导航由 HTML 渲染。",
+        "en": "Embedded text is atmospheric only; real article titles, dates, and navigation are rendered in HTML."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/writing-essays-reflections-stories-notes.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/writing-essays-reflections-stories-notes-source.png"
+      }
+    },
+    {
+      "id": "photos-moments-places-stories-archive",
+      "page": "photos",
+      "role": "gallery-entrance-atmosphere",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Photos Moments Places Stories Archive",
+        "en": "Photos Moments Places Stories Archive"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Photos 页展览入口视觉；真实照片集上线后仍以真实照片为主。",
+        "en": "Exhibition entrance visual for Photos; real curated photo sets should remain primary once published."
+      },
+      "frontendNotes": {
+        "zh": "作为 generated atmosphere 使用，不冒充真实照片归档。",
+        "en": "Use as generated atmosphere, not as a substitute for the real photo archive."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/photos-moments-places-stories-archive.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/photos-moments-places-stories-archive-source.png"
+      }
+    },
+    {
+      "id": "videos-filmmaking-editing-visual-stories",
+      "page": "videos",
+      "role": "cinematic-title-wall",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Videos Filmmaking Editing Visual Stories",
+        "en": "Videos Filmmaking Editing Visual Stories"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Videos 页 hero 主视觉，建立 filmmaking、editing 和 visual stories 的页面气质。",
+        "en": "Hero visual for Videos, establishing a filmmaking, editing, and visual-stories tone."
+      },
+      "frontendNotes": {
+        "zh": "真实视频缩略图仍来自视频内容数据。",
+        "en": "Real video thumbnails still come from video content data."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/videos-filmmaking-editing-visual-stories.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/videos-filmmaking-editing-visual-stories-source.png"
+      }
+    },
+    {
+      "id": "projects-system-overview-dossier",
+      "page": "projects",
+      "role": "dossier-surface",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Projects System Overview Dossier",
+        "en": "Projects System Overview Dossier"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Projects 页 flagship dossier landing 主视觉，展示系统、技术栈和多媒体流程。",
+        "en": "Hero visual for the Projects flagship dossier landing, showing systems, tech stack, and multimedia process."
+      },
+      "frontendNotes": {
+        "zh": "项目事实仍由 project JSON 驱动，图片只提供视觉入口。",
+        "en": "Project facts remain driven by project JSON; the image only provides the visual entry."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/projects-system-overview-dossier.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/projects-system-overview-dossier-source.png"
+      }
+    },
+    {
+      "id": "awards-recognition-milestones-achievements",
+      "page": "awards",
+      "role": "archive-evidence-board",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Awards Recognition Milestones Achievements",
+        "en": "Awards Recognition Milestones Achievements"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Awards 页 hero 主视觉，强调 recognition、milestones 和 achievements。",
+        "en": "Hero visual for Awards, emphasizing recognition, milestones, and achievements."
+      },
+      "frontendNotes": {
+        "zh": "真实证书仍来自 certifications 数据；图片负责页面第一印象。",
+        "en": "Real certificates still come from certification data; the image provides the page's first impression."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/awards-recognition-milestones-achievements.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/awards-recognition-milestones-achievements-source.png"
+      }
+    },
+    {
+      "id": "about-me-profile-dossier-board",
+      "page": "about",
+      "role": "profile-dossier-board",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "About Me Profile Dossier Board",
+        "en": "About Me Profile Dossier Board"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "About 页 hero 主视觉，把技术、摄影、写作、教育和协作连接成个人档案。",
+        "en": "Hero visual for About, connecting technology, photography, writing, education, and collaboration into a profile dossier."
+      },
+      "frontendNotes": {
+        "zh": "用于 profile dossier 氛围；正式履历内容仍由页面文字提供。",
+        "en": "Used for profile-dossier atmosphere; formal CV content still comes from page text."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/about-me-profile-dossier-board.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/about-me-profile-dossier-board-source.png"
+      }
+    },
+    {
+      "id": "contact-say-hello-collaborate-connect",
+      "page": "contact",
+      "role": "contact-studio-card",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Contact Say Hello Collaborate Connect",
+        "en": "Contact Say Hello Collaborate Connect"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Contact 页 hero 主视觉，建立开放、协作和连接的入口氛围。",
+        "en": "Hero visual for Contact, establishing an open collaboration and connection entry."
+      },
+      "frontendNotes": {
+        "zh": "联系信息仍由真实 HTML 与表单提供，图片不作为唯一信息源。",
+        "en": "Contact information still comes from real HTML and forms; the image is not the only information source."
+      },
+      "output": {
+        "format": "jpg",
+        "storagePath": "public/content/visuals/assets/page-heroes/contact-say-hello-collaborate-connect.jpg",
+        "sourcePath": "public/content/visuals/assets/page-heroes/contact-say-hello-collaborate-connect-source.png"
+      }
+    },
+    {
+      "id": "home-identity-poster-prompt",
+      "page": "home",
+      "role": "signature-landing-visual",
+      "status": "prompt-ready",
+      "type": "generated-concept",
+      "title": {
+        "zh": "Echo Identity Poster",
+        "en": "Echo Identity Poster"
+      },
+      "prompt": "Create an editorial identity poster for a personal website. Subject: a young technical creator who builds AI-assisted education systems, curates research workflows, and also works with photography and video. Composition: warm studio desk seen from an elevated angle, layered with translucent acetate sheets, a film contact sheet, a few annotated system diagrams, and soft projected light. No readable text, no logos, no fake UI screenshots. Mood: authored, intelligent, cinematic, tactile, warm. Leave a calm negative-space region on the left for real website typography. High-detail editorial design, subtle pseudo-3D depth, paper grain, amber and graphite palette.",
+      "negativePrompt": "generic SaaS gradient, random neon blobs, fake readable text, fake UI screenshot, logos, corporate stock illustration, anime character, fan animation, cloth simulation",
+      "intendedUse": {
+        "zh": "首页 manifesto 第一屏主视觉，配合真实 HTML 标题与 CTA。",
+        "en": "Home manifesto first-screen visual paired with real HTML title and CTA."
+      },
+      "frontendNotes": {
+        "zh": "保留左侧或上方留白给文字；动画只做慢速视差、显影或纸张层次，不做物理 gimmick。",
+        "en": "Keep left or upper negative space for typography; use slow parallax, reveal, or paper-layer motion rather than physics gimmicks."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/home-identity-poster.webp"
+      }
+    },
+    {
+      "id": "project-polyu-genai-sql-cover",
+      "page": "projects",
+      "projectSlug": "polyu-genai-sql-learning-platform",
+      "role": "flagship-dossier-cover",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "GenAI SQL Learning Loop Cover",
+        "en": "GenAI SQL Learning Loop Cover"
+      },
+      "prompt": "Create an abstract dossier cover for an AI-supported SQL learning platform. Show a learning loop made of layered paper cards, query fragments as abstract marks, database grid forms, feedback annotations, and analytics traces. The image should suggest assessment, feedback, revision, and teaching insight without showing a fake app screenshot. Warm editorial palette with graphite, muted teal, cream paper, and small amber highlights. Cinematic top light, archival folder composition, clean negative space for website text. No readable text, no logos.",
+      "negativePrompt": "fake dashboard screenshot, unreadable UI text, corporate vector art, generic database icon, glossy 3D mascot, logos",
+      "intendedUse": {
+        "zh": "Projects 首屏 flagship dossier row 或项目详情页 case-study cover。",
+        "en": "Flagship dossier row on Projects or case-study cover on the project detail page."
+      },
+      "frontendNotes": {
+        "zh": "用作背景/封面，不替代项目中的真实架构图和流程图。",
+        "en": "Use as a cover or background; do not replace the project's real architecture and flow diagrams."
+      },
+      "output": {
+        "recommendedSize": "2200x1400",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/project-polyu-genai-sql-cover.webp"
+      }
+    },
+    {
+      "id": "project-capstone-student-flow-cover",
+      "page": "projects",
+      "projectSlug": "capstone-success-student-workflow",
+      "role": "flagship-dossier-cover",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "Student Workflow Dossier Cover",
+        "en": "Student Workflow Dossier Cover"
+      },
+      "prompt": "Create an abstract case-study cover for a student workflow product. Represent a continuous journey from login to assignment submission, history, result review, and viva follow-up using connected cards, route lines, file upload tokens, and soft interface silhouettes. It should feel like a product architecture dossier, not a marketing dashboard. Warm paper, translucent panels, graphite lines, muted blue-green accents, subtle depth, no readable text, no logos, no fake UI screenshot.",
+      "negativePrompt": "fake app screenshot, fake university logo, unreadable text, shiny startup dashboard, generic 3D person, unrelated classroom photo",
+      "intendedUse": {
+        "zh": "Capstone 项目的 dossier cover，强调连续 student journey。",
+        "en": "Dossier cover for the Capstone project, emphasizing the continuous student journey."
+      },
+      "frontendNotes": {
+        "zh": "适合与 problem/role/result 元数据叠放；图片不要承担真实 endpoint 或页面细节说明。",
+        "en": "Works with problem/role/result metadata overlays; the image should not explain real endpoints or page details."
+      },
+      "output": {
+        "recommendedSize": "2200x1400",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/project-capstone-student-flow-cover.webp"
+      }
+    },
+    {
+      "id": "project-multimedia-awards-cover",
+      "page": "projects",
+      "projectSlug": "multimedia-projects-and-awards",
+      "role": "flagship-dossier-cover",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "Multimedia Story Evidence Cover",
+        "en": "Multimedia Story Evidence Cover"
+      },
+      "prompt": "Create a cinematic editorial cover for multimedia storytelling and award work. Show a desk-like composition with film frames, poster fragments, a soft spotlight, award ribbon shapes, and editing timeline traces. The visual should communicate video, public presentation, competition output, and narrative craft. Warm theatrical lighting, deep charcoal shadows, cream paper, muted red and gold accents. No readable text, no logos, no fake certificates.",
+      "negativePrompt": "fake award certificate, readable text, real logo, generic trophy render, stock video camera icon, glossy template look",
+      "intendedUse": {
+        "zh": "Multimedia/Awards 项目的视觉入口，强调叙事与传播能力。",
+        "en": "Visual entry for the Multimedia/Awards project, emphasizing storytelling and communication."
+      },
+      "frontendNotes": {
+        "zh": "适合做横向 cover 或详情页 opening frame；真实获奖信息仍来自 Awards/Projects 内容。",
+        "en": "Suitable as a horizontal cover or detail-page opening frame; real award facts still come from Awards/Projects content."
+      },
+      "output": {
+        "recommendedSize": "2200x1400",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/project-multimedia-awards-cover.webp"
+      }
+    },
+    {
+      "id": "photos-gallery-concept-cover",
+      "page": "photos",
+      "role": "gallery-entrance-atmosphere",
+      "status": "prompt-ready",
+      "type": "generated-concept",
+      "title": {
+        "zh": "Photography Archive Entrance",
+        "en": "Photography Archive Entrance"
+      },
+      "prompt": "Create an atmospheric gallery entrance image for a personal photography archive. Show an exhibition wall with empty frames, contact sheets, light leaks, and soft shadows, suggesting memory and curation rather than a specific place. The image should feel like a quiet archive opening, with room for real photographs to appear later. Warm off-white wall, dark film edges, amber light, subtle paper texture. No fake travel photos, no readable text, no logos.",
+      "negativePrompt": "fake travel photography, fake portraits, readable text, logo, generic stock gallery, glossy luxury showroom, random 3D blobs",
+      "intendedUse": {
+        "zh": "Photos 页的展览入口氛围图；不能替代真实照片内容。",
+        "en": "Atmospheric entrance image for Photos; it must not replace real photo content."
+      },
+      "frontendNotes": {
+        "zh": "标记为 generated concept；真实照片集上线后应让真实图片成为主角。",
+        "en": "Mark as a generated concept; once real photo sets are ready, real photos should become the primary visual focus."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/photos-gallery-concept-cover.webp"
+      }
+    },
+    {
+      "id": "writing-pretext-paper-system",
+      "page": "writing",
+      "role": "editorial-paper-hero",
+      "status": "prompt-ready",
+      "type": "generated-texture-system",
+      "title": {
+        "zh": "Writing Pretext Paper System",
+        "en": "Writing Pretext Paper System"
+      },
+      "prompt": "Create a wide editorial paper hero image for a personal writing archive. The scene should feel like a reflective desk of layered cream paper, faint paragraph ghosts, margin annotations, page folds, graphite pencil marks, and warm reading light. It should support real website text on top and pair with a Pretext-style line reveal. Leave negative space for HTML title copy. Low contrast, literary, warm, slightly melancholic. No readable generated text, no logos, no fake article titles.",
+      "negativePrompt": "readable generated words, fake article titles, logo, corporate blog illustration, neon gradient, generic book icon, fake UI screenshot",
+      "intendedUse": {
+        "zh": "Writing 页 hero 主视觉，配合 Pretext 行文显影和 margin note 交互。",
+        "en": "Hero visual for Writing, paired with Pretext line reveal and margin-note interaction."
+      },
+      "frontendNotes": {
+        "zh": "图片只提供纸张、注释和阅读氛围；文章标题和日期必须由 HTML 渲染。",
+        "en": "The image should provide paper, annotation, and reading atmosphere only; article titles and dates must be rendered as HTML."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/writing-pretext-paper-system.webp"
+      }
+    },
+    {
+      "id": "videos-cinematic-title-wall",
+      "page": "videos",
+      "role": "cinematic-title-wall",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "Videos Cinematic Title Wall",
+        "en": "Videos Cinematic Title Wall"
+      },
+      "prompt": "Create a cinematic hero image for Echo Chen's video portfolio. The scene should suggest a personal editing room with film strips, storyboard cards, projector light, timeline traces, soft theatrical shadows, and a quiet frame-ready wall. It should feel story-driven and crafted, not like a generic media grid. Leave clean negative space for real website text. Palette: deep charcoal, warm cream, amber projector light, muted red accents. No readable generated text, no logos, no fake YouTube UI, no fake video thumbnails.",
+      "negativePrompt": "fake YouTube interface, readable text, logo, stock video camera icon, generic streaming grid, glossy SaaS dashboard",
+      "intendedUse": {
+        "zh": "Videos 页 hero 主视觉，之后可接 cinematic reel hover 或 projector reveal。",
+        "en": "Hero visual for Videos, later supporting cinematic reel hover or projector reveal."
+      },
+      "frontendNotes": {
+        "zh": "适合宽幅 hero；真实视频缩略图仍来自视频内容数据。",
+        "en": "Best as a wide hero image; real video thumbnails still come from video content data."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/videos-cinematic-title-wall.webp"
+      }
+    },
+    {
+      "id": "projects-dossier-surface",
+      "page": "projects",
+      "role": "dossier-surface",
+      "status": "prompt-ready",
+      "type": "generated-surface",
+      "title": {
+        "zh": "Projects Dossier Surface",
+        "en": "Projects Dossier Surface"
+      },
+      "prompt": "Create a wide technical dossier surface for a project portfolio landing page. Show layered archival folders, route lines, database grid cards, feedback annotation marks, file tokens, and subtle interface silhouettes on a warm evidence desk. It should support real HTML project rows over or beside it. Serious, precise, warm, process-aware, with graphite, cream paper, muted teal, and amber highlights. No readable generated text, no logos, no fake app screenshots, no generic dashboard.",
+      "negativePrompt": "fake dashboard screenshot, readable UI text, logo, generic code wallpaper, purple SaaS gradient, shiny 3D mascot",
+      "intendedUse": {
+        "zh": "Projects 页 flagship dossier rows 的背景/旁侧主视觉。",
+        "en": "Background or side visual for Projects flagship dossier rows."
+      },
+      "frontendNotes": {
+        "zh": "项目事实仍来自 project JSON；图片只负责 dossier 氛围和系统感。",
+        "en": "Project facts still come from project JSON; the image only carries dossier atmosphere and system feeling."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/projects-dossier-surface.webp"
+      }
+    },
+    {
+      "id": "awards-evidence-board",
+      "page": "awards",
+      "role": "archive-evidence-board",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "Awards Evidence Board",
+        "en": "Awards Evidence Board"
+      },
+      "prompt": "Create an editorial evidence-board hero image for an awards and certifications page. Show pinned certificate fragments as abstract shapes, award ribbons, film-frame evidence, research notes, and service badges as non-readable marks on warm paper. It should feel selective and verifiable, not celebratory clutter. Leave space for real HTML headings. Palette: cream, graphite, restrained gold, muted teal, warm shadows. No readable generated text, no fake certificates, no real logos, no trophy render.",
+      "negativePrompt": "fake certificate text, real logos, trophy render, readable words, luxury award template, glitter background",
+      "intendedUse": {
+        "zh": "Awards 页 hero 主视觉，强化 evidence-first 而不是奖杯墙。",
+        "en": "Hero visual for Awards, emphasizing evidence-first rather than a trophy wall."
+      },
+      "frontendNotes": {
+        "zh": "真实证书图片继续来自 certifications 数据；生成图只做 archive board 氛围。",
+        "en": "Real certificate images still come from certification data; generated art only provides archive-board atmosphere."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/awards-evidence-board.webp"
+      }
+    },
+    {
+      "id": "about-profile-dossier",
+      "page": "about",
+      "role": "profile-dossier-board",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "About Profile Dossier",
+        "en": "About Profile Dossier"
+      },
+      "prompt": "Create an authored profile dossier hero image for Echo Chen's personal website. Combine warm paper, pinned notes, abstract route lines, research traces, small film/contact-sheet fragments, and technical diagram marks. The composition should frame real profile text and optionally a real portrait without replacing identity. Mood: intelligent, warm, personal, curated, not corporate. No readable generated text, no logos, no fake certificates.",
+      "negativePrompt": "fake CV text, fake certificate, logo, corporate headshot background, generic resume template, readable words",
+      "intendedUse": {
+        "zh": "About 页 hero 主视觉，把 developer / research support / media storyteller 连接成 profile dossier。",
+        "en": "Hero visual for About, connecting developer, research support, and media storyteller into a profile dossier."
+      },
+      "frontendNotes": {
+        "zh": "适合和 identity map 线条一起使用；不要替代真实履历内容。",
+        "en": "Works with identity-map lines; do not replace real CV content."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/about-profile-dossier.webp"
+      }
+    },
+    {
+      "id": "now-studio-status-board",
+      "page": "now",
+      "role": "live-status-board",
+      "status": "prompt-ready",
+      "type": "generated-cover",
+      "title": {
+        "zh": "Now Studio Status Board",
+        "en": "Now Studio Status Board"
+      },
+      "prompt": "Create a warm studio status-board hero image for a living Now page. Show abstract pinned notes, calendar marks, experiment labels as unreadable marks, small route lines, status dots, and soft desk lighting. It should feel current, active, and personal, but quiet enough for real HTML text. Palette: cream paper, graphite, amber, muted green. No readable generated text, no logos, no fake dashboard UI.",
+      "negativePrompt": "readable calendar text, logo, fake dashboard, busy productivity app, generic sticky note template, neon gradient",
+      "intendedUse": {
+        "zh": "Now 页 hero 主视觉，配合轻量 status pulse 和最近进展。",
+        "en": "Hero visual for Now, paired with light status pulse and current-progress copy."
+      },
+      "frontendNotes": {
+        "zh": "保持轻，不要做成完整 project management board。",
+        "en": "Keep it light; do not turn it into a full project-management board."
+      },
+      "output": {
+        "recommendedSize": "2400x1600",
+        "format": "webp",
+        "storagePath": "public/content/visuals/assets/now-studio-status-board.webp"
+      }
+    }
+  ]
+}

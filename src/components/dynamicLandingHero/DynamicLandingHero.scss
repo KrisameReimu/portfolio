@@ -34,6 +34,16 @@
     }
   }
 
+  .hero-container--poster {
+    max-width: 1480px;
+    padding: 42px 28px 46px;
+    display: block;
+
+    @media (max-width: 768px) {
+      padding: 28px 14px 34px;
+    }
+  }
+
   .hero-content {
     min-width: 0;
     position: relative;
@@ -81,6 +91,18 @@
     }
   }
 
+  .hero-content--sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .hero-visual {
     position: relative;
     z-index: 1;
@@ -91,6 +113,76 @@
     @media (max-width: 768px) {
       order: -1; // 移动端时将visual放在文字前面
     }
+  }
+
+  .hero-art-card {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(42, 32, 24, 0.13);
+    border-radius: 1.35rem;
+    background: radial-gradient(
+        circle at 16% 12%,
+        rgba(202, 149, 55, 0.18),
+        transparent 28%
+      ),
+      rgba(255, 253, 248, 0.62);
+    box-shadow: 0 26px 76px rgba(42, 29, 21, 0.12);
+    transform-style: preserve-3d;
+    transition: transform 0.32s ease, box-shadow 0.32s ease, filter 0.32s ease;
+  }
+
+  .hero-art-card:hover {
+    box-shadow: 0 32px 92px rgba(42, 29, 21, 0.17);
+    filter: saturate(1.04);
+    transform: translate3d(0, -4px, 0) rotateX(1.2deg) rotateY(-1.2deg);
+  }
+
+  .hero-art-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1672 / 941;
+    object-fit: cover;
+  }
+
+  .hero-art-card--poster {
+    max-width: 100%;
+    border-radius: 1.6rem;
+  }
+
+  .hero-art-card--poster img {
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .hero-art-card__caption--sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hero-art-card figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.72rem 0.85rem 0.78rem;
+    color: rgba($textColor, 0.62);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .hero-art-card figcaption span {
+    color: $pretextAccent;
+    font-weight: 800;
   }
 
   .visual-wall {
@@ -357,6 +449,21 @@
       border-color: rgba(255, 255, 255, 0.15);
     }
 
+    .hero-art-card {
+      border-color: rgba(255, 253, 248, 0.14);
+      background: radial-gradient(
+          circle at 16% 12%,
+          rgba(202, 149, 55, 0.12),
+          transparent 28%
+        ),
+        rgba(255, 253, 248, 0.045);
+      box-shadow: 0 26px 76px rgba(0, 0, 0, 0.32);
+    }
+
+    .hero-art-card figcaption {
+      color: rgba(255, 253, 248, 0.62);
+    }
+
     .image-wall {
       background: linear-gradient(
         135deg,
@@ -374,5 +481,15 @@
       );
       border-color: rgba(255, 215, 0, 0.12);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-landing-hero .hero-art-card {
+    transition: none;
+  }
+
+  .dynamic-landing-hero .hero-art-card:hover {
+    transform: none;
   }
 }

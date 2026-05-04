@@ -1,6 +1,9 @@
 const getSectionByTitle = (project, titleEn) =>
   project.sections?.find(section => section.title?.en === titleEn) || null;
 
+const getOverviewValue = (project, labelEn) =>
+  project.overview?.find(item => item.label?.en === labelEn)?.value || null;
+
 export const buildProjectCard = project => {
   const buildScope = getSectionByTitle(project, "Build Scope");
   const readingSection =
@@ -21,7 +24,7 @@ export const buildProjectCard = project => {
     bullets: project.cardHighlights || [],
     impact:
       readingSection?.items?.[0] ||
-      project.overview?.find(item => item.label?.en === "Outcome")?.value ||
+      getOverviewValue(project, "Outcome") ||
       null,
     proofTag: project.proofTag,
     actionLabel: project.actionLabel,
@@ -30,9 +33,13 @@ export const buildProjectCard = project => {
 };
 
 export const buildProjectHeroCard = project => ({
+  slug: project.slug,
   year: project.heroYear || "",
   title: project.title,
   description: project.heroCardDescription || project.heroSummary,
+  problem: project.flagship?.problem || getOverviewValue(project, "Problem"),
+  medium: project.flagship?.medium || project.proofTag,
+  flagshipPriority: project.flagship?.priority,
   cta: {
     ...project.actionLabel
   },

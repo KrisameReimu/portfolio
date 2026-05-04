@@ -565,7 +565,14 @@ export default {
 
       const role = resolveRoleByEmail(email, env);
       await ensureUser(db, {userId, displayName, provider, email, role});
-      const secret = env.SESSION_SIGNING_KEY || "echo-v2-fallback-secret";
+      const secret = env.SESSION_SIGNING_KEY;
+      if (!secret) {
+        return json(
+          {ok: false, error: "missing_session_signing_key"},
+          500,
+          corsHeaders
+        );
+      }
       const nowIso = new Date().toISOString();
       const payload = {uid: userId, provider, email, role, iat: nowIso};
       const token = await signSessionToken(payload, secret);
@@ -613,7 +620,14 @@ export default {
         role
       });
 
-      const secret = env.SESSION_SIGNING_KEY || "echo-v2-fallback-secret";
+      const secret = env.SESSION_SIGNING_KEY;
+      if (!secret) {
+        return json(
+          {ok: false, error: "missing_session_signing_key"},
+          500,
+          corsHeaders
+        );
+      }
       const token = await signSessionToken(
         {uid: userId, provider, email: profile.email, role, iat: nowIso},
         secret
@@ -879,6 +893,71 @@ export default {
         .run();
 
       return json({ok: true, exists: false}, 201, corsHeaders);
+    }
+
+    if (
+      (apiPath === "/contact-messages" ||
+        url.pathname === "/contact-messages") &&
+      request.method === "POST"
+    ) {
+      const body = await parseBody(request);
+      if (!body)
+        return json({ok: false, error: "invalid_json"}, 400, corsHeaders);
+
+      const name = String(body.name || "").trim();
+      const email = String(body.email || "")
+        .trim()
+        .toLowerCase();
+      const topic = String(body.topic || "").trim();
+      const message = String(body.message || "").trim();
+      const locale = String(body.locale || "en").trim() || "en";
+      const source =
+        String(body.source || "contact-page").trim() || "contact-page";
+      const pagePath = String(body.pagePath || "").trim() || null;
+      const clientTs = String(body.clientTs || "").trim() || null;
+
+      if (!name || !topic || !message) {
+        return json({ok: false, error: "missing_fields"}, 400, corsHeaders);
+      }
+      if (!isValidEmail(email)) {
+        return json({ok: false, error: "invalid_email"}, 400, corsHeaders);
+      }
+      if (
+        name.length > 120 ||
+        email.length > 160 ||
+        topic.length > 160 ||
+        message.length > 1600
+      ) {
+        return json({ok: false, error: "field_too_long"}, 400, corsHeaders);
+      }
+      if (SPAM_PATTERNS.some(pattern => pattern.test(`${topic}\n${message}`))) {
+        return json({ok: false, error: "blocked_by_filter"}, 200, corsHeaders);
+      }
+
+      const id = uid("msg");
+      await db
+        .prepare(
+          `
+          INSERT INTO contact_messages (
+            id, name, email, topic, message, locale, source, page_path, client_ts
+          )
+          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
+        `
+        )
+        .bind(
+          id,
+          name,
+          email,
+          topic,
+          message,
+          locale,
+          source,
+          pagePath,
+          clientTs
+        )
+        .run();
+
+      return json({ok: true, id}, 201, corsHeaders);
     }
 
     if (

@@ -38,6 +38,17 @@
     "zh": "视频、海报与竞赛成果",
     "en": "Video, poster, and competition outputs"
   },
+  "flagship": {
+    "priority": 3,
+    "problem": {
+      "zh": "Problem: 把复杂项目与竞赛成果剪成可传播、可理解的 narrative output",
+      "en": "Problem: recut complex work and awards into communication-friendly narrative output"
+    },
+    "medium": {
+      "zh": "Video + visual narrative",
+      "en": "Video + visual narrative"
+    }
+  },
   "heroSummary": {
     "zh": "这部分展示的是我如何把项目、服务学习和比赛题材转化为更容易被理解与传播的叙事成果。",
     "en": "This section shows how I turn projects, service-learning work, and competition themes into communication-friendly narrative outputs."

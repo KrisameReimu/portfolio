@@ -2,9 +2,10 @@ import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {layoutWithLines, prepareWithSegments} from "@chenglou/pretext";
 import LanguageContext from "../../contexts/LanguageContext";
+import {homeBrandAssets} from "../../config/pages/homeVisuals";
+import {getPageHeroVisual} from "../../config/pages/pageHeroVisuals";
 import {greeting} from "../../portfolio";
 import {getText} from "../../utils/i18n";
-import profileImage from "../../assets/images/profile.jpg";
 import "./ManuscriptHero.scss";
 
 function usePretextLines(text) {
@@ -66,6 +67,8 @@ function usePretextLines(text) {
 
 export default function CanvasHero() {
   const {language} = useContext(LanguageContext);
+  const [activeProof, setActiveProof] = useState("01");
+  const homeHeroVisual = getPageHeroVisual("home");
 
   const narrative = useMemo(
     () => ({
@@ -84,7 +87,13 @@ export default function CanvasHero() {
       detail: {
         zh: "GenAI Feedback · Auto-grading",
         en: "GenAI Feedback · Auto-grading"
-      }
+      },
+      expanded: {
+        zh: "我最强的项目线索是把 student workflow、grading、feedback 与 analytics 真正做成一条闭环。",
+        en: "My strongest line of work is turning student workflow, grading, feedback, and analytics into one connected loop."
+      },
+      cta: {zh: "Open Projects", en: "Open Projects"},
+      href: "/projects"
     },
     {
       key: "02",
@@ -92,7 +101,13 @@ export default function CanvasHero() {
       detail: {
         zh: "WAIE 2025 发表 · GenAI Feedback System",
         en: "WAIE 2025 publication · GenAI Feedback System"
-      }
+      },
+      expanded: {
+        zh: "我倾向把研究支持、文档整理与对外表达一起做，让结果更容易被老师、评审和合作方真正读懂。",
+        en: "I tend to build research support, documentation, and outward-facing communication together so the work becomes legible to teachers, reviewers, and collaborators."
+      },
+      cta: {zh: "Read the archive", en: "Read the archive"},
+      href: "/writing"
     },
     {
       key: "03",
@@ -100,14 +115,35 @@ export default function CanvasHero() {
       detail: {
         zh: "Video · Photography · Multimedia",
         en: "Video · Photography · Multimedia"
-      }
+      },
+      expanded: {
+        zh: "视频、海报与摄影不是附属品，而是我把复杂内容重新编排成可传播 narrative 的方式。",
+        en: "Video, poster, and photography work are not side material; they are how I recut complex work into narrative that travels."
+      },
+      cta: {zh: "Enter the gallery", en: "Enter the gallery"},
+      href: "/photos"
     }
   ];
+  const selectedProof =
+    proofItems.find(item => item.key === activeProof) || proofItems[0];
 
   return (
     <section className="studio-hero">
       <div className="studio-hero__stage">
         <div className="studio-hero__surface">
+          <figure className="studio-hero__poster">
+            <img
+              src={homeHeroVisual.src}
+              alt={getText(homeHeroVisual.alt, language)}
+              width="1672"
+              height="941"
+              decoding="async"
+            />
+            <figcaption>
+              <span>{getText(homeHeroVisual.label, language)}</span>
+              {getText(homeHeroVisual.caption, language)}
+            </figcaption>
+          </figure>
           <section className="studio-hero__lead">
             <h1>{getText(greeting.title, language)}</h1>
             <p className="studio-hero__tagline">
@@ -138,30 +174,71 @@ export default function CanvasHero() {
               )}
             </div>
             <div className="studio-hero__actions">
-              <Link to="/awards">
-                {language === "zh" ? "查看荣誉" : "View awards"}
+              <Link to={selectedProof.href}>
+                {getText(selectedProof.cta, language)}
               </Link>
               <a href={greeting.resumeLink} target="_blank" rel="noreferrer">
                 {language === "zh" ? "下载 CV" : "Download CV"}
               </a>
-              <Link to="/about">{language === "zh" ? "关于我" : "About"}</Link>
+              <Link to="/now">
+                {language === "zh" ? "查看最近进展" : "See now"}
+              </Link>
             </div>
           </section>
 
           <aside className="studio-hero__aside" aria-label="Selected proof">
-            <figure className="studio-hero__portrait">
-              <img src={profileImage} alt="Echo Chen portrait" />
-            </figure>
+            <div
+              className="studio-hero__character-strip"
+              aria-label={
+                language === "zh"
+                  ? "Echo 个人 IP 视觉资产"
+                  : "Echo personal IP visual assets"
+              }
+            >
+              {[
+                homeBrandAssets.studioFigurine,
+                homeBrandAssets.focusAvatar
+              ].map(asset => (
+                <figure key={asset.src} className="studio-hero__character-card">
+                  <img
+                    src={asset.src}
+                    alt={getText(asset.alt, language)}
+                    width="1254"
+                    height="1254"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>
+                    <span>{getText(asset.label, language)}</span>
+                    {getText(asset.caption, language)}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
             <div className="studio-hero__proof">
               {proofItems.map(item => (
-                <article key={item.key} className="studio-hero__proof-item">
+                <button
+                  key={item.key}
+                  type="button"
+                  className={`studio-hero__proof-item ${
+                    item.key === activeProof ? "is-active" : ""
+                  }`}
+                  onClick={() => setActiveProof(item.key)}
+                >
                   <span>{item.key}</span>
                   <div>
                     <p>{getText(item.label, language)}</p>
                     <strong>{getText(item.detail, language)}</strong>
                   </div>
-                </article>
+                </button>
               ))}
+            </div>
+            <div className="studio-hero__focus-panel">
+              <p>{getText(selectedProof.label, language)}</p>
+              <h2>{getText(selectedProof.detail, language)}</h2>
+              <div className="studio-hero__focus-copy">
+                {getText(selectedProof.expanded, language)}
+              </div>
             </div>
           </aside>
         </div>

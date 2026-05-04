@@ -1,6 +1,6 @@
 import React from "react";
-import HomeSummary from "../sections/homeSummary/HomeSummary";
 import ManuscriptHero from "../sections/manuscriptHero/ManuscriptHero";
+import HomeCuratedWorlds from "../sections/homeCuratedWorlds/HomeCuratedWorlds";
 import "./HomePage.scss";
 
 export default function HomePage() {
@@ -8,7 +8,7 @@ export default function HomePage() {
     <div className="home-page">
       <ManuscriptHero />
       <div className="home-page-content">
-        <HomeSummary />
+        <HomeCuratedWorlds />
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ export default function DynamicLandingHero({
   accentColor = "#4A90E2",
   stats = [],
   images = [],
+  heroVisual = null,
   onMediaItemClick = null,
   className = ""
 }) {
@@ -149,6 +150,42 @@ export default function DynamicLandingHero({
     }
   };
 
+  const visualLabel = heroVisual ? getText(heroVisual.label, language) : "";
+  const visualCaption = heroVisual ? getText(heroVisual.caption, language) : "";
+
+  if (heroVisual?.src) {
+    return (
+      <div
+        className={`dynamic-landing-hero dynamic-landing-hero--poster ${className}`}
+      >
+        <div className="hero-container hero-container--poster">
+          <div className="hero-content hero-content--sr">
+            <h1 className="hero-title">{titleText}</h1>
+            <p className="hero-subtitle">{subtitleText}</p>
+            {descriptionText && (
+              <p className="hero-description">{descriptionText}</p>
+            )}
+          </div>
+          <figure className="hero-art-card hero-art-card--poster">
+            <img
+              src={heroVisual.src}
+              alt={getText(heroVisual.alt, language)}
+              width="1672"
+              height="941"
+              loading="eager"
+              decoding="async"
+            />
+            <figcaption className="hero-art-card__caption--sr">
+              <span>{visualLabel}</span>
+              {visualCaption}
+            </figcaption>
+          </figure>
+        </div>
+        <div className="hero-divider" style={{backgroundColor: accentColor}} />
+      </div>
+    );
+  }
+
   return (
     <div className={`dynamic-landing-hero ${className}`}>
       <div className="hero-container">
@@ -162,7 +199,26 @@ export default function DynamicLandingHero({
         </div>
 
         {/* 右侧视觉区域 */}
-        <div className="hero-visual">{renderVisual()}</div>
+        <div className="hero-visual">
+          {heroVisual?.src ? (
+            <figure className="hero-art-card">
+              <img
+                src={heroVisual.src}
+                alt={getText(heroVisual.alt, language)}
+                width="1672"
+                height="941"
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption>
+                <span>{visualLabel}</span>
+                {visualCaption}
+              </figcaption>
+            </figure>
+          ) : (
+            renderVisual()
+          )}
+        </div>
       </div>
 
       {/* 底部分割线 */}

@@ -12,7 +12,10 @@ import WritingYearPage from "../pages/WritingYearPage";
 import ArticlePage from "../pages/ArticlePage";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import AboutPage from "../pages/AboutPage";
+import NowPage from "../pages/NowPage";
 import Contact from "../sections/contact/Contact";
+
+const redirectTo = path => <Navigate to={path} replace />;
 
 export const siteRoutes = [
   {
@@ -65,42 +68,47 @@ export const siteRoutes = [
   },
   {
     path: "/now",
-    element: <Navigate to="/about" replace />,
+    element: <NowPage />,
     navGroup: "secondary"
   },
   {
     path: "/roadmap",
-    element: <Navigate to="/projects" replace />,
+    element: redirectTo("/projects"),
     navGroup: "secondary"
   },
   {
     path: "/dashboard",
-    element: <Navigate to="/about" replace />,
+    element: redirectTo("/about"),
     navGroup: "secondary"
   },
   {
     path: "/ask",
-    element: <Navigate to="/contact" replace />,
+    element: redirectTo("/contact"),
     navGroup: "secondary"
   },
   {
     path: "/community",
-    element: <Navigate to="/about" replace />,
+    element: redirectTo("/about"),
     navGroup: "secondary"
   },
   {
     path: "/favorites",
-    element: <Navigate to="/writing" replace />,
+    element: redirectTo("/writing"),
     navGroup: "secondary"
   },
   {
     path: "/lab",
-    element: <Navigate to="/projects" replace />,
+    element: redirectTo("/projects"),
+    navGroup: "alias"
+  },
+  {
+    path: "/lab/:pillar",
+    element: redirectTo("/projects"),
     navGroup: "alias"
   },
   {
     path: "/game-dev",
-    element: <Navigate to="/projects" replace />,
+    element: redirectTo("/projects"),
     navGroup: "alias"
   },
   {
@@ -130,7 +138,7 @@ export const siteRoutes = [
   },
   {
     path: "/photography",
-    element: <Navigate to="/photos" replace />,
+    element: redirectTo("/photos"),
     navGroup: "alias"
   }
 ];

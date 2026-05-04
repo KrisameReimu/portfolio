@@ -1,26 +1,25 @@
-import React, {useContext, useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import React, {useContext, useEffect, useMemo, useState} from "react";
+import {Link} from "react-router-dom";
 import Projects from "../sections/projects/Projects";
-import PageHero from "../components/pageHero/PageHero";
 import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
-import {openHeroTarget} from "../utils/heroNavigation";
 import {getProjectCards, getProjectHeroCards} from "../services/projectContent";
 import {
   projectExperienceSignals,
   projectsDossierConfig,
   projectsPageCopy
 } from "../config/pages/projectsPage";
+import {getPageHeroVisual} from "../config/pages/pageHeroVisuals";
 import "./ProjectPage.scss";
 
 export default function ProjectPage() {
   const {language} = useContext(LanguageContext);
-  const navigate = useNavigate();
-  const location = useLocation();
   const [heroCards, setHeroCards] = useState([]);
   const [projectCards, setProjectCards] = useState([]);
   const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+  const [activeCaseHref, setActiveCaseHref] = useState(null);
+  const projectsHeroVisual = getPageHeroVisual("projects");
 
   useEffect(() => {
     let mounted = true;
@@ -45,22 +44,122 @@ export default function ProjectPage() {
     };
   }, []);
 
+  const flagshipCases = useMemo(
+    () =>
+      heroCards
+        .map((item, index) => ({
+          ...item,
+          originalIndex: index
+        }))
+        .sort((a, b) => {
+          const aPriority = Number(a.flagshipPriority);
+          const bPriority = Number(b.flagshipPriority);
+          const hasAPriority = Number.isFinite(aPriority);
+          const hasBPriority = Number.isFinite(bPriority);
+
+          if (hasAPriority && hasBPriority) return aPriority - bPriority;
+          if (hasAPriority) return -1;
+          if (hasBPriority) return 1;
+          return a.originalIndex - b.originalIndex;
+        })
+        .slice(0, 3)
+        .map((item, index) => ({
+          ...item,
+          index: String(index + 1).padStart(2, "0")
+        })),
+    [heroCards]
+  );
+
+  const activeCase = useMemo(
+    () =>
+      flagshipCases.find(item => item.href === activeCaseHref) ||
+      flagshipCases[0],
+    [activeCaseHref, flagshipCases]
+  );
+
   return (
     <PageSurface pageKey="projects" className="page-container projects-page">
-      <PageHero
-        pageKey="projects"
-        title={projectsPageCopy.hero.title}
-        subtitle={projectsPageCopy.hero.subtitle}
-        description={projectsPageCopy.hero.description}
-        mediaItems={heroCards}
-        onMediaItemClick={item =>
-          openHeroTarget({
-            target: item.href,
-            navigate,
-            currentPathname: location.pathname
-          })
-        }
-      />
+      <section className="projects-dossier-landing">
+        <div className="projects-dossier-landing__intro">
+          <p className="projects-dossier-landing__kicker">Flagship Cases</p>
+          <h1>{getText(projectsPageCopy.hero.title, language)}</h1>
+          <p className="projects-dossier-landing__subtitle">
+            {getText(projectsPageCopy.hero.description, language)}
+          </p>
+          <div className="projects-dossier-landing__signals">
+            {projectsDossierConfig.signals.map(signal => (
+              <article
+                className="projects-dossier-landing__signal"
+                key={signal.label.en}
+              >
+                <span>{getText(signal.label, language)}</span>
+                <strong>{getText(signal.value, language)}</strong>
+              </article>
+            ))}
+          </div>
+        </div>
+        {projectsHeroVisual && (
+          <figure className="projects-dossier-landing__visual">
+            <img
+              src={projectsHeroVisual.src}
+              alt={getText(projectsHeroVisual.alt, language)}
+              width="1672"
+              height="941"
+              decoding="async"
+            />
+            <figcaption>
+              <span>{getText(projectsHeroVisual.label, language)}</span>
+              {getText(projectsHeroVisual.caption, language)}
+            </figcaption>
+          </figure>
+        )}
+        <div className="projects-dossier-landing__cases">
+          <div className="projects-dossier-landing__rows">
+            {flagshipCases.map(item => (
+              <Link
+                className={`projects-flagship-case ${
+                  activeCase && activeCase.href === item.href ? "is-active" : ""
+                }`}
+                to={item.href}
+                key={item.href}
+                onFocus={() => setActiveCaseHref(item.href)}
+                onMouseEnter={() => setActiveCaseHref(item.href)}
+              >
+                <span className="projects-flagship-case__index">
+                  {item.index}
+                </span>
+                <div className="projects-flagship-case__body">
+                  <p className="projects-flagship-case__year">{item.year}</p>
+                  <h2>{getText(item.title, language)}</h2>
+                  <p className="projects-flagship-case__summary">
+                    {getText(item.description, language)}
+                  </p>
+                </div>
+                <div className="projects-flagship-case__meta">
+                  <p>{getText(item.problem, language)}</p>
+                  <strong>{getText(item.medium, language)}</strong>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {activeCase && (
+            <aside className="projects-dossier-preview" aria-live="polite">
+              <p className="projects-dossier-preview__eyebrow">
+                Active dossier
+              </p>
+              <span className="projects-dossier-preview__index">
+                {activeCase.index}
+              </span>
+              <h2>{getText(activeCase.title, language)}</h2>
+              <p>{getText(activeCase.problem, language)}</p>
+              <div className="projects-dossier-preview__rail">
+                <span>{activeCase.year}</span>
+                <strong>{getText(activeCase.medium, language)}</strong>
+              </div>
+            </aside>
+          )}
+        </div>
+      </section>
 
       <section className="projects-section selected-work-section">
         <div className="section-header">
@@ -79,7 +178,7 @@ export default function ProjectPage() {
           <h2>{getText(projectsPageCopy.experience.title, language)}</h2>
           <p>{getText(projectsPageCopy.experience.subtitle, language)}</p>
         </div>
-        <div className="experience-signal-grid">
+        <div className="experience-signal-grid experience-signal-grid--narrative">
           {projectExperienceSignals.map(signal => (
             <article className="experience-signal-card" key={signal.role.en}>
               <span>{signal.period}</span>

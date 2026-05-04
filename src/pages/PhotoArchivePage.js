@@ -1,18 +1,32 @@
 import React, {useContext, useMemo, useEffect, useState} from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import "./PhotoArchivePage.scss";
-import PageHero from "../components/pageHero/PageHero";
 import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
-import {openHeroTarget} from "../utils/heroNavigation";
+import {
+  DEFAULT_PHOTO_VIEW_MODE,
+  PHOTO_VIEW_MODES,
+  photosPageCopy
+} from "../config/pages/photosPage";
+import {getPageHeroVisual} from "../config/pages/pageHeroVisuals";
 
 export default function PhotoArchivePage() {
   const {language} = useContext(LanguageContext);
-  const navigate = useNavigate();
-  const location = useLocation();
   const [photos, setPhotos] = useState([]);
+  const [focusedFrame, setFocusedFrame] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedView = searchParams.get("view");
+  const activeView = PHOTO_VIEW_MODES.includes(requestedView)
+    ? requestedView
+    : DEFAULT_PHOTO_VIEW_MODE;
+
+  const setActiveView = view => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("view", view);
+    setSearchParams(nextParams);
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -54,186 +68,209 @@ export default function PhotoArchivePage() {
     );
   }, [photos]);
 
-  const copy = {
-    title: {zh: "Photo Wall", en: "Photo Wall"},
-    subtitle: {
-      zh: "不放虚构图集。这里只展示已经整理好的影像条目，其余内容等正式归档后再上线。",
-      en: "No fake galleries here. This page shows only the image entries that are already curated and ready to publish."
+  const copy = photosPageCopy;
+  const photoHeroVisual = getPageHeroVisual("photos");
+  const galleryFrames = [
+    {
+      id: "pending",
+      label: "Featured set pending release",
+      size: "large"
     },
-    introTitle: {
-      zh: "Archive Rules",
-      en: "Archive Rules"
-    },
-    introPoints: [
-      {
-        zh: "只保留真实拍摄、已整理完成的图像。",
-        en: "Keep only real images that have already been organized."
-      },
-      {
-        zh: "没有现成系列时，宁可留白，也不摆模板占位图。",
-        en: "If a series is not ready, leave space instead of filling it with placeholders."
-      },
-      {
-        zh: "后续会按年度与主题继续补档。",
-        en: "Year and theme-based archive sets will be added as they are ready."
-      }
-    ],
-    latestWall: {zh: "Published Frames", en: "Published Frames"},
-    explore: {zh: "进入该年度", en: "Open Year"},
-    count: {zh: "张作品", en: "photos"},
-    latest: {zh: "最近拍摄", en: "Latest"},
-    empty: {
-      zh: "摄影页面暂时不放占位内容。等首批正式图集整理好后，这里会直接变成完整照片墙。",
-      en: "No placeholder content is shown on the photography page. Once the first real sets are curated, this will turn into a full photo wall."
-    }
-  };
-
-  const heroCards = useMemo(() => {
-    if (yearHighlights.length > 0) {
-      return yearHighlights.slice(0, 3).map(item => ({
-        year: item.year,
-        title: {
-          zh: `${item.year} 照片归档`,
-          en: `${item.year} Photo Archive`
-        },
-        description: {
-          zh: `${item.count} 张作品，最近拍摄 ${formatDate(
-            item.latestDate,
-            "zh"
-          )}`,
-          en: `${item.count} photos, latest ${formatDate(
-            item.latestDate,
-            "en"
-          )}`
-        },
-        image: item.coverImage,
-        cta: {
-          zh: "Open Year",
-          en: "Open Year"
-        },
-        href: `/photos/${item.year}`
-      }));
-    }
-
-    return [
-      {
-        eyebrow: "01",
-        title: {
-          zh: "Archive Rules",
-          en: "Archive Rules"
-        },
-        description: {
-          zh: "只放真实、已整理好的作品，不用占位图补墙。",
-          en: "Only real, curated work is published. No fake wall fillers."
-        },
-        cta: {
-          zh: "Open Section",
-          en: "Open Section"
-        },
-        href: "#archive-rules"
-      },
-      {
-        eyebrow: "02",
-        title: {
-          zh: "Published Frames",
-          en: "Published Frames"
-        },
-        description: {
-          zh: "一旦首批图集完成，这里会直接成为照片墙入口。",
-          en: "Once the first real set is ready, this becomes the photo-wall entry."
-        },
-        cta: {
-          zh: "Open Section",
-          en: "Open Section"
-        },
-        href: "#published-frames"
-      },
-      {
-        eyebrow: "03",
-        title: {
-          zh: "About Practice",
-          en: "About Practice"
-        },
-        description: {
-          zh: "先把图像归档逻辑说清楚，再慢慢扩充长期系列。",
-          en: "State the archive logic clearly first, then expand the long-term series."
-        },
-        cta: {
-          zh: "Open About",
-          en: "Open About"
-        },
-        href: "/about"
-      }
-    ];
-  }, [yearHighlights]);
+    {id: "urban", label: "Urban"},
+    {id: "portrait", label: "Portrait"},
+    {id: "stillness", label: "Stillness"},
+    {id: "year-archive", label: "Year archive"}
+  ];
+  const focusedFrameData = galleryFrames.find(
+    frame => frame.id === focusedFrame
+  );
 
   return (
     <PageSurface pageKey="photos" className="page-container">
-      <PageHero
-        pageKey="photos"
-        title={copy.title}
-        subtitle={copy.subtitle}
-        description={{
-          zh: "摄影页也必须先讲真实内容，再谈形式。现在 hero 里的卡片都能直接点进相应归档或说明部分。",
-          en: "The photography page should explain real content before styling it. Every hero card now opens a real archive target or section."
-        }}
-        visualType="interactive-feature"
-        mediaItems={heroCards}
-        onMediaItemClick={item =>
-          openHeroTarget({
-            target: item.href,
-            navigate,
-            currentPathname: location.pathname
-          })
-        }
-      />
+      <section className="photo-landing">
+        <div className="photo-landing__hero">
+          <div className="photo-landing__copy">
+            <p className="photo-landing__kicker">Photo Exhibition</p>
+            <h1>{getText(copy.title, language)}</h1>
+            <p className="photo-landing__subtitle">
+              {getText(copy.subtitle, language)}
+            </p>
+            <div className="photo-landing__actions">
+              <button
+                type="button"
+                className={activeView === "featured" ? "is-active" : ""}
+                aria-pressed={activeView === "featured"}
+                onClick={() => setActiveView("featured")}
+              >
+                {getText(copy.tabs.featured, language)}
+              </button>
+              <button
+                type="button"
+                className={activeView === "archive" ? "is-active" : ""}
+                aria-pressed={activeView === "archive"}
+                onClick={() => setActiveView("archive")}
+              >
+                {getText(copy.tabs.archive, language)}
+              </button>
+              <button
+                type="button"
+                className={activeView === "year" ? "is-active" : ""}
+                aria-pressed={activeView === "year"}
+                onClick={() => setActiveView("year")}
+              >
+                {getText(copy.tabs.year, language)}
+              </button>
+            </div>
+          </div>
 
-      <section className="photo-archive-notes" id="archive-rules">
-        <h2>{getText(copy.introTitle, language)}</h2>
-        <div className="photo-archive-note-list">
-          {copy.introPoints.map(item => (
-            <article className="photo-archive-note" key={item.en}>
-              <p>{getText(item, language)}</p>
-            </article>
-          ))}
+          <div className="photo-landing__wall">
+            {photoHeroVisual && (
+              <figure className="photo-landing__poster">
+                <img
+                  src={photoHeroVisual.src}
+                  alt={getText(photoHeroVisual.alt, language)}
+                  width="1672"
+                  height="941"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>{getText(photoHeroVisual.label, language)}</span>
+                  {getText(photoHeroVisual.caption, language)}
+                </figcaption>
+              </figure>
+            )}
+            <div className="photo-landing__frame-grid">
+              {galleryFrames.slice(1).map(frame => (
+                <button
+                  className="photo-landing__frame"
+                  key={frame.id}
+                  onClick={() => setFocusedFrame(frame.id)}
+                  type="button"
+                >
+                  <span>{frame.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+      {focusedFrameData && (
+        <section className="photo-focus-mode" aria-live="polite">
+          <button
+            className="photo-focus-mode__close"
+            onClick={() => setFocusedFrame(null)}
+            type="button"
+          >
+            Close focus
+          </button>
+          <div className="photo-focus-mode__stage">
+            <p>Focus preview</p>
+            <h2>{focusedFrameData.label}</h2>
+            <span>
+              {language === "zh"
+                ? "真实照片集准备好后，这里会进入沉浸式观看。"
+                : "When the real set is ready, this becomes the immersive viewing state."}
+            </span>
+          </div>
+        </section>
+      )}
 
-      <section className="photo-archive-published" id="published-frames">
-        <div className="photo-archive-head">
-          <h2>{getText(copy.latestWall, language)}</h2>
-        </div>
+      <section className="photo-archive-stage">
+        {activeView === "featured" && (
+          <div className="photo-stage-panel">
+            <div className="photo-stage-panel__head">
+              <p>{getText(copy.stageTitle, language)}</p>
+              <h2>{getText(copy.stageLead, language)}</h2>
+            </div>
+            <div className="photo-stage-panel__grid">
+              {copy.featuredNotes.map(item => (
+                <article className="photo-stage-note" key={item.label.en}>
+                  <span>{getText(item.label, language)}</span>
+                  <p>{getText(item.title, language)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div className="photo-archive-grid">
-          {yearHighlights.length === 0 && (
-            <div className="photo-year-card photo-year-card--empty">
-              <div className="photo-year-content">
-                <p>{getText(copy.empty, language)}</p>
-              </div>
+        {activeView === "archive" && (
+          <div className="photo-stage-panel">
+            <div className="photo-stage-panel__head">
+              <p>{getText(copy.archiveTitle, language)}</p>
+              <h2>{getText(copy.archiveLead, language)}</h2>
             </div>
-          )}
-          {yearHighlights.map(yearItem => (
-            <div className="photo-year-card" key={yearItem.year}>
-              <img src={yearItem.coverImage} alt={yearItem.year} />
-              <div className="photo-year-content">
-                <span className="photo-year-label">{yearItem.year}</span>
-                <h3>
-                  {yearItem.count} {getText(copy.count, language)}
-                </h3>
-                <p>
-                  {getText(copy.latest, language)}:{" "}
-                  {formatDate(yearItem.latestDate, language)}
-                </p>
-                <Link
-                  to={`/photos/${yearItem.year}`}
-                  className="photo-year-link"
-                >
-                  {getText(copy.explore, language)} →
-                </Link>
-              </div>
+            <div className="photo-stage-panel__stats">
+              {copy.categoryCards.map(card => (
+                <article className="photo-stage-stat" key={card.label.en}>
+                  <span>{getText(card.label, language)}</span>
+                  <strong>{getText(card.value, language)}</strong>
+                </article>
+              ))}
             </div>
-          ))}
-        </div>
+            <div className="photo-stage-panel__rules">
+              {copy.introPoints.map(item => (
+                <article className="photo-stage-rule" key={item.en}>
+                  <p>{getText(item, language)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeView === "year" && (
+          <div className="photo-stage-panel">
+            <div className="photo-stage-panel__head">
+              <p>{getText(copy.latestWall, language)}</p>
+              <h2>
+                {yearHighlights.length > 0
+                  ? language === "zh"
+                    ? "年度入口已经准备好进入真实归档。"
+                    : "Year entries are ready to lead into the real archive."
+                  : getText(copy.yearEmpty, language)}
+              </h2>
+            </div>
+            <div className="photo-archive-grid">
+              {yearHighlights.length === 0 && (
+                <div className="photo-year-card photo-year-card--empty">
+                  <div className="photo-year-content">
+                    <p>{getText(copy.empty, language)}</p>
+                  </div>
+                </div>
+              )}
+              {yearHighlights.map(yearItem => (
+                <div className="photo-year-card" key={yearItem.year}>
+                  <img
+                    src={yearItem.coverImage}
+                    alt={yearItem.year}
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="photo-year-content">
+                    <span className="photo-year-label">{yearItem.year}</span>
+                    <h3>
+                      {yearItem.count} {getText(copy.count, language)}
+                    </h3>
+                    <p>
+                      {getText(copy.latest, language)}:{" "}
+                      {formatDate(yearItem.latestDate, language)}
+                    </p>
+                    <Link
+                      to={`/photos/${yearItem.year}`}
+                      className="photo-year-link"
+                    >
+                      {getText(copy.explore, language)} →
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+      <section className="photo-archive-afterword">
+        <p>{getText(copy.emptyStage, language)}</p>
       </section>
     </PageSurface>
   );

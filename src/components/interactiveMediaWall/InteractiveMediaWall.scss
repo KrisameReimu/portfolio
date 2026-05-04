@@ -415,6 +415,20 @@
       }
     }
 
+    .video-grid .video-info {
+      .year {
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .title {
+        color: $textColorDark;
+      }
+    }
+
+    .video-grid .video-item:hover .video-info .title {
+      color: #8bbcff;
+    }
+
     .feature-item {
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.12);

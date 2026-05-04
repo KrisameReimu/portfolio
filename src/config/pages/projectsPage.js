@@ -148,6 +148,10 @@ export const projectDetailPageCopy = {
     en: "Loading project detail..."
   },
   sections: {
+    scope: {
+      zh: "Scope",
+      en: "Scope"
+    },
     flow: {
       zh: "Workflow Snapshot",
       en: "Workflow Snapshot"
