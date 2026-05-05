@@ -10,3 +10,6 @@ database_id = "12cb2541-d8d4-48a2-9a69-db6d1348d554"
 [vars]
 ADMIN_EMAILS = "chen944420634@gmail.com"
 GOOGLE_CLIENT_ID = "1043857890282-3u5cd4hj22uv637ofsvmcgjbaptnt0q1.apps.googleusercontent.com"
+
+# Required secret, set outside this file:
+# npx wrangler secret put SESSION_SIGNING_KEY

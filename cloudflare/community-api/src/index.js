@@ -7,6 +7,9 @@ const SPAM_PATTERNS = [
   /(loan|借贷|刷单|兼职日结|快速赚钱)/i
 ];
 
+const REQUIRED_CONFIG = ["SESSION_SIGNING_KEY"];
+const REQUIRED_TABLES = ["contact_messages"];
+
 const DEFAULT_NOW = {
   weekOf: "2026-02-09",
   focus: {
@@ -265,6 +268,55 @@ function isValidEmail(email) {
     String(email || "")
       .trim()
       .toLowerCase()
+  );
+}
+
+function getMissingConfig(env) {
+  return REQUIRED_CONFIG.filter(key => !String(env[key] || "").trim());
+}
+
+async function getMissingTables(db) {
+  const missing = [];
+  for (const table of REQUIRED_TABLES) {
+    const row = await db
+      .prepare(
+        `
+        SELECT name
+        FROM sqlite_master
+        WHERE type = 'table' AND name = ?1
+        LIMIT 1
+      `
+      )
+      .bind(table)
+      .first()
+      .catch(() => null);
+    if (!row?.name) missing.push(table);
+  }
+  return missing;
+}
+
+async function getServiceReadiness(env, db) {
+  const [missingConfig, missingTables] = await Promise.all([
+    Promise.resolve(getMissingConfig(env)),
+    getMissingTables(db)
+  ]);
+  return {
+    ok: missingConfig.length === 0 && missingTables.length === 0,
+    missingConfig,
+    missingTables
+  };
+}
+
+function getSessionSigningKey(env) {
+  const secret = String(env.SESSION_SIGNING_KEY || "").trim();
+  return secret || null;
+}
+
+function isMissingTableError(error, tableName) {
+  const message = String(error?.message || error || "").toLowerCase();
+  const table = String(tableName || "").toLowerCase();
+  return (
+    message.includes("no such table") && (!table || message.includes(table))
   );
 }
 
@@ -541,7 +593,24 @@ export default {
     const db = env.DB;
 
     if (url.pathname === "/health" && request.method === "GET") {
-      return json({ok: true, service: "community-api"}, 200, corsHeaders);
+      const readiness = await getServiceReadiness(env, db);
+      if (!readiness.ok) {
+        return json(
+          {
+            ok: false,
+            service: "community-api",
+            error: "service_not_ready",
+            ...readiness
+          },
+          503,
+          corsHeaders
+        );
+      }
+      return json(
+        {ok: true, service: "community-api", ...readiness},
+        200,
+        corsHeaders
+      );
     }
 
     if (url.pathname === "/auth/session" && request.method === "POST") {
@@ -565,7 +634,7 @@ export default {
 
       const role = resolveRoleByEmail(email, env);
       await ensureUser(db, {userId, displayName, provider, email, role});
-      const secret = env.SESSION_SIGNING_KEY;
+      const secret = getSessionSigningKey(env);
       if (!secret) {
         return json(
           {ok: false, error: "missing_session_signing_key"},
@@ -620,7 +689,7 @@ export default {
         role
       });
 
-      const secret = env.SESSION_SIGNING_KEY;
+      const secret = getSessionSigningKey(env);
       if (!secret) {
         return json(
           {ok: false, error: "missing_session_signing_key"},
@@ -935,27 +1004,42 @@ export default {
       }
 
       const id = uid("msg");
-      await db
-        .prepare(
+      try {
+        await db
+          .prepare(
+            `
+            INSERT INTO contact_messages (
+              id, name, email, topic, message, locale, source, page_path, client_ts
+            )
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
           `
-          INSERT INTO contact_messages (
-            id, name, email, topic, message, locale, source, page_path, client_ts
           )
-          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
-        `
-        )
-        .bind(
-          id,
-          name,
-          email,
-          topic,
-          message,
-          locale,
-          source,
-          pagePath,
-          clientTs
-        )
-        .run();
+          .bind(
+            id,
+            name,
+            email,
+            topic,
+            message,
+            locale,
+            source,
+            pagePath,
+            clientTs
+          )
+          .run();
+      } catch (error) {
+        if (isMissingTableError(error, "contact_messages")) {
+          return json(
+            {
+              ok: false,
+              error: "contact_messages_schema_not_ready",
+              missingTables: ["contact_messages"]
+            },
+            503,
+            corsHeaders
+          );
+        }
+        throw error;
+      }
 
       return json({ok: true, id}, 201, corsHeaders);
     }
