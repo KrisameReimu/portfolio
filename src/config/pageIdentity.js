@@ -25,7 +25,7 @@ export const pageIdentities = {
     contentRole: "Long-form thought and voice"
   },
   photos: {
-    accentColor: "#4c6ef5",
+    accentColor: "#365f72",
     pageClassName: "page-surface page-surface--photos",
     heroClassName: "photo-archive-landing-hero",
     heroMode: "immersive-gallery",
@@ -48,6 +48,31 @@ export const pageIdentities = {
     },
     visualThesis: "Atmospheric, image-first, archive-aware",
     contentRole: "Visual memory and place"
+  },
+  multimedia: {
+    accentColor: "#365f72",
+    pageClassName: "page-surface page-surface--multimedia",
+    heroClassName: "multimedia-landing-hero",
+    heroMode: "quiet-gallery-overview",
+    layoutRhythm: "overview-to-mediums",
+    motionTone: "restrained",
+    mediaTreatment: "gallery-first",
+    visualType: "archive-overview",
+    heroVisual: {
+      assetId: "photos-moments-places-stories-archive",
+      status: "available",
+      placement: "paired-gallery-entry",
+      interaction: "archive-routing"
+    },
+    designReference: {
+      source: "Refero",
+      archetype: "Apple gallery minimal plus Mike Matas white gallery",
+      borrow:
+        "warm-light canvas, image-first pacing, calm metadata, clear media entry points",
+      avoid: "dark gallery styling and undifferentiated mixed-media feeds"
+    },
+    visualThesis: "Quiet visual umbrella with distinct media routes",
+    contentRole: "Discovery layer for visual output"
   },
   videos: {
     accentColor: "#4a90e2",
@@ -75,7 +100,7 @@ export const pageIdentities = {
     contentRole: "Narrative proof through video"
   },
   projects: {
-    accentColor: "#9c27b0",
+    accentColor: "#315f72",
     pageClassName: "page-surface page-surface--projects",
     heroClassName: "projects-landing-hero",
     heroMode: "dossier-landing",

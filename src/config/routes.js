@@ -2,6 +2,7 @@ import React from "react";
 import {Navigate} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import ProjectPage from "../pages/ProjectPage";
+import MultimediaPage from "../pages/MultimediaPage";
 import VideoPage from "../pages/VideoPage";
 import VideoYearPage from "../pages/VideoYearPage";
 import AwardsPage from "../pages/AwardsPage";
@@ -31,16 +32,22 @@ export const siteRoutes = [
     navGroup: "primary"
   },
   {
+    path: "/multimedia",
+    element: <MultimediaPage />,
+    navLabel: "Multimedia",
+    navGroup: "primary"
+  },
+  {
     path: "/photos",
     element: <PhotoArchivePage />,
     navLabel: "Photos",
-    navGroup: "primary"
+    navGroup: "secondary"
   },
   {
     path: "/videos",
     element: <VideoPage />,
     navLabel: "Videos",
-    navGroup: "primary"
+    navGroup: "secondary"
   },
   {
     path: "/projects",
@@ -52,7 +59,7 @@ export const siteRoutes = [
     path: "/awards",
     element: <AwardsPage />,
     navLabel: "Awards",
-    navGroup: "primary"
+    navGroup: "secondary"
   },
   {
     path: "/about",
