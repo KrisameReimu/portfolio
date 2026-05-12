@@ -1,17 +1,14 @@
 @import "../../_globalColor";
 
 .contact-page {
+  --page-shadow-soft: 0 18px 54px rgba(34, 31, 27, 0.07);
+  --page-shadow-hover: 0 24px 72px rgba(34, 31, 27, 0.1);
   min-height: 100vh;
   padding: 5rem 2rem 6rem;
 }
 
 .contact-surface--light {
-  background: radial-gradient(
-      circle at 88% 16%,
-      rgba(149, 95, 59, 0.08),
-      transparent 30%
-    ),
-    linear-gradient(180deg, #f8f2ea 0%, #fbf7f0 100%);
+  background: linear-gradient(180deg, #fbf7f0 0%, #f6f1e9 48%, #fffaf2 100%);
   color: $textColor;
 }
 
@@ -29,28 +26,24 @@
 .contact-hero {
   width: min(1480px, 100%);
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.2rem);
   align-items: end;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba($textColor, 0.12);
 }
 
 .contact-hero__copy {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  order: 1;
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba($textColor, 0.12);
 }
 
 .contact-social-strip {
-  order: 2;
+  order: 3;
+  grid-column: 1 / -1;
 }
 
 .contact-hero__copy,
@@ -72,14 +65,14 @@
   margin: 0;
   color: $textColor;
   font-family: "Georgia", "Iowan Old Style", serif;
-  font-size: clamp(3rem, 8vw, 6.2rem);
+  font-size: clamp(2.8rem, 6.2vw, 5.5rem);
   font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.9;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
 }
 
 .contact-subtitle {
-  max-width: 46rem;
+  max-width: 38rem;
   margin: 1.2rem 0 0;
   color: $subTitle;
   font-size: clamp(1rem, 2vw, 1.35rem);
@@ -93,19 +86,19 @@
 }
 
 .contact-hero__visual {
-  order: 1;
+  order: 2;
   margin: 0;
   overflow: hidden;
   border: 1px solid rgba($textColor, 0.12);
-  border-radius: 1.35rem;
+  border-radius: 8px;
   background: rgba(255, 253, 248, 0.62);
-  box-shadow: 0 24px 70px rgba(42, 29, 21, 0.11);
+  box-shadow: var(--page-shadow-soft);
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .contact-hero__visual:hover {
   filter: saturate(1.04);
-  box-shadow: 0 30px 86px rgba(42, 29, 21, 0.15);
+  box-shadow: var(--page-shadow-hover);
   transform: translateY(-4px);
 }
 
@@ -146,7 +139,7 @@
   padding: 1.3rem;
   border: 1px solid rgba($textColor, 0.1);
   border-radius: 8px;
-  background: rgba(255, 253, 248, 0.62);
+  background: rgba(255, 253, 248, 0.56);
 }
 
 .contact-method-card--primary {
@@ -237,12 +230,9 @@
 }
 
 .contact-surface--dark {
-  background: radial-gradient(
-      circle at 88% 16%,
-      rgba(149, 95, 59, 0.18),
-      transparent 30%
-    ),
-    linear-gradient(180deg, #120f0d 0%, #0d0b09 100%);
+  --page-shadow-soft: none;
+  --page-shadow-hover: none;
+  background: linear-gradient(180deg, #120f0d 0%, #0d0b09 100%);
   color: $textColorDark;
 }
 
@@ -447,6 +437,10 @@
   .contact-hero,
   .contact-method-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-social-strip {
+    grid-column: auto;
   }
 
   .contact-hero__visual {

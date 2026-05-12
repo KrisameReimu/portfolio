@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: 2rem;
-  padding: 2rem 0 1.7rem;
+  padding: 2.15rem 0 1.8rem;
   border-top: 1px solid $pretextRule;
 }
 
@@ -59,6 +59,16 @@
   font-weight: 700;
   padding-bottom: 0.18rem;
   border-bottom: 1px solid rgba(149, 95, 59, 0.28);
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.home-curated-worlds__actions a:hover,
+.home-curated-worlds__actions a:focus-visible,
+.home-curated-worlds__chapter-detail a:hover,
+.home-curated-worlds__chapter-detail a:focus-visible {
+  border-bottom-color: $pretextAccent;
+  color: $pretextInk;
+  outline: none;
 }
 
 .home-curated-worlds__signals {
@@ -67,10 +77,10 @@
 }
 
 .home-curated-worlds__signal {
-  padding: 1rem 1.1rem 1.15rem;
-  border-radius: 1.05rem;
+  padding: 0.95rem 1rem 1.05rem;
+  border-radius: 8px;
   border: 1px solid rgba(149, 95, 59, 0.13);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.42);
 }
 
 .home-curated-worlds__signal span {

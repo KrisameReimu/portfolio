@@ -10,44 +10,33 @@
 
 .photo-landing {
   max-width: 1480px;
-  padding-top: 2.4rem;
+  padding-top: clamp(2rem, 4vw, 3.2rem);
 }
 
 .photo-landing__hero {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: end;
 }
 
 .photo-landing__copy {
-  order: 2;
+  order: 1;
+  max-width: 760px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba($textColor, 0.12);
 }
 
 .photo-landing__wall {
-  order: 1;
-}
-
-.photo-landing__kicker,
-.photo-landing__copy h1,
-.photo-landing__subtitle {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  order: 2;
 }
 
 .photo-landing__kicker,
 .photo-stage-panel__head p {
   margin: 0 0 0.8rem;
-  color: $buttonColor;
+  color: var(--page-accent);
   font-size: 0.74rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -56,9 +45,9 @@
   margin: 0 0 1rem;
   color: $textColor;
   font-family: "Georgia", "Iowan Old Style", serif;
-  font-size: clamp(3rem, 6vw, 5.4rem);
-  line-height: 0.92;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.6rem, 5.2vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 
 .photo-landing__subtitle,
@@ -86,9 +75,9 @@
 .photo-landing__actions button {
   appearance: none;
   border: 1px solid rgba($textColor, 0.12);
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.42);
   color: rgba($textColor, 0.72);
-  border-radius: 999px;
+  border-radius: var(--taste-control-radius);
   padding: 0.72rem 1.05rem;
   font: inherit;
   font-size: 0.78rem;
@@ -99,9 +88,9 @@
 }
 
 .photo-landing__actions button.is-active {
-  background: rgba(12, 25, 47, 0.92);
+  background: var(--page-accent);
   color: #f8f4ef;
-  border-color: rgba(12, 25, 47, 0.92);
+  border-color: var(--page-accent);
 }
 
 .photo-landing__wall {
@@ -113,15 +102,15 @@
   margin: 0;
   overflow: hidden;
   border: 1px solid rgba($textColor, 0.12);
-  border-radius: 1.35rem;
+  border-radius: var(--taste-card-radius);
   background: rgba(255, 253, 248, 0.72);
-  box-shadow: 0 24px 68px rgba(58, 42, 24, 0.1);
+  box-shadow: var(--page-shadow-soft);
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .photo-landing__poster:hover {
-  filter: saturate(1.05);
-  box-shadow: 0 30px 82px rgba(58, 42, 24, 0.14);
+  filter: saturate(1.03);
+  box-shadow: var(--page-shadow-hover);
   transform: translateY(-4px);
 }
 
@@ -146,21 +135,21 @@
 }
 
 .photo-landing__poster figcaption span {
-  color: $buttonColor;
+  color: var(--page-accent);
   font-weight: 800;
 }
 
 .photo-landing__frame,
 .photo-year-card {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.48);
   border: 1px solid rgba($textColor, 0.1);
-  box-shadow: 0 18px 48px rgba(58, 42, 24, 0.06);
+  box-shadow: none;
 }
 
 .photo-landing__frame {
   appearance: none;
   border: 1px solid rgba($textColor, 0.1);
-  border-radius: 1.4rem;
+  border-radius: var(--taste-card-radius);
   min-height: 8rem;
   display: flex;
   align-items: flex-end;
@@ -171,23 +160,18 @@
   overflow: hidden;
   cursor: pointer;
   background-image: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.72),
-      rgba(255, 255, 255, 0.25)
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(76, 110, 245, 0.12),
-      transparent 40%
-    ),
-    linear-gradient(160deg, rgba(33, 40, 58, 0.12), rgba(196, 170, 140, 0.08));
-  transition: transform 0.28s ease, border-color 0.28s ease, filter 0.28s ease;
+    180deg,
+    rgba(255, 255, 255, 0.56),
+    rgba(255, 255, 255, 0.34)
+  );
+  transition: transform 0.28s ease, border-color 0.28s ease,
+    background 0.28s ease;
 }
 
 .photo-landing__frame:hover,
 .photo-landing__frame:focus-visible {
-  border-color: rgba($buttonColor, 0.3);
-  filter: saturate(1.08);
+  border-color: rgba(54, 95, 114, 0.34);
+  background: rgba(255, 255, 255, 0.72);
   transform: translateY(-3px);
   outline: none;
 }
@@ -233,17 +217,12 @@
   min-height: 21rem;
   padding: 1.5rem;
   border: 1px solid rgba($textColor, 0.1);
-  background: radial-gradient(
-      circle at 50% 12%,
-      rgba(255, 255, 255, 0.72),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 70% 60%,
-      rgba(76, 110, 245, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(125deg, rgba(21, 23, 31, 0.06), rgba(255, 255, 255, 0.36));
+  border-radius: var(--taste-card-radius);
+  background: linear-gradient(
+    125deg,
+    rgba(21, 23, 31, 0.04),
+    rgba(255, 255, 255, 0.46)
+  );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -267,7 +246,7 @@
 
 .photo-focus-mode__stage p {
   margin: 0 0 0.75rem;
-  color: $buttonColor;
+  color: var(--page-accent);
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -295,7 +274,7 @@
   appearance: none;
   border: 0;
   background: transparent;
-  color: $buttonColor;
+  color: var(--page-accent);
   padding: 0 0 0.7rem;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -305,7 +284,7 @@
 }
 
 .photo-stage-panel {
-  padding: 1.6rem 0 0;
+  padding: 1.8rem 0 0;
   border-top: 1px solid rgba($textColor, 0.12);
 }
 
@@ -342,7 +321,7 @@
 .photo-stage-note,
 .photo-stage-stat,
 .photo-stage-rule {
-  padding: 0.95rem 0 0;
+  padding: 1rem 0 0;
   border-top: 1px solid rgba($textColor, 0.12);
 }
 
@@ -350,7 +329,7 @@
 .photo-stage-stat span {
   display: block;
   margin-bottom: 0.5rem;
-  color: $buttonColor;
+  color: var(--page-accent);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -378,7 +357,7 @@
 }
 
 .photo-year-card {
-  border-radius: 1.2rem;
+  border-radius: var(--taste-card-radius);
   overflow: hidden;
 }
 
@@ -410,7 +389,7 @@
 }
 
 .photo-year-link {
-  color: $buttonColor;
+  color: var(--page-accent);
   text-decoration: none;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -466,17 +445,11 @@
 
 .dark-mode .photo-focus-mode__stage {
   border-color: rgba(255, 255, 255, 0.1);
-  background: radial-gradient(
-      circle at 50% 12%,
-      rgba(255, 255, 255, 0.08),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 70% 60%,
-      rgba(76, 110, 245, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(125deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0.06));
+  background: linear-gradient(
+    125deg,
+    rgba(0, 0, 0, 0.28),
+    rgba(255, 255, 255, 0.06)
+  );
 }
 
 .dark-mode .photo-focus-mode__stage h2 {

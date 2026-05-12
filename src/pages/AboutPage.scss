@@ -7,21 +7,11 @@
 }
 
 .about-landing-hero {
-  background: radial-gradient(
-      120% 120% at 0% 0%,
-      rgba(12, 74, 110, 0.16) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      100% 100% at 100% 0%,
-      rgba(161, 98, 7, 0.13) 0%,
-      transparent 55%
-    ),
-    linear-gradient(
-      140deg,
-      rgba(2, 6, 23, 0.02) 0%,
-      rgba(15, 23, 42, 0.08) 100%
-    ) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.42),
+    rgba(255, 255, 255, 0.08)
+  ) !important;
   margin-top: 0;
   margin-bottom: 1.3rem;
 }
@@ -48,7 +38,7 @@
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: $textColor;
+  color: $pretextAccent;
 }
 
 .about-signal-list {
@@ -57,7 +47,7 @@
 }
 
 .about-signal-item {
-  padding: 1rem 0 1.05rem;
+  padding: 1.05rem 0 1.1rem;
   border-bottom: 1px solid $lightBorder1;
 }
 
@@ -85,7 +75,7 @@
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: $textColor;
+  color: $pretextAccent;
 }
 
 .about-timeline {
@@ -141,12 +131,20 @@
 
 .about-resume-button {
   text-decoration: none;
-  background: $buttonColor;
-  color: #fff;
-  padding: 10px 18px;
+  background: $textColor;
+  color: $lightBackground1;
+  padding: 11px 18px;
   border-radius: 999px;
   font-weight: 600;
   white-space: nowrap;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.about-resume-button:hover,
+.about-resume-button:focus-visible {
+  background: $pretextAccent;
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .dark-mode .about-resume-card {

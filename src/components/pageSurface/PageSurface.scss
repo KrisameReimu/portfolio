@@ -5,11 +5,13 @@
   --page-muted: #{$subTitle};
   --page-soft: rgba(32, 27, 24, 0.58);
   --page-panel: rgba(255, 255, 255, 0.62);
-  --page-panel-strong: rgba(255, 253, 248, 0.78);
+  --page-panel-strong: rgba(255, 253, 248, 0.86);
   --page-border: rgba(32, 27, 24, 0.1);
   --page-border-strong: rgba(32, 27, 24, 0.16);
   --page-accent: #{$buttonColor};
   --page-accent-border: rgba(156, 95, 59, 0.32);
+  --page-shadow-soft: 0 18px 54px rgba(34, 31, 27, 0.07);
+  --page-shadow-hover: 0 24px 72px rgba(34, 31, 27, 0.1);
   --taste-section-gap: clamp(64px, 8vw, 112px);
   --taste-content-width: min(1120px, calc(100vw - 40px));
   --taste-reading-width: min(760px, calc(100vw - 40px));
@@ -31,42 +33,35 @@
 }
 
 .page-surface--projects {
-  background: radial-gradient(
-      circle at 72% 22%,
-      rgba(156, 39, 176, 0.1),
-      transparent 28%
-    ),
-    radial-gradient(circle at 14% 12%, rgba(156, 95, 59, 0.12), transparent 30%),
-    linear-gradient(180deg, #f8f2ea 0%, #f5eee5 48%, #fbf7f0 100%);
+  --page-accent: #315f72;
+  --page-accent-border: rgba(49, 95, 114, 0.28);
+  background: linear-gradient(180deg, #f8f7f3 0%, #f2f0ea 48%, #fbfaf6 100%);
 }
 
 .page-surface--writing {
-  background: radial-gradient(
-      circle at 84% 16%,
-      rgba(102, 126, 234, 0.08),
-      transparent 28%
-    ),
-    linear-gradient(180deg, #f7f4ee 0%, #f4efe7 52%, #fbf7f1 100%);
+  --page-accent: #8f5f3f;
+  --page-accent-border: rgba(143, 95, 63, 0.28);
+  background: linear-gradient(180deg, #f8f4ee 0%, #f4efe7 52%, #fbf7f1 100%);
+}
+
+.page-surface--multimedia {
+  --page-accent: #365f72;
+  --page-accent-border: rgba(54, 95, 114, 0.26);
+  --page-panel: rgba(255, 255, 255, 0.58);
+  background: linear-gradient(180deg, #fbfaf6 0%, #f5f2ec 48%, #fffdf8 100%);
 }
 
 .page-surface--videos {
-  background: radial-gradient(
-      circle at 76% 18%,
-      rgba(74, 144, 226, 0.12),
-      transparent 30%
-    ),
-    radial-gradient(circle at 20% 82%, rgba(21, 43, 76, 0.06), transparent 24%),
-    linear-gradient(180deg, #f3f6f8 0%, #edf2f6 52%, #f8fbfd 100%);
+  --page-accent: #365f72;
+  --page-accent-border: rgba(54, 95, 114, 0.28);
+  background: linear-gradient(180deg, #f8f8f5 0%, #eff3f3 52%, #fbfcfa 100%);
 }
 
 .page-surface--photos {
-  background: radial-gradient(
-      circle at 78% 20%,
-      rgba(76, 110, 245, 0.1),
-      transparent 28%
-    ),
-    radial-gradient(circle at 18% 84%, rgba(85, 25, 139, 0.07), transparent 26%),
-    linear-gradient(180deg, #f4f2ee 0%, #eeece7 56%, #faf8f3 100%);
+  --page-accent: #365f72;
+  --page-accent-border: rgba(54, 95, 114, 0.26);
+  --page-panel: rgba(255, 255, 255, 0.56);
+  background: linear-gradient(180deg, #fbfaf7 0%, #f5f4ef 56%, #fffdf8 100%);
 }
 
 .page-surface--awards {
@@ -114,52 +109,36 @@
     --page-border-strong: rgba(255, 253, 248, 0.2);
     --page-accent: #{$pretextAccent};
     --page-accent-border: rgba(216, 164, 0, 0.38);
+    --page-shadow-soft: none;
+    --page-shadow-hover: none;
   }
 
   .page-surface--projects {
-    background: radial-gradient(
-        circle at 74% 18%,
-        rgba(156, 39, 176, 0.18),
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 16% 12%,
-        rgba(156, 95, 59, 0.22),
-        transparent 30%
-      ),
-      linear-gradient(180deg, #120f0d 0%, #1b1511 52%, #0f0d0b 100%);
+    --page-accent: #90b5c1;
+    --page-accent-border: rgba(144, 181, 193, 0.28);
+    background: linear-gradient(180deg, #0e1112 0%, #141819 52%, #0b0d0e 100%);
   }
 
   .page-surface--writing {
-    background: radial-gradient(
-        circle at 84% 18%,
-        rgba(102, 126, 234, 0.14),
-        transparent 30%
-      ),
-      linear-gradient(180deg, #11100f 0%, #181513 52%, #0e0d0c 100%);
+    background: linear-gradient(180deg, #11100f 0%, #181513 52%, #0e0d0c 100%);
+  }
+
+  .page-surface--multimedia {
+    --page-accent: #90b5c1;
+    --page-accent-border: rgba(144, 181, 193, 0.28);
+    background: linear-gradient(180deg, #0f1111 0%, #151817 52%, #0d0e0d 100%);
   }
 
   .page-surface--videos {
-    background: radial-gradient(
-        circle at 76% 18%,
-        rgba(74, 144, 226, 0.18),
-        transparent 30%
-      ),
-      linear-gradient(180deg, #0c1015 0%, #111923 52%, #090d12 100%);
+    --page-accent: #90b5c1;
+    --page-accent-border: rgba(144, 181, 193, 0.28);
+    background: linear-gradient(180deg, #0c1012 0%, #111719 52%, #090d0e 100%);
   }
 
   .page-surface--photos {
-    background: radial-gradient(
-        circle at 78% 20%,
-        rgba(76, 110, 245, 0.16),
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 18% 84%,
-        rgba(85, 25, 139, 0.12),
-        transparent 28%
-      ),
-      linear-gradient(180deg, #100f12 0%, #151420 52%, #0d0c10 100%);
+    --page-accent: #90b5c1;
+    --page-accent-border: rgba(144, 181, 193, 0.26);
+    background: linear-gradient(180deg, #101111 0%, #151615 52%, #0d0d0c 100%);
   }
 
   .page-surface--awards {

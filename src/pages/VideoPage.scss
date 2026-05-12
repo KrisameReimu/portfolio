@@ -1,27 +1,19 @@
 @import "../_globalColor";
 
-/* 清新年轻蓝色主题 - Videos故事展现 */
-$videoPrimaryColor: #4a90e2;
-$videoAccentLight: #e8f0ff;
-$videoAccentDark: #2e5c8a;
+$videoPrimaryColor: #365f72;
+$videoAccentLight: #edf3f3;
+$videoAccentDark: #223941;
 
 .video-hero {
   background: linear-gradient(
-    135deg,
-    rgba(74, 144, 226, 0.06) 0%,
-    rgba(74, 144, 226, 0.03) 50%,
-    rgba(255, 255, 255, 0) 100%
+    180deg,
+    rgba(255, 255, 255, 0.44),
+    rgba(255, 255, 255, 0.08)
   ) !important;
 
   .page-title {
-    background: linear-gradient(
-      135deg,
-      $videoPrimaryColor 0%,
-      $videoAccentDark 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: $videoAccentDark;
+    -webkit-text-fill-color: currentColor;
     font-weight: 700;
   }
 
@@ -35,7 +27,7 @@ $videoAccentDark: #2e5c8a;
 /* 最近上传部分 */
 .videos-latest-section {
   max-width: 1200px;
-  margin: 80px auto;
+  margin: 72px auto;
   padding: 0 20px;
 
   .section-container {
@@ -51,11 +43,11 @@ $videoAccentDark: #2e5c8a;
   }
 
   .section-title {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 650;
     color: $textColor;
     margin: 0;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.03em;
 
     @media (max-width: 768px) {
       font-size: 1.6rem;
@@ -77,7 +69,7 @@ $videoAccentDark: #2e5c8a;
 /* 年度档案部分 */
 .videos-archive-section {
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 92px auto;
   padding: 0 20px;
 
   .section-container {
@@ -87,8 +79,8 @@ $videoAccentDark: #2e5c8a;
   }
 
   .section-title {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 650;
     color: $textColor;
     margin: 0;
     letter-spacing: -0.5px;
@@ -117,6 +109,7 @@ $videoAccentDark: #2e5c8a;
       gap: 16px;
       padding-bottom: 20px;
       border-bottom: 2px solid $videoPrimaryColor;
+      border-bottom-width: 1px;
 
       .year-title {
         font-size: 1.8rem;
@@ -158,9 +151,9 @@ $videoAccentDark: #2e5c8a;
   text-align: center;
   color: rgba($textColor, 0.5);
   font-size: 1rem;
-  background: rgba($videoPrimaryColor, 0.05);
-  border-radius: 12px;
-  border: 1px dashed rgba($videoPrimaryColor, 0.2);
+  background: rgba(255, 255, 255, 0.44);
+  border-radius: 8px;
+  border: 1px dashed rgba($videoPrimaryColor, 0.24);
 }
 
 /* 深色模式 */
