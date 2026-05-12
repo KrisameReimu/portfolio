@@ -13,7 +13,7 @@ import "./MultimediaPage.scss";
 export default function MultimediaPage() {
   const {language} = useContext(LanguageContext);
   const copy = multimediaPageCopy;
-  const heroVisual = multimediaPageAssets.hero;
+  const heroVisual = getPageHeroVisual("multimedia");
 
   return (
     <PageSurface

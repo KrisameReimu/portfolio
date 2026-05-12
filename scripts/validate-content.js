@@ -10,7 +10,8 @@ const files = {
   photos: path.join(contentDir, "photos.json"),
   videos: path.join(contentDir, "videos.json"),
   projects: path.join(contentDir, "projects.json"),
-  projectDetailsIndex: path.join(contentDir, "projects", "index.json")
+  projectDetailsIndex: path.join(contentDir, "projects", "index.json"),
+  visualsIndex: path.join(contentDir, "visuals", "index.json")
 };
 const articlesDir = path.join(contentDir, "articles");
 const projectDetailsDir = path.join(contentDir, "projects");
@@ -88,6 +89,23 @@ const validatePublicAssetPath = (value, pathLabel) => {
   }
 
   const assetPath = path.join(root, "public", value.replace(/^\/+/, ""));
+  if (!fs.existsSync(assetPath)) {
+    addError(`${pathLabel} does not exist: ${assetPath}`);
+  }
+};
+
+const validateRepoAssetPath = (value, pathLabel) => {
+  if (!hasText(value)) {
+    addError(`${pathLabel} is required`);
+    return;
+  }
+
+  if (path.isAbsolute(value)) {
+    addError(`${pathLabel} must be a repository-relative path`);
+    return;
+  }
+
+  const assetPath = path.join(root, value);
   if (!fs.existsSync(assetPath)) {
     addError(`${pathLabel} does not exist: ${assetPath}`);
   }
@@ -358,18 +376,60 @@ const validateProjectDetails = index => {
   return details;
 };
 
+const validateVisualsIndex = index => {
+  if (!Array.isArray(index.assets)) {
+    addError("visuals index must include an assets array");
+    return;
+  }
+
+  validateUniqueIds(index.assets, "visuals.assets");
+
+  index.assets.forEach((asset, idx) => {
+    const label = `visuals.assets[${idx}](${asset?.id || "missing-id"})`;
+    if (!asset || typeof asset !== "object") return;
+
+    if (!hasText(asset.page)) addError(`${label}.page is required`);
+    if (!hasText(asset.role)) addError(`${label}.role is required`);
+    if (!hasText(asset.status)) addError(`${label}.status is required`);
+    if (!hasText(asset.type)) addError(`${label}.type is required`);
+    validateI18nObject(asset.title, `${label}.title`);
+
+    if (asset.status === "available") {
+      if (!asset.output || typeof asset.output !== "object") {
+        addError(`${label}.output is required for available assets`);
+        return;
+      }
+      if (!hasText(asset.output.format)) {
+        addError(`${label}.output.format is required`);
+      }
+      validateRepoAssetPath(
+        asset.output.storagePath,
+        `${label}.output.storagePath`
+      );
+      if (asset.output.sourcePath !== undefined) {
+        validateRepoAssetPath(
+          asset.output.sourcePath,
+          `${label}.output.sourcePath`
+        );
+      }
+    }
+  });
+};
+
 const run = () => {
   const articles = readJsonArray(files.articles);
   const photos = readJsonArray(files.photos);
   const videos = readJsonArray(files.videos);
   const projects = readJsonArray(files.projects);
   const projectDetailsIndex = readJsonObject(files.projectDetailsIndex);
+  const visualsIndex = readJsonObject(files.visualsIndex);
 
   validateArticles(articles);
   validatePhotos(photos);
   validateVideos(videos);
   validateProjects(projects);
   const projectDetails = validateProjectDetails(projectDetailsIndex);
+  validateVisualsIndex(visualsIndex);
 
   const globalIds = new Map();
   [

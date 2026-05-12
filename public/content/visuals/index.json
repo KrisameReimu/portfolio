@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-04",
+  "updatedAt": "2026-05-12",
   "recommendedModel": "gpt-image-2",
   "generationDefaults": {
     "quality": "high",
@@ -186,6 +186,90 @@
         "format": "jpg",
         "storagePath": "public/content/visuals/assets/page-heroes/photos-moments-places-stories-archive.jpg",
         "sourcePath": "public/content/visuals/assets/page-heroes/photos-moments-places-stories-archive-source.png"
+      }
+    },
+    {
+      "id": "multimedia-visual-output-archive",
+      "page": "multimedia",
+      "role": "umbrella-gallery-entrance",
+      "status": "available",
+      "type": "generated-page-hero",
+      "title": {
+        "zh": "Multimedia Visual Output Archive",
+        "en": "Multimedia Visual Output Archive"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Multimedia 总入口主视觉，连接 Photos、Videos、AI Visuals 和 Process，但不混成单一 feed。",
+        "en": "Primary visual for the Multimedia hub, connecting Photos, Videos, AI Visuals, and Process without flattening them into one feed."
+      },
+      "frontendNotes": {
+        "zh": "作为 umbrella gallery entrance 使用；Photos 与 Videos 仍保留自己的页面身份和真实归档。",
+        "en": "Use as the umbrella gallery entrance; Photos and Videos keep their own page identities and real archives."
+      },
+      "output": {
+        "format": "webp",
+        "storagePath": "public/content/visuals/multimedia/multimedia-hero.webp"
+      }
+    },
+    {
+      "id": "multimedia-ai-visuals-entry",
+      "page": "multimedia",
+      "role": "ai-visuals-entry-card",
+      "status": "available",
+      "type": "generated-entry-visual",
+      "title": {
+        "zh": "Multimedia AI Visuals Entry",
+        "en": "Multimedia AI Visuals Entry"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Multimedia 页 AI Visuals 未来入口卡片视觉。",
+        "en": "Entry-card visual for the future AI Visuals area on Multimedia."
+      },
+      "frontendNotes": {
+        "zh": "只标记生成视觉方向；不要让它替代真实照片或视频归档。",
+        "en": "Marks the generated-visual direction only; do not let it replace real photo or video archives."
+      },
+      "output": {
+        "format": "webp",
+        "storagePath": "public/content/visuals/multimedia/ai-visuals.webp"
+      }
+    },
+    {
+      "id": "multimedia-process-entry",
+      "page": "multimedia",
+      "role": "process-entry-card",
+      "status": "available",
+      "type": "generated-entry-visual",
+      "title": {
+        "zh": "Multimedia Process Entry",
+        "en": "Multimedia Process Entry"
+      },
+      "source": {
+        "generator": "ChatGPT image 2.0",
+        "createdBy": "Echo",
+        "promptTracked": false
+      },
+      "intendedUse": {
+        "zh": "Multimedia 页 Process / behind-the-scenes 未来入口卡片视觉。",
+        "en": "Entry-card visual for the future Process / behind-the-scenes area on Multimedia."
+      },
+      "frontendNotes": {
+        "zh": "用于说明幕后流程入口；真实工具、提示词和剪辑记录应由后续内容数据提供。",
+        "en": "Used to frame the behind-the-scenes entry; real tools, prompts, and editing records should come from future content data."
+      },
+      "output": {
+        "format": "webp",
+        "storagePath": "public/content/visuals/multimedia/process.webp"
       }
     },
     {

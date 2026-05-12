@@ -1,18 +1,6 @@
 const multimediaVisualBase = "/content/visuals/multimedia";
 
 export const multimediaPageAssets = {
-  hero: {
-    src: `${multimediaVisualBase}/multimedia-hero.webp`,
-    alt: {
-      zh: "Multimedia 总入口视觉，Echo 站在照片、视频、AI 视觉和创作流程拼贴墙前。",
-      en: "Multimedia hub visual with Echo surrounded by photos, videos, AI visuals, and process boards."
-    },
-    label: {zh: "Multimedia", en: "Multimedia"},
-    caption: {
-      zh: "Photos · Videos · AI Visuals · Process",
-      en: "Photos · Videos · AI Visuals · Process"
-    }
-  },
   aiVisuals: {
     src: `${multimediaVisualBase}/ai-visuals.webp`,
     alt: {
@@ -56,7 +44,7 @@ export const multimediaPageCopy = {
         zh: "城市、旅途、日常观察和地点记忆，保留 image-first 的安静观看节奏。",
         en: "City scenes, travel, daily observation, and place memory with a quiet image-first rhythm."
       },
-      href: "/photos",
+      href: "/multimedia/photos",
       status: {zh: "已开放", en: "Live archive"},
       visualKey: "photos"
     },
@@ -68,7 +56,7 @@ export const multimediaPageCopy = {
         zh: "比赛、项目、航拍和短片，把复杂工作剪成更容易被理解的故事。",
         en: "Competition work, projects, drone footage, and short stories shaped for clearer viewing."
       },
-      href: "/videos",
+      href: "/multimedia/videos",
       status: {zh: "已开放", en: "Live archive"},
       visualKey: "videos"
     },

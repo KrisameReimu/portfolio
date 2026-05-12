@@ -59,9 +59,9 @@ export const pageIdentities = {
     mediaTreatment: "gallery-first",
     visualType: "archive-overview",
     heroVisual: {
-      assetId: "photos-moments-places-stories-archive",
+      assetId: "multimedia-visual-output-archive",
       status: "available",
-      placement: "paired-gallery-entry",
+      placement: "umbrella-gallery-entrance",
       interaction: "archive-routing"
     },
     designReference: {

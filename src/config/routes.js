@@ -44,10 +44,30 @@ export const siteRoutes = [
     navGroup: "secondary"
   },
   {
+    path: "/multimedia/photos",
+    element: <PhotoArchivePage />,
+    navGroup: "secondary"
+  },
+  {
     path: "/videos",
     element: <VideoPage />,
     navLabel: "Videos",
     navGroup: "secondary"
+  },
+  {
+    path: "/multimedia/videos",
+    element: <VideoPage />,
+    navGroup: "secondary"
+  },
+  {
+    path: "/multimedia/ai-visuals",
+    element: redirectTo("/multimedia"),
+    navGroup: "alias"
+  },
+  {
+    path: "/multimedia/process",
+    element: redirectTo("/multimedia"),
+    navGroup: "alias"
   },
   {
     path: "/projects",
@@ -124,7 +144,17 @@ export const siteRoutes = [
     navGroup: "detail"
   },
   {
+    path: "/multimedia/videos/:year",
+    element: <VideoYearPage />,
+    navGroup: "detail"
+  },
+  {
     path: "/photos/:year",
+    element: <PhotoYearPage />,
+    navGroup: "detail"
+  },
+  {
+    path: "/multimedia/photos/:year",
     element: <PhotoYearPage />,
     navGroup: "detail"
   },

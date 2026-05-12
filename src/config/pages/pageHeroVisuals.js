@@ -52,6 +52,22 @@ export const pageHeroVisuals = {
       en: "Moments · Places · Stories"
     }
   },
+  multimedia: {
+    id: "multimedia-visual-output-archive",
+    src: "/content/visuals/multimedia/multimedia-hero.webp",
+    alt: {
+      zh: "Multimedia 总入口视觉，Echo 站在照片、视频、AI 视觉和创作流程拼贴墙前。",
+      en: "Multimedia hub visual with Echo surrounded by photos, videos, AI visuals, and process boards."
+    },
+    label: {
+      zh: "Multimedia",
+      en: "Multimedia"
+    },
+    caption: {
+      zh: "Photos · Videos · AI Visuals · Process",
+      en: "Photos · Videos · AI Visuals · Process"
+    }
+  },
   videos: {
     id: "videos-filmmaking-editing-visual-stories",
     src: `${pageHeroBase}/videos-filmmaking-editing-visual-stories.jpg`,
