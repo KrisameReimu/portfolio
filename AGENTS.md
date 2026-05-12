@@ -69,6 +69,45 @@ When adding new behavior:
 - Extract to `services` or `hooks` when logic is shared.
 - Do not hide page-specific storytelling logic inside generic shared utilities.
 
+## Design Reference Workflow
+
+Use Refero and other external design references as design principles, not as templates to copy.
+
+For UI, visual identity, typography, layout, image, or page-design work, read design documents in this order when present:
+
+1. `docs/design/DESIGN.md` — site-level design system and visual identity
+2. `docs/design/TOKENS.md` — semantic colors, typography, spacing, radius, shadows, and component defaults
+3. `docs/design/page-rules/*.md` — page-specific design rules
+4. `docs/design/references/*.md` — curated, site-specific reference notes extracted from Refero or similar sources
+5. `docs/design/ANTI_PATTERNS.md` — forbidden patterns and known failure modes
+
+Raw vendor/reference `DESIGN.md` files may be stored under `docs/design/raw-references/` for research only. Do not treat them as implementation rules. Executable reference files belong under `docs/design/references/` and should be short extracted notes with `Use For`, `Extract`, `Avoid`, and `Local Application` sections.
+
+Only inspect `docs/design/raw-references/` when the task explicitly requires design research or reference comparison.
+
+Preserve the current warm illustrated personal identity unless the task explicitly asks for a redesign.
+
+## Product / Information Architecture Workflow
+
+For navigation, route, content-model, Writing, Multimedia, Site OS, or WeChat workflow decisions, read relevant product docs under `docs/product/` before editing code.
+
+Expected long-term top-level navigation:
+
+- Home
+- Writing
+- Multimedia
+- Projects
+- About
+- Contact
+
+Writing owns long-form thinking. It should remain a single editorial archive entry point, while each article keeps a stable detail route such as `/writing/:slug`.
+
+Multimedia owns visual output. It is the umbrella for Photos, Videos, AI Visuals, and Process. Keep legacy direct routes such as `/photos` and `/videos` working during migration.
+
+Projects owns engineering proof. Prefer case-study structure over generic portfolio tiles.
+
+About owns identity, awards, tools, now/current status, and professional context.
+
 ## Page Identity Rules
 
 Each major page should own a distinct editorial and visual system.
@@ -95,6 +134,17 @@ Content is part of the product architecture, not just seed data.
 - Keep schema changes deliberate and documented.
 - Prefer additive schema evolution over breaking rewrites.
 - If a page depends on a new content shape, update validation or content tooling in the same change when practical.
+- Prefer `npm run content:validate` when touching curated content.
+
+## Writing / WeChat Rules
+
+The website should be the canonical long-term archive for Writing.
+
+WeChat Official Account should be treated as a distribution channel, not the canonical content store.
+
+If WeChat automation is implemented later, prefer creating or updating a WeChat draft for manual review. Do not auto-publish WeChat articles without explicit instruction.
+
+Do not fetch WeChat article content dynamically at runtime.
 
 ## Language Workflow
 
@@ -123,15 +173,18 @@ If verification cannot run, say exactly why.
 - Do not homogenize page styling into a design-system-only site.
 - Do not move content source-of-truth decisions into scattered component constants.
 - Do not treat historical docs as active architecture docs.
+- Do not copy external design references directly into app styles.
+- Do not let raw design references override local page rules or product architecture.
 
 ## Preferred Change Pattern
 
 For substantial work:
 
-1. identify whether the change is page-specific, shared-system, or content-model
-2. modify the smallest durable boundary that fits
-3. keep docs aligned if repo structure or operating rules changed
-4. verify the affected workflow
+1. identify whether the change is page-specific, shared-system, content-model, or product-architecture work
+2. read the relevant docs under `docs/design/`, `docs/product/`, or `docs/engineering/`
+3. modify the smallest durable boundary that fits
+4. keep docs aligned if repo structure or operating rules changed
+5. verify the affected workflow
 
 ## Decision Heuristic For Agents
 
@@ -141,5 +194,6 @@ Ask these questions before changing structure:
 - Does this belong to one page, many pages, or the whole site?
 - Am I improving long-term discoverability, or just adding another layer?
 - Does this preserve page individuality?
+- Does this follow the current information architecture docs?
 
 If the answer is unclear, prefer the simpler structure.
