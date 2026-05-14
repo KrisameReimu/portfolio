@@ -31,6 +31,10 @@ export const projectsPageCopy = {
   empty: {
     zh: "暂无可展示项目。",
     en: "No showcase projects available yet."
+  },
+  loadError: {
+    zh: "项目内容暂时无法加载，请稍后重试。",
+    en: "Project content could not be loaded. Please try again shortly."
   }
 };
 
@@ -142,6 +146,10 @@ export const projectDetailPageCopy = {
   notFound: {
     zh: "这个项目详情页还在整理中。",
     en: "This project detail page is still being curated."
+  },
+  loadError: {
+    zh: "项目详情暂时无法加载，请稍后重试。",
+    en: "Project detail could not be loaded. Please try again shortly."
   },
   loading: {
     zh: "正在加载项目详情...",

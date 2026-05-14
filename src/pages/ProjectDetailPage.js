@@ -38,14 +38,23 @@ export default function ProjectDetailPage() {
   const {language} = useContext(LanguageContext);
   const [project, setProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
         setIsLoading(true);
+        setLoadError(false);
         const detail = await getProjectDetailBySlug(slug);
-        if (mounted) setProject(detail);
+        if (mounted) {
+          setProject(detail);
+        }
+      } catch {
+        if (mounted) {
+          setProject(null);
+          setLoadError(true);
+        }
       } finally {
         if (mounted) setIsLoading(false);
       }
@@ -67,7 +76,14 @@ export default function ProjectDetailPage() {
   if (!project) {
     return (
       <div className="project-detail-page project-detail-empty">
-        <p>{getText(projectDetailPageCopy.notFound, language)}</p>
+        <p>
+          {getText(
+            loadError
+              ? projectDetailPageCopy.loadError
+              : projectDetailPageCopy.notFound,
+            language
+          )}
+        </p>
         <Link to="/projects" className="project-detail-back">
           {getText(projectDetailPageCopy.back, language)}
         </Link>

@@ -218,6 +218,10 @@
   color: $pretextMuted;
 }
 
+.projects-empty--error {
+  color: $pretextAccent;
+}
+
 .dark-mode .projects-dossier-intro,
 .dark-mode .project-dossier-card,
 .dark-mode .project-dossier-meta,

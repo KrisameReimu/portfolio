@@ -8,6 +8,16 @@ const PROJECT_CONTENT = {
   baseUrl: "/content/projects"
 };
 
+export class ProjectContentLoadError extends Error {
+  constructor(message, meta = {}) {
+    super(message);
+    this.name = "ProjectContentLoadError";
+    this.slug = meta.slug;
+    this.url = meta.url;
+    this.status = meta.status;
+  }
+}
+
 let projectIndexCache = null;
 let projectIndexPromise = null;
 const projectDetailCache = new Map();
@@ -18,7 +28,13 @@ let allProjectDetailsPromise = null;
 const fetchJson = async url => {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Unable to load project content: ${url}`);
+    throw new ProjectContentLoadError(
+      `Unable to load project content: ${url}`,
+      {
+        url,
+        status: response.status
+      }
+    );
   }
   return response.json();
 };
@@ -47,12 +63,20 @@ export const getProjectDetailBySlug = async slug => {
   if (projectDetailPromises.has(slug)) return projectDetailPromises.get(slug);
 
   const promise = (async () => {
+    const url = `${PROJECT_CONTENT.baseUrl}/${slug}.json`;
     try {
-      const data = await fetchJson(`${PROJECT_CONTENT.baseUrl}/${slug}.json`);
+      const data = await fetchJson(url);
       projectDetailCache.set(slug, data);
       return data;
-    } catch {
-      return null;
+    } catch (error) {
+      throw new ProjectContentLoadError(
+        `Unable to load project detail: ${slug}`,
+        {
+          slug,
+          url,
+          status: error.status
+        }
+      );
     } finally {
       projectDetailPromises.delete(slug);
     }
@@ -71,7 +95,7 @@ export const getAllProjectDetails = async () => {
     const details = await Promise.all(
       index.map(item => getProjectDetailBySlug(item.slug))
     );
-    allProjectDetailsCache = details.filter(Boolean);
+    allProjectDetailsCache = details;
     allProjectDetailsPromise = null;
     return allProjectDetailsCache;
   })().catch(error => {

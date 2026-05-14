@@ -12,6 +12,7 @@ import {getText} from "../../utils/i18n";
 const Projects = ({
   projects: projectItems = [],
   isLoading = false,
+  errorMessage = "",
   summaryConfig = projectsDossierConfig
 }) => {
   const {language} = useContext(LanguageContext);
@@ -28,6 +29,12 @@ const Projects = ({
       <p className="projects-empty">
         {getText(projectsPageCopy.loading, language)}
       </p>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <p className="projects-empty projects-empty--error">{errorMessage}</p>
     );
   }
 

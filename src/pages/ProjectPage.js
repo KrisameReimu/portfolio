@@ -18,6 +18,7 @@ export default function ProjectPage() {
   const [heroCards, setHeroCards] = useState([]);
   const [projectCards, setProjectCards] = useState([]);
   const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+  const [projectsLoadError, setProjectsLoadError] = useState(false);
   const [activeCaseHref, setActiveCaseHref] = useState(null);
   const projectsHeroVisual = getPageHeroVisual("projects");
 
@@ -26,6 +27,7 @@ export default function ProjectPage() {
     (async () => {
       try {
         setIsLoadingProjects(true);
+        setProjectsLoadError(false);
         const [nextHeroCards, nextProjectCards] = await Promise.all([
           getProjectHeroCards(),
           getProjectCards()
@@ -34,6 +36,8 @@ export default function ProjectPage() {
           setHeroCards(nextHeroCards);
           setProjectCards(nextProjectCards);
         }
+      } catch {
+        if (mounted) setProjectsLoadError(true);
       } finally {
         if (mounted) setIsLoadingProjects(false);
       }
@@ -169,6 +173,11 @@ export default function ProjectPage() {
         <Projects
           projects={projectCards}
           isLoading={isLoadingProjects}
+          errorMessage={
+            projectsLoadError
+              ? getText(projectsPageCopy.loadError, language)
+              : ""
+          }
           summaryConfig={projectsDossierConfig}
         />
       </section>
