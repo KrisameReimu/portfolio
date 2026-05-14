@@ -8,7 +8,49 @@ const SPAM_PATTERNS = [
 ];
 
 const REQUIRED_CONFIG = ["SESSION_SIGNING_KEY"];
-const REQUIRED_TABLES = ["contact_messages"];
+const READINESS_CAPABILITIES = [
+  {
+    name: "auth",
+    required: true,
+    tables: ["users"]
+  },
+  {
+    name: "contact",
+    required: true,
+    tables: ["contact_messages"]
+  },
+  {
+    name: "engagement",
+    required: true,
+    tables: ["users", "comments", "favorites", "page_events"]
+  },
+  {
+    name: "subscriptions",
+    required: true,
+    tables: ["subscribers"]
+  },
+  {
+    name: "ask",
+    required: true,
+    tables: ["ask_queries"]
+  },
+  {
+    name: "dashboard",
+    required: true,
+    tables: [
+      "comments",
+      "favorites",
+      "subscribers",
+      "page_events",
+      "ask_queries"
+    ]
+  },
+  {
+    name: "site_content",
+    required: false,
+    tables: ["now_snapshots", "roadmap_items", "experiments"]
+  }
+];
 
 const DEFAULT_NOW = {
   weekOf: "2026-02-09",
@@ -276,8 +318,11 @@ function getMissingConfig(env) {
 }
 
 async function getMissingTables(db) {
+  const tables = Array.from(
+    new Set(READINESS_CAPABILITIES.flatMap(capability => capability.tables))
+  );
   const missing = [];
-  for (const table of REQUIRED_TABLES) {
+  for (const table of tables) {
     const row = await db
       .prepare(
         `
@@ -295,15 +340,42 @@ async function getMissingTables(db) {
   return missing;
 }
 
+function getUnavailableCapabilities(missingTables, required) {
+  const missing = new Set(missingTables);
+  return READINESS_CAPABILITIES.filter(
+    capability =>
+      capability.required === required &&
+      capability.tables.some(table => missing.has(table))
+  ).map(capability => ({
+    name: capability.name,
+    missingTables: capability.tables.filter(table => missing.has(table))
+  }));
+}
+
 async function getServiceReadiness(env, db) {
   const [missingConfig, missingTables] = await Promise.all([
     Promise.resolve(getMissingConfig(env)),
     getMissingTables(db)
   ]);
+  const unavailableRequiredCapabilities = getUnavailableCapabilities(
+    missingTables,
+    true
+  );
+  const degradedCapabilities = getUnavailableCapabilities(missingTables, false);
+  const status =
+    missingConfig.length > 0 || unavailableRequiredCapabilities.length > 0
+      ? "not_ready"
+      : degradedCapabilities.length > 0
+      ? "degraded"
+      : "ready";
+
   return {
-    ok: missingConfig.length === 0 && missingTables.length === 0,
+    ok: status !== "not_ready",
+    status,
     missingConfig,
-    missingTables
+    missingTables,
+    unavailableRequiredCapabilities,
+    degradedCapabilities
   };
 }
 

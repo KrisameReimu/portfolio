@@ -108,8 +108,22 @@ curl https://echo-community-api.<subdomain>.workers.dev/health
 Expected:
 
 ```json
-{"ok":true,"service":"community-api"}
+{
+  "ok": true,
+  "service": "community-api",
+  "status": "ready",
+  "missingConfig": [],
+  "missingTables": [],
+  "unavailableRequiredCapabilities": [],
+  "degradedCapabilities": []
+}
 ```
+
+`/health` returns `503` with `status: "not_ready"` when required
+configuration or core interactive tables are missing. If only Site OS content
+tables such as `now_snapshots`, `roadmap_items`, or `experiments` are missing,
+the endpoint can return `200` with `status: "degraded"` because those read
+APIs have built-in default content fallbacks.
 
 ## Notes
 
