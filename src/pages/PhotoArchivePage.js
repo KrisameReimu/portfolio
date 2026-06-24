@@ -1,10 +1,12 @@
-import React, {useContext, useMemo, useEffect, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import {Link, useSearchParams} from "react-router-dom";
 import "./PhotoArchivePage.scss";
 import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
+import useAsyncCollection from "../hooks/useAsyncCollection";
 import {formatDate, getText} from "../utils/i18n";
 import {getPhotos} from "../services/contentAPI";
+import {summarizeEntriesByYear} from "../utils/archive";
 import {
   DEFAULT_PHOTO_VIEW_MODE,
   PHOTO_VIEW_MODES,
@@ -14,9 +16,11 @@ import {getPageHeroVisual} from "../config/pages/pageHeroVisuals";
 
 export default function PhotoArchivePage() {
   const {language} = useContext(LanguageContext);
-  const [photos, setPhotos] = useState([]);
   const [focusedFrame, setFocusedFrame] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const {items: photos} = useAsyncCollection({
+    load: () => getPhotos()
+  });
   const requestedView = searchParams.get("view");
   const activeView = PHOTO_VIEW_MODES.includes(requestedView)
     ? requestedView
@@ -28,44 +32,16 @@ export default function PhotoArchivePage() {
     setSearchParams(nextParams);
   };
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const allPhotos = await getPhotos();
-      if (mounted) setPhotos(allPhotos || []);
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   const yearHighlights = useMemo(() => {
-    const byYear = new Map();
-    photos.forEach(photo => {
-      const year = (photo.captureDate || "").slice(0, 4);
-      if (!year) return;
-      const existing = byYear.get(year);
-      if (!existing) {
-        byYear.set(year, {
-          year,
-          count: 1,
-          latestDate: photo.captureDate,
-          coverImage: photo.thumbnail || photo.url
-        });
-        return;
-      }
-      existing.count += 1;
-      if (
-        new Date(photo.captureDate).getTime() >
-        new Date(existing.latestDate).getTime()
-      ) {
-        existing.latestDate = photo.captureDate;
-        existing.coverImage = photo.thumbnail || photo.url;
-      }
-    });
-    return Array.from(byYear.values()).sort(
-      (a, b) => Number(b.year) - Number(a.year)
-    );
+    return summarizeEntriesByYear(photos, {
+      dateField: "captureDate",
+      getCoverImage: photo => photo.thumbnail || photo.url
+    }).map(group => ({
+      year: group.year,
+      count: group.count,
+      latestDate: group.latestDate,
+      coverImage: group.coverImage
+    }));
   }, [photos]);
 
   const copy = photosPageCopy;

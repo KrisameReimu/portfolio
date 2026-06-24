@@ -6,6 +6,7 @@ import {marked} from "marked";
 import "./ArticlePage.scss";
 import LanguageContext from "../contexts/LanguageContext";
 import {formatDate} from "../utils/i18n";
+import usePageMeta from "../hooks/usePageMeta";
 
 // Article detail page with bilingual toggle and markdown rendering.
 // CMS future-proof: tries fields content_zh/content_en; falls back to excerpt.
@@ -106,6 +107,32 @@ const ArticlePage = () => {
     back: {zh: "返回写作", en: "Back to Writing"}
   };
 
+  const displayTitleZh =
+    article?.title_zh || article?.title?.zh || article?.titleZh;
+  const displayTitleEn =
+    article?.title_en || article?.title?.en || article?.titleEn;
+  const displayTitle =
+    language === "zh"
+      ? displayTitleZh || displayTitleEn
+      : displayTitleEn || displayTitleZh;
+  const pageDescription =
+    (language === "zh"
+      ? article?.excerpt?.zh || article?.excerpt_zh
+      : article?.excerpt?.en || article?.excerpt_en) ||
+    article?.excerpt?.zh ||
+    article?.excerpt?.en ||
+    "";
+
+  usePageMeta({
+    title: displayTitle || (language === "zh" ? "文章详情" : "Article Detail"),
+    description:
+      pageDescription ||
+      (language === "zh"
+        ? "正在查看 Echo Chen 的写作内容。"
+        : "Reading a writing entry from Echo Chen."),
+    lang: language === "zh" ? "zh" : "en"
+  });
+
   if (loading)
     return <div className="article-loading">{copy.loading[language]}</div>;
   if (error)
@@ -116,15 +143,6 @@ const ArticlePage = () => {
     );
   if (!article)
     return <div className="article-empty">{copy.notFound[language]}</div>;
-
-  const displayTitleZh =
-    article.title_zh || article.title?.zh || article.titleZh;
-  const displayTitleEn =
-    article.title_en || article.title?.en || article.titleEn;
-  const displayTitle =
-    language === "zh"
-      ? displayTitleZh || displayTitleEn
-      : displayTitleEn || displayTitleZh;
 
   return (
     <div className="article-page">

@@ -3,6 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import LanguageContext from "../contexts/LanguageContext";
 import {getText} from "../utils/i18n";
 import {getProjectDetailBySlug} from "../services/projectContent";
+import usePageMeta from "../hooks/usePageMeta";
 import {projectDetailPageCopy} from "../config/pages/projectsPage";
 import CaseStudyHero from "../components/caseStudy/CaseStudyHero";
 import CaseStudySectionHeader from "../components/caseStudy/CaseStudySectionHeader";
@@ -64,6 +65,19 @@ export default function ProjectDetailPage() {
       mounted = false;
     };
   }, [slug]);
+
+  usePageMeta({
+    title:
+      (project && getText(project.title, language)) ||
+      (language === "zh" ? "项目详情" : "Project Detail"),
+    description:
+      (project &&
+        getText(project.heroSummary || project.flagship?.problem, language)) ||
+      (language === "zh"
+        ? "查看 Echo Chen 的项目案例详情。"
+        : "Read a project case study from Echo Chen."),
+    lang: language === "zh" ? "zh" : "en"
+  });
 
   if (isLoading) {
     return (

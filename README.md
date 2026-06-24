@@ -13,7 +13,7 @@ This repository is a long-term portfolio, publishing system, and personal IP sur
 
 ## Environment
 
-- Node.js: `20.11.0`
+- Node.js: `22.x`
 - Version manager: `nvm use`
 - Package manager: `npm`
 - Clean install: `npm ci`

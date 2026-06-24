@@ -1,18 +1,23 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useMemo} from "react";
 import {Link, useParams} from "react-router-dom";
 import "./WritingYearPage.scss";
 import {getArticles} from "../services/contentAPI";
 import LanguageContext from "../contexts/LanguageContext";
+import useAsyncCollection from "../hooks/useAsyncCollection";
+import {filterEntriesByYear} from "../utils/archive";
 import {formatDate, getText} from "../utils/i18n";
+import ArchiveYearPage from "../components/archiveYearPage/ArchiveYearPage";
 
 export default function WritingYearPage() {
   const {year} = useParams();
   const {language} = useContext(LanguageContext);
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const {items: articles, isLoading} = useAsyncCollection({
+    load: () => getArticles(),
+    reloadKey: year
+  });
 
   const filtered = useMemo(() => {
-    return articles.filter(article => article.publishedDate?.startsWith(year));
+    return filterEntriesByYear(articles, "publishedDate", year);
   }, [articles, year]);
 
   const copy = {
@@ -38,55 +43,32 @@ export default function WritingYearPage() {
     }
   };
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        setIsLoading(true);
-        const all = await getArticles();
-        if (mounted) setArticles(all || []);
-      } finally {
-        if (mounted) setIsLoading(false);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   return (
-    <div className="page-container">
-      <div className="page-hero writing-year-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-        <Link to="/writing" className="writing-year-back">
-          {getText(copy.back, language)}
-        </Link>
+    <ArchiveYearPage
+      pageKey="writing"
+      eyebrow="Writing Archive"
+      title={getText(copy.title, language)}
+      subtitle={getText(copy.subtitle, language)}
+      backHref="/writing"
+      backLabel={getText(copy.back, language)}
+      loadingMessage={getText(copy.loading, language)}
+      emptyMessage={getText(copy.empty, language)}
+      isLoading={isLoading}
+      hasItems={filtered.length > 0}
+    >
+      <div className="archive-year-page__content writing-year-grid">
+        {filtered.map(article => (
+          <div className="writing-year-card" key={article.id}>
+            <h3>
+              <Link to={`/articles/${article.slug || article.id}`}>
+                {getText(article.title, language)}
+              </Link>
+            </h3>
+            <p>{getText(article.excerpt, language)}</p>
+            <span>{formatDate(article.publishedDate, language)}</span>
+          </div>
+        ))}
       </div>
-
-      {isLoading ? (
-        <div className="writing-year-empty">
-          <p>{getText(copy.loading, language)}</p>
-        </div>
-      ) : filtered.length === 0 ? (
-        <div className="writing-year-empty">
-          <p>{getText(copy.empty, language)}</p>
-        </div>
-      ) : (
-        <div className="writing-year-grid">
-          {filtered.map(article => (
-            <div className="writing-year-card" key={article.id}>
-              <h3>
-                <Link to={`/articles/${article.id}`}>
-                  {getText(article.title, language)}
-                </Link>
-              </h3>
-              <p>{getText(article.excerpt, language)}</p>
-              <span>{formatDate(article.publishedDate, language)}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    </ArchiveYearPage>
   );
 }

@@ -1,0 +1,76 @@
+@import "../../_globalColor";
+
+.archive-year-page {
+  min-height: 100vh;
+  padding: 2.8rem 0 5.5rem;
+}
+
+.archive-year-page__hero,
+.archive-year-page__empty,
+.archive-year-page__content {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.archive-year-page__hero {
+  padding: 1rem 0 1.8rem;
+  border-top: 1px solid rgba($textColor, 0.12);
+}
+
+.archive-year-page__eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--page-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.archive-year-page__title {
+  margin: 0;
+  color: $textColor;
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+}
+
+.archive-year-page__subtitle {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: rgba($textColor, 0.72);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.archive-year-page__back {
+  display: inline-flex;
+  margin-top: 1.2rem;
+  color: var(--page-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.archive-year-page__empty {
+  padding: 3rem 0 0;
+  color: rgba($textColor, 0.68);
+  text-align: center;
+}
+
+.dark-mode {
+  .archive-year-page__hero {
+    border-color: rgba($textColorDark, 0.14);
+  }
+
+  .archive-year-page__title {
+    color: $textColorDark;
+  }
+
+  .archive-year-page__subtitle,
+  .archive-year-page__empty {
+    color: rgba($textColorDark, 0.74);
+  }
+}

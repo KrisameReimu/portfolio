@@ -1,83 +1,42 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useMemo} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import VideoPortfolio from "../sections/videoPortfolio/VideoPortfolio";
 import FeaturedVideoCarousel from "../components/featuredVideoCarousel/FeaturedVideoCarousel";
 import PageHero from "../components/pageHero/PageHero";
 import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
+import useAsyncCollection from "../hooks/useAsyncCollection";
 import {getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
+import {sortEntriesByDateDesc, summarizeEntriesByYear} from "../utils/archive";
 import {openHeroTarget} from "../utils/heroNavigation";
+import {videosPageCopy} from "../config/pages/videosPage";
 import "./VideoPage.scss";
 
 export default function VideoPage() {
   const {language} = useContext(LanguageContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const allVideos = await getVideos();
-      if (mounted) setVideos(allVideos || []);
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const {items: videos} = useAsyncCollection({
+    load: () => getVideos()
+  });
 
   // 最近上传的视频（最近6个）
   const latestVideos = useMemo(() => {
-    return [...videos]
-      .sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate))
-      .slice(0, 6);
+    return sortEntriesByDateDesc(videos, "publishedDate").slice(0, 6);
   }, [videos]);
 
   // 按年份分组的视频
   const videosByYear = useMemo(() => {
-    const byYear = new Map();
-    videos.forEach(video => {
-      const year = (video.publishedDate || "").slice(0, 4);
-      if (!year) return;
-
-      if (!byYear.has(year)) {
-        byYear.set(year, []);
-      }
-      byYear.get(year).push(video);
-    });
-
-    return Array.from(byYear.entries())
-      .sort((a, b) => Number(b[0]) - Number(a[0]))
-      .map(([year, yearVideos]) => ({
-        year,
-        videos: yearVideos.sort(
-          (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
-        )
-      }));
+    return summarizeEntriesByYear(videos, {
+      dateField: "publishedDate"
+    }).map(group => ({
+      year: group.year,
+      videos: group.items
+    }));
   }, [videos]);
 
-  const copy = {
-    title: {zh: "影像作品集", en: "Video Portfolio"},
-    subtitle: {
-      zh: "记录创意瞬间，从想法到故事",
-      en: "From ideas to stories, capturing creative moments"
-    },
-    latest: {
-      zh: "最近上传",
-      en: "Latest Uploads"
-    },
-    latestSubtitle: {
-      zh: "最新的创意作品",
-      en: "My latest creative works"
-    },
-    archive: {
-      zh: "年度档案库",
-      en: "Archive"
-    },
-    videos: {zh: "个作品", en: "videos"},
-    empty: {zh: "暂无视频内容。", en: "No videos yet."}
-  };
+  const copy = videosPageCopy;
 
   return (
     <PageSurface pageKey="videos" className="page-container">
@@ -85,10 +44,7 @@ export default function VideoPage() {
         pageKey="videos"
         title={copy.title}
         subtitle={copy.subtitle}
-        description={{
-          zh: "我用影像讲故事。从概念到成品，每一帧都是创意的痕迹。",
-          en: "I tell stories with video. Every frame is a trace of creativity—from concept to final cut."
-        }}
+        description={copy.description}
         visualType={videos.length > 0 ? "interactive-video" : "video-wall"}
         mediaItems={latestVideos.slice(0, 8)}
         onMediaItemClick={item =>

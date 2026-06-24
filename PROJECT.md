@@ -194,7 +194,7 @@ If a change fails most of those checks, it is probably structure debt.
 
 ## Operating Environment
 
-- Node: `20.11.0`
+- Node: `22.x`
 - Package manager: `npm`
 - Local dev: `npm run dev`
 - Validation: `npm run content:validate`

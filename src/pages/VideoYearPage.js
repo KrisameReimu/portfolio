@@ -1,28 +1,23 @@
-import React, {useContext, useMemo, useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import React, {useContext, useMemo} from "react";
+import {useParams} from "react-router-dom";
 import "./VideoYearPage.scss";
 import LanguageContext from "../contexts/LanguageContext";
+import useAsyncCollection from "../hooks/useAsyncCollection";
+import {filterEntriesByYear} from "../utils/archive";
 import {formatDate, getText} from "../utils/i18n";
 import {getVideos} from "../services/contentAPI";
+import ArchiveYearPage from "../components/archiveYearPage/ArchiveYearPage";
 
 export default function VideoYearPage() {
   const {year} = useParams();
   const {language} = useContext(LanguageContext);
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const allVideos = await getVideos();
-      if (mounted) setVideos(allVideos || []);
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const {items: videos, isLoading} = useAsyncCollection({
+    load: () => getVideos(),
+    reloadKey: year
+  });
 
   const filtered = useMemo(
-    () => videos.filter(video => video.publishedDate?.startsWith(year)),
+    () => filterEntriesByYear(videos, "publishedDate", year),
     [videos, year]
   );
 
@@ -40,35 +35,32 @@ export default function VideoYearPage() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-hero video-year-hero">
-        <h1 className="page-title">{getText(copy.title, language)}</h1>
-        <p className="page-subtitle">{getText(copy.subtitle, language)}</p>
-        <Link to="/videos" className="video-year-back">
-          {getText(copy.back, language)}
-        </Link>
-      </div>
-
-      {filtered.length === 0 ? (
-        <div className="video-year-empty">
-          <p>{getText(copy.empty, language)}</p>
-        </div>
-      ) : (
-        <div className="video-year-grid">
-          {filtered.map(video => (
-            <div className="video-year-card" key={video.id}>
-              <img
-                src={video.thumbnailUrl}
-                alt={getText(video.title, language)}
-              />
-              <div className="video-year-meta">
-                <h3>{getText(video.title, language)}</h3>
-                <p>{formatDate(video.publishedDate, language)}</p>
-              </div>
+    <ArchiveYearPage
+      pageKey="videos"
+      eyebrow="Video Archive"
+      title={getText(copy.title, language)}
+      subtitle={getText(copy.subtitle, language)}
+      backHref="/videos"
+      backLabel={getText(copy.back, language)}
+      loadingMessage={getText({zh: "加载中...", en: "Loading..."}, language)}
+      emptyMessage={getText(copy.empty, language)}
+      isLoading={isLoading}
+      hasItems={filtered.length > 0}
+    >
+      <div className="archive-year-page__content video-year-grid">
+        {filtered.map(video => (
+          <div className="video-year-card" key={video.id}>
+            <img
+              src={video.thumbnailUrl}
+              alt={getText(video.title, language)}
+            />
+            <div className="video-year-meta">
+              <h3>{getText(video.title, language)}</h3>
+              <p>{formatDate(video.publishedDate, language)}</p>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+          </div>
+        ))}
+      </div>
+    </ArchiveYearPage>
   );
 }

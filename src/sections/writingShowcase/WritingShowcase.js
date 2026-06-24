@@ -1,8 +1,7 @@
-import React, {useEffect, useMemo, useContext, useState} from "react";
+import React, {useMemo, useContext, useState} from "react";
 import {Link} from "react-router-dom";
 import "./WritingShowcase.scss";
 import {Fade} from "../../components/motion/Fade";
-import {getArticles} from "../../services/contentAPI";
 import LanguageContext from "../../contexts/LanguageContext";
 import {formatDate, getText} from "../../utils/i18n";
 import {
@@ -14,12 +13,10 @@ const writingShowcaseSection = {
   display: true
 };
 
-const WritingShowcase = () => {
+const WritingShowcase = ({articles = [], isLoading = false}) => {
   const {language} = useContext(LanguageContext);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [hoveredArticle, setHoveredArticle] = useState(null);
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const copy = {
     title: {
@@ -64,24 +61,6 @@ const WritingShowcase = () => {
     }
   };
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        setIsLoading(true);
-        const all = await getArticles();
-        if (mounted) {
-          setArticles(all || []);
-        }
-      } finally {
-        if (mounted) setIsLoading(false);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   const featuredArticles = useMemo(
     () => articles.filter(article => article.featured).slice(0, 3),
     [articles]
@@ -118,7 +97,7 @@ const WritingShowcase = () => {
       <div className="main writing-showcase" id="writing">
         <div className="writing-container">
           <div className="writing-header">
-            <h1 className="writing-heading">{getText(copy.title, language)}</h1>
+            <h2 className="writing-heading">{getText(copy.title, language)}</h2>
             <p className="subTitle writing-subtitle">
               {getText(copy.subtitle, language)}
             </p>

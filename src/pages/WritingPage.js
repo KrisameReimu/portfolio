@@ -1,11 +1,13 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import WritingShowcase from "../sections/writingShowcase/WritingShowcase";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import PageHero from "../components/pageHero/PageHero";
 import PageSurface from "../components/pageSurface/PageSurface";
 import LanguageContext from "../contexts/LanguageContext";
+import useAsyncCollection from "../hooks/useAsyncCollection";
 import {formatDate, getText} from "../utils/i18n";
 import {getArticles} from "../services/contentAPI";
+import {summarizeEntriesByYear} from "../utils/archive";
 import {openHeroTarget} from "../utils/heroNavigation";
 import {writingPageCopy} from "../config/pages/writingPage";
 import "./WritingPage.scss";
@@ -15,51 +17,18 @@ export default function WritingPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
-  const [articles, setArticles] = useState([]);
-  const [isLoadingYears, setIsLoadingYears] = useState(true);
-
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        setIsLoadingYears(true);
-        const allArticles = await getArticles();
-        if (mounted) setArticles(allArticles || []);
-      } finally {
-        if (mounted) setIsLoadingYears(false);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const {items: articles, isLoading: isLoadingArticles} = useAsyncCollection({
+    load: () => getArticles()
+  });
 
   const yearCards = useMemo(() => {
-    const byYear = new Map();
-    articles.forEach(article => {
-      const year = (article.publishedDate || "").slice(0, 4);
-      if (!year) return;
-      const existing = byYear.get(year);
-      if (!existing) {
-        byYear.set(year, {
-          year,
-          count: 1,
-          latestDate: article.publishedDate
-        });
-        return;
-      }
-      existing.count += 1;
-      if (
-        new Date(article.publishedDate).getTime() >
-        new Date(existing.latestDate).getTime()
-      ) {
-        existing.latestDate = article.publishedDate;
-      }
-    });
-
-    return Array.from(byYear.values()).sort(
-      (a, b) => Number(b.year) - Number(a.year)
-    );
+    return summarizeEntriesByYear(articles, {
+      dateField: "publishedDate"
+    }).map(group => ({
+      year: group.year,
+      count: group.count,
+      latestDate: group.latestDate
+    }));
   }, [articles]);
 
   const heroCards = useMemo(() => {
@@ -129,17 +98,17 @@ export default function WritingPage() {
       </div>
 
       {activeTab === "all" ? (
-        <WritingShowcase />
+        <WritingShowcase articles={articles} isLoading={isLoadingArticles} />
       ) : (
         <div className="archive-grid">
-          {isLoadingYears && (
+          {isLoadingArticles && (
             <div className="archive-card">
               <div className="archive-content">
                 <p>{getText(writingPageCopy.loading, language)}</p>
               </div>
             </div>
           )}
-          {!isLoadingYears &&
+          {!isLoadingArticles &&
             yearCards.map(item => (
               <div className="archive-card" key={item.year}>
                 <div className="archive-content">

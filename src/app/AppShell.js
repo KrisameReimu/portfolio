@@ -5,6 +5,7 @@ import Footer from "../components/footer/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import SplashScreen from "../sections/splashScreen/SplashScreen";
 import CharacterNPC from "../components/characterNPC/CharacterNPC";
+import RouteDocumentMeta from "./RouteDocumentMeta";
 import {characterSection, splashScreen} from "../portfolio";
 import {StyleProvider} from "../contexts/StyleContext";
 import LanguageContext from "../contexts/LanguageContext";
@@ -58,6 +59,7 @@ const AppShell = () => {
               }}
             >
               <ScrollToTop />
+              <RouteDocumentMeta routes={siteRoutes} />
               <Header />
               {characterSection.display && <CharacterNPC />}
               <Routes>
