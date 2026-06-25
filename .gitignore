@@ -41,3 +41,10 @@ cloudflare/community-api/.wrangler/
 
 # local automation artifacts
 /output/
+
+# Next.js migration app artifacts
+/apps/web/.next/
+/apps/web/node_modules/
+/apps/web/out/
+/apps/web/tsconfig.tsbuildinfo
+/apps/web/public/

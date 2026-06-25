@@ -1,0 +1,56 @@
+:root {
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", "SF Mono", Menlo, Monaco,
+    Consolas, monospace;
+  --bg: #f7f1e8;
+  --bg-soft: #fcf8f2;
+  --surface: rgba(255, 251, 246, 0.78);
+  --surface-raised: #fffdf9;
+  --text: #211912;
+  --text-muted: #5f5045;
+  --text-faint: #88786c;
+  --border: rgba(56, 39, 27, 0.14);
+  --border-strong: rgba(56, 39, 27, 0.28);
+  --accent: #6f4c33;
+  --accent-soft: #e5d5c5;
+  --accent-ink: #27364a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(
+      circle at top left,
+      rgba(212, 178, 145, 0.18),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #f8f2ea 0%, #f6f0e7 50%, #f9f5ef 100%);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}

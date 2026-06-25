@@ -1,0 +1,33 @@
+{
+  "name": "@echochen/web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=10.2.0 <11"
+  },
+  "scripts": {
+    "predev": "node ./scripts/prepare-assets.mjs",
+    "dev": "next dev --webpack",
+    "prebuild": "node ./scripts/prepare-assets.mjs && node ./scripts/generate-rss.mjs",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run build && npm run typecheck"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "sass": "^1.89.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "typescript": "^5.8.3"
+  }
+}
