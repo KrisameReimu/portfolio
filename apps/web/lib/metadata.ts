@@ -6,6 +6,7 @@ type MetaInput = {
   description?: string;
   path?: string;
   image?: string;
+  type?: "article" | "profile" | "website";
 };
 
 const buildTitle = (title?: string) =>
@@ -20,15 +21,21 @@ export const createMetadata = ({
   title,
   description,
   path = "/",
-  image = siteMeta.defaultOgImage
+  image = siteMeta.defaultOgImage,
+  type = "website"
 }: MetaInput = {}): Metadata => {
   const resolvedTitle = buildTitle(title);
   const resolvedDescription = description || siteMeta.defaultDescription;
   const url = buildUrl(path);
 
   return {
+    metadataBase: new URL(siteMeta.siteUrl),
     title: resolvedTitle,
     description: resolvedDescription,
+    robots: {
+      index: true,
+      follow: true
+    },
     alternates: {
       canonical: url
     },
@@ -37,7 +44,7 @@ export const createMetadata = ({
       description: resolvedDescription,
       url,
       siteName: siteMeta.siteName,
-      type: "website",
+      type,
       images: [
         {
           url: `${siteMeta.siteUrl}${image}`

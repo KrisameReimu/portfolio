@@ -32,6 +32,20 @@ export const homeCopy = {
     "I build AI-supported systems, document how they work, and turn technical or creative work into something clearer, calmer, and more worth keeping.",
   positioning:
     "This site is the canonical home for my essays, engineering case studies, and visual archive.",
+  rail: [
+    {
+      title: "Canonical source",
+      body: "The website keeps the durable version of essays, project dossiers, and identity context instead of treating social platforms as the archive."
+    },
+    {
+      title: "Current focus",
+      body: "Static-first writing and project pages come before extra experiments, because stable URLs and readable HTML are the long-term asset."
+    },
+    {
+      title: "AI-readable surface",
+      body: "Metadata, structured data, sitemap, RSS, and llms.txt help the site stay quotable for search and AI systems."
+    }
+  ],
   recognition: [
     "PolyU AI systems and student workflow delivery",
     "Sasagawa Cup Japan Writing Contest 2024 — Second Prize",

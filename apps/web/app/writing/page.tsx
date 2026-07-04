@@ -8,6 +8,8 @@ import {
   getWritingArchiveYears
 } from "../../lib/content/writing";
 import {createMetadata} from "../../lib/metadata";
+import {createItemListJsonLd} from "../../lib/structured-data";
+import {formatDate} from "../../lib/utils";
 
 export const metadata = createMetadata({
   title: "Writing",
@@ -29,15 +31,27 @@ export default async function WritingIndexPage() {
       title="Long-form writing that stays readable over time."
       summary="This archive keeps essays, reflections, and technical or cultural notes in one calm editorial surface."
     >
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Writing",
-          description: "Writing archive from Echo Chen",
-          url: "https://www.chenchen-echo.com/writing"
-        }}
-      />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "CollectionPage",
+                name: "Writing",
+                description: "Writing archive from Echo Chen",
+                url: "https://www.chenchen-echo.com/writing"
+              },
+              createItemListJsonLd(
+                "Writing archive",
+                posts.map(post => ({
+                  name: post.title,
+                  path: `/writing/${post.slug}`,
+                  description: post.summary
+                }))
+              )
+            ]
+          }}
+        />
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
@@ -58,7 +72,7 @@ export default async function WritingIndexPage() {
               </h3>
               <p className={styles.sectionLead}>{post.summary}</p>
               <div className={styles.cardMeta}>
-                <span>{post.date}</span>
+                <span>{formatDate(post.date)}</span>
                 <span>{post.readingTime ? `${post.readingTime} min` : "Essay"}</span>
               </div>
             </article>
@@ -89,7 +103,7 @@ export default async function WritingIndexPage() {
               </h3>
               <p className={styles.sectionLead}>{post.summary}</p>
               <div className={styles.cardMeta}>
-                <span>{post.date}</span>
+                <span>{formatDate(post.date)}</span>
                 <span>{post.tags.slice(0, 3).join(" · ") || "Writing"}</span>
               </div>
             </article>

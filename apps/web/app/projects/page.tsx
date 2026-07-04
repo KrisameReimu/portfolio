@@ -4,6 +4,7 @@ import JsonLd from "../../components/JsonLd";
 import styles from "../site.module.scss";
 import {getAllProjects} from "../../lib/content/projects";
 import {createMetadata} from "../../lib/metadata";
+import {createItemListJsonLd} from "../../lib/structured-data";
 
 export const metadata = createMetadata({
   title: "Projects",
@@ -21,15 +22,27 @@ export default async function ProjectsIndexPage() {
       title="Projects organized for clarity, not just display."
       summary="Each project page is structured as a dossier: what the problem was, what I built, how it worked, and what signal remains."
     >
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Projects",
-          description: "Engineering project dossiers from Echo Chen",
-          url: "https://www.chenchen-echo.com/projects"
-        }}
-      />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "CollectionPage",
+                name: "Projects",
+                description: "Engineering project dossiers from Echo Chen",
+                url: "https://www.chenchen-echo.com/projects"
+              },
+              createItemListJsonLd(
+                "Project dossiers",
+                projects.map(project => ({
+                  name: project.title,
+                  path: `/projects/${project.slug}`,
+                  description: project.summary
+                }))
+              )
+            ]
+          }}
+        />
 
       <section className={styles.section}>
         <div className={styles.projectGrid}>

@@ -62,6 +62,9 @@ This keeps translation from becoming accidental rework.
 
 ## Current Repo Shape
 
+The operational site is now the static-first Next.js app in `apps/web`.
+The older CRA-era `src/` application is no longer the intended public runtime path and should be treated as migration residue unless a specific cleanup task says otherwise.
+
 ### Root
 
 The root should stay intentionally small:
@@ -76,6 +79,7 @@ Historical implementation reports belong under `docs/archive/`, not here.
 
 ### Source Layout
 
+- `apps/web/`: canonical public site, Next.js App Router, static-first build
 - `src/app/`: app shell and global route composition
 - `src/pages/`: route-level entries and page orchestration
 - `src/sections/`: page-owned sections and large route-specific assemblies
@@ -197,8 +201,11 @@ If a change fails most of those checks, it is probably structure debt.
 - Node: `22.x`
 - Package manager: `npm`
 - Local dev: `npm run dev`
+- Export preview: `npm run preview`
 - Validation: `npm run content:validate`
 - Full verification: `npm run verify`
+
+Root commands should proxy into `apps/web` so the repository feels like one app operationally even while migration cleanup continues.
 
 ## Definition Of A Good Structural Change
 

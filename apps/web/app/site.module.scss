@@ -39,6 +39,31 @@
   font-size: 0.92rem;
 }
 
+.navLink {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: transparent;
+  transition: background-color 160ms ease;
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  background: var(--accent-ink);
+}
+
+.navLinkActive {
+  color: var(--text);
+}
+
 .siteFooter {
   margin-top: 96px;
   padding: 32px 0 48px;
@@ -132,6 +157,13 @@
   padding: 72px 0 24px;
 }
 
+.heroSplit {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  align-items: start;
+}
+
 .heroTitle {
   max-width: 12ch;
   margin: 0;
@@ -164,6 +196,56 @@
 
 .section {
   padding: 40px 0 0;
+}
+
+.introGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  align-items: start;
+}
+
+.introLead {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.introBody {
+  max-width: 36rem;
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+.signalRail {
+  display: grid;
+  gap: 14px;
+}
+
+.signalCard {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(255, 253, 249, 0.76);
+  padding: 18px 18px 20px;
+  box-shadow: 0 12px 28px rgba(38, 27, 18, 0.04);
+}
+
+.signalTitle {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.signalBody {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.75;
 }
 
 .sectionHeader {
@@ -311,6 +393,19 @@
   font-size: clamp(2.8rem, 5vw, 4.7rem);
 }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-faint);
+  font-size: 0.86rem;
+}
+
+.breadcrumbSeparator {
+  color: var(--border-strong);
+}
+
 .articleSummary {
   max-width: 42rem;
   margin: 0;
@@ -442,7 +537,9 @@
   .headerInner,
   .footerInner,
   .sectionHeader,
-  .detailGrid {
+  .detailGrid,
+  .heroSplit,
+  .introGrid {
     grid-template-columns: 1fr;
     display: grid;
   }

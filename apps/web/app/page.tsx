@@ -6,9 +6,11 @@ import {getFeaturedWritingPosts} from "../lib/content/writing";
 import {getAllProjects} from "../lib/content/projects";
 import {createMetadata} from "../lib/metadata";
 import {homeCopy, siteMeta} from "../lib/site";
+import {createItemListJsonLd} from "../lib/structured-data";
+import {formatDate} from "../lib/utils";
 
 export const metadata = createMetadata({
-  title: siteMeta.defaultTitle,
+  title: "Writing, projects, and visual archive",
   description: homeCopy.intro,
   path: "/"
 });
@@ -25,40 +27,106 @@ export default async function HomePage() {
         <JsonLd
           data={{
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: siteMeta.defaultTitle,
-            description: homeCopy.intro,
-            url: siteMeta.siteUrl
+            "@graph": [
+              {
+                "@type": "WebSite",
+                name: siteMeta.siteName,
+                url: siteMeta.siteUrl,
+                description: siteMeta.defaultDescription
+              },
+              {
+                "@type": "Person",
+                name: siteMeta.ownerName,
+                alternateName: siteMeta.ownerNameZh,
+                url: `${siteMeta.siteUrl}/about`,
+                sameAs: [
+                  siteMeta.externalLinks.github,
+                  siteMeta.externalLinks.linkedin,
+                  siteMeta.externalLinks.youtube
+                ],
+                jobTitle: "AI developer, multimedia storyteller, writer"
+              },
+              {
+                "@type": "WebPage",
+                name: "Home",
+                description: homeCopy.intro,
+                url: siteMeta.siteUrl
+              },
+              createItemListJsonLd(
+                "Featured writing",
+                featuredWriting.map(post => ({
+                  name: post.title,
+                  path: `/writing/${post.slug}`,
+                  description: post.summary
+                }))
+              ),
+              createItemListJsonLd(
+                "Selected projects",
+                projects.slice(0, 3).map(project => ({
+                  name: project.title,
+                  path: `/projects/${project.slug}`,
+                  description: project.summary
+                }))
+              )
+            ]
           }}
         />
 
         <section className={styles.hero}>
-          <p className={styles.heroEyebrow}>{homeCopy.tagline}</p>
-          <h1 className={styles.heroTitle}>{homeCopy.title}</h1>
-          <p className={styles.heroSummary}>{homeCopy.intro}</p>
-          <div className={styles.heroMeta}>
-            <span className={styles.metaPill}>Writing archive</span>
-            <span className={styles.metaPill}>Engineering dossiers</span>
-            <span className={styles.metaPill}>Visual archive</span>
-          </div>
-          <div className={styles.contactActions}>
-            <Link href="/writing" className={`${styles.button} ${styles.buttonPrimary}`}>
-              Read Writing
-            </Link>
-            <Link href="/projects" className={styles.button}>
-              View Projects
-            </Link>
-            <a href={siteMeta.externalLinks.resume} className={styles.button}>
-              Open CV
-            </a>
+          <div className={styles.heroSplit}>
+            <div>
+              <p className={styles.heroEyebrow}>{homeCopy.tagline}</p>
+              <h1 className={styles.heroTitle}>{homeCopy.title}</h1>
+              <p className={styles.heroSummary}>{homeCopy.intro}</p>
+              <div className={styles.heroMeta}>
+                <span className={styles.metaPill}>Writing archive</span>
+                <span className={styles.metaPill}>Engineering dossiers</span>
+                <span className={styles.metaPill}>Visual archive</span>
+              </div>
+              <div className={styles.contactActions}>
+                <Link
+                  href="/writing"
+                  className={`${styles.button} ${styles.buttonPrimary}`}
+                >
+                  Read Writing
+                </Link>
+                <Link href="/projects" className={styles.button}>
+                  View Projects
+                </Link>
+                <a href={siteMeta.externalLinks.resume} className={styles.button}>
+                  Open CV
+                </a>
+              </div>
+            </div>
+            <aside className={styles.signalRail} aria-label="Home signals">
+              {homeCopy.rail.map(item => (
+                <article key={item.title} className={styles.signalCard}>
+                  <p className={styles.signalTitle}>{item.title}</p>
+                  <p className={styles.signalBody}>{item.body}</p>
+                </article>
+              ))}
+            </aside>
           </div>
         </section>
 
         <section className={styles.section}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.introGrid}>
             <div>
               <h2 className={styles.sectionTitle}>Positioning</h2>
-              <p className={styles.sectionLead}>{homeCopy.positioning}</p>
+              <p className={styles.introLead}>
+                The site is not a profile summary first. It is a durable public
+                archive first.
+              </p>
+              <p className={styles.introBody}>{homeCopy.positioning}</p>
+            </div>
+            <div className={styles.signalRail}>
+              <article className={styles.signalCard}>
+                <p className={styles.signalTitle}>Best entry point</p>
+                <p className={styles.signalBody}>
+                  Start with Writing if you want voice, Projects if you want
+                  proof, and About if you want entity context.
+                </p>
+              </article>
             </div>
           </div>
         </section>
@@ -86,7 +154,7 @@ export default async function HomePage() {
                 </h3>
                 <p className={styles.sectionLead}>{post.summary}</p>
                 <div className={styles.cardMeta}>
-                  <span>{post.date}</span>
+                  <span>{formatDate(post.date)}</span>
                   <span>{post.readingTime ? `${post.readingTime} min` : "Essay"}</span>
                 </div>
               </article>

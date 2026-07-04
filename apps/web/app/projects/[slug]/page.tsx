@@ -6,6 +6,7 @@ import styles from "../../site.module.scss";
 import {getAllProjects, getProjectBySlug} from "../../../lib/content/projects";
 import {createMetadata} from "../../../lib/metadata";
 import {siteMeta} from "../../../lib/site";
+import {createBreadcrumbJsonLd} from "../../../lib/structured-data";
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -49,19 +50,35 @@ export default async function ProjectDetailPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "CreativeWork",
-          name: project.title,
-          description: project.summary,
-          creator: {
-            "@type": "Person",
-            name: siteMeta.ownerName,
-            url: `${siteMeta.siteUrl}/about`
-          },
-          url: `${siteMeta.siteUrl}/projects/${project.slug}`
+          "@graph": [
+            {
+              "@type": "CreativeWork",
+              name: project.title,
+              description: project.summary,
+              creator: {
+                "@type": "Person",
+                name: siteMeta.ownerName,
+                url: `${siteMeta.siteUrl}/about`
+              },
+              url: `${siteMeta.siteUrl}/projects/${project.slug}`
+            },
+            createBreadcrumbJsonLd([
+              {name: "Home", path: "/"},
+              {name: "Projects", path: "/projects"},
+              {name: project.title, path: `/projects/${project.slug}`}
+            ])
+          ]
         }}
       />
 
       <section className={styles.projectHero}>
+        <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span className={styles.breadcrumbSeparator}>/</span>
+          <Link href="/projects">Projects</Link>
+          <span className={styles.breadcrumbSeparator}>/</span>
+          <span>{project.title}</span>
+        </nav>
         <div className={styles.projectMeta}>
           <span>{project.role}</span>
           <span>{project.timeline}</span>

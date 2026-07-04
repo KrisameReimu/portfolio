@@ -4,6 +4,8 @@ Source for [chenchen-echo.com](https://www.chenchen-echo.com/).
 
 This repository is a long-term portfolio, publishing system, and personal IP surface. It is intentionally multi-modal: writing, photography, video, projects, and evolving experimental pages live in one codebase, but each page should keep its own identity.
 
+The canonical app is now `apps/web`, a static-first Next.js site. The old CRA surface is no longer the operational entrypoint.
+
 ## Start Here
 
 - Repo intent and structural direction: [`PROJECT.md`](./PROJECT.md)
@@ -18,7 +20,38 @@ This repository is a long-term portfolio, publishing system, and personal IP sur
 - Package manager: `npm`
 - Clean install: `npm ci`
 - Local dev: `npm run dev`
+- Export preview: `npm run preview`
 - Full verification: `npm run verify`
+
+All root scripts proxy to `apps/web`, so you should work from the repository root unless you have a specific reason not to.
+
+If you install [Volta](https://volta.sh/), the repository will auto-pin `Node 22.22.2` and `npm 10.9.7` from `package.json`, so you do not need to run `nvm use` manually each time. Without Volta, keep using `.nvmrc` via `nvm use`.
+
+## Main Commands
+
+```bash
+nvm use
+npm install
+npm run dev
+```
+
+Build for deployment:
+
+```bash
+npm run build
+```
+
+Preview the exported static site locally:
+
+```bash
+npm run preview
+```
+
+Static export output:
+
+```bash
+apps/web/out
+```
 
 ## Core Workflows
 
@@ -75,6 +108,7 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 
 ## Source Structure
 
+- `apps/web/`: canonical Next.js App Router site
 - `src/app/`: application shell, providers, routing composition
 - `src/pages/`: route-level pages
 - `src/sections/`: page-owned sections and large route-specific assemblies
@@ -82,6 +116,14 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 - `src/services/`: content and external integrations
 - `src/config/`: shared schemas, route config, taxonomy, assets
 - `src/data/`: only for legacy fallback data that has not yet moved to canonical content sources
+
+The legacy `src/` tree may still exist during migration cleanup, but deployable site work should target `apps/web`.
+
+## Deployment Model
+
+- Development uses the Next.js dev server via `npm run dev`.
+- Production deployment uses static export artifacts from `apps/web/out`.
+- `npm run start` is now just an alias of `npm run preview` for local exported-site preview, not a Node production server.
 
 ## Localization Workflow
 

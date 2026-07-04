@@ -9,6 +9,7 @@ import {
 } from "../../../lib/content/writing";
 import {createMetadata} from "../../../lib/metadata";
 import {siteMeta} from "../../../lib/site";
+import {createBreadcrumbJsonLd} from "../../../lib/structured-data";
 import {formatDate} from "../../../lib/utils";
 
 export async function generateStaticParams() {
@@ -34,7 +35,8 @@ export async function generateMetadata({
   return createMetadata({
     title: post.title,
     description: post.summary,
-    path: `/writing/${post.slug}`
+    path: `/writing/${post.slug}`,
+    type: "article"
   });
 }
 
@@ -60,20 +62,36 @@ export default async function WritingDetailPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          headline: post.title,
-          description: post.summary,
-          datePublished: post.date,
-          author: {
-            "@type": "Person",
-            name: siteMeta.ownerName,
-            url: `${siteMeta.siteUrl}/about`
-          },
-          mainEntityOfPage: `${siteMeta.siteUrl}/writing/${post.slug}`
+          "@graph": [
+            {
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: post.summary,
+              datePublished: post.date,
+              author: {
+                "@type": "Person",
+                name: siteMeta.ownerName,
+                url: `${siteMeta.siteUrl}/about`
+              },
+              mainEntityOfPage: `${siteMeta.siteUrl}/writing/${post.slug}`
+            },
+            createBreadcrumbJsonLd([
+              {name: "Home", path: "/"},
+              {name: "Writing", path: "/writing"},
+              {name: post.title, path: `/writing/${post.slug}`}
+            ])
+          ]
         }}
       />
 
       <article className={styles.articlePage}>
+        <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span className={styles.breadcrumbSeparator}>/</span>
+          <Link href="/writing">Writing</Link>
+          <span className={styles.breadcrumbSeparator}>/</span>
+          <span>{post.title}</span>
+        </nav>
         <div className={styles.articleMeta}>
           <span>{formatDate(post.date)}</span>
           {post.readingTime ? <span>{post.readingTime} min read</span> : null}
