@@ -2,8 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const appRoot = process.cwd();
-const repoRoot = path.resolve(appRoot, "..", "..");
-const contentRoot = path.join(repoRoot, "public", "content");
+const contentRoot = path.join(appRoot, "public", "content");
 const outputRoot = path.join(appRoot, "public");
 const siteUrl = "https://www.chenchen-echo.com";
 

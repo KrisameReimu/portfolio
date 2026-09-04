@@ -23,10 +23,10 @@ Current checks include:
 
 Run this command when changing:
 
-- `public/content/*.json`
-- `public/content/articles/*`
-- `public/content/projects/*`
-- `public/content/visuals/index.json`
+- `apps/web/public/content/*.json`
+- `apps/web/public/content/articles/*`
+- `apps/web/public/content/projects/*`
+- `apps/web/public/content/visuals/index.json`
 - content validation rules in `scripts/validate-content.js`
 
 For broad site changes, use:

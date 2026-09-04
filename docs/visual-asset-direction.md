@@ -31,11 +31,11 @@ Avoid generic glassmorphism, random neon blobs, fake screenshots, fake brand log
 
 Generated images are supporting materials, not the content source of truth.
 
-- Store asset metadata in `public/content/visuals/index.json`.
-- Store generated image files under `public/content/visuals/assets/` if committed locally.
+- Store asset metadata in `apps/web/public/content/visuals/index.json`.
+- Store generated image files under `apps/web/public/content/visuals/assets/` if committed locally.
 - Prefer descriptive IDs such as `home-identity-poster` or `project-polyu-genai-sql-cover`.
-- For personal brand character assets, store files under `public/content/visuals/assets/brand-character/` and name them by role plus visual thesis, for example `echo-3d-studio-figurine-design-think-create.png`.
-- Keep project-specific facts in `public/content/projects/*.json`; generated covers should illustrate the project thesis, not duplicate the full project content.
+- For personal brand character assets, store files under `apps/web/public/content/visuals/assets/brand-character/` and name them by role plus visual thesis, for example `echo-3d-studio-figurine-design-think-create.png`.
+- Keep project-specific facts in `apps/web/public/content/projects/*.json`; generated covers should illustrate the project thesis, not duplicate the full project content.
 - Mark generated concepts clearly in metadata. Do not present generated photo concepts as real photography.
 
 ## Generated Asset Intake
@@ -89,7 +89,7 @@ Each major page should have one page-owned hero image direction. The image can b
 - `About`: use `about-profile-dossier`; the fancy layer is identity-map lines connecting systems, research, media, and education.
 - `Now`: use `now-studio-status-board`; the fancy layer is small status pulses and current-work markers.
 
-The code-level pointer lives in `src/config/pageIdentity.js` under each page's `heroVisual`. The prompt and storage metadata live in `public/content/visuals/index.json`.
+The prompt and storage metadata live in `apps/web/public/content/visuals/index.json`; connect a visual only from the page-specific route or component that owns it.
 
 ### Home
 
@@ -303,4 +303,4 @@ Prompt:
 2. Generate the three project covers and wire them into `Projects` as optional visual metadata.
 3. Generate `photos-gallery-concept-cover` only if the Photos page needs an atmospheric entrance before real curated photo sets are ready.
 4. Add responsive image handling and reduced-motion-safe reveal animations when assets are connected to pages.
-5. Keep all prompts and output metadata in `public/content/visuals/index.json` so generated images remain traceable.
+5. Keep all prompts and output metadata in `apps/web/public/content/visuals/index.json` so generated images remain traceable.

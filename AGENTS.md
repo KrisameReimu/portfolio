@@ -50,21 +50,19 @@ If an implementation needs a temporary write-up, place it under `docs/archive/` 
 
 ## Architecture Rules
 
-Current structure is in transition. Respect these boundaries:
+The canonical frontend is `apps/web`. Respect these boundaries:
 
-- `src/app/`: app shell, providers, route composition
-- `src/pages/`: route-level page composition
-- `src/sections/`: page-owned sections and large route-specific assemblies
-- `src/components/`: reusable UI building blocks
-- `src/services/`: API and data-fetching integration
-- `src/config/`: shared content/system configuration
-- `src/contexts/`: app-wide state concerns
-- `public/content/`: curated content source of truth
+- `apps/web/app/`: App Router routes and route-level composition
+- `apps/web/components/`: reusable UI building blocks
+- `apps/web/lib/`: content loading, metadata, and shared presentation helpers
+- `apps/web/public/`: curated published content and public site assets
+- `apps/web/scripts/`: web build generators
+- `scripts/`: workspace-level validation and content-authoring tooling
 
 When adding new behavior:
 
-- Prefer page-local composition in `src/pages/` first.
-- Put page-owned assemblies in `src/sections/`.
+- Prefer page-local composition in the owning `apps/web/app/` route first.
+- Put page-owned assemblies beside their route unless genuine reuse warrants a component.
 - Extract to `components` only when reuse is real.
 - Extract to `services` or `hooks` when logic is shared.
 - Do not hide page-specific storytelling logic inside generic shared utilities.
@@ -130,7 +128,7 @@ Shared systems should support difference, not erase it.
 
 Content is part of the product architecture, not just seed data.
 
-- Treat `public/content/*.json` and article markdown as curated assets.
+- Treat `apps/web/public/content/*.json` and article markdown as curated assets.
 - Keep schema changes deliberate and documented.
 - Prefer additive schema evolution over breaking rewrites.
 - If a page depends on a new content shape, update validation or content tooling in the same change when practical.
@@ -163,6 +161,13 @@ Before finishing meaningful work:
 - use `npm` for repo tasks
 - prefer `npm run content:validate` when touching curated content
 - prefer `npm run verify` before final handoff when changes are broad enough
+
+## Static Export Policy
+
+The main personal site intentionally uses Next.js static export via
+`output: "export"`. Do not remove it or introduce request-time runtime
+features unless a concrete product requirement requires Next.js server
+capabilities.
 
 If verification cannot run, say exactly why.
 

@@ -57,9 +57,9 @@ apps/web/out
 
 ### Content
 
-- Article index: `public/content/index.json`
-- Article body: `public/content/articles/<id>.zh.md`
-- Optional English article: `public/content/articles/<id>.en.md`
+- Article index: `apps/web/public/content/index.json`
+- Article body: `apps/web/public/content/articles/<id>.zh.md`
+- Optional English article: `apps/web/public/content/articles/<id>.en.md`
 - Validate content: `npm run content:validate`
 - Create article scaffold:
 
@@ -75,11 +75,11 @@ npm run new:article -- --id your-article-id --title-zh "中文标题" --date 202
 
 ### Multimedia
 
-- Photos index: `public/content/photos.json`
-- Videos index: `public/content/videos.json`
-- Legacy game-project index: `public/content/projects.json`
-- Project dossier index: `public/content/projects/index.json`
-- Project dossier detail: `public/content/projects/<slug>.json`
+- Photos index: `apps/web/public/content/photos.json`
+- Videos index: `apps/web/public/content/videos.json`
+- Legacy game-project index: `apps/web/public/content/projects.json`
+- Project dossier index: `apps/web/public/content/projects/index.json`
+- Project dossier detail: `apps/web/public/content/projects/<slug>.json`
 
 - Create photo:
 
@@ -108,16 +108,12 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 
 ## Source Structure
 
-- `apps/web/`: canonical Next.js App Router site
-- `src/app/`: application shell, providers, routing composition
-- `src/pages/`: route-level pages
-- `src/sections/`: page-owned sections and large route-specific assemblies
-- `src/components/`: reusable UI building blocks
-- `src/services/`: content and external integrations
-- `src/config/`: shared schemas, route config, taxonomy, assets
-- `src/data/`: only for legacy fallback data that has not yet moved to canonical content sources
-
-The legacy `src/` tree may still exist during migration cleanup, but deployable site work should target `apps/web`.
+- `apps/web/app/`: App Router routes and route-level composition
+- `apps/web/components/`: reusable UI building blocks
+- `apps/web/lib/`: content loading, metadata, and shared presentation helpers
+- `apps/web/public/`: canonical published content and public site assets
+- `apps/web/scripts/`: web build generators
+- `scripts/`: workspace-level validation and content-authoring tooling
 
 ## Deployment Model
 
@@ -134,7 +130,7 @@ The legacy `src/` tree may still exist during migration cleanup, but deployable 
 ## Hosting Direction
 
 - Images: Cloudflare R2 custom domain
-- Videos: YouTube metadata only in `public/content/videos.json`
+- Videos: YouTube metadata only in `apps/web/public/content/videos.json`
 - Original media: keep in cloud storage, not in the app repo
 
 ## Community Backend

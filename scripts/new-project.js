@@ -3,7 +3,14 @@ const fs = require("fs");
 const path = require("path");
 
 const root = process.cwd();
-const indexPath = path.join(root, "public", "content", "projects.json");
+const indexPath = path.join(
+  root,
+  "apps",
+  "web",
+  "public",
+  "content",
+  "projects.json"
+);
 const args = process.argv.slice(2);
 const argMap = {};
 

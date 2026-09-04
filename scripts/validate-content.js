@@ -3,8 +3,9 @@ const fs = require("fs");
 const path = require("path");
 
 const root = process.cwd();
-const contentDir = path.join(root, "public", "content");
-const schemaPath = path.join(root, "src", "config", "contentSchema.json");
+const appRoot = path.join(root, "apps", "web");
+const contentDir = path.join(appRoot, "public", "content");
+const schemaPath = path.join(appRoot, "contentSchema.json");
 const files = {
   articles: path.join(contentDir, "index.json"),
   photos: path.join(contentDir, "photos.json"),
@@ -88,7 +89,7 @@ const validatePublicAssetPath = (value, pathLabel) => {
     return;
   }
 
-  const assetPath = path.join(root, "public", value.replace(/^\/+/, ""));
+  const assetPath = path.join(appRoot, "public", value.replace(/^\/+/, ""));
   if (!fs.existsSync(assetPath)) {
     addError(`${pathLabel} does not exist: ${assetPath}`);
   }
@@ -105,7 +106,7 @@ const validateRepoAssetPath = (value, pathLabel) => {
     return;
   }
 
-  const assetPath = path.join(root, value);
+  const assetPath = path.join(appRoot, value);
   if (!fs.existsSync(assetPath)) {
     addError(`${pathLabel} does not exist: ${assetPath}`);
   }

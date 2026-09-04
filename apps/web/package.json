@@ -8,9 +8,9 @@
     "npm": ">=10.2.0 <11"
   },
   "scripts": {
-    "predev": "node ./scripts/prepare-assets.mjs && node ./scripts/generate-llms.mjs",
+    "predev": "node ./scripts/generate-llms.mjs",
     "dev": "next dev --webpack",
-    "prebuild": "node ./scripts/prepare-assets.mjs && node ./scripts/generate-rss.mjs && node ./scripts/generate-llms.mjs",
+    "prebuild": "node ./scripts/generate-rss.mjs && node ./scripts/generate-llms.mjs",
     "build": "next build --webpack",
     "preview": "python3 -m http.server 3000 -d out",
     "start": "npm run preview",

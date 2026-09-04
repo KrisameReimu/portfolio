@@ -1,5 +1,9 @@
 # Railway 后端部署指南 (Backend Deployment Guide)
 
+> Historical reference: this document describes the retired CRA/Strapi
+> integration path. The current `apps/web` Next.js static site does not use
+> Railway or Strapi. Do not treat this as an operational deployment guide.
+
 ## 📋 概述 (Overview)
 
 本指南将帮助你使用 **Railway** 部署个人作品集的后端服务（Strapi CMS + PostgreSQL）。
