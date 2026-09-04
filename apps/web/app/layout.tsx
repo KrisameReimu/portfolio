@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {SpeedInsights} from "@vercel/speed-insights/next";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import {createMetadata} from "../lib/metadata";
@@ -17,6 +18,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <SpeedInsights />
       </body>
     </html>
   );
