@@ -118,7 +118,7 @@ npm run new:project -- --id project-id --title-zh "项目标题" --status in-dev
 ## Deployment Model
 
 - Development uses the Next.js dev server via `npm run dev`.
-- Production deployment uses static export artifacts from `apps/web/out`.
+- Production runs as a native **Next.js** Vercel project with `apps/web` as its Root Directory. Keep Vercel's Framework Preset set to Next.js and leave Output Directory at its framework default; `output: "export"` writes the static artifacts to `apps/web/out` during the build.
 - `npm run start` is now just an alias of `npm run preview` for local exported-site preview, not a Node production server.
 
 ## Localization Workflow
