@@ -2,12 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 
 const appRoot = process.cwd();
-const repoRoot = path.resolve(appRoot, "..", "..");
 const publicDir = path.join(appRoot, "public");
 const siteUrl = "https://www.chenchen-echo.com";
 
 const articles = JSON.parse(
-  fs.readFileSync(path.join(repoRoot, "public", "content", "index.json"), "utf8")
+  fs.readFileSync(path.join(publicDir, "content", "index.json"), "utf8")
 );
 
 const sorted = [...articles]

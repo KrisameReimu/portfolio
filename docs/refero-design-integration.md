@@ -72,8 +72,8 @@ When importing a Refero DESIGN.md or token export:
 1. Rename tokens into Echo-owned names before use.
 2. Keep one functional accent per page surface.
 3. Prefer `PageSurface` CSS variables for shared page shell values.
-4. Keep page-specific composition in page files or `src/sections/`.
-5. Do not add Tailwind just because a reference provides Tailwind v4 output; this repo currently uses SCSS and React 16.
+4. Keep page-specific composition in the owning `apps/web/app/` route or its local components.
+5. Do not add Tailwind just because a reference provides Tailwind v4 output; this repo currently uses SCSS and Next.js.
 
 Recommended Echo-owned token vocabulary:
 
@@ -107,6 +107,6 @@ Use this sequence for future visual work:
 
 ## Current Integration Boundary
 
-The current code-level entry point is `src/config/pageIdentity.js`. Each page can carry a `designReference` field that names the Refero-inspired archetype and the exact borrowing rule. `PageSurface` exposes this as a data attribute for future CSS or browser checks.
+Record design-reference decisions next to the owning `apps/web/app/` route or component. Shared styling primitives should remain implementation-neutral and must not flatten page identity.
 
 This keeps external design taste visible to agents while preventing all pages from collapsing into one shared template.

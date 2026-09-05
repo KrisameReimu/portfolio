@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = process.cwd();
-const contentDir = path.join(root, "public", "content");
+const contentDir = path.join(root, "apps", "web", "public", "content");
 const indexPath = path.join(contentDir, "index.json");
 const articlesDir = path.join(contentDir, "articles");
 

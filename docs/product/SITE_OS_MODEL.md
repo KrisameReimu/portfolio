@@ -10,10 +10,10 @@ It represents what is current, experimental, planned, or evolving.
 
 Current content files include:
 
-- `public/content/siteos/now.latest.json`
-- `public/content/siteos/roadmap.json`
-- `public/content/siteos/experiments.json`
-- `public/content/siteos/dashboard.public.json`
+- `apps/web/public/content/siteos/now.latest.json`
+- `apps/web/public/content/siteos/roadmap.json`
+- `apps/web/public/content/siteos/experiments.json`
+- `apps/web/public/content/siteos/dashboard.public.json`
 
 ## Role
 

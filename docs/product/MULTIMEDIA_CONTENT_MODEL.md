@@ -121,14 +121,14 @@ Recommended values:
 
 Current content can remain:
 
-- `public/content/photos.json`
-- `public/content/videos.json`
+- `apps/web/public/content/photos.json`
+- `apps/web/public/content/videos.json`
 
 New umbrella content can be added later:
 
-- `public/content/multimedia/index.json`
-- `public/content/multimedia/ai-visuals.json`
-- `public/content/multimedia/process.json`
+- `apps/web/public/content/multimedia/index.json`
+- `apps/web/public/content/multimedia/ai-visuals.json`
+- `apps/web/public/content/multimedia/process.json`
 
 Do not migrate all legacy content at once.
 

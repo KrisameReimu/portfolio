@@ -51,15 +51,12 @@ After deploy, you will get a URL like:
 
 `https://echo-community-api.<subdomain>.workers.dev`
 
-## 4. Frontend API base URL
+## 4. Frontend integration
 
-Add environment variable for frontend:
-
-```bash
-REACT_APP_COMMUNITY_API_BASE=https://echo-community-api.<subdomain>.workers.dev
-```
-
-You can place it in `.env.local`.
+The current static Next.js site does not call this Worker, so it has no
+frontend environment-variable requirement. If a future client integration is
+added, provide its build-time public URL as a `NEXT_PUBLIC_*` variable in the
+Next.js app; do not reuse the retired CRA `REACT_APP_*` convention.
 
 ## 4.1 (Recommended) Set session signing secret
 
@@ -93,11 +90,9 @@ Set the Google Web Client ID used by GIS:
 GOOGLE_CLIENT_ID = "your-google-web-client-id.apps.googleusercontent.com"
 ```
 
-Frontend also needs:
-
-```bash
-REACT_APP_GOOGLE_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
-```
+If a future Next.js client integration needs the Google client ID, expose it
+at build time with a narrowly scoped `NEXT_PUBLIC_*` variable instead of the
+retired CRA prefix.
 
 ## 5. Verify
 
