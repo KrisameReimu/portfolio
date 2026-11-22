@@ -17,6 +17,10 @@ This is not a generic developer portfolio. The site should feel curated, authore
 
 Agents must preserve that differentiation while keeping the codebase maintainable.
 
+## Related media and publishing workflow
+
+The existing private [AI-Multimedia](https://github.com/KrisameReimu/AI-Multimedia) repository is the editorial and media **production/orchestration** layer, and this repository owns the **public Next.js website and final publication schema**. For writing, Google Drive Master Docs are the sole editable originals; site Markdown/JSON represents approved static release snapshots, not independently editable copies. Read [our Writing content workflow](docs/product/WRITING_CONTENT_WORKFLOW.md) alongside the [media production integration plan](https://github.com/KrisameReimu/AI-Multimedia/blob/main/docs/portfolio-integration-plan.md) before implementing publishing changes. Preserve already-public slugs, avoid runtime private Drive access, and require an explicit website PR review before deploying content. Cross-repo changes require separate PRs; do not share private tokens or assume one repository's CI verifies the other. Do not treat an approved media workflow as permission to publish without author approval.
+
 ## Priority Order
 
 When tradeoffs appear, use this order:
@@ -136,7 +140,7 @@ Content is part of the product architecture, not just seed data.
 
 ## Writing / WeChat Rules
 
-The website should be the canonical long-term archive for Writing.
+The website is the canonical **public reading archive and URL**, while the editable **authoring Master** lives in Google Drive; site Markdown is an approved publishing snapshot.
 
 WeChat Official Account should be treated as a distribution channel, not the canonical content store.
 

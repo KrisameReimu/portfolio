@@ -16,6 +16,13 @@ It is not only a resume site. It should work as:
 
 The long-term goal is durability: the site should stay understandable as more writing, photos, videos, experiments, and page-specific experiences are added.
 
+## Publication and media-production boundary
+
+- **Public destination:** this existing [portfolio](https://github.com/KrisameReimu/portfolio) Next.js website owns `/writing`, `/multimedia`, stable public slugs, and curated static publication snapshots.
+- **Creative Master:** Google Drive Echo Writing Archive holds the sole editable article Master and private original media. Website Markdown is not a second Master.
+- **Production partner:** private [AI-Multimedia](https://github.com/KrisameReimu/AI-Multimedia) manages on-demand content handoff, Make → WeChat drafts and multimedia production, then adapts approved outputs to this website's schema through reviewed portfolio PRs.
+- **Integration plan:** [Cross-repository publication plan](https://github.com/KrisameReimu/AI-Multimedia/blob/main/docs/portfolio-integration-plan.md). No automatic Drive-to-site publish integration is implemented yet. Do not create a second publication frontend/CMS.
+
 ## Product Principles
 
 ### 1. Personal IP over template aesthetics
