@@ -6,6 +6,12 @@ This repository is a long-term portfolio, publishing system, and personal IP sur
 
 The canonical app is now `apps/web`, a static-first Next.js site. The old CRA surface is no longer the operational entrypoint.
 
+## Connected media-production repository
+
+The existing **[AI-Multimedia](https://github.com/KrisameReimu/AI-Multimedia)** repository (private) owns editorial production, media editing, and the Google Drive → Make → WeChat-draft workflow. **This portfolio repository is the public publishing and multimedia display layer**, not the Google Docs authoring Master. Google Drive's Echo Writing Archive is the sole editable source of literary originals; website Markdown/JSON is a **reviewed, public build snapshot**. Do not automatically synchronize private Drive content or push unreviewed drafts to Vercel.
+
+See [Writing publishing contract](docs/product/WRITING_CONTENT_WORKFLOW.md) and the companion [cross-repository plan](https://github.com/KrisameReimu/AI-Multimedia/blob/main/docs/portfolio-integration-plan.md). The plan is proposed; a fully automated Drive→portfolio handoff does **not yet** exist.
+
 ## Start Here
 
 - Repo intent and structural direction: [`PROJECT.md`](./PROJECT.md)
