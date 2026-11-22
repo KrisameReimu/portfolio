@@ -63,6 +63,8 @@ apps/web/out
 
 ### Content
 
+- **Reviewed article release handoff:** [Guide](docs/product/WRITING_RELEASE_HANDOFF.md) — `node scripts/import-writing-handoff.js --input /private/portfolio-handoff.json` previews an author-approved AI-Multimedia release; append `--apply` only for explicit local changes followed by a reviewed content PR. No automatic publishing or Drive runtime integration.
+
 - Article index: `apps/web/public/content/index.json`
 - Article body: `apps/web/public/content/articles/<id>.zh.md`
 - Optional English article: `apps/web/public/content/articles/<id>.en.md`
