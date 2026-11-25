@@ -179,7 +179,9 @@ function validateHandoff(handoff) {
   }).toLowerCase();
   // Match the producer's conservative whole-domain guard (Docs, Sheets, Slides).
   if (
-    /drive\.google\.com|docs\.google\.com|accounts\.google\.com/.test(publicData)
+    /drive\.google\.com|docs\.google\.com|accounts\.google\.com/.test(
+      publicData
+    )
   ) {
     fail("Potential private Google Drive link in public content");
   }

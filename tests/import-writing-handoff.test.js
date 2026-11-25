@@ -5,7 +5,10 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const {spawnSync} = require("node:child_process");
-const {validateHandoff, preflight} = require("../scripts/import-writing-handoff");
+const {
+  validateHandoff,
+  preflight
+} = require("../scripts/import-writing-handoff");
 
 const markdown =
   "# 测试正文\n\n这是一篇纯合成测试文章，只验证出版交接数据结构，不向任何外部渠道发布。\n";
@@ -46,6 +49,8 @@ test("rejects accidental private links in body and metadata", () => {
     "https://docs.google.com/document/d/secret",
     "https://docs.google.com/spreadsheets/d/secret",
     "https://docs.google.com/presentation/d/secret",
+    "https://docs.google.com/forms/d/secret",
+    "https://DOCS.GOOGLE.COM/spreadsheets/d/secret",
     "https://drive.google.com/file/d/secret",
     "https://accounts.google.com/"
   ]) {
@@ -58,7 +63,10 @@ test("rejects accidental private links in body and metadata", () => {
     assert.throws(() => validateHandoff(doc), /private google drive link/i);
     const metadata = fixture();
     metadata.entry.excerpt.zh += url;
-    assert.throws(() => validateHandoff(metadata), /private google drive link/i);
+    assert.throws(
+      () => validateHandoff(metadata),
+      /private google drive link/i
+    );
   }
 });
 

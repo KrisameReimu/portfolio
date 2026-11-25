@@ -1,6 +1,9 @@
 name: Check Format
 on:
   push:
+    branches:
+      - main
+      - master
   pull_request:
     branches:
       - main
@@ -23,10 +26,3 @@ jobs:
       - run: npm ci
       - name: Check Format
         run: npm run check-format
-      - name: Show formatter diff on failure (local runner only)
-        if: failure()
-        run: |
-          if test -x node_modules/.bin/prettier; then
-            npm exec --no -- prettier --write scripts/import-writing-handoff.js tests/import-writing-handoff.test.js
-            git diff -- scripts/import-writing-handoff.js tests/import-writing-handoff.test.js
-          fi
