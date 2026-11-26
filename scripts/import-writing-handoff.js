@@ -135,7 +135,15 @@ function validateEntry(entry) {
     ) {
       fail("source only allows a confirmed public WeChat URL");
     }
-    const url = new URL(entry.source.wechat);
+    if (!isText(entry.source.wechat)) {
+      fail("WeChat source URL must be nonempty text");
+    }
+    let url;
+    try {
+      url = new URL(entry.source.wechat);
+    } catch {
+      fail("Invalid public WeChat source URL");
+    }
     if (
       url.protocol !== "https:" ||
       url.hostname !== "mp.weixin.qq.com" ||

@@ -79,6 +79,27 @@ test("rejects unexpected public metadata and unsafe cover URLs", () => {
   assert.throws(() => validateHandoff(doc), /public image domain/i);
 });
 
+test("validates WeChat source type and URL before import", () => {
+  for (const value of [null, 123, {}, [], "", " "]) {
+    const doc = fixture();
+    doc.entry.source = {wechat: value};
+    assert.throws(() => validateHandoff(doc), /nonempty text/i);
+  }
+  for (const value of [
+    "not a URL",
+    "http://mp.weixin.qq.com/s/test",
+    "https://example.org/s/test",
+    "https://user@mp.weixin.qq.com/s/test"
+  ]) {
+    const doc = fixture();
+    doc.entry.source = {wechat: value};
+    assert.throws(() => validateHandoff(doc), /invalid public wechat source/i);
+  }
+  const doc = fixture();
+  doc.entry.source = {wechat: "https://mp.weixin.qq.com/s/synthetic"};
+  assert.deepEqual(validateHandoff(doc).entry.source, doc.entry.source);
+});
+
 test("refuses existing article id, URL slug, or body file", () => {
   const index = [{id: entry.id, slug: "another-slug"}];
   assert.throws(() => preflight(fixture(), index), /id already exists/);
