@@ -30,6 +30,10 @@ The **sole editable original** is the Master Google Doc in Google Drive's Echo W
 
 The private production/orchestration repository is [AI-Multimedia](https://github.com/KrisameReimu/AI-Multimedia); see its [cross-repository integration plan](https://github.com/KrisameReimu/AI-Multimedia/blob/main/docs/portfolio-integration-plan.md). Website presentation schema and validator take precedence for public payloads. Any future converter must target the existing public content schema and open a separate portfolio PR; do not fetch private Drive at runtime or directly publish on approval of a WeChat draft.
 
+## Release handoff implementation (v1)
+
+The [review-gated offline handoff importer](WRITING_RELEASE_HANDOFF.md) accepts the `echo-writing-portfolio-handoff/v1` format from the private [AI-Multimedia exporter](https://github.com/KrisameReimu/AI-Multimedia/blob/main/workflows/editorial/portfolio-handoff.md). The default is dry-run, it rejects duplicate IDs/slugs and changed content hashes, and `--apply` only modifies local files. **It does not fetch Drive, push to Git, deploy, or publish.** An explicit content PR remains mandatory. This is a separate publishing path from Make → WeChat draft.
+
 ## Actual current website publishing contract
 
 - Public index: `apps/web/public/content/index.json`, using `id`, optional `slug`, `publishedDate`, localized `title`/`excerpt`, `tags`, `cover`, optional `source.wechat`.

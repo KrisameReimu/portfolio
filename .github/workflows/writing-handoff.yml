@@ -1,0 +1,32 @@
+name: Writing publication handoff
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/writing-handoff.yml
+      - scripts/import-writing-handoff.js
+      - tests/import-writing-handoff.test.js
+      - scripts/validate-content.js
+      - apps/web/public/content/index.json
+      - apps/web/public/content/articles/**
+      - apps/web/contentSchema.json
+
+permissions:
+  contents: read
+
+jobs:
+  handoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: node --test tests/import-writing-handoff.test.js
+      - run: npm run content:validate
+      - run: npm run verify
